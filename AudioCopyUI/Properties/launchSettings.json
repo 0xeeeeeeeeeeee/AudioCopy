@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AudioCopyUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AudioCopyUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
