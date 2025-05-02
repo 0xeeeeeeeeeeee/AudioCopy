@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AudioCopyUI.SettingViews.AudioQuality"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <Grid Padding="12">
+        <StackPanel>
+            <TextBlock FontSize="28px" >音频格式</TextBlock>
+            <TextBlock Margin="0,15,0,0" FontSize="16px" x:Name="defaultAudioQualityBlock" >当前音质：</TextBlock>
+
+            <StackPanel Orientation="Vertical" Spacing="0">
+                <RadioButton x:Name="resampleOption_1" Margin="1"  Click="resampleOption_Click">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontSize="16px" Text="不重采样(使用系统配置的音质)" />
+                        <TextBlock Margin="0,10,0,0" FontSize="16px" Text="如果需要采集位深超过16bit的音频，请使用预设或自定义采样率选项" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton x:Name="resampleOption_2" Click="resampleOption_Click">
+                    <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                        <TextBlock Text="使用预设重采样配置" FontSize="16px" />
+
+                        <DropDownButton Margin="0,8,0,0" x:Name="audioQualityDropdown"   Content="选择选项" Loaded="audioQualityDropdown_Loaded">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="2 通道，16 位，44100 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，16 位，48000 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，16 位，96000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，16 位，192000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，24 位，44100 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，24 位，48000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，24 位，96000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，24 位，192000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="1 通道，16 位，44100 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="1 通道，16 位，48000 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="1 通道，24 位，44100 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="1 通道，24 位，48000 Hz" Click="MenuFlyoutItem_Click" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton x:Name="resampleOption_3" Click="resampleOption_Click">
+                    <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                        <TextBlock Text="自定义重采样配置"  FontSize="16px" />
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <NumberBox x:Name="bitRateBox" Width="80" PlaceholderText="位深"></NumberBox>
+                            <NumberBox x:Name="sampleRateBox" Margin="12,0,0,0" Width="120" PlaceholderText="采样率"></NumberBox>
+                            <NumberBox x:Name="channelBox" Margin="12,0,0,0" Width="80" PlaceholderText="声道"></NumberBox>
+                            <Button x:Name="applyButton" Margin="12,0,0,0" Width="60" Click="applyButton_Click" >应用</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
