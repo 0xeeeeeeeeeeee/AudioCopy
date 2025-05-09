@@ -13,8 +13,9 @@
             <TextBlock FontSize="28px" >高级设置</TextBlock>
 
             <StackPanel Orientation="Vertical">
-                <CheckBox Margin="0,10" x:Name="showNonLocalAddress" Click="OptionsChanged">在“配对”界面显示非局域网地址</CheckBox>
-                <CheckBox Margin="0" x:Name="forceMP3Audio" Click="OptionsChanged">始终允许播放MP3流</CheckBox>
+                <CheckBox Margin="0,4" x:Name="showNonLocalAddress" Click="OptionsChanged">在“配对”界面显示非局域网地址</CheckBox>
+                <CheckBox Margin="0,4" x:Name="forceMP3Audio" Click="OptionsChanged">始终允许播放MP3流</CheckBox>
+                <CheckBox Margin="0,4" x:Name="keepBackendRun" Click="OptionsChanged">允许后端在退出之后继续运行</CheckBox>
             </StackPanel>
 
             <StackPanel Margin="0,12,0,12" Orientation="Vertical">
@@ -27,7 +28,6 @@
                     <Button Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetTokens" Click="resetTokens_Click">清除所有配对的设备</Button>
                     <Button Margin="1,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetBackend" Click="resetBackend_Click">完全重置后端</Button>
                     <Button Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click">重置所有设置</Button>
-
                 </StackPanel>
 
                 <!-- <TextBlock Margin="0,16" FontSize="16px" >这些设置可能非常危险，如您不懂请不要乱点。大部分更改都需要您重启应用程序来生效</TextBlock> -->

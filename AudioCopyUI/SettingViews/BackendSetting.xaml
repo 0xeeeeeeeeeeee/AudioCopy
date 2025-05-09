@@ -18,7 +18,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
-               <!--<CheckBox x:Name="allowLoopbackPair" Click="OptionsChanged" >允许与环回地址配对</CheckBox>-->
+                <!--<CheckBox x:Name="allowLoopbackPair" Click="OptionsChanged" >允许与环回地址配对</CheckBox>-->
                 <CheckBox x:Name="allowNonLocalPair" Click="OptionsChanged">允许与非局域网地址配对</CheckBox>
 
                 <CheckBox x:Name="useDevelopmentMode" Click="OptionsChanged">将后端配置为开发环境 (仅供开发，请不要在生产环境下使用)</CheckBox>

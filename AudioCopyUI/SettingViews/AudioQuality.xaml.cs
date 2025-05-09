@@ -38,6 +38,10 @@ namespace AudioCopyUI.SettingViews
     /// </summary>
     public sealed partial class AudioQuality : Page
     {
+
+        int bitrate, samplerate, channels;
+        private bool loaded = false;
+
         public AudioQuality()
         {
             this.InitializeComponent();
@@ -67,6 +71,7 @@ namespace AudioCopyUI.SettingViews
         {
             try
             {
+
                 var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
                 HttpClient c = new();
                 c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
@@ -74,6 +79,8 @@ namespace AudioCopyUI.SettingViews
                 AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
                 var text = $"{body.channels} 通道，{body.bitsPerSample} 位，{body.sampleRate} Hz ";
                 defaultAudioQualityBlock.Text += text;
+                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;
+                loaded = true;
             }
             catch (Exception)
             {
@@ -81,7 +88,7 @@ namespace AudioCopyUI.SettingViews
             }
         }
 
-        int bitrate, samplerate, channels;
+        
 
         private void itemSelected(UIElement sender, DropCompletedEventArgs args)
         {
@@ -151,12 +158,16 @@ namespace AudioCopyUI.SettingViews
             await Save();
         }
 
+        private async void rawBufferSize_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        {
+            if(loaded) await Save();
 
+        }
 
         private async Task Save()
         {
             SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
-            await ShowDialogue("提示", "重启应用程序来应用更改", "好的", null, this);
+            SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
         }
 
 

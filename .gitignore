@@ -367,3 +367,5 @@ FodyWeavers.xsd
 /backend.zip
 /libAudioCopy-Backend/Properties/launchSettings.json
 /AudioCopyUI_ReceiverOnly
+/libAudioCopy-Backend-standalone
+*.lnk

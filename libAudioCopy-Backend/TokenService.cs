@@ -53,7 +53,7 @@ namespace libAudioCopy
         }
 
         public bool Validate(string token)
-            => ((Environment.GetEnvironmentVariable("AudioCopy_hostToken") ?? "") == token) || (!string.IsNullOrEmpty(token) && _tokens.Contains(token));
+            => ((Environment.GetEnvironmentVariable("AudioCopy_hostToken") ?? throw new Exception("Not defined host token.")) == token) || (!string.IsNullOrEmpty(token) && _tokens.Contains(token));
 
         public bool Add(string token)
         {

@@ -62,12 +62,19 @@ namespace AudioCopyUI.SettingViews
             {
                 showNonLocalAddress.IsChecked = true;
             }
+
+            if (bool.Parse(SettingUtility.GetOrAddSettings("KeepBackendRun", "False")))
+            {
+                keepBackendRun.IsChecked = true;
+            }
         }
 
         private void OptionsChanged(object sender, RoutedEventArgs e)
         {
             SettingUtility.SetSettings("AlwaysAllowMP3", (forceMP3Audio.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("ShowAllAdapter", (showNonLocalAddress.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
+
         }
 
         private async void resetUUID_Click(object sender, RoutedEventArgs e)
@@ -76,7 +83,7 @@ namespace AudioCopyUI.SettingViews
             {
                 SettingUtility.SetSettings("udid", AlgorithmServices.MakeRandString(128));
                 await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
-                Program.ExitApp();
+                Program.ExitApp(true);
             }
         }
 
@@ -86,9 +93,9 @@ namespace AudioCopyUI.SettingViews
             {
                 SettingUtility.SetSettings("deviceMapping", "{}");
                 Program.KillBackend();
-                File.Delete(Path.Combine(LocalStateFolder, @"backend\tokens.json"));
+                File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
                 await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
-                Program.ExitApp();
+                Program.ExitApp(true);
             }
         }
 
@@ -97,11 +104,11 @@ namespace AudioCopyUI.SettingViews
             if (!await ShowDialogue("警告", "你确定要这么做吗？", "取消", "确认", this))
             {
                 Program.KillBackend();
-                File.Delete(Path.Combine(LocalStateFolder, @"backend\tokens.json"));
+                File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
                 await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
-                Program.ExitApp();
+                Program.ExitApp(true);
             }
         }
 
@@ -118,9 +125,10 @@ namespace AudioCopyUI.SettingViews
                 Program.KillBackend();
                 await Task.Delay(1000);
                 Directory.Delete(Path.Combine(LocalStateFolder, @"backend"), true);
+                Directory.Delete(Path.Combine(LocalStateFolder, @"wwwroot"), true);
                 SettingUtility.SetSettings("ForceUpgradeBackend", "True");
                 await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
-                Program.ExitApp();
+                Program.ExitApp(true);
             }
         }
     }

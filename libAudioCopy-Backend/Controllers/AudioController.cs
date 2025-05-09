@@ -36,10 +36,10 @@ using System.Text.Json;
 [Route("api/audio")]
 public class AudioController : ControllerBase
 {
-    private WasapiProvider _provider;
+    private AudioProvider _provider;
     private readonly TokenService _tokens;
 
-    public AudioController(WasapiProvider provider, TokenService tokens)
+    public AudioController(AudioProvider provider, TokenService tokens)
     {
         string? name,format = "";
         int id = -1;
@@ -105,7 +105,7 @@ public class AudioController : ControllerBase
         _provider.Dispose();
         string[]? fmtArr = (format is not null && !string.IsNullOrWhiteSpace(format)) ? format.Split(',') : Array.Empty<string>();
 
-        _provider = new WasapiProvider(
+        _provider = new AudioProvider(
             (fmtArr.Length == 3) ? new WaveFormat(int.Parse(fmtArr[0]), int.Parse(fmtArr[1]), int.Parse(fmtArr[2])) : null,
             deviceId);
 
@@ -116,7 +116,7 @@ public class AudioController : ControllerBase
     [HttpGet("GetAudioFormat")]
     public async Task GetAudioFormat(string token, CancellationToken ct)
     {
-        if (!CheckToken(token))
+        if (!CheckToken(token) && !IsHostTokenVaild(token))
         {
             Response.StatusCode = StatusCodes.Status401Unauthorized;
             await Response.WriteAsync("Unauthorized, please check your token.");
@@ -282,6 +282,44 @@ public class AudioController : ControllerBase
         finally
         {
             flacProc?.Kill(true);
+            _provider.UnsubscribePcm(id);
+        }
+    }
+
+    [HttpGet("raw")]
+    public async Task StreamRaw(string token, string clientName, CancellationToken ct = default)
+    {
+        if (!CheckToken(token))
+        {
+            Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await Response.WriteAsync("Unauthorized, please check your token.");
+            return;
+        }
+
+        HttpContext.Features.Get<IHttpResponseBodyFeature>()?.DisableBuffering();
+        Response.ContentType = "application/octet-stream";
+        var (id, pipe) = _provider.SubscribePcm((HttpContext.Connection.RemoteIpAddress ?? IPAddress.Any).ToString().Split(':').Last(), clientName);
+        await Task.Delay(500);
+        try
+        {
+            byte[] buffer = new byte[_provider.PcmBlockAlign * 16];
+            int n;
+            while (!ct.IsCancellationRequested)
+            {
+                n = pipe.Read(buffer, 0, buffer.Length);
+                if (n > 0)
+                {
+                    //Console.WriteLine(result);
+                    await Response.Body.WriteAsync(buffer.AsMemory(0, n), ct);
+                }
+                else
+                {
+                    await Task.Delay(20, ct);
+                }
+            }
+        }
+        finally
+        {
             _provider.UnsubscribePcm(id);
         }
     }

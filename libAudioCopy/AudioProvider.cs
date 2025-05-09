@@ -29,7 +29,7 @@ using System.Xml.Linq;
 namespace libAudioCopy.Audio
 {
 
-    public class WasapiProvider : IDisposable
+    public class AudioProvider : IDisposable
     {
         private const int MB = 1024 * 1024;
         private readonly WasapiLoopbackCapture loopbackWaveIn;
@@ -43,13 +43,14 @@ namespace libAudioCopy.Audio
         public int sampleRate { get; private set; } = 48000;
         public bool isMp3Ready { get; private set; } = false;
         public ConcurrentDictionary<Guid, Tuple<string, string>> SubscribedClients = new();
+        public ConcurrentQueue<byte>? rawBuffer = null;
 
         private readonly ConcurrentDictionary<Guid, PipeStream> pcmSubscribers = new();
 
         public WaveFormat PcmFormat => pcmStream.WaveFormat;
         public int PcmBlockAlign => pcmStream.WaveFormat.BlockAlign;
 
-        public WasapiProvider(WaveFormat? targetFormat = null, int deviceId = -1)
+        public AudioProvider(WaveFormat? targetFormat = null, int deviceId = -1)
         {
             recordingStream = new PipeStream { MaxBufferLength = 10 * MB };
 
@@ -70,6 +71,7 @@ namespace libAudioCopy.Audio
             loopbackWaveIn.StartRecording();
 
             var floatSrc = new RawSourceWaveStream(recordingStream, loopbackWaveIn.WaveFormat);
+
             if (targetFormat is null)
             {
                 pcmStream = (IWaveProvider?)floatSrc.ToSampleProvider().ToWaveProvider16(); //16bps audio is enough for 99% usage
@@ -138,6 +140,7 @@ namespace libAudioCopy.Audio
         public void Dispose()
         {
             isRunning = false;
+            if (rawBuffer is not null) return;
             loopbackWaveIn.StopRecording();
             loopbackWaveIn.Dispose();
             foreach (var kv in pcmSubscribers) kv.Value.Dispose();

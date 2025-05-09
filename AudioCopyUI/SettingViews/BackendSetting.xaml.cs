@@ -152,6 +152,7 @@ namespace AudioCopyUI.SettingViews
         {
             SettingUtility.SetSettings("ForceUpgradeBackend", "True");
             await ShowDialogue("提示", "重新启动应用程序来应用更改", "好的", null, this);
+            Program.ExitApp(true);
         }
     }
 }
