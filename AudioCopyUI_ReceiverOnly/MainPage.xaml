@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AudioCopyUI_ReceiverOnly.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Viewbox x:Name="mainView" Stretch="Uniform" StretchDirection="Both"> <!--能用就行（不是 -->
+            <Grid x:Name="mainPanel" Visibility="Visible" >
+                <NavigationView x:Name="NavView" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged">
+                    <NavigationView.MenuItems>
+                        <NavigationViewItem Tag="ReceivePage" Icon="Audio" Content="接受" />
+                        <NavigationViewItem Tag="PairPage" Icon="Link" Content="配对" />
+                    </NavigationView.MenuItems>
+                    <Frame x:Name="PageFrame" />
+                </NavigationView>
+            </Grid>
+        </Viewbox>
+        
+        <NavigationView x:Name="NavView1" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Tag="ReceivePage" Icon="Audio" Content="接受" />
+                <NavigationViewItem Tag="PairPage" Icon="Link" Content="配对" />
+            </NavigationView.MenuItems>
+            <Frame x:Name="PageFrame1" />
+        </NavigationView>
+    </Grid>
+</Page>

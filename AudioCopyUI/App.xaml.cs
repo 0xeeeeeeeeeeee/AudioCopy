@@ -60,7 +60,7 @@ namespace AudioCopyUI
                 _ = c.GetAsync($"api/device/RebootClient?hostToken={SettingUtility.HostToken}&delay=50");
                 Thread.Sleep(30);
             }
-            Environment.Exit(0);
+            
         }
 
         public static void KillBackend()
