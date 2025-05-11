@@ -61,7 +61,8 @@ namespace AudioCopyUI.SettingViews
             thanksBox.Text =
 $$"""
 AudioCopy {{Assembly.GetExecutingAssembly().GetName().Version}} Copyright 0xeeeeeeeeeeee (0x12e) 2025.
-
+项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。
+该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)
 
 
 

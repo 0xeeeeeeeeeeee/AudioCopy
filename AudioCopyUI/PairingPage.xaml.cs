@@ -334,10 +334,10 @@ namespace AudioCopyUI
                     DispatcherQueuePriority.Normal,
                     () => Page_Loaded(new(),new())
                 );
-            await Pair();
+            await Pair(true);
         }
 
-        private async Task Pair()
+        private async Task Pair(bool active = false)
         {
             HttpClient httpClient = new();
             httpClient.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
@@ -416,7 +416,7 @@ namespace AudioCopyUI
             }
             catch (Exception ex)
             {
-                if (!await ShowDialogue("提示", $"发生了{ex.GetType().Name}错误：{ex.Message}", "好的", "搜索解决方案", this))
+                if (active && !await ShowDialogue("提示", $"发生了{ex.GetType().Name}错误：{ex.Message}", "好的", "搜索解决方案", this))
                 {
                     var question = $"{ex.GetType().Name} {ex.Message}";
                     bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri($"https://www.bing.com/search?q={Uri.EscapeDataString(question)}"));

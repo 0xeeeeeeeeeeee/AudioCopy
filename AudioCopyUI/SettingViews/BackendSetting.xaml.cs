@@ -136,6 +136,7 @@ namespace AudioCopyUI.SettingViews
             }
 
             SettingUtility.SetSettings("backendOptions", JsonSerializer.Serialize(config));
+            SettingUtility.SetSettings("defaultPort", !string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456");
             await ShowDialogue("提示", "重新启动后端来应用更改", "好的", null, this);
 
         }
@@ -152,6 +153,7 @@ namespace AudioCopyUI.SettingViews
         {
             SettingUtility.SetSettings("ForceUpgradeBackend", "True");
             await ShowDialogue("提示", "重新启动应用程序来应用更改", "好的", null, this);
+            Program.ExitApp(true);
         }
     }
 }

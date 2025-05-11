@@ -22,6 +22,7 @@
 using libAudioCopy;
 using Microsoft.AspNetCore.Mvc;
 using NAudio.CoreAudioApi;
+using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
@@ -39,6 +40,24 @@ public class DeviceController : Controller
     private bool CheckToken(string? token)
     {
         return _tokens.Validate(token);
+    }
+
+    private bool IsHostTokenVaild(string hostToken) => (Environment.GetEnvironmentVariable("AudioCopy_hostToken") ?? "") == hostToken;
+
+
+    [HttpGet("RebootClient")]
+    public IActionResult RebootClient(string hostToken,int delay)
+    {
+        if (!IsHostTokenVaild(hostToken))
+        {
+            return Unauthorized("Unauthorized, please check your token.");
+        }
+
+        Thread.Sleep(delay);
+
+        Process.Start(new ProcessStartInfo { FileName = "cmd.exe",Arguments= "/c start audiocopy:reboot" , UseShellExecute = false });
+        
+        return Ok("Rebooting client...");
     }
 
     [HttpGet("GetIPAddress")]

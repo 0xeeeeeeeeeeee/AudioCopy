@@ -19,11 +19,15 @@
 *	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
 */
 using Microsoft.UI.Xaml.Controls;
+using NAudio.Wave;
 using System;
+using System.Collections.Concurrent;
 using System.IO;
+using System.IO.Pipes;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Media;
 using Windows.Media.Core;
@@ -42,6 +46,8 @@ namespace AudioCopyUI
         private SystemMediaTransportControls smtc;
         HttpClient c = new();
         MediaPlayer mediaPlayer = new MediaPlayer();
+        CancellationTokenSource cts = new();
+        bool rawPlaying = false;
 
         public ReceivePage()
         {
@@ -104,6 +110,13 @@ namespace AudioCopyUI
         private async void Button_Click(object sender, object? e)
         {
 
+            if (rawPlaying)
+            {
+                rawPlaying = false;
+                cts.Cancel();
+                Program.ExitApp(true);
+                return;
+            }
             if (!await TryConnect()) return;
             mediaPlayer.Pause();
             mediaPlayer.Source = null;
@@ -119,30 +132,130 @@ namespace AudioCopyUI
             var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
             Uri source = new(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
             Log($"Playing at address:{source.ToString()}");
-            mediaPlayer.Source = MediaSource.CreateFromUri(source);
-            mediaPlayer.MediaEnded += Button_Click;//replay
-            mediaPlayer.MediaFailed += async (s, e) =>
+            if (format == "raw")
             {
-                await ShowDialogue("错误", $"播放流时发生了错误：{e.Error}", "好的", null, this);
-                Log($"Media failed: {e.Error}");
+                rawPlaying = true;
+                playButton.Content = "停止播放";
+
+                PlayRaw(source, cts.Token);
+
+                return;
+
+            }
+
+            try
+            {
+                if (mediaPlayer == null)
+                {
+                    mediaPlayer = new MediaPlayer();
+                    mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+
+                    PlayerElement.SetMediaPlayer(mediaPlayer);
+                }
+
+                mediaPlayer.Source = MediaSource.CreateFromUri(source);
+                mediaPlayer.Play();
+
+                await Task.Delay(1500); // 等待更新
+
+                if (smtc == null)
+                {
+                    smtc = mediaPlayer.SystemMediaTransportControls;
+                    smtc.IsEnabled = true;
+                    smtc.IsPauseEnabled = false;
+                    smtc.ButtonPressed += Smtc_ButtonPressed;
+
+                    var updater = smtc.DisplayUpdater;
+                    updater.Type = MediaPlaybackType.Music;
+                    updater.MusicProperties.Title = "Audio from AudioCopy";
+                    updater.Update();
+                }
+            }
+            catch (Exception ex)
+            {
+                await LogAndDialogue(ex, "播放流", null, null, this);
+            }
+        }
+
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            sender.Play();
+        }
+
+        private async void PlayRaw(Uri source, CancellationToken token)
+        {
+            AudioQualityObject body;
+            try
+            {
+                var _token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
+                var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={_token}");
+                body = JsonSerializer.Deserialize<AudioQualityObject>(await rsp.Content.ReadAsStringAsync());
+            }
+            catch (Exception)
+            {
+                throw new NotSupportedException("Cannot get host audio settings.");
+            }
+
+            var waveFormat = new WaveFormat(body.sampleRate, 16 , body.channels);
+
+            var bufferedProvider = new BufferedWaveProvider(waveFormat)
+            {
+                BufferDuration = TimeSpan.FromSeconds(2), 
+                DiscardOnBufferOverflow = true          
             };
 
-            PlayerElement.SetMediaPlayer(mediaPlayer);
-            mediaPlayer.Play();
+            Task producer = Task.Run(async () =>
+            {
+                try
+                {
+                    using (HttpClient rawClient = new HttpClient())
+                    using (var stream = await rawClient.GetStreamAsync(source))
+                    {
+                        byte[] buffer = new byte[int.TryParse(SettingUtility.GetOrAddSettings("rawBufferSize","4096"), out var result) ? result : 4096]; 
+                        while (!token.IsCancellationRequested)
+                        {
+                            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
+                            if (bytesRead > 0)
+                            {
+                                bufferedProvider.AddSamples(buffer, 0, bytesRead);
+                            }
+                            else
+                            {
+                                await Task.Delay(50, token);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log(ex, "网络接收",this);
+                }
+            }, token);
 
-            await Task.Delay(1000); //wait for update
+            Task consumer = Task.Run(async () =>
+            {
+                try
+                {
+                    using (var waveOut = new WaveOutEvent())
+                    {
+                        waveOut.Init(bufferedProvider);
+                        waveOut.Play();
 
-            smtc = mediaPlayer.SystemMediaTransportControls;
-            smtc.IsEnabled = true;
-            smtc.IsPauseEnabled = false;
-            smtc.ButtonPressed += Smtc_ButtonPressed;
+                        while (waveOut.PlaybackState == PlaybackState.Playing && !token.IsCancellationRequested)
+                        {
+                            await Task.Delay(50,token);
+                        }
 
-            
+                        waveOut.Stop();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log(ex, "播放", this);
+                }
+            }, token);
 
-            var updater = smtc.DisplayUpdater;
-            updater.Type = MediaPlaybackType.Music;
-            updater.MusicProperties.Title = "Audio from AudioCopy";
-            updater.Update();
+            await Task.WhenAll(producer, consumer);
         }
 
         private void Smtc_ButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
@@ -206,6 +319,46 @@ namespace AudioCopyUI
             public int bitsPerSample { get; set; }
             public int channels { get; set; }
             public bool isMp3Ready { get; set; }
+        }
+
+        public class BlockingStream : Stream
+        {
+            private readonly BlockingCollection<byte[]> _buffers = new BlockingCollection<byte[]>();
+            private byte[] _currentBuffer;
+            private int _position;
+
+
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                var data = new byte[count];
+                Array.Copy(buffer, offset, data, 0, count);
+                _buffers.Add(data);
+            }
+
+            public override int Read(byte[] buffer, int offset, int count)
+            {
+                if (_currentBuffer == null || _position >= _currentBuffer.Length)
+                {
+                    if (!_buffers.TryTake(out _currentBuffer, Timeout.Infinite))
+                        return 0; // 流结束
+                    _position = 0;
+                }
+
+                int bytesToCopy = Math.Min(count, _currentBuffer.Length - _position);
+                Array.Copy(_currentBuffer, _position, buffer, offset, bytesToCopy);
+                _position += bytesToCopy;
+                return bytesToCopy;
+            }
+
+            public override bool CanRead => true;
+            public override bool CanSeek => false;
+            public override bool CanWrite => true;
+            public override long Length => throw new NotSupportedException();
+            public override long Position { get; set; }
+            public override void Flush() { }
+            public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
+            public override void SetLength(long value) => throw new NotSupportedException();
         }
     }
 }

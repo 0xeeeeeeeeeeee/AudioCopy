@@ -16,10 +16,10 @@
                 <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTipService.ToolTip="点击来播放">播放来自未知设备的音频</Button>
                 <StackPanel Orientation="Vertical" Margin="60,10,0,0"  HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                        <RadioButton Content="MP3" Click="radioButtons_Click" ToolTipService.ToolTip="MPEG-2 Audio Layer III" GroupName="MyGroup" x:Name="radioButton_1" />
+                        <RadioButton Content="MP3" ToolTipService.ToolTip="MPEG-2 Audio Layer III" Click="radioButtons_Click" GroupName="MyGroup" x:Name="radioButton_1" />
                         <RadioButton Content="WAV" ToolTipService.ToolTip="Waveform Audio File Format" GroupName="MyGroup" x:Name="radioButton_2" Click="radioButtons_Click" />
                         <RadioButton Content="FLAC" ToolTipService.ToolTip="Free Lossless Audio Codec" GroupName="MyGroup" x:Name="radioButton_3" Click="radioButtons_Click" />
-                        <RadioButton Content="RAW(暂未实现)" IsEnabled="False" ToolTipService.ToolTip="发送到发送从wasapi采集的16bit波形，并在接收端进行编码" GroupName="MyGroup" x:Name="radioButton_4" Click="radioButtons_Click" />
+                        <RadioButton Content="RAW" ToolTipService.ToolTip="服务端从wasapi采集16bit波形并直接发送，然后接收端直接播放" GroupName="MyGroup" x:Name="radioButton_4" Click="radioButtons_Click" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

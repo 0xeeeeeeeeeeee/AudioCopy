@@ -33,18 +33,25 @@ internal class Program
 
         Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
 
-        foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
-            if((de.Key.ToString() ?? "").StartsWith("ASPNET") ||(de.Key.ToString() ?? "").StartsWith("AudioCopy")) Console.WriteLine($"{de.Key} : {de.Value}");
+        //foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+        //    if((de.Key.ToString() ?? "").StartsWith("ASPNET") ||(de.Key.ToString() ?? "").StartsWith("AudioCopy")) Console.WriteLine($"{de.Key} : {de.Value}");
 
 
         var builder = WebApplication.CreateBuilder(args);
-        // 其他代码保持不变
+        builder.Logging.ClearProviders();
+        builder.Logging.AddConsole();
+        builder.Logging.AddFilter("Microsoft.AspNetCore.Hosting", LogLevel.None);
+        builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker", LogLevel.None);
+        builder.Logging.AddFilter("Microsoft.AspNetCore.Routing.EndpointMiddleware", LogLevel.None);
+        builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor", LogLevel.None);
+
+
         PrintLocalNetworkAddresses();
 
 
-        builder.Services.AddSingleton<WasapiProvider>();
+        builder.Services.AddSingleton<AudioProvider>();
         builder.Services.AddSingleton<TokenService>();
-        builder.Services.AddSingleton<Dictionary<string, string>>(); //i'm lazy hah
+        builder.Services.AddSingleton<Dictionary<string, string>>(); //懒
 
 
         builder.Services.AddControllers();
@@ -53,14 +60,12 @@ internal class Program
         builder.Services.Configure<IISServerOptions>(opts => opts.AllowSynchronousIO = true);
         if (builder.Environment.IsDevelopment())
         {
-            // Add Swagger services
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
         }
 
         var app = builder.Build();
 
-        // Enable Swagger middleware
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();

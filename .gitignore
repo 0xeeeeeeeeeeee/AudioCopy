@@ -361,9 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# ========
 /AudioCopyUI/Assets/backend.zip
 /AudioCopyUI/Assets/backend_version.txt
 /libAudioCopy-Backend/publish_temp
 /backend.zip
 /libAudioCopy-Backend/Properties/launchSettings.json
-/AudioCopyUI_ReceiverOnly
+/libAudioCopy-Backend-standalone
+*.lnk
+/.vscode

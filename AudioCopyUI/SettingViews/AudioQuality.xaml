@@ -36,6 +36,7 @@
                                     <MenuFlyoutItem Text="2 通道，24 位，48000 Hz" Click="MenuFlyoutItem_Click" />
                                     <MenuFlyoutItem Text="2 通道，24 位，96000 Hz" Click="MenuFlyoutItem_Click" />
                                     <MenuFlyoutItem Text="2 通道，24 位，192000 Hz" Click="MenuFlyoutItem_Click" />
+                                    <MenuFlyoutItem Text="2 通道，32 位，192000 Hz" Click="MenuFlyoutItem_Click" />
                                     <MenuFlyoutItem Text="1 通道，16 位，44100 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
                                     <MenuFlyoutItem Text="1 通道，16 位，48000 Hz (此格式支持MP3流)" Click="MenuFlyoutItem_Click" />
                                     <MenuFlyoutItem Text="1 通道，24 位，44100 Hz" Click="MenuFlyoutItem_Click" />
@@ -56,6 +57,10 @@
                         </StackPanel>
                     </StackPanel>
                 </RadioButton>
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <TextBlock>RAW音频缓冲区大小</TextBlock>
+                    <Slider x:Name="rawBufferSize" Width="300" Margin="10,-5" Minimum="256" Maximum="8192" StepFrequency="4" TickFrequency="512" ValueChanged="rawBufferSize_ValueChanged" ></Slider>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

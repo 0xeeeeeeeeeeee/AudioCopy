@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading;
@@ -44,12 +45,22 @@ namespace AudioCopyUI
         private static Process? backendProcess = null;
         public static string BackendVersionCode = "unknown";
 
-        public static void ExitApp()
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
+
+        public static void ExitApp(bool reboot = false)
         {
             __FlushLog__();
-            KillBackend();
+            if(!reboot && !bool.Parse(SettingUtility.GetOrAddSettings("KeepBackendRun", "False"))) KillBackend();
             Thread.Sleep(100);
-            Environment.Exit(0);
+            if (reboot)
+            {
+                HttpClient c = new();
+                c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
+                _ = c.GetAsync($"api/device/RebootClient?hostToken={SettingUtility.HostToken}&delay=50");
+                Thread.Sleep(30);
+            }
+            
         }
 
         public static void KillBackend()
@@ -83,8 +94,6 @@ namespace AudioCopyUI
             {
                 new Thread(() =>
                 {
-                    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-                    static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
                     _ = MessageBox(new IntPtr(0), $"正在{(Path.Exists(path)? "更新" :"安装并初始化")}后端，可能会花上更多的时间来启动，若杀毒软件有提示请放行。", "提示", 0);
                 }).Start();
 
@@ -202,8 +211,6 @@ namespace AudioCopyUI
             {
                 if (File.Exists(Path.Combine(LocalStateFolder, "wait.txt")))
                 {
-                    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-                    static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
                     _ = MessageBox(new IntPtr(0), $"点击确定来继续启动", "提示", 0);
                 }
                 if (!Directory.Exists(Path.Combine(LocalStateFolder, "logs"))) Directory.CreateDirectory(Path.Combine(LocalStateFolder, "logs"));
@@ -243,12 +250,20 @@ namespace AudioCopyUI
 
         internal static void Crash(Exception ex)
         {
-            Log(ex, true);
-            __FlushLog__();
-            KillBackend();
-            Thread.Sleep(100);
-            Environment.FailFast(ex.Message, ex);
-            Environment.Exit(1);
+            try
+            {
+                Log(ex, true);
+                __FlushLog__();
+                KillBackend();
+            }
+            finally
+            {
+                Thread.Sleep(100);
+                Environment.FailFast(ex.Message, ex);
+                Environment.Exit(1);
+            }
+            
+            
         }
     }
 
@@ -274,8 +289,20 @@ namespace AudioCopyUI
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs e)
         {
-            Application.Current.UnhandledException += Current_UnhandledException;
+            Application.Current.UnhandledException += (sender, e) =>
+            {
+                Program.Crash(e.Exception);
+            };
 
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                Program.Crash(e.ExceptionObject as Exception);
+            };
+
+            TaskScheduler.UnobservedTaskException += (sender, e) =>
+            { 
+                Program.Crash(e.Exception);
+            };
 
             // TODO This code defaults the app to a single instance app. If you need multi instance app, remove this part.
             // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/applifecycle#single-instancing-in-applicationonlaunched
@@ -316,19 +343,6 @@ namespace AudioCopyUI
         private void Window_Closed(object sender, WindowEventArgs args)
         {
             Program.ExitApp();
-        }
-
-        private void Current_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
-        {
-            Log(e.Exception,true);
-            __FlushLog__();
-            try
-            {
-                //backendProcess.Kill();
-            }
-            catch (Exception) { }
-            Thread.Sleep(100);
-            Environment.FailFast(e.Message, e.Exception);
         }
 
         // TODO This is an example method for the case when app is activated through a file.

@@ -67,7 +67,7 @@ namespace AudioCopyUI
             catch (Exception ex)
             {
                 Log("Trying to show many dialog at one time.","error");
-                await Task.Delay(Random.Shared.Next(100, 500));
+                await Task.Delay(Random.Shared.Next(1000, 5000));
                 return await ShowDialogue(title, content, priButtonText, subButtonText, element);
             }
 
@@ -169,14 +169,24 @@ namespace AudioCopyUI
 
         public static void Log(string msg) => Log(msg, "info"); //fix the vs auto completion
 
-        public static void Log(Exception e,bool isCritical = false) => Log($"{(isCritical ? "A critical " : "")}{e.GetType().Name} error: {e.Message} {e.StackTrace}",isCritical ? "Critical" : "error");
+        public static void Log(Exception e) => Log(e,false);
+
+        public static void Log(Exception e, bool isCritical) => Log($"{(isCritical ? "A critical " : "")}{e.GetType().Name} error: {e.Message} {e.StackTrace}",isCritical ? "Critical" : "error");
+
+        public static void Log(Exception e, string message = "", object? sender = null) => Log($"{sender?.GetType().Name} report a {e.GetType().Name} error when trying to {message} \r\n error message: {e.Message} {e.StackTrace}", "error");
+
+        public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = "好的", string? subButtonText = null, Page element = null)
+        {
+            Log(e,whatDoing,element);
+            return await ShowDialogue("错误", $"{whatDoing}时发生了错误：{e.Message}", priButtonText ?? "好的", subButtonText, element);
+        }
 
         public static void Log(string msg, string level = "info")
         {
 #if DEBUG
-            Debug.Write($"[{level} @ {DateTime.Now}] {(msg.Contains('\r') ? "mutil-line log:\r\n" : "")}{msg}{(msg.Contains('\r') ? "mutil-line log ended." : "")}\r\n");
+            Debug.Write($"[{level} @ {DateTime.Now}] {(msg.Contains('\r') ? "mutil-line log:\r\n" : "")}{msg}{(msg.Contains('\r') ? "\r\nmutil-line log ended." : "")}\r\n");
 #endif
-            buffer.Enqueue($"[{level} @ {DateTime.Now}] {(msg.Contains('\r')? "mutil-line log:\r\n" : "")}{msg}{(msg.Contains('\r') ? "mutil-line log ended." : "")}\r\n");
+            buffer.Enqueue($"[{level} @ {DateTime.Now}] {(msg.Contains('\r')? "mutil-line log:\r\n" : "")}{msg}{(msg.Contains('\r') ? "\r\nmutil-line log ended." : "")}\r\n");
 
 
 

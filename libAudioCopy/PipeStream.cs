@@ -116,10 +116,8 @@ namespace libAudioCopy.Audio
                    && (Length >= (count + 1) || !mBlockLastRead);
         }
 
-        // ���� �����첽 Memory ������ ���� 
         public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
-            // ����һ����ʱ����������ͬ�� Read��offset ��Ϊ 0��
             byte[] temp = new byte[buffer.Length];
             int n = Read(temp, 0, temp.Length);
             if (n > 0)
@@ -127,9 +125,7 @@ namespace libAudioCopy.Audio
             return await Task.FromResult(n);
         }
 
-        #region ��֧�ֵķ���
         public override long Seek(long offset, SeekOrigin origin) => throw new NotImplementedException();
         public override void SetLength(long value) => throw new NotImplementedException();
-        #endregion
     }
 }

@@ -31,7 +31,7 @@ namespace AudioCopyUI
             SystemBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
 
             m_AppWindow = GetAppWindowForCurrentWindow();
-            m_AppWindow.SetPresenter(AppWindowPresenterKind.Overlapped); 
+            m_AppWindow.SetPresenter(AppWindowPresenterKind.Overlapped);
             // Check to see if customization is supported.
             // Currently only supported on Windows 11.
             if (AppWindowTitleBar.IsCustomizationSupported())
@@ -75,7 +75,7 @@ namespace AudioCopyUI
                 string pageTag = selectedItem.Tag.ToString();
                 switch (pageTag)
                 {
-                    
+
                     case "TransferPage":
                         PageFrame.Navigate(typeof(TransferPage));
                         break;
@@ -91,7 +91,7 @@ namespace AudioCopyUI
             }
         }
 
-       
+
 
         public void Resize(int width, int height) => m_AppWindow.Resize(new(width, height));
 
@@ -192,7 +192,7 @@ namespace AudioCopyUI
         {
         }
 
-        
+
     }
 
 }
