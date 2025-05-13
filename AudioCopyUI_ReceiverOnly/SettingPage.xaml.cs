@@ -1,3 +1,25 @@
+/*
+*	 File: SettingPage.xaml.cs
+*	 Website: https://github.com/0xeeeeeeeeeeee/AudioCopy
+*	 Copyright 2024-2025 (C) 0xeeeeeeeeeeee (0x12e)
+*
+*   This file is part of AudioCopy
+*	 
+*	 AudioCopy is free software: you can redistribute it and/or modify
+*	 it under the terms of the GNU General Public License as published by
+*	 the Free Software Foundation, either version 2 of the License, or
+*	 (at your option) any later version.
+*	 
+*	 AudioCopy is distributed in the hope that it will be useful,
+*	 but WITHOUT ANY WARRANTY; without even the implied warranty of
+*	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*	 GNU General Public License for more details.
+*	 
+*	 You should have received a copy of the GNU General Public License
+*	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +48,7 @@ namespace AudioCopyUI_ReceiverOnly
             string logFolderPath = Path.Combine(LocalStateFolder, "logs");
             var logFiles = Directory.GetFiles(logFolderPath, "*.log");
             var files = new List<string>();
-            foreach (var item in logFiles.OrderByDescending((f) => new FileInfo(f).CreationTime).Select((origin,index) => index == 0 ?  origin + "(×îÐÂ)" : origin ))
+            foreach (var item in logFiles.OrderByDescending((f) => new FileInfo(f).CreationTime).Select((origin,index) => index == 0 ?  origin + "(ï¿½ï¿½ï¿½ï¿½)" : origin ))
             {
                 var m = new MenuFlyoutItem { Text = Path.GetFileName(item) };
                 m.Click += viewLog_Click;
@@ -45,12 +67,12 @@ namespace AudioCopyUI_ReceiverOnly
 
             thanksText =    
                 $"AudioCopy (Receiver Only) {appVersion} Copyright 0xeeeeeeeeeeee (0x12e) 2025.\r\n" +
-                $"ÏîÄ¿µÄ²¿·Ö´úÂëÀ´×ÔÓÚ\"Stream What Your Hear\"(https://github.com/StreamWhatYouHear/SWYH)£¬´´ÒâÒ²À´×ÔÓÚËü¡£\r\n" +
-                $"¸ÃÏîÄ¿Ê¹ÓÃGNU GPLv2Ðí¿ÉÖ¤½øÐÐÐí¿É - ÏêÇéÇë²é¿´Ðí¿ÉÖ¤(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)" +
+                $"ï¿½ï¿½Ä¿ï¿½Ä²ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\"Stream What Your Hear\"(https://github.com/StreamWhatYouHear/SWYH)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\r\n" +
+                $"ï¿½ï¿½ï¿½ï¿½Ä¿Ê¹ï¿½ï¿½GNU GPLv2ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½Ö¤(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)" +
                 $"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n" +
-                $"µ÷ÊÔÐÅÏ¢£º\r\n" +
-                $"Êý¾ÝÄ¿Â¼£º {LocalStateFolder}\r\n\r\n" +
-                $"ÉèÖÃ£º\r\n" +
+                $"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½\r\n" +
+                $"ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ {LocalStateFolder}\r\n\r\n" +
+                $"ï¿½ï¿½ï¿½Ã£ï¿½\r\n" +
                 $"{settings}\r\n\r\n";
             thanksBox.Text = thanksText;
             if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Desktop")
@@ -63,21 +85,21 @@ namespace AudioCopyUI_ReceiverOnly
 
         private async void resetUUID_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("¾¯¸æ", "ËùÓÐÅä¶Ô¶¼½«Ê§Ð§£¬ÄãÈ·¶¨ÒªÕâÃ´×öÂð£¿", "È¡Ïû", "È·ÈÏ", this))
+            if (!await ShowDialogue("ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ê§Ð§ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Òªï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½", "È¡ï¿½ï¿½", "È·ï¿½ï¿½", this))
             {
                 SettingUtility.SetSettings("udid", AlgorithmServices.MakeRandString(128));
-                await ShowDialogue("ÌáÊ¾", "ÒÑÖØÖÃ£¬ÇëÖØÆôÓ¦ÓÃ³ÌÐò", "ºÃµÄ", null, this);
+                await ShowDialogue("ï¿½ï¿½Ê¾", "ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½", "ï¿½Ãµï¿½", null, this);
                 Program.ExitApp(true);
             }
         }
 
         private async void resetAllSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("¾¯¸æ", "ÄãÈ·¶¨ÒªÕâÃ´×öÂð£¿", "È¡Ïû", "È·ÈÏ", this))
+            if (!await ShowDialogue("ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½È·ï¿½ï¿½Òªï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½", "È¡ï¿½ï¿½", "È·ï¿½ï¿½", this))
             {
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
-                await ShowDialogue("ÌáÊ¾", "ÒÑÖØÖÃ£¬ÇëÖØÆôÓ¦ÓÃ³ÌÐò", "ºÃµÄ", null, this);
+                await ShowDialogue("ï¿½ï¿½Ê¾", "ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½", "ï¿½Ãµï¿½", null, this);
                 Program.ExitApp(true);
             }
         }
@@ -89,11 +111,11 @@ namespace AudioCopyUI_ReceiverOnly
             thanksBox.Text = File.ReadAllText(Path.Combine(LocalStateFolder, $@"logs\{(name.EndsWith(')') ? name.Split('(')[0] : name)}"));
 
 
-            viewLog.Content = "ÇëÔÚÏÂ·½²é¿´£¬µã»÷ÖØÖÃ";
+            viewLog.Content = "ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
             viewLog.Click += (a, b) => 
             {
                 thanksBox.Text = thanksText;
-                viewLog.Content = "²é¿´ÈÕÖ¾";
+                viewLog.Content = "ï¿½é¿´ï¿½ï¿½Ö¾";
             };
 
 
@@ -110,10 +132,10 @@ namespace AudioCopyUI_ReceiverOnly
             {
                 ContentDialog d = new ContentDialog
                 {
-                    Title = "ÌáÊ¾",
-                    Content = "ÔÚµçÄÔÉÏ´ò¿ªÁ´½Ó£ºhttps://apps.microsoft.com/detail/9P3XT4FS327L",
-                    PrimaryButtonText = "ÔÚä¯ÀÀÆ÷ÖÐ´ò¿ª",
-                    CloseButtonText = "ºÃµÄ"
+                    Title = "ï¿½ï¿½Ê¾",
+                    Content = "ï¿½Úµï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ó£ï¿½https://apps.microsoft.com/detail/9P3XT4FS327L",
+                    PrimaryButtonText = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½",
+                    CloseButtonText = "ï¿½Ãµï¿½"
                 };
                 if (await d.ShowAsync() != ContentDialogResult.Primary) return;
             }

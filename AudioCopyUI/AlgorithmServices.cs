@@ -136,9 +136,12 @@ namespace AudioCopyUI
             result[input.Length] = newValue;
             return result;
         }
+        [DebuggerNonUserCode()]
+        static Guid NewGuid(char _) => Guid.NewGuid();
+
 
         [DebuggerNonUserCode()]
-        public static string MakeRandString(int length) => string.Concat(Enumerable.Repeat(StringTable, length / StringTable.Length + 5)).OrderBy(x => Guid.NewGuid()).Take(length).Select(x => (char)x).Aggregate("", (x, y) => x + y);
+        public static string MakeRandString(int length) => string.Concat(Enumerable.Repeat(StringTable, length / StringTable.Length + 5)).OrderBy(NewGuid).Take(length).Select(x => (char)x).Aggregate("", (x, y) => x + y);
 
 
     }

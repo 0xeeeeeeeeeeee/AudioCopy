@@ -22,6 +22,7 @@
     <None Remove="SettingPage.xaml" />
     <None Remove="SettingViews\AboutPage.xaml" />
     <None Remove="SettingViews\AdvancedSetting.xaml" />
+    <None Remove="SplashScreen.xaml" />
     <None Remove="TransferPage.xaml" />
   </ItemGroup>
 
@@ -68,6 +69,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>header.cs</LastGenOutput>
     </None>
+    <Page Update="SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingViews\AboutPage.xaml">

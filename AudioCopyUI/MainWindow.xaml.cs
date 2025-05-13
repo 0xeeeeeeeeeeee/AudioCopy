@@ -4,12 +4,18 @@
  */
 
 using Microsoft.UI;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -23,6 +29,7 @@ namespace AudioCopyUI
     public partial class MainWindow : Window
     {
         AppWindow m_AppWindow;
+        private bool loaded = false;
 
         public MainWindow()
         {
@@ -36,6 +43,7 @@ namespace AudioCopyUI
             // Currently only supported on Windows 11.
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
+                BackButton.Visibility = Visibility.Collapsed;
                 var titleBar = m_AppWindow.TitleBar;
                 titleBar.ExtendsContentIntoTitleBar = true;
                 AppTitleBar.Loaded += AppTitleBar_Loaded;
@@ -54,6 +62,29 @@ namespace AudioCopyUI
                 // TODO Show alternative UI for any functionality in
                 // the title bar, such as the back button, if used
             }
+
+            new Thread(async () =>
+            {
+                Stopwatch sw = Stopwatch.StartNew();
+                while (!loaded)
+                {
+
+
+                    this.DispatcherQueue.TryEnqueue(
+                                        DispatcherQueuePriority.Normal,
+                                        () =>
+                                        {
+                                            logsBox.Text = ___PublicBuffer___;
+                                            if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
+                                        }
+                                    );
+                    await Task.Delay(10);
+
+                }
+
+
+            }).Start();
+
         }
 
         private void PageFrame_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -99,14 +130,43 @@ namespace AudioCopyUI
 
         public Button BackButton => AppTitleBarBackButton;
 
-        private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
+        private async void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
-            SetTitleBar(AppTitleBar);
-            PageFrame.Navigate(typeof(ReceivePage));
-            if (AppWindowTitleBar.IsCustomizationSupported())
+            PageFrame.Navigate(typeof(SplashScreen), null, new SuppressNavigationTransitionInfo());
+
+            try
             {
-                SetDragRegionForCustomTitleBar(m_AppWindow);
+                await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
+                SettingUtility.SetSettings("ForceUpgradeBackend", "False");
+                await Program.BootBackend();
+                ___PublicStackOn___ = false;
+                await Program.PostInit();
+                loaded = true;
+
             }
+            catch (Exception ex)
+            {
+                if (await LogAndDialogue(ex, "升级/启动后端", "尝试重启应用程序", "好的", this, AppTitleBar.XamlRoot))
+                {
+                    Program.ExitApp(true);
+                }
+            }
+            finally
+            {
+                ___PublicStackOn___ = false;
+                MainNavigationView.Visibility = Visibility.Visible;
+
+                PageFrame.Navigate(typeof(ReceivePage), null, new DrillInNavigationTransitionInfo());
+                splashPanel.Visibility = Visibility.Collapsed;
+
+                SetTitleBar(AppTitleBar);
+                BackButton.Visibility = Visibility.Visible;
+                if (AppWindowTitleBar.IsCustomizationSupported())
+                {
+                    SetDragRegionForCustomTitleBar(m_AppWindow);
+                }
+            }
+            
         }
 
         private void OnBackClicked(object sender, RoutedEventArgs e)
@@ -192,7 +252,25 @@ namespace AudioCopyUI
         {
         }
 
+        private async void skipButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageFrame.Navigate(typeof(ReceivePage));
+            splashPanel.Visibility = Visibility.Collapsed;
+            MainNavigationView.Visibility = Visibility.Visible;
+        }
 
+        private void PageFrame_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            if(e.Parameter is ContentDialog d)
+            {
+                MainNavigationView.IsPaneVisible = false;
+            }
+            else
+            {
+                MainNavigationView.IsPaneVisible = true;    
+            }
+        }
+       
     }
 
 }

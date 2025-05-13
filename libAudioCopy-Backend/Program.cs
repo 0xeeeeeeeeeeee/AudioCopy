@@ -20,10 +20,12 @@
 */
 using libAudioCopy;
 using libAudioCopy.Audio;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text.Json;
 
 internal class Program
 {
@@ -66,17 +68,67 @@ internal class Program
 
         var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                    if (contextFeature != null)
+                    {
+                        var ex = contextFeature.Error;
+                        var errorInfo = new
+                        {
+                            Type = ex.GetType().FullName,
+                            Message = ex.Message,
+                            StackTrace = ex.StackTrace,
+                            InnerException = ex.InnerException?.Message
+                        };
+                        string json = JsonSerializer.Serialize(errorInfo, new JsonSerializerOptions { WriteIndented = false });
+                        Console.Error.WriteLine("ERROR!" + json);
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "text/plain";
+                        await context.Response.WriteAsync($"服务器发生了{contextFeature.Error.GetType().Name}异常: {contextFeature.Error.Message}");
+                    }
+                });
+            });
+        }
+        else
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
         app.MapControllers();
-        app.Run();
+        try
+        {
+            app.Run();
+
+        }
+        catch (Exception ex)
+        {
+            var errorInfo = new
+            {
+                Type = ex.GetType().FullName,
+                Message = ex.Message,
+                StackTrace = ex.StackTrace,
+                InnerException = ex.InnerException?.Message
+            };
+            string json = JsonSerializer.Serialize(errorInfo, new JsonSerializerOptions { WriteIndented = false});
+            Console.Error.WriteLine("ERROR!"+json);
+        }
     }
 
-    private static bool IsLocalNetwork(string ipAddress)
+    public class BackendExceptionObject
+    {
+        public string Type { get; set; }
+        public string Message { get; set; }
+        public string StackTrace { get; set; }
+        public string InnerException { get; set; }
+    }
+
+        private static bool IsLocalNetwork(string ipAddress)
     {
         return ipAddress.StartsWith("192.168.") || ipAddress.StartsWith("10.") ||
                (ipAddress.StartsWith("172.") && int.TryParse(ipAddress.Split('.')[1], out int secondOctet) && secondOctet >= 16 && secondOctet <= 31);
@@ -98,7 +150,7 @@ internal class Program
                     if (ipAddress.Address.AddressFamily == AddressFamily.InterNetwork &&
                         IsLocalNetwork(ipAddress.Address.ToString()))
                     {
-                        Console.WriteLine($"����: {networkInterface.Name}, ��ַ: {ipAddress.Address}");
+                        Console.WriteLine($"Interface: {networkInterface.Name}, IPַ: {ipAddress.Address}");
                     }
                 }
             }

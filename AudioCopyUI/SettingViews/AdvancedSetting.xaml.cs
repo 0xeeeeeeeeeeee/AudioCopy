@@ -119,13 +119,11 @@ namespace AudioCopyUI.SettingViews
 
         private async void resetBackend_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("警告", "这将一并忘记所有已配对的设备，你确定要这么做吗？", "取消", "确认", this))
+            if (!await ShowDialogue("警告", "你确定要这么做吗？", "取消", "确认", this))
             {
-                SettingUtility.SetSettings("deviceMapping", "{}");
                 Program.KillBackend();
                 await Task.Delay(1000);
                 Directory.Delete(Path.Combine(LocalStateFolder, @"backend"), true);
-                Directory.Delete(Path.Combine(LocalStateFolder, @"wwwroot"), true);
                 SettingUtility.SetSettings("ForceUpgradeBackend", "True");
                 await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
                 Program.ExitApp(true);

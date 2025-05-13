@@ -23,6 +23,7 @@
                 <ColumnDefinition x:Name="DragColumn" Width="*" />
                 <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
             </Grid.ColumnDefinitions>
+            
             <AppBarButton
                x:Name="AppTitleBarBackButton"
                Grid.Column="1"
@@ -41,21 +42,40 @@
                Margin="4,0,0,0" />
         </Grid>
 
+        <Grid x:Name="splashPanel" Grid.Row="1">
+            <Rectangle Fill="#FFD272" 
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Assets/audiocopy-splash.png" 
+   HorizontalAlignment="Center" 
+   VerticalAlignment="Center" 
+   Width="250"/>
+                <TextBlock x:Name="logsBox" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                           Margin="0,20,0,0" Padding="8,4" FontSize="16" FontWeight="Bold"
+                           Foreground="#FFF1D8">初始化中...</TextBlock>
+                <Button Background="#FFF1D8" Foreground="Black" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="skipButton" Click="skipButton_Click">跳过</Button>
+            </StackPanel>
+        </Grid>
+
         <!-- NavigationView -->
         <controls:NavigationView
             x:Name="MainNavigationView"
             Grid.Row="1"
             PaneDisplayMode="LeftCompact"
             IsBackButtonVisible="Collapsed"
-            SelectionChanged="MainNavigationView_SelectionChanged">
+            SelectionChanged="MainNavigationView_SelectionChanged"
+            Visibility="Collapsed">
             <controls:NavigationView.MenuItems>
                 <controls:NavigationViewItem  Tag="TransferPage" Icon="Send" Content="发送" />
                 <controls:NavigationViewItem Tag="ReceivePage" Icon="Audio" Content="接受" />
                 <controls:NavigationViewItem Tag="PairPage" Icon="Link" Content="配对" />
             </controls:NavigationView.MenuItems>
-            <Frame x:Name="PageFrame" />
+            <Frame x:Name="PageFrame" Navigated="PageFrame_Navigated" />
 
             <!-- Content Frame -->
         </controls:NavigationView>
+        
+        
     </Grid>
 </Window>

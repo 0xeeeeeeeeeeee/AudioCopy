@@ -42,6 +42,8 @@ namespace AudioCopyUI.SettingViews
         int bitrate, samplerate, channels;
         private bool loaded = false;
 
+        public double rawBuffer { get { return double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096; } set { SettingUtility.SetSettings("rawBufferSize", value.ToString()); _ = Save();  } }
+
         public AudioQuality()
         {
             this.InitializeComponent();
@@ -71,16 +73,27 @@ namespace AudioCopyUI.SettingViews
         {
             try
             {
+                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;
 
                 var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
                 HttpClient c = new();
                 c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
+                if (!Program.AlreadyAddMyself)
+                {
+                    try
+                    {
+                        _ = await c.PostAsync($"api/token/add?token={token}&hostToken={SettingUtility.HostToken}", null);
+                    }
+                    catch (Exception) { }
+                    finally { Program.AlreadyAddMyself = true; }
+                }           
                 var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
                 AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
                 var text = $"{body.channels} Í¨µÀ£¬{body.bitsPerSample} Î»£¬{body.sampleRate} Hz ";
                 defaultAudioQualityBlock.Text += text;
-                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;
                 loaded = true;
+                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out result) ? result : 4096;
+
             }
             catch (Exception)
             {

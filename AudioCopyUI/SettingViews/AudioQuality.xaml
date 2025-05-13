@@ -59,7 +59,7 @@
                 </RadioButton>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                     <TextBlock>RAW音频缓冲区大小</TextBlock>
-                    <Slider x:Name="rawBufferSize" Width="300" Margin="10,-5" Minimum="256" Maximum="8192" StepFrequency="4" TickFrequency="512" ValueChanged="rawBufferSize_ValueChanged" ></Slider>
+                    <Slider x:Name="rawBufferSize" Width="300" Margin="10,-5" Minimum="256" Maximum="8192" StepFrequency="4" TickFrequency="512" ValueChanged="rawBufferSize_ValueChanged" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
