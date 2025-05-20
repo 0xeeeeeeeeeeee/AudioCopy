@@ -29,7 +29,9 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -144,6 +146,9 @@ namespace AudioCopyUI_ReceiverOnly
                 return defaultValue;
             }
         }
+
+        public static bool Exists(string key) => localSettings.Values.ContainsKey(key);
+
     }
 
     class Logger
@@ -228,8 +233,129 @@ namespace AudioCopyUI_ReceiverOnly
     {
         private const string StringTable = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-        //[DebuggerNonUserCode()]
+        [DebuggerNonUserCode()]
         public static string MakeRandString(int length) => string.Concat(Enumerable.Repeat(StringTable, length / StringTable.Length + 5)).OrderBy(x => Guid.NewGuid()).Take(length).Select(x => (char)x).Aggregate("", (x, y) => x + y);
 
     }
+
+    public class Localizer
+    {
+        readonly public static Dictionary<string, string[]> matches = new Dictionary<string, string[]>
+        {
+            {
+                "zh-Hant", new []
+                {
+                    "zh-Hant", "zh-hk", "zh-mo", "zh-tw", "zh-hant-hk", "zh-hant-mo", "zh-hant-tw"
+                }
+            },
+            {
+                "fr", new []
+                {
+                    "fr", "fr-be", "fr-ca", "fr-ch", "fr-fr", "fr-lu", "fr-015", "fr-cd", "fr-ci", "fr-cm", "fr-ht", "fr-ma", "fr-mc", "fr-ml", "fr-re", "frc-latn", "frp-latn", "fr-155", "fr-029", "fr-021", "fr-011"
+                }
+            },
+            {
+                "ru", new []
+                {
+                    "ru", "ru-ru"
+                }
+            },
+            {
+                "es", new []
+                {
+                    "es", "es-cl", "es-co", "es-es", "es-mx", "es-ar", "es-bo", "es-cr", "es-do", "es-ec", "es-gt", "es-hn", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve", "es-019", "es-419"
+                }
+            },
+            {
+                "ar", new []
+                {
+                    "ar", "ar-sa", "ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sy", "ar-tn", "ar-ye"
+                }
+            },
+            {
+                "ja", new []
+                {
+                    "ja", "ja-jp"
+                }
+            }
+        };
+
+        readonly public static string[] locate = {
+            "Default", "العربية/Arabic", "Deutsch/German", "English (United Kingdom)", "English (United States)",
+            "Español/Spanish", "Français/French", "Italiano/Italian", "日本語/Japanese", "한국어/Korean", "Polski/Polish",
+            "Português (Brasil)/Portuguese (Brazil)", "Русский/Russian", "Türkçe/Turkish", "简体中文/Simplified Chinese", "繁體中文/Traditional Chinese" };
+
+        readonly public static string[] locateId =
+            { "default", "ar", "de", "en-GB", "en-US", "es", "fr", "it",
+            "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant" };
+
+
+
+
+
+        public static string Match(string source)
+        {
+            if (!ApiInformation.IsPropertyPresent("Windows.Globalization.Language", "CurrentInputMethodLanguageTag")) return "######## WACK requires me to do this silly checking, although I already set the minium platform version!!!!!!!";
+
+            if (source == "default")
+            {
+                try
+                {
+                    return Match(Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                }
+                catch
+                {
+                    return "en-US";
+                }
+            }
+            var mapped = matches.TakeWhile((l) => l.Value.Contains(source));
+            if (mapped.Count() > 0) return mapped.ToArray()[0].Key;
+            if (locateId.Contains(source)) return source;
+            return "en-US";
+        }
+        static ResourceLoader loader = null;
+
+
+        public static string localize(string key)
+        {
+
+            if (loader is null) return $"Localization not inited, key:{key}";
+            var str = loader.GetString(key);
+            //if(str is null) str = App.loader.GetString(key+".Text");
+            return string.IsNullOrWhiteSpace(str) ? $"Localization resource not found:{key}" : str;
+        }
+
+        public static void ___InitLocalize___()
+        {
+            if (!ApiInformation.IsPropertyPresent("Windows.Globalization.Language", "CurrentInputMethodLanguageTag"))
+            {
+                throw new SillyWACKVersionLieException();
+            }
+
+            if (SettingUtility.Exists("Language"))
+            {
+                var locate = SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Match(locate);
+            }
+            else
+            {
+                SettingUtility.SetSettings("Language", "default");
+                var inputTag = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
+                string selectedLang = Match(inputTag);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = selectedLang ?? "en-US";
+            }
+
+            Logger.Log($"default lang:{Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} Lang(in setting):{SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag)}");
+            if (!ApiInformation.IsMethodPresent("Windows.ApplicationModel.Resources.ResourceLoader", "GetForViewIndependentUse")) throw new SillyWACKVersionLieException();
+
+            loader = ResourceLoader.GetForViewIndependentUse();
+        }
+
+    }
+
+    public class SillyWACKVersionLieException : Exception
+    {
+        //######## WACK requires me to do this silly checking, although I already set the minium platform version!!!!!!!
+    }
+
 }

@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioQuality_Option3_Bits.PlaceholderText" xml:space="preserve">
+    <value>bit</value>
+  </data>
+  <data name="AudioQuality_Option3_Channels.PlaceholderText" xml:space="preserve">
+    <value>Canal</value>
+  </data>
+  <data name="AudioQuality_Option1.Text" xml:space="preserve">
+    <value>No volver a muestrear (usar la calidad de audio configurada en el sistema)</value>
+  </data>
+  <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
+    <value>Si necesitas capturar audio con una profundidad de bits superior a 16 bits, utiliza las opciones de frecuencia de muestreo preestablecidas o personalizadas.</value>
+  </data>
+  <data name="AudioQuality_Option2.Text" xml:space="preserve">
+    <value>Usar configuración de remuestreo preestablecida</value>
+  </data>
+  <data name="AudioQuality_Option3.Text" xml:space="preserve">
+    <value>Configuración personalizada de remuestreo</value>
+  </data>
+  <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
+    <value>Tamaño del búfer de audio RAW</value>
+  </data>
+  <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
+    <value>Tasa de muestreo</value>
+  </data>
+  <data name="AudioQuality_SupportMP3" xml:space="preserve">
+    <value>(este formato admite transmisión MP3)</value>
+  </data>
+  <data name="AudioQuality_Foramt" xml:space="preserve">
+    <value>{0} canales, {1} bits, {2} Hz</value>
+  </data>
+  <data name="AudioQuality_Current" xml:space="preserve">
+    <value>Calidad de audio actual:</value>
+  </data>
+  <data name="AudioQuality_CurrentUnavailable" xml:space="preserve">
+    <value>Calidad de audio no disponible, por favor verifique el backend</value>
+  </data>
+  <data name="BackendSetting_Title.Text" xml:space="preserve">
+    <value>Configuración del backend</value>
+  </data>
+  <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
+    <value>Dirección IP a vincular (dejar en blanco para cualquier dirección)</value>
+  </data>
+  <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
+    <value>Número de puerto a vincular (dejar vacío para el predeterminado)</value>
+  </data>
+  <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
+    <value>Permitir emparejamiento con direcciones que no son de LAN (incluye direcciones de loopback)</value>
+  </data>
+  <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
+    <value>Configurar el backend como entorno de desarrollo (solo para desarrollo, no usar en producción)</value>
+  </data>
+  <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
+    <value>Variables de entorno personalizadas del backend (Úselo con precaución, puede generar riesgos desconocidos) Ejemplo: key1=value1,key2=value2,...</value>
+  </data>
+  <data name="BackendSetting_BackendVersion" xml:space="preserve">
+    <value>Versión del backend:</value>
+  </data>
+  <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
+    <value>Reiniciar el backend</value>
+  </data>
+  <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
+    <value>Actualizar backend</value>
+  </data>
+  <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
+    <value>Deshabilitar configuración personalizada</value>
+  </data>
+  <data name="AboutPage_Title.Text" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="AboutString" xml:space="preserve">
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Parte del código del proyecto proviene de "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), y la idea también se origina de allí.[line]Este proyecto está licenciado bajo GNU GPLv2 - consulta los detalles en la licencia (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Información de depuración:[line]Directorio de datos: {1}[line][line]Configuración:[line]{2}[line][line]Última ruta de registro:[line]{3}</value>
+  </data>
+  <data name="AboutPage_Privacy.Content" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="AdvancedSetting_Title.Text" xml:space="preserve">
+    <value>Configuración avanzada</value>
+  </data>
+  <data name="AdvancedSetting_Sure" xml:space="preserve">
+    <value>¿Estás seguro de que quieres hacer esto?</value>
+  </data>
+  <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
+    <value>Mostrar direcciones no locales y adaptadores de red virtuales en la interfaz de "Emparejamiento"</value>
+  </data>
+  <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
+    <value>Permitir siempre la transmisión de MP3</value>
+  </data>
+  <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
+    <value>Permitir que el backend continúe ejecutándose después de salir</value>
+  </data>
+  <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
+    <value>Omitir pantalla de inicio</value>
+  </data>
+  <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
+    <value>Abrir carpeta de datos</value>
+  </data>
+  <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
+    <value>Restablecer ID del dispositivo</value>
+  </data>
+  <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
+    <value>Borrar todos los dispositivos emparejados</value>
+  </data>
+  <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
+    <value>Restablecimiento completo del backend</value>
+  </data>
+  <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
+    <value>Restablecer toda la configuración</value>
+  </data>
+  <data name="Setting_AudioQuality.Text" xml:space="preserve">
+    <value>Configuración de calidad de audio</value>
+  </data>
+  <data name="Setting_Backend.Text" xml:space="preserve">
+    <value>Configuración del backend</value>
+  </data>
+  <data name="Setting_General.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="AdvancedSetting_Reset" xml:space="preserve">
+    <value>Se ha restablecido, reinicie la aplicación</value>
+  </data>
+  <data name="AdvancedSetting_SureReset" xml:space="preserve">
+    <value>¿Estás seguro de que deseas hacer esto? Todas las conexiones se perderán.</value>
+  </data>
+  <data name="BackendSetting_Rebooted" xml:space="preserve">
+    <value>Hecho, si aún hay problemas, intenta actualizar o reiniciar completamente el backend[line]En algunos casos, puede que necesites reiniciar la aplicación</value>
+  </data>
+  <data name="BackendSetting_RebootRequired" xml:space="preserve">
+    <value>Reiniciar para aplicar los cambios</value>
+  </data>
+  <data name="BackendSetting_Dangerous" xml:space="preserve">
+    <value>Estas configuraciones son muy peligrosas, ¿estás seguro de que quieres configurarlas?</value>
+  </data>
+  <data name="BackendSettings_OptionsProblem" xml:space="preserve">
+    <value>Hubo un problema con las opciones, por favor modifícalas. ({0})</value>
+  </data>
+  <data name="GeneralSetting_Title.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
+    <value>Ver abajo, haz clic en restablecer</value>
+  </data>
+  <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
+    <value>Descargar la versión completa de AudioCopy</value>
+  </data>
+  <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
+    <value>Esta aplicación es el receptor. Para ajustar más configuraciones, dirígete al emisor.</value>
+  </data>
+  <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
+    <value>Abre el enlace en la computadora:</value>
+  </data>
+  <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
+    <value>Abrir en el navegador</value>
+  </data>
+  <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
+    <value>Aplicando configuración regional, espere un momento. No cierre esta ventana ni interactúe con la aplicación.[line]La aplicación se iniciará varias veces, lo cual es normal.</value>
+  </data>
+  <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
+    <value>Ver registros</value>
+  </data>
+  <data name="ReceiverOnly_Lastest" xml:space="preserve">
+    <value>último</value>
+  </data>
+  <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
+    <value>La información de medios no sincronizada proviene del extremo remoto.</value>
+  </data>
+</root>

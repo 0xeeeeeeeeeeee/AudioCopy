@@ -13,7 +13,7 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTipService.ToolTip="点击来播放">播放来自未知设备的音频</Button>
+                <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="PlayButton" ></Button>
                 <StackPanel Orientation="Vertical" Margin="60,10,0,0"  HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
                         <RadioButton Content="MP3" ToolTipService.ToolTip="MPEG-2 Audio Layer III" Click="radioButtons_Click" GroupName="MyGroup" x:Name="radioButton_1" />
@@ -22,13 +22,28 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="0,15" x:Name="MedidInfoPanel"   >
+                    <TextBlock x:Name="MediaInfo_FromDevice" HorizontalAlignment="Left" FontSize="16px" Margin="0,0,10,0"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/AudioCopy.png" x:Name="MediaInfo_AlbumArt" Width="120" Height="120" x:Uid="MediaInfo_AlbumArt"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Uid="MediaInfo_Title" x:Name="MediaInfo_Title" FontSize="48px" Margin="24,-8"/>
+                            <TextBlock x:Uid="MediaInfo_Artist" x:Name="MediaInfo_Artist" FontSize="18px" Margin="24,16" VerticalAlignment="Bottom"/>
+                            <TextBlock x:Uid="MediaInfo_Album" x:Name="MediaInfo_Album" FontSize="18px" Margin="24,0" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
         <MediaPlayerElement
-    x:Name="PlayerElement"
-    AreTransportControlsEnabled="True"
-    AutoPlay="False"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Bottom"
-    Margin="0,10,0,0" />
+x:Name="PlayerElement"
+Visibility="Collapsed"
+AreTransportControlsEnabled="True"
+AutoPlay="False"
+HorizontalAlignment="Stretch"
+VerticalAlignment="Bottom"
+Margin="0,10,0,0" />
     </StackPanel>
 </Page>

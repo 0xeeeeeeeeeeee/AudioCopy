@@ -30,10 +30,13 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage;
 using static AudioCopyUI.Logger;
 using Path = System.IO.Path;
@@ -68,6 +71,17 @@ namespace AudioCopyUI
             Environment.Exit(0);
         }
 
+        public static void RebootApp(int delay = 50)
+        {
+            __FlushLog__();
+            Thread.Sleep(100);
+            HttpClient c = new();
+            c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
+            _ = c.GetAsync($"api/device/RebootClient?hostToken={SettingUtility.HostToken}&delay={delay}");
+            Thread.Sleep(45);
+            Environment.Exit(0);
+        }
+
         public static void KillBackend()
         {
             if (backendProcess is not null)
@@ -87,7 +101,7 @@ namespace AudioCopyUI
                 RedirectStandardOutput = true,
             };
 
-            Log("结束已有的后端...","showToGUI");
+            Log(localize("Init_Stage1"),"showToGUI");
 
             var p = Process.Start(i);
             p.WaitForExit();
@@ -113,7 +127,7 @@ namespace AudioCopyUI
 
             if (force || !Path.Exists(path) || File.ReadAllText(path) != ver)
             {
-                Log($"正在{(Path.Exists(path) ? "更新" : "安装并初始化")}后端到v{ver}，可能会花上更多的时间来启动，若杀毒软件有提示请放行。", "showToGUI");
+                Log(string.Format(localize("Init_Stage2"), Path.Exists(path) ? "更新" : "安装并初始化", ver), "showToGUI");
                 uri = new Uri("ms-appx:///Assets/backend.zip");
                 StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
                 ZipArchive zipArchive = new ZipArchive(await file.OpenStreamForReadAsync(), ZipArchiveMode.Read);
@@ -132,10 +146,23 @@ namespace AudioCopyUI
             }
 
             BackendVersionCode = ver;
+
+            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
+            var backendAsb = Assembly.LoadFrom(backendAsbPath);
+            var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
+            Log($"Backend assembly info:{backendAsb.FullName} SHA256:{backendHash}");
         }
 
-        public static async Task BootBackend()
+        public static int BackendPort = -1;
+
+        public static async Task BootBackend(int port = -1)
         {
+            if (port != -1)
+            {
+                KillBackend();
+                Log($"User override port to:{port}");
+            }
+
             var backendPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, @"backend\libAudioCopy-Backend.exe");
             var i = new ProcessStartInfo
             {
@@ -152,10 +179,15 @@ namespace AudioCopyUI
             var hostToken = AlgorithmServices.MakeRandString(256);
             SettingUtility.SetSettings("hostToken", hostToken);
 
+            if (port == -1) port = int.Parse(SettingUtility.GetOrAddSettings("backendPort", "23456"));
+            else SettingUtility.SetSettings("backendPort", port.ToString());
+            BackendPort = port;
+
+
             var options = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("backendOptions") ?? "null");
             if (bool.Parse(SettingUtility.GetOrAddSettings("ForceDefaultBackendSettings", "False")) || options is null)
             {
-                i.EnvironmentVariables.Add("ASPNETCORE_URLS", $"http://+:{SettingUtility.GetOrAddSettings("backendPort", "23456")}");
+                i.EnvironmentVariables.Add("ASPNETCORE_URLS", $"http://+:{port}");
 #if DEBUG
                 i.EnvironmentVariables.Add("ASPNETCORE_ENVIRONMENT", "Development");
 #endif
@@ -167,6 +199,19 @@ namespace AudioCopyUI
                 {
                     i.EnvironmentVariables.Add(item.Key, item.Value);
                 }
+
+                string format;
+
+                if ((format = SettingUtility.GetOrAddSettings("AudioDeviceName", "1")) != "1")
+                {
+                    i.EnvironmentVariables.Add("AudioCopy_DefaultAudioQuality", format);
+                }
+
+                if (!string.IsNullOrWhiteSpace(SettingUtility.GetOrAddSettings("AudioDeviceName", "")))
+                {
+                    var device = SettingUtility.GetOrAddSettings("AudioDeviceName", "");
+                    i.EnvironmentVariables.Add("AudioCopy_DefaultDeviceName", device);
+                }
             }
 
             i.EnvironmentVariables.Add("AudioCopy_hostToken", hostToken);
@@ -174,18 +219,9 @@ namespace AudioCopyUI
             i.EnvironmentVariables.Add("ASPNETCORE_WEBROOT", Path.Combine(LocalStateFolder, "wwwroot"));
 
 
-
-            string format;
-
-            if ((format = SettingUtility.GetOrAddSettings("AudioDeviceName", "1")) != "1")
+            if(port > 0 && port != 23456)
             {
-                i.EnvironmentVariables.Add("AudioCopy_DefaultAudioQuality", format);
-            }
-
-            if (!string.IsNullOrWhiteSpace(SettingUtility.GetOrAddSettings("AudioDeviceName", "")))
-            {
-                var device = SettingUtility.GetOrAddSettings("AudioDeviceName", "");
-                i.EnvironmentVariables.Add("AudioCopy_DefaultDeviceName", device);
+                i.EnvironmentVariables["ASPNETCORE_URLS"] = $"http://+:{port}";
             }
 
             backendProcess = new();
@@ -207,9 +243,10 @@ namespace AudioCopyUI
                             try
                             {
                                 Log(ex.ToException(), "后端", backendProcess);
-                                exc = ex.ToException();
+                                if (___PublicStackOn___) exc = ex.ToException();
+                                else Log(ex.ToException(),"backend","BackendProcess");
                             }
-                            catch(Exception ex1)
+                            catch (Exception ex1)
                             {
                                 Log(new Exception($"Failed to convert exception string:{ex} because {ex1}",ex1), "后端", backendProcess);
 
@@ -224,11 +261,14 @@ namespace AudioCopyUI
                 }
             };
                 
-            Log("启动后端中(若杀毒软件提示请放行)...", "showToGUI");
-            backendProcess.Start();
+            Log(localize("Init_Stage3"), "showToGUI");
+            await Task.Run(() =>
+            {
+                backendProcess.Start();
+            });
             backendProcess.BeginOutputReadLine();
             backendProcess.BeginErrorReadLine();
-            Log("等待后端启动...", "showToGUI");
+            Log(localize("Init_Stage4"), "showToGUI");
 
             CancellationTokenSource cts = new();
             cts.CancelAfter(10000);
@@ -237,7 +277,7 @@ namespace AudioCopyUI
             {
                 Stopwatch sw = Stopwatch.StartNew();
                 HttpClient c = new();
-                c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
+                c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("backendPort", "23456")}/");
                 c.Timeout = new TimeSpan(0, 0, 5);
 
 
@@ -250,7 +290,7 @@ namespace AudioCopyUI
                     {
                         if ((await c.GetAsync("/index")).StatusCode == System.Net.HttpStatusCode.Unauthorized)
                         {
-                            Log("后端启动成功", "showToGUI");
+                            Log("Backend booted.");
                             return;
                         }
                     }
@@ -261,11 +301,11 @@ namespace AudioCopyUI
                     }
                     await Task.Delay(50);
 
-                    if (sw.Elapsed.TotalSeconds > 10)
+                    if (sw.Elapsed.TotalSeconds > 15)
                     {
-                        if (exception is not null) throw new InvalidOperationException($"后端启动失败({exception.GetType().Name}:{exception.Message})\r\n请检查后端是否被杀毒软件拦截或被其他程序占用", exception);
+                        if (exception is not null) throw new InvalidOperationException(string.Format(localize("Init_StageFail"), $"{exception.GetType().Name}:{exception.Message}"), exception);
 
-                        throw new InvalidOperationException($"后端启动失败(等待状态超时)\r\n请检查后端是否被杀毒软件拦截或被其他程序占用");
+                        throw new InvalidOperationException(string.Format(localize("Init_StageFail"), "Request timeout."));
                     }
                 }
             });
@@ -274,6 +314,17 @@ namespace AudioCopyUI
 
 
         }
+
+        public static async Task ChangeLang(string target)
+        {
+            SettingUtility.SetSettings("Language", target == "default" ? Windows.Globalization.Language.CurrentInputMethodLanguageTag : target);
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Localizer.Match(target);
+            await Task.Delay(5);
+            var uri = new Uri("ms-appx:///Assets/ApplyLocalization.ps1");
+            StorageFile f = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            Process.Start(new ProcessStartInfo { FileName = "powershell.exe", Arguments = $"-File {f.Path} \"{localize("/Setting/AdvancedSetting_ApplyLocate") }\"", UseShellExecute = true });
+        }
+
 
 
         public class BackendExceptionObject
@@ -349,7 +400,7 @@ namespace AudioCopyUI
             {
                 if (File.Exists(Path.Combine(LocalStateFolder, "wait.txt")))
                 {
-                    _ = MessageBox(new IntPtr(0), $"点击确定来继续启动", "提示", 0);
+                    _ = MessageBox(new IntPtr(0), $"点击确定来继续启动", localize("Info"), 0);
                 }
                 if (!Directory.Exists(Path.Combine(LocalStateFolder, "logs"))) Directory.CreateDirectory(Path.Combine(LocalStateFolder, "logs"));
                 ___PublicStackOn___ = true;
@@ -437,43 +488,46 @@ namespace AudioCopyUI
 
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
-                Program.Crash(e.ExceptionObject as Exception);
+                try
+                {
+                    Program.Crash(e.ExceptionObject as Exception);
+                }
+                catch
+                {
+                    Program.Crash(new AggregateException("Cannot get the detailed exception info."));
+                }
             };
 
-
-            //TaskScheduler.UnobservedTaskException += (sender, e) =>
-            //{ 
-            //    Program.Crash(e.Exception);
-            //};
-
-            // TODO This code defaults the app to a single instance app. If you need multi instance app, remove this part.
-            // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/applifecycle#single-instancing-in-applicationonlaunched
-            // If this is the first instance launched, then register it as the "main" instance.
-            // If this isn't the first instance launched, then "main" will already be registered,
-            // so retrieve it.
             var mainInstance = Microsoft.Windows.AppLifecycle.AppInstance.FindOrRegisterForKey("main");
             var activatedEventArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
 
-            // If the instance that's executing the OnLaunched handler right now
-            // isn't the "main" instance.
             if (!mainInstance.IsCurrent)
             {
-                // Redirect the activation (and args) to the "main" instance, and exit.
                 await mainInstance.RedirectActivationToAsync(activatedEventArgs);
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;
             }
 
-
-            // TODO This code handles app activation types. Add any other activation kinds you want to handle.
-            // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/applifecycle#file-type-association
             if (activatedEventArgs.Kind == ExtendedActivationKind.File)
             {
                 OnFileActivated(activatedEventArgs);
             }
 
+            if (SettingUtility.Exists("Language"))
+            {
+                var locate = SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = locate;
+            }
+            else
+            {
+                var inputTag = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
+                string? selectedLang = Localizer.Match(inputTag);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = selectedLang ?? "en-US";
+            }
 
+            Log($"default lang:{Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} Lang(in setting):{SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag)}");
 
+            loader = ResourceLoader.GetForViewIndependentUse();
 
             // Initialize MainWindow here
             Window = new MainWindow();
@@ -497,5 +551,8 @@ namespace AudioCopyUI
         public static MainWindow Window { get; private set; }
 
         public static IntPtr WindowHandle { get; private set; }
+
+        public static ResourceLoader? loader = null;
+
     }
 }

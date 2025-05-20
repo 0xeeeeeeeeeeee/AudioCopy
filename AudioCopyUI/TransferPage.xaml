@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0">
-            <TextBlock   >这些设备正在监听：</TextBlock>
+            <TextBlock x:Uid="ListeningClients" FontFamily="Segoe UI" ></TextBlock>
             <ListView x:Name="ClientListView"
       ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListView.ItemTemplate>
@@ -33,18 +33,19 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
-
-                <StackPanel Orientation="Vertical" Grid.Row="0">
-                    <DropDownButton  x:Name="deviceMenu" Content="选择设备">
+                <!-- 这玩意真的没必要吧 -->
+                <!--  <StackPanel Orientation="Vertical" Grid.Row="0">
+                    
+                   <DropDownButton  x:Name="deviceMenu" Content="选择设备"> 
                         <DropDownButton.Flyout>
                             <MenuFlyout x:Name="deviceMenuFlyout" />
                         </DropDownButton.Flyout>
                     </DropDownButton>
-                    <TextBlock Margin="0,10" x:Name="backendStatusBox" FontSize="20">后端状态：</TextBlock>
+                   <TextBlock Margin="0,10" x:Name="backendStatusBox" FontSize="20">后端状态：</TextBlock> 
                 </StackPanel>
-
+                -->
                 <StackPanel Orientation="Vertical" Margin="0,16"  Grid.Row="1">
-                    <TextBlock>已配对的设备：</TextBlock>
+                    <TextBlock x:Uid="PairedDevices"></TextBlock>
 
                     <ListView x:Name="BindedClientListView" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.ItemTemplate>
@@ -53,7 +54,7 @@
                                     <TextBlock Text="{Binding}" Width="150">
                                         <TextBlock.ContextFlyout>
                                             <MenuFlyout>
-                                                <MenuFlyoutItem Text="删除" Click="DeleteClient_Click" DataContext="{Binding}" />
+                                                <MenuFlyoutItem Icon="Delete" Click="DeleteClient_Click" DataContext="{Binding}" />
                                             </MenuFlyout>
                                         </TextBlock.ContextFlyout>
                                     </TextBlock>

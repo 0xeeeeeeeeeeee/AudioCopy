@@ -10,26 +10,44 @@
 
     <Grid Padding="12">
         <StackPanel Orientation="Vertical">
-            <TextBlock FontSize="28px" >高级设置</TextBlock>
+
+            <TextBlock x:Uid="/Setting/GeneralSetting_Title" Margin="0,10" FontSize="28px" />
+
+            <DropDownButton x:Name="LocateDropdown">
+                <DropDownButton.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xF2B7;" />
+                        <TextBlock Margin="10,0">Choose a language</TextBlock>
+                    </StackPanel>
+                </DropDownButton.Content>
+                <DropDownButton.Flyout>
+                    <MenuFlyout x:Name="OptionsFlyout" />
+                </DropDownButton.Flyout>
+            </DropDownButton>
 
             <StackPanel Orientation="Vertical">
-                <CheckBox Margin="0,4" x:Name="showNonLocalAddress" Click="OptionsChanged">在“配对”界面显示非局域网地址</CheckBox>
-                <CheckBox Margin="0,4" x:Name="forceMP3Audio" Click="OptionsChanged">始终允许播放MP3流</CheckBox>
-                <CheckBox Margin="0,4" x:Name="keepBackendRun" Click="OptionsChanged">允许后端在退出之后继续运行</CheckBox>
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_showNonLocalAddress" x:Name="showNonLocalAddress" Click="OptionsChanged"/>
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_keepBackendRun"  x:Name="keepBackendRun" Click="OptionsChanged"/>
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_skipSplashScreen"  x:Name="skipSplashScreen" Click="OptionsChanged"/>
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableShowHostSMTCInfo"  x:Name="disableShowHostSMTCInfo" Click="OptionsChanged"/>
+
+                <Button Margin="0,4" x:Uid="/Setting/AdvancedSetting_openDataFolder"  x:Name="openDataFolder" Click="openDataFolder_Click"/>
+
             </StackPanel>
 
-            <StackPanel Margin="0,12,0,12" Orientation="Vertical">
-                <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
-                    <Button x:Name="openDataFolder" Click="openDataFolder_Click">打开数据文件夹</Button>
-                </StackPanel>
 
+            <TextBlock x:Uid="/Setting/AdvancedSetting_Title" Margin="0,10,0,-5" FontSize="28px" />
+
+            <StackPanel Margin="0,12,0,0" Orientation="Vertical">
+                <StackPanel Margin="0,0" Orientation="Vertical">
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_forceMP3Audio" x:Name="forceMP3Audio" Click="OptionsChanged"/>
+                </StackPanel>
                 <StackPanel  Orientation="Horizontal">
-                    <Button Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click">重置设备标识</Button>
-                    <Button Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetTokens" Click="resetTokens_Click">清除所有配对的设备</Button>
-                    <Button Margin="1,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetBackend" Click="resetBackend_Click">完全重置后端</Button>
-                    <Button Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click">重置所有设置</Button>
+                    <Button x:Uid="/Setting/AdvancedSetting_resetUUID"  Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click"/>
+                    <Button x:Uid="/Setting/AdvancedSetting_resetTokens" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetTokens" Click="resetTokens_Click"/>
+                    <Button x:Uid="/Setting/AdvancedSetting_resetBackend" Margin="1,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetBackend" Click="resetBackend_Click"/>
+                    <Button x:Uid="/Setting/AdvancedSetting_resetAllSettings" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click"/>
                 </StackPanel>
-
                 <!-- <TextBlock Margin="0,16" FontSize="16px" >这些设置可能非常危险，如您不懂请不要乱点。大部分更改都需要您重启应用程序来生效</TextBlock> -->
             </StackPanel>
         </StackPanel>

@@ -74,13 +74,29 @@ namespace AudioCopyUI
                                         DispatcherQueuePriority.Normal,
                                         () =>
                                         {
-                                            logsBox.Text = ___PublicBuffer___;
-                                            if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
+                                            if (bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
+                                            {
+                                                TitleTextBlock.Text = $"AudioCopy - {___PublicBuffer___}";
+                                            }
+                                            else
+                                            {
+                                                logsBox.Text = ___PublicBuffer___;
+                                                if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
+                                            }
                                         }
                                     );
                     await Task.Delay(10);
 
                 }
+
+
+                this.DispatcherQueue.TryEnqueue(
+                                        DispatcherQueuePriority.Normal,
+                                        () =>
+                                        {
+                                            TitleTextBlock.Text = "AudioCopy";
+                                        }
+                                        );
 
 
             }).Start();
@@ -130,35 +146,77 @@ namespace AudioCopyUI
 
         public Button BackButton => AppTitleBarBackButton;
 
+        public bool isTemporarilySetPort = false;
+
         private async void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
-            PageFrame.Navigate(typeof(SplashScreen), null, new SuppressNavigationTransitionInfo());
-
-            try
+            if (bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
             {
-                await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
-                SettingUtility.SetSettings("ForceUpgradeBackend", "False");
-                await Program.BootBackend();
-                ___PublicStackOn___ = false;
-                await Program.PostInit();
-                loaded = true;
-
-            }
-            catch (Exception ex)
-            {
-                if (await LogAndDialogue(ex, "升级/启动后端", "尝试重启应用程序", "好的", this, AppTitleBar.XamlRoot))
-                {
-                    Program.ExitApp(true);
-                }
-            }
-            finally
-            {
-                ___PublicStackOn___ = false;
                 MainNavigationView.Visibility = Visibility.Visible;
 
                 PageFrame.Navigate(typeof(ReceivePage), null, new DrillInNavigationTransitionInfo());
                 splashPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                PageFrame.Navigate(typeof(SplashScreen), null, new SuppressNavigationTransitionInfo());
 
+            }
+
+
+            try
+            {
+                try
+                {
+                    await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
+                    SettingUtility.SetSettings("ForceUpgradeBackend", "False");
+                    await Program.BootBackend();
+                    ___PublicStackOn___ = false;
+                    await Program.PostInit();
+                    loaded = true;
+
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("Failed to bind to address"))
+                    {
+                        try
+                        {
+                            await Program.BootBackend(Random.Shared.Next(1024, 65535));
+                            isTemporarilySetPort = true;
+                            ___PublicStackOn___ = false;
+                            await Program.PostInit();
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+
+                    }
+                    else throw;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                if (await LogAndDialogue(ex, localize("Init_Desc"), localize("Init_TryReboot"), localize("Init_ContinueBoot"), this, AppTitleBar.XamlRoot,localize("Init_TryReset")))
+                {
+                    Program.ExitApp(true);
+                }
+            }
+
+            finally
+            {           
+                ___PublicStackOn___ = false;
+
+                if (!bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
+                {
+                    MainNavigationView.Visibility = Visibility.Visible;
+
+                    PageFrame.Navigate(typeof(ReceivePage), null, new DrillInNavigationTransitionInfo());
+                    splashPanel.Visibility = Visibility.Collapsed;
+                }
+                TitleTextBlock.Text = "AudioCopy";
                 SetTitleBar(AppTitleBar);
                 BackButton.Visibility = Visibility.Visible;
                 if (AppWindowTitleBar.IsCustomizationSupported())
@@ -250,6 +308,7 @@ namespace AudioCopyUI
 
         private void Window_Closed(object sender, WindowEventArgs args)
         {
+            if (isTemporarilySetPort) SettingUtility.SetSettings("backendPort", "23456");
         }
 
         private async void skipButton_Click(object sender, RoutedEventArgs e)

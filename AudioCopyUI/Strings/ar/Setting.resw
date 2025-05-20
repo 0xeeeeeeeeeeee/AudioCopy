@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioQuality_Option3_Bits.PlaceholderText" xml:space="preserve">
+    <value>بت</value>
+  </data>
+  <data name="AudioQuality_Option3_Channels.PlaceholderText" xml:space="preserve">
+    <value>قناة</value>
+  </data>
+  <data name="AudioQuality_Option1.Text" xml:space="preserve">
+    <value>عدم إعادة أخذ العينات (استخدام جودة الصوت المحددة في النظام)</value>
+  </data>
+  <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
+    <value>إذا كنت بحاجة إلى تسجيل صوت بعمق بت يتجاوز 16 بت، يرجى استخدام خيار معدل العينة المحدد مسبقًا أو المخصص</value>
+  </data>
+  <data name="AudioQuality_Option2.Text" xml:space="preserve">
+    <value>استخدام تكوين إعادة التشكيل المسبق</value>
+  </data>
+  <data name="AudioQuality_Option3.Text" xml:space="preserve">
+    <value>إعدادات إعادة التشكيل المخصصة</value>
+  </data>
+  <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
+    <value>حجم مخزن الصوت الخام</value>
+  </data>
+  <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
+    <value>معدل العينة</value>
+  </data>
+  <data name="AudioQuality_SupportMP3" xml:space="preserve">
+    <value>(هذا التنسيق يدعم تدفق MP3)</value>
+  </data>
+  <data name="AudioQuality_Foramt" xml:space="preserve">
+    <value>{0} قناة، {1} بت، {2} هرتز</value>
+  </data>
+  <data name="AudioQuality_Current" xml:space="preserve">
+    <value>جودة الصوت الحالية:</value>
+  </data>
+  <data name="AudioQuality_CurrentUnavailable" xml:space="preserve">
+    <value>جودة الصوت غير متاحة، يرجى التحقق من الخلفية</value>
+  </data>
+  <data name="BackendSetting_Title.Text" xml:space="preserve">
+    <value>الإعدادات الخلفية</value>
+  </data>
+  <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
+    <value>عنوان IP المطلوب ربطه (اتركه فارغًا لتمثيل أي عنوان)</value>
+  </data>
+  <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
+    <value>رقم المنفذ للربط (اتركه فارغًا للافتراضي)</value>
+  </data>
+  <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
+    <value>السماح بالاقتران مع عناوين خارج الشبكة المحلية (بما في ذلك عنوان العودة المحلي)</value>
+  </data>
+  <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
+    <value>تكوين الخلفية كبيئة تطوير (للتطوير فقط، يرجى عدم استخدامه في بيئة الإنتاج)</value>
+  </data>
+  <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
+    <value>متغيرات البيئة المخصصة للخلفية (استخدم بحذر، قد تسبب مخاطر غير معروفة) مثال: key1=value1,key2=value2,...</value>
+  </data>
+  <data name="BackendSetting_BackendVersion" xml:space="preserve">
+    <value>إصدار الخلفية:</value>
+  </data>
+  <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
+    <value>إعادة تشغيل الخلفية</value>
+  </data>
+  <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
+    <value>تحديث الخلفية</value>
+  </data>
+  <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
+    <value>تعطيل التكوين المخصص</value>
+  </data>
+  <data name="AboutPage_Title.Text" xml:space="preserve">
+    <value>حول</value>
+  </data>
+  <data name="AboutString" xml:space="preserve">
+    <value>نسخ الصوت {0} حقوق النشر 0xeeeeeeeeeeee (0x12e) 2025.[line]
+أجزاء من كود المشروع مأخوذة من "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH)، والفكرة مستوحاة منه أيضًا.[line]
+هذا المشروع مرخص بموجب رخصة GNU GPLv2 - للتفاصيل راجع الرخصة (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]
+معلومات التصحيح:[line]
+دليل البيانات: {1}[line][line]
+الإعدادات:[line]
+{2}[line][line]
+آخر مسار للسجل:[line]
+{3}</value>
+  </data>
+  <data name="AboutPage_Privacy.Content" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="AdvancedSetting_Title.Text" xml:space="preserve">
+    <value>الإعدادات المتقدمة</value>
+  </data>
+  <data name="AdvancedSetting_Sure" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد فعل ذلك؟</value>
+  </data>
+  <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
+    <value>عرض عناوين غير الشبكة المحلية وبطاقات الشبكة الافتراضية في واجهة "الاقتران"</value>
+  </data>
+  <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
+    <value>السماح دائمًا بتشغيل تدفق MP3</value>
+  </data>
+  <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
+    <value>السماح للخلفية بالاستمرار في العمل بعد الخروج</value>
+  </data>
+  <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
+    <value>تخطي شاشة التهيئة</value>
+  </data>
+  <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
+    <value>فتح مجلد البيانات</value>
+  </data>
+  <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
+    <value>إعادة تعيين معرف الجهاز</value>
+  </data>
+  <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
+    <value>مسح جميع الأجهزة المقترنة</value>
+  </data>
+  <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
+    <value>إعادة تعيين الخلفية بالكامل</value>
+  </data>
+  <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
+    <value>إعادة تعيين جميع الإعدادات</value>
+  </data>
+  <data name="Setting_AudioQuality.Text" xml:space="preserve">
+    <value>إعدادات جودة الصوت</value>
+  </data>
+  <data name="Setting_Backend.Text" xml:space="preserve">
+    <value>الإعدادات الخلفية</value>
+  </data>
+  <data name="Setting_General.Text" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="AdvancedSetting_Reset" xml:space="preserve">
+    <value>تم إعادة الضبط، يرجى إعادة تشغيل التطبيق</value>
+  </data>
+  <data name="AdvancedSetting_SureReset" xml:space="preserve">
+    <value>سيتم إبطال جميع أجهزة الإقران، هل أنت متأكد أنك تريد القيام بذلك؟</value>
+  </data>
+  <data name="BackendSetting_Rebooted" xml:space="preserve">
+    <value>تم الانتهاء، إذا كانت هناك مشكلات، يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل[line]في بعض الحالات، قد تحتاج إلى إعادة تشغيل التطبيق</value>
+  </data>
+  <data name="BackendSetting_RebootRequired" xml:space="preserve">
+    <value>إعادة التشغيل لتطبيق التغييرات</value>
+  </data>
+  <data name="BackendSetting_Dangerous" xml:space="preserve">
+    <value>هذه الإعدادات خطيرة جدًا، هل أنت متأكد أنك تريد تعيينها؟</value>
+  </data>
+  <data name="BackendSettings_OptionsProblem" xml:space="preserve">
+    <value>يبدو أن هناك مشكلة في الخيارات، يرجى تعديلها. ({0})</value>
+  </data>
+  <data name="GeneralSetting_Title.Text" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
+    <value>الرجاء الاطلاع أدناه، انقر فوق إعادة الضبط</value>
+  </data>
+  <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
+    <value>تنزيل النسخة الكاملة من AudioCopy</value>
+  </data>
+  <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
+    <value>هذا التطبيق هو جهة الاستقبال، لضبط المزيد من الإعدادات، انتقل إلى جهة الإرسال</value>
+  </data>
+  <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
+    <value>افتح الرابط على الكمبيوتر:</value>
+  </data>
+  <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
+    <value>فتح في المتصفح</value>
+  </data>
+  <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
+    <value>يتم تطبيق إعدادات الترجمة، يرجى الانتظار، لا تغلق هذه النافذة ولا تتفاعل مع التطبيق.\n[line]\nسيتم تشغيل التطبيق عدة مرات، وهذا أمر طبيعي</value>
+  </data>
+  <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
+    <value>عرض السجل</value>
+  </data>
+  <data name="ReceiverOnly_Lastest" xml:space="preserve">
+    <value>الأحدث</value>
+  </data>
+  <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
+    <value>عدم التزامن من معلومات الوسائط من الطرف الآخر</value>
+  </data>
+</root>

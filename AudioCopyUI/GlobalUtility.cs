@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2025 Your Name
  * Licensed under GPLv2. See LICENSE for details.
  */
@@ -11,6 +11,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -19,7 +20,6 @@ namespace AudioCopyUI
 {
     class GlobalUtility
     {
-
 
         public static string LocalStateFolder => ApplicationData.Current.LocalFolder.Path;
 
@@ -83,7 +83,14 @@ namespace AudioCopyUI
         }
 
 
-        
+        public static string localize(string key)
+        {
+            if (App.loader is null) return $"Localization not inited, key:{key}";
+            var str = App.loader.GetString(key);
+            //if(str is null) str = App.loader.GetString(key+".Text");.Replace("[line]", Environment.NewLine
+            return string.IsNullOrWhiteSpace(str) ? $"Localization resource not found:{key}" : str.Replace("[line]", Environment.NewLine);
+        }
+
 
     }
 
@@ -184,13 +191,13 @@ namespace AudioCopyUI
 
         public static void Log(Exception e, string message = "", object? sender = null) => Log($"{sender?.GetType().Name} report a {e.GetType().Name} error when trying to {message} \r\n error message: {e.Message} {e.StackTrace}{(e.Data.Contains("RemoteStackTrace") ? e.Data["RemoteStackTrace"] : "")}", "error");
 
-        public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = "ºÃµÄ", string? subButtonText = null, Page element = null)
+        public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = null, string? subButtonText = null, Page element = null,string append = "")
             => await LogAndDialogue(e, whatDoing, priButtonText, subButtonText, element, element.XamlRoot);
 
-        public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = "ºÃµÄ", string? subButtonText = null, object? obj = null, XamlRoot? root = null)
+        public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = null, string? subButtonText = null, object? obj = null, XamlRoot? root = null,string append = "")
         {
             Log(e,whatDoing,obj);
-            return await ___ShowDialogue__WithRoot___("´íÎó", $"{whatDoing}Ê±·¢ÉúÁË{e.GetType().Name}´íÎó£º\r\n{e.Message}", priButtonText ?? "ºÃµÄ", subButtonText, root);
+            return await ___ShowDialogue__WithRoot___(localize("Error"), string.Format(localize("LogAndDialogue_Content"), whatDoing, e.GetType().Name, e.Message) + (string.IsNullOrWhiteSpace(append) ? "" : "\r\n" + append), priButtonText ?? localize("Accept"), subButtonText, root);
         }
 
         public static void Log(string msg, string level = "info")
@@ -213,24 +220,80 @@ namespace AudioCopyUI
 
     }
 
-    public class DoubleToSliderConverter : IValueConverter
+    public class Localizer
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        readonly public static Dictionary<string, string[]> matches = new Dictionary<string, string[]>
         {
-            // ½« double ×ªÎª Slider µÄ Value£¨double£©
-            if (value is double d)
-                return d;
-            if (value is string s && double.TryParse(s, out var result))
-                return result;
-            return 0d;
+            {
+                "zh-Hant", new []
+                {
+                    "zh-Hant", "zh-hk", "zh-mo", "zh-tw", "zh-hant-hk", "zh-hant-mo", "zh-hant-tw"
+                }
+            },
+            {
+                "fr", new []
+                {
+                    "fr", "fr-be", "fr-ca", "fr-ch", "fr-fr", "fr-lu", "fr-015", "fr-cd", "fr-ci", "fr-cm", "fr-ht", "fr-ma", "fr-mc", "fr-ml", "fr-re", "frc-latn", "frp-latn", "fr-155", "fr-029", "fr-021", "fr-011"
+                }
+            },
+            {
+                "ru", new []
+                {
+                    "ru", "ru-ru"
+                }
+            },
+            {
+                "es", new []
+                {
+                    "es", "es-cl", "es-co", "es-es", "es-mx", "es-ar", "es-bo", "es-cr", "es-do", "es-ec", "es-gt", "es-hn", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve", "es-019", "es-419"
+                }
+            },
+            {
+                "ar", new []
+                {
+                    "ar", "ar-sa", "ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sy", "ar-tn", "ar-ye"
+                }
+            },
+            {
+                "ja", new []
+                {
+                    "ja", "ja-jp"
+                }
+            }
+        };
+
+        readonly public static string[] locate = {
+            "Default", "Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©/Arabic", "Deutsch/German", "English (United Kingdom)/English (United Kingdom)", "English (United States)/English (United States)",
+            "EspaÃ±ol/Spanish", "FranÃ§ais/French", "Italiano/Italian", "æ—¥æœ¬èªž/Japanese", "í•œêµ­ì–´/Korean", "Polski/Polish",
+            "PortuguÃªs (Brasil)/Portuguese (Brazil)", "Ð ÑƒÑÑÐºÐ¸Ð¹/Russian", "TÃ¼rkÃ§e/Turkish", "ç®€ä½“ä¸­æ–‡/Simplified Chinese", "ç¹é«”ä¸­æ–‡/Traditional Chinese" };
+
+        readonly public static string[] locateId =
+            { "default", "ar", "de", "en-GB", "en-US", "es", "fr", "it",
+            "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant" };
+        public static string current => Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
+
+
+
+
+        public static string Match(string source)
+        {
+            if (source == "default")
+            {
+                try
+                {
+                    return Match(Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                }
+                catch
+                {
+                    return "en-US";
+                }
+            }
+            var mapped = matches.TakeWhile((l) => l.Value.Contains(source));
+            if (mapped.Count() > 0) return mapped.ToArray()[0].Key;
+            if (locateId.Contains(source)) return source;
+            return "en-US";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            // ½« Slider µÄ Value£¨double£©×ª»Ø double
-            if (value is double d)
-                return d;
-            return 0d;
-        }
+        
     }
 }

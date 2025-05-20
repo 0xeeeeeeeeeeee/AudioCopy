@@ -50,6 +50,8 @@ namespace libAudioCopy.Audio
         public WaveFormat PcmFormat => pcmStream.WaveFormat;
         public int PcmBlockAlign => pcmStream.WaveFormat.BlockAlign;
 
+        public static ConcurrentBag<string> ListeningClients = new();
+
         public AudioProvider(WaveFormat? targetFormat = null, int deviceId = -1)
         {
             recordingStream = new PipeStream { MaxBufferLength = 10 * MB };
@@ -98,7 +100,7 @@ namespace libAudioCopy.Audio
         public (Guid id, PipeStream stream) SubscribePcm(string ip = "", string name = "")
         {
             var id = Guid.NewGuid();
-            SubscribedClients.TryAdd(id, new(ip, name));
+            ListeningClients.Add($"{name}@{ip}");
             Console.WriteLine($"Client {id} ({name}) @ IPAddress:{ip} subscribed.");
             var pipe = new PipeStream { MaxBufferLength = 10 * MB };
             pcmSubscribers[id] = pipe;
@@ -107,12 +109,14 @@ namespace libAudioCopy.Audio
 
         public void UnsubscribePcm(Guid id)
         {
+            Tuple<string,string> name = new("","");
             if (pcmSubscribers.TryRemove(id, out var pipe))
             {
-                Console.WriteLine($"Client {id} ({(SubscribedClients.TryGetValue(id, out var value) ? value : "name unknown")}) unsubscribed.");
+                Console.WriteLine($"Client {id} ({(SubscribedClients.TryGetValue(id, out name) ? name : "name unknown")}) unsubscribed.");
                 pipe.Dispose();
             }
             SubscribedClients.Remove(id, out _);
+            ListeningClients = new ConcurrentBag<string>(ListeningClients.TakeWhile((c) => c != $"{name.Item2}@{name.Item1}"));
         }
 
         private void WaveProcessor()

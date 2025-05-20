@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlayString" xml:space="preserve">
+    <value>Riproduci audio da {0}</value>
+    <comment>{0}:设备名</comment>
+  </data>
+  <data name="MP3UnavailableString" xml:space="preserve">
+    <value>MP3 (non disponibile in base alla tua configurazione attuale)</value>
+  </data>
+  <data name="RawAudioDescribe" xml:space="preserve">
+    <value>Il server acquisisce l'onda a 16 bit da WASAPI e la invia direttamente, quindi il ricevitore la riproduce immediatamente</value>
+  </data>
+  <data name="ListeningClients.Text" xml:space="preserve">
+    <value>Questi dispositivi stanno ascoltando</value>
+  </data>
+  <data name="ChooseDevices" xml:space="preserve">
+    <value>Seleziona il dispositivo da ascoltare</value>
+  </data>
+  <data name="PairedDevices.Text" xml:space="preserve">
+    <value>Dispositivi associati:</value>
+  </data>
+  <data name="AsReceiver.Text" xml:space="preserve">
+    <value>Come ricevente</value>
+  </data>
+  <data name="AsTransfer.Text" xml:space="preserve">
+    <value>Come mittente</value>
+  </data>
+  <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
+    <value>Seleziona il seguente sul lato ricevente</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>oppure inserisci l'indirizzo IP:</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>aggiorna</value>
+  </data>
+  <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Clicca per riprodurre</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>Riproduci audio da dispositivo sconosciuto</value>
+  </data>
+  <data name="Setting_AudioFromat.Text" xml:space="preserve">
+    <value>formati audio</value>
+  </data>
+  <data name="ChooseOne.Text" xml:space="preserve">
+    <value>Scegliere</value>
+  </data>
+  <data name="ApplyButton.Content" xml:space="preserve">
+    <value>app</value>
+  </data>
+  <data name="ChooseOneButton.Content" xml:space="preserve">
+    <value>Scegliere</value>
+  </data>
+  <data name="Receive.Content" xml:space="preserve">
+    <value>ricevere</value>
+  </data>
+  <data name="Transfer.Content" xml:space="preserve">
+    <value>Invia</value>
+  </data>
+  <data name="Pair.Content" xml:space="preserve">
+    <value>accoppiia</value>
+  </data>
+  <data name="Init_StageFail" xml:space="preserve">
+    <value>Avvio del backend non riuscito ({0})\r\nVerifica se il backend è bloccato dall'antivirus o se la porta è occupata da un altro programma</value>
+  </data>
+  <data name="Init_Stage4" xml:space="preserve">
+    <value>In attesa dell'avvio del backend...</value>
+  </data>
+  <data name="Init_Stage3" xml:space="preserve">
+    <value>Avvio del backend in corso (se l'antivirus lo segnala, consentire l'accesso)...</value>
+  </data>
+  <data name="Init_Stage0.Text" xml:space="preserve">
+    <value>Inizializzazione in corso...</value>
+  </data>
+  <data name="Init_Stage2" xml:space="preserve">
+    <value>Sto trasferendo il backend {0} alla versione v{1}, potrebbe richiedere più tempo per l'avvio. Se il tuo antivirus mostra un avviso, per favore consentilo.</value>
+  </data>
+  <data name="Init_Stage1" xml:space="preserve">
+    <value>Terminazione backend in corso...</value>
+  </data>
+  <data name="Init_Upgrade" xml:space="preserve">
+    <value>aggiornamento</value>
+  </data>
+  <data name="Init_Install" xml:space="preserve">
+    <value>installazione</value>
+  </data>
+  <data name="LogAndDialogue_Content" xml:space="preserve">
+    <value>Si è verificato un errore {1} alle {0}: [line]{2}</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="Warn" xml:space="preserve">
+    <value>Avviso</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Avviso</value>
+  </data>
+  <data name="PortBox.PlaceholderText" xml:space="preserve">
+    <value>Numero di porta (inserire solo se richiesto dal dispositivo remoto)</value>
+  </data>
+  <data name="AddressListBox.PlaceholderText" xml:space="preserve">
+    <value>Elenco degli indirizzi IP ottenuti, puoi anche inserirli manualmente qui</value>
+  </data>
+  <data name="SubmitButton.Content" xml:space="preserve">
+    <value>Invia</value>
+  </data>
+  <data name="BackendAbnormal" xml:space="preserve">
+    <value>Il backend potrebbe non funzionare correttamente, prova a riavviarlo</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Eliminato</value>
+  </data>
+  <data name="FailedSetAudioDevices" xml:space="preserve">
+    <value>Impossibile configurare il dispositivo audio:</value>
+  </data>
+  <data name="ViewDownside" xml:space="preserve">
+    <value>Visualizza qui sotto, fai clic su Reimposta</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>Interrompi la riproduzione</value>
+  </data>
+  <data name="AudioFrom" xml:space="preserve">
+    <value>Audio da {0}</value>
+  </data>
+  <data name="TryReconnect" xml:space="preserve">
+    <value>Connessione fallita, vuoi provare a riconnetterti?</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Non sei ancora abbinato, vuoi abbinarti?</value>
+  </data>
+  <data name="BackendNotAllow" xml:space="preserve">
+    <value>La tua configurazione di backend non consente questa operazione, puoi modificarla nelle impostazioni.</value>
+  </data>
+  <data name="PairTimeOut" xml:space="preserve">
+    <value>Connessione scaduta, controlla che l'indirizzo sia corretto o cambia indirizzo.</value>
+  </data>
+  <data name="SearchOnline" xml:space="preserve">
+    <value>Prova a cercare una soluzione online</value>
+  </data>
+  <data name="FailPair" xml:space="preserve">
+    <value>Abbinamento aggiunto con successo, ma non è possibile rimuoverlo dall'elenco di abbinamento in sospeso. È possibile risolvere il problema riavviando il client.</value>
+  </data>
+  <data name="PairRequired" xml:space="preserve">
+    <value>Rilevata richiesta di abbinamento da {0}, aggiungere?</value>
+  </data>
+  <data name="PairConfirm" xml:space="preserve">
+    <value>Rilevata richiesta di abbinamento da {0}, aggiungere?</value>
+  </data>
+  <data name="PairDone" xml:space="preserve">
+    <value>Abbinamento aggiunto con successo!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>successo</value>
+  </data>
+  <data name="PairFailed" xml:space="preserve">
+    <value>Abbinamento non riuscito, riprova.</value>
+  </data>
+  <data name="PairAddressNotCorrect" xml:space="preserve">
+    <value>Indirizzo non valido</value>
+  </data>
+  <data name="RawAudioInfo" xml:space="preserve">
+    <value>Nota: l'applicazione si riavvierà quando interrompi la riproduzione, è un comportamento normale</value>
+  </data>
+  <data name="RawAudioNoPrompt" xml:space="preserve">
+    <value>Non mostrare più</value>
+  </data>
+  <data name="PairPortChanged.Title" xml:space="preserve">
+    <value>Porta modificata</value>
+  </data>
+  <data name="PairPortChangedMessage" xml:space="preserve">
+    <value>Attenzione, il numero di porta corrente è cambiato. La porta attuale è {0}[line]Inserire manualmente l'indirizzo IP e il numero di porta sul lato remoto.</value>
+  </data>
+  <data name="Init_TryReset" xml:space="preserve">
+    <value>Prova ad aggiornare o reimpostare completamente il backend</value>
+  </data>
+  <data name="Init_TryReboot" xml:space="preserve">
+    <value>Prova a riavviare l'applicazione</value>
+  </data>
+  <data name="Init_Desc" xml:space="preserve">
+    <value>Configura e avvia il backend</value>
+  </data>
+  <data name="Init_ContinueBoot" xml:space="preserve">
+    <value>Ignora errori e continua l'avvio</value>
+  </data>
+  <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copertina album multimediale</value>
+  </data>
+  <data name="MediaInfo_Title.Text" xml:space="preserve">
+    <value>Media sconosciuto</value>
+  </data>
+  <data name="MediaInfo_Artist.Text" xml:space="preserve">
+    <value>Artista sconosciuto</value>
+  </data>
+  <data name="MediaInfo_Album.Text" xml:space="preserve">
+    <value>Album sconosciuto</value>
+  </data>
+  <data name="MediaInfo_FromDevice" xml:space="preserve">
+    <value>Informazioni multimediali da {0}:</value>
+  </data>
+</root>

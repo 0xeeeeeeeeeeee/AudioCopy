@@ -59,12 +59,91 @@ namespace AudioCopyUI.SettingViews
             //{
             //    var rspString = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
             //}
-            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
-            var backendVersion = Assembly.LoadFrom(backendAsbPath).GetName().Version;
-            var libAudioCopyAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy.dll");
-            var libAudioCopyVersion = Assembly.LoadFrom(backendAsbPath).GetName().Version;
-            BackendVersionBlock.Text += $"{Program.BackendVersionCode} (backend:{backendVersion} libAudioCopy:{libAudioCopyVersion})";
+            
+        }
 
+        private async void OptionsChanged(object sender, object? e)
+        {
+            try
+            {
+                if (int.TryParse(PortBindBox.Text, out var result) && (result < 0 && result > 65535)) throw new ArgumentOutOfRangeException("Port should around 0 and 65535.");
+
+                if (disableCustomSettings.IsChecked == true)
+                {
+                    SettingUtility.SetSettings("ForceDefaultBackendSettings", "True");
+                    await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
+                    return;
+                }
+                else
+                {
+                    SettingUtility.SetSettings("ForceDefaultBackendSettings", "False");
+                }
+
+                if (useDevelopmentMode.IsChecked == true || !string.IsNullOrWhiteSpace(customEnvironmentVars.Text))
+                {
+                    if (await ShowDialogue(localize("Warn"), localize("/Setting/BackendSetting_Dangerous"), localize("Cancel"), "继续", this))
+                    {
+                        useDevelopmentMode.IsChecked = false;
+                        customEnvironmentVars.Text = "";
+                    }
+                }
+
+                Dictionary<string, string> config = new Dictionary<string, string>
+                {
+                    { "ASPNETCORE_URLS", $"http://{(string.IsNullOrWhiteSpace(AddressBindBox.Text)? "+" : AddressBindBox.Text )}:{(!string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456") }" },
+                    { "ASPNETCORE_ENVIRONMENT", (useDevelopmentMode.IsChecked ?? false) ? "Development" : "Production" },
+                    //{ "AudioCopy_AllowLoopbackPair", (allowLoopbackPair.IsChecked ?? false).ToString() },
+                    { "AudioCopy_AllowInternetPair", (allowNonLocalPair.IsChecked ?? false).ToString() }
+                };
+
+                var pairs = customEnvironmentVars.Text.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in pairs)
+                {
+                    var kvp = item.Split('=');
+                    config.Add(kvp[0], kvp[1]);
+                }
+
+                SettingUtility.SetSettings("backendOptions", JsonSerializer.Serialize(config));
+                SettingUtility.SetSettings("backendPort", !string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456");
+                await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
+
+            }
+            catch (Exception ex)
+            {
+                await ShowDialogue(localize("Info"), string.Format(localize("/Setting/BackendSettings_OptionsProblem"), ex.Message), localize("Accept"), null, this);
+                return;
+            }
+
+            
+        }
+
+
+
+        private async void RebootBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            var c = rebootBackend.Content;
+            rebootBackend.Content = new ProgressRing { IsActive = true };
+            await Program.BootBackend();
+            rebootBackend.Content = c;
+            await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_Rebooted"), localize("Accept"), null, this);
+        }
+
+        private async void UpgradeBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            SettingUtility.SetSettings("ForceUpgradeBackend", "True");
+            await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
+            Program.ExitApp(true);
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
+            var backendAsb = Assembly.LoadFrom(backendAsbPath);
+            var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
+            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion")}{Program.BackendVersionCode} \r\n ({backendAsb.FullName} SHA256:{backendHash})";
+
+            var port = SettingUtility.GetOrAddSettings("backendPort", "23456");
+            if (port != "23456") PortBindBox.Text = port;
             if (!SettingUtility.Exists("backendOptions")) return;
             var options = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("backendOptions")) ?? new();
             foreach (var item in options)
@@ -89,71 +168,6 @@ namespace AudioCopyUI.SettingViews
             }
             if (!string.IsNullOrWhiteSpace(customEnvironmentVars.Text)) customEnvironmentVars.Text = customEnvironmentVars.Text.Substring(0, customEnvironmentVars.Text.Length - 1);
 
-        }
-
-        private async void OptionsChanged(object sender, object? e)
-        {
-            if (disableCustomSettings.IsChecked == true)
-            {
-                SettingUtility.SetSettings("ForceDefaultBackendSettings", "True");
-                await ShowDialogue("提示", "重新启动后端来应用更改", "好的", null, this);
-                return;
-            }
-            else
-            {
-                SettingUtility.SetSettings("ForceDefaultBackendSettings", "False");
-            }
-
-            if (useDevelopmentMode.IsChecked == true || !string.IsNullOrWhiteSpace(customEnvironmentVars.Text))
-            {
-                if (await ShowDialogue("警告", "这些设置非常危险，你确定要设置他们吗？", "取消", "继续", this))
-                {
-                    useDevelopmentMode.IsChecked = false;
-                    customEnvironmentVars.Text = "";
-                }
-            }
-
-            Dictionary<string, string> config = new Dictionary<string, string>
-            {
-                { "ASPNETCORE_URLS", $"http://{(string.IsNullOrWhiteSpace(AddressBindBox.Text)? "+" : AddressBindBox.Text )}:{(!string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456") }" },
-                { "ASPNETCORE_ENVIRONMENT", (useDevelopmentMode.IsChecked ?? false) ? "Development" : "Production" },
-                //{ "AudioCopy_AllowLoopbackPair", (allowLoopbackPair.IsChecked ?? false).ToString() },
-                { "AudioCopy_AllowInternetPair", (allowNonLocalPair.IsChecked ?? false).ToString() }
-            };
-            try
-            {
-                var pairs = customEnvironmentVars.Text.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                foreach (var item in pairs)
-                {
-                    var kvp = item.Split('=');
-                    config.Add(kvp[0], kvp[1]);
-                }
-            }
-            catch (Exception)
-            {
-                await ShowDialogue("提示", "你的自定义选项似乎有问题，请修改。", "好的", null, this);
-                return;
-            }
-
-            SettingUtility.SetSettings("backendOptions", JsonSerializer.Serialize(config));
-            SettingUtility.SetSettings("defaultPort", !string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456");
-            await ShowDialogue("提示", "重新启动后端来应用更改", "好的", null, this);
-
-        }
-
-
-
-        private async void RebootBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
-            await Program.BootBackend();
-            await ShowDialogue("提示", "完成\r\n如果你仍然遇到问题，请尝试更新或者完全重置后端", "好的", null, this);
-        }
-
-        private async void UpgradeBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
-            SettingUtility.SetSettings("ForceUpgradeBackend", "True");
-            await ShowDialogue("提示", "重新启动应用程序来应用更改", "好的", null, this);
-            Program.ExitApp(true);
         }
     }
 }

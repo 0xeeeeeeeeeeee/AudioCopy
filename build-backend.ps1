@@ -2,7 +2,7 @@
 # 设定项目路径和输出目录
 Set-Location "D:\code\AudioCopy"
 $backendDir   = ".\libAudioCopy-Backend"
-$flacBackendDir = ".\flacBackend"
+$flacBackendDir = ".\libAudioCopy-Backend-Resources"
 $assetsDir    = ".\AudioCopyUI\Assets"
 $publishDir   = Join-Path $backendDir "publish_temp"
 $zipFileName  = "backend.zip"

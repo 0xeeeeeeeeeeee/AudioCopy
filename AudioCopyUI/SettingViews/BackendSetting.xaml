@@ -6,34 +6,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
 
     <Grid Padding="12">
         <StackPanel Orientation="Vertical">
-            <TextBlock FontSize="28px" >后端设置</TextBlock>
+            <TextBlock x:Uid="/Setting/BackendSetting_Title" FontSize="28px" />
             <StackPanel Margin="0,10" Orientation="Horizontal">
-                <TextBox PlaceholderText="要绑定的IP地址(留空代表任意地址)" x:Name="AddressBindBox" />
-                <TextBox Margin="8,0" PlaceholderText="要绑定的端口号(留空代表默认)" x:Name="PortBindBox" />
-                <Button x:Name="ApplyIPSetting" Click="OptionsChanged">应用</Button>
+                <TextBox x:Uid="/Setting/BackendSetting_AddressBindBox" x:Name="AddressBindBox" />
+                <TextBox x:Uid="/Setting/BackendSetting_PortBindBox" Margin="8,0"  x:Name="PortBindBox" />
+                <Button x:Name="ApplyIPSetting" x:Uid="ApplyButton" Click="OptionsChanged"></Button>
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <!--<CheckBox x:Name="allowLoopbackPair" Click="OptionsChanged" >允许与环回地址配对</CheckBox>-->
-                <CheckBox x:Name="allowNonLocalPair" Click="OptionsChanged">允许与非局域网地址配对</CheckBox>
+                <CheckBox x:Uid="/Setting/BackendSetting_allowNonLocalPair" x:Name="allowNonLocalPair" Click="OptionsChanged"></CheckBox>
 
-                <CheckBox x:Name="useDevelopmentMode" Click="OptionsChanged">将后端配置为开发环境 (仅供开发，请不要在生产环境下使用)</CheckBox>
+                <CheckBox x:Uid="/Setting/BackendSetting_useDevelopmentMode" x:Name="useDevelopmentMode" Click="OptionsChanged"></CheckBox>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="customEnvironmentVars" Margin="0,10" PlaceholderText="自定义后端的环境变量 (慎用，可能带来未知的风险) 示例：key1=value1,key2=value2,... " Width="Auto" ></TextBox>
-                    <Button Margin="8,0"  Click="OptionsChanged">应用</Button>
+                    <TextBox x:Uid="/Setting/BackendSetting_customEnvironmentVars" x:Name="customEnvironmentVars" Margin="0,10" Width="Auto" ></TextBox>
+                    <Button Margin="8,0" x:Uid="ApplyButton"  Click="OptionsChanged"></Button>
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Margin="0,12" Orientation="Vertical">
-                <TextBlock x:Name="BackendVersionBlock">后端版本：</TextBlock>
+                <TextBlock  x:Name="BackendVersionBlock"></TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <Button Click="RebootBackend_Click" >重启后端</Button>
-                    <Button Click="UpgradeBackend_Click" Margin="8,0">更新后端</Button>
-                    <CheckBox Margin="8,0" x:Name="disableCustomSettings" Click="OptionsChanged">禁用自定义配置</CheckBox>
+                    <Button x:Uid="/Setting/BackendSetting_RebootBackendButton" x:Name="rebootBackend" Click="RebootBackend_Click" ></Button>
+                    <Button x:Uid="/Setting/BackendSetting_UpgradeBackendButton" Click="UpgradeBackend_Click" Margin="8,0"></Button>
+                    <CheckBox x:Uid="/Setting/BackendSetting_disableCustomSettings" Margin="8,0" x:Name="disableCustomSettings" Click="OptionsChanged"></CheckBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

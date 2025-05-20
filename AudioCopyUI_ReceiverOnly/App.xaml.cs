@@ -47,7 +47,7 @@ namespace AudioCopyUI_ReceiverOnly
         {
             if (Environment.OSVersion.Version < new Version(10, 0, 19041))
             {
-                Log($"Your planform (version {Environment.OSVersion.Version}) is unsupported. Upgrade to Windows 10 1904 or later version to continue using.", "Critical");
+                Environment.FailFast($"Your planform (version {Environment.OSVersion.Version}) is unsupported. Upgrade to Windows 10 10.0.19041 or later version to continue use.");
                 ExitApp(false);
             }
 
@@ -77,28 +77,41 @@ namespace AudioCopyUI_ReceiverOnly
             globalScale = scaleFactor;
             isPC = deviceFamily == "Windows.Desktop";
             Log($"Planform:{deviceFamily}");
-            global::Windows.UI.Xaml.Application.Start((p) =>
+            Localizer.___InitLocalize___();
+            if (ApiInformation.IsMethodPresent("Windows.UI.Xaml.Application","Start"))
             {
-                new App();
-            });
+                global::Windows.UI.Xaml.Application.Start((p) =>
+                {
+                    new App();
+                });
+            }
+            else
+            {
+                Environment.FailFast("Your platfrom is unsupported.");
+                Windows.UI.Xaml.Application.Current.Exit();
+            }
+            
         }
 
+        public static async Task ChangeLang(string target)
+        {
+            SettingUtility.SetSettings("Language", target == "default" ? Windows.Globalization.Language.CurrentInputMethodLanguageTag : target);
+            ExitApp(true);
+
+        }
         public static void ExitApp(bool restart = false)
         {
             __FlushLog__();
             if (restart)
             {
-                string arguments = "reboot";
                 if (ApiInformation.IsMethodPresent(
                  "Windows.ApplicationModel.Core.CoreApplication",
                  "RequestRestartAsync"))
                 {
-                    // 支持重启
                     _ = CoreApplication.RequestRestartAsync("reboot");
                 }
                 else
                 {
-                    // 不支持重启，正常退出
                     Windows.UI.Xaml.Application.Current.Exit();
                 }
             }
@@ -117,7 +130,6 @@ namespace AudioCopyUI_ReceiverOnly
             }
             finally
             {
-                //Thread.Sleep(100);
                 Environment.FailFast(ex.Message, ex);
                 Windows.UI.Xaml.Application.Current.Exit();
             }
@@ -150,10 +162,11 @@ namespace AudioCopyUI_ReceiverOnly
                 Program.Crash(e.ExceptionObject as Exception);
             };
 
-            TaskScheduler.UnobservedTaskException += (sender, e) =>
-            {
-                Program.Crash(e.Exception);
-            };
+            //TaskScheduler.UnobservedTaskException += (sender, e) =>
+            //{
+            //    Program.Crash(e.Exception);
+            //};
+
         }
 
         private void Current_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
@@ -168,6 +181,9 @@ namespace AudioCopyUI_ReceiverOnly
         /// <param name="e">有关启动请求和过程的详细信息。</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // 不要在窗口已包含内容时重复应用程序初始化，

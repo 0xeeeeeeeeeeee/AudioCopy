@@ -13,8 +13,8 @@
             <Grid x:Name="mainPanel" Visibility="Visible" >
                 <NavigationView x:Name="NavView" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged">
                     <NavigationView.MenuItems>
-                        <NavigationViewItem Tag="ReceivePage" Icon="Audio" Content="接受" />
-                        <NavigationViewItem Tag="PairPage" Icon="Link" Content="配对" />
+                        <NavigationViewItem Tag="ReceivePage" Icon="Audio" x:Uid="Receive" />
+                        <NavigationViewItem Tag="PairPage" Icon="Link" x:Uid="Pair" />
                     </NavigationView.MenuItems>
                     <Frame x:Name="PageFrame" />
                 </NavigationView>
@@ -23,8 +23,8 @@
         
         <NavigationView x:Name="NavView1" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="ReceivePage" Icon="Audio" Content="接受" />
-                <NavigationViewItem Tag="PairPage" Icon="Link" Content="配对" />
+                <NavigationViewItem Tag="ReceivePage" Icon="Audio" x:Uid="Receive" />
+                <NavigationViewItem Tag="PairPage" Icon="Link" x:Uid="Pair" />
             </NavigationView.MenuItems>
             <Frame x:Name="PageFrame1" />
         </NavigationView>

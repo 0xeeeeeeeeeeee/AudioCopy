@@ -15,11 +15,11 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
+      
         <!-- 左侧内容 -->
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" Margin="8">
-                <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Margin="0,0,0,10">作为接受端</TextBlock>
+                <TextBlock x:Uid="AsReceiver" HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Margin="0,0,0,10"></TextBlock>
 
                 <ScrollViewer Height="Auto" MinHeight="400" VerticalScrollBarVisibility="Auto">
                     <controls:ItemsRepeater x:Name="EmojiRepeater">
@@ -52,9 +52,9 @@
                             <ColumnDefinition Width="1.5*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="addressListBox" PlaceholderText="获取的IP地址列表，也可以在这里手动输入" Margin="0,0,8,0" />
-                        <TextBox Grid.Column="1" x:Name="portBox" PlaceholderText="端口号(只在对端提示输入时输入)" Margin="0,0,8,0" TextChanged="portBox_TextChanged" />
-                        <Button Grid.Column="2" Click="IpSubmitButtonClick" x:Name="submitButton">提交</Button>
+                        <TextBox x:Name="addressListBox"  x:Uid="AddressListBox" Margin="0,0,8,0" />
+                        <TextBox Grid.Column="1" x:Name="portBox" x:Uid="PortBox" Margin="0,0,8,0" TextChanged="portBox_TextChanged" />
+                        <Button Grid.Column="2" Click="IpSubmitButtonClick" x:Name="submitButton" x:Uid="SubmitButton"></Button>
                     </Grid>
                 </StackPanel>
             </StackPanel>
@@ -63,15 +63,24 @@
         <!-- 右侧内容 -->
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" Margin="8">
-                <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Margin="0,0,0,10">作为发送端</TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource TextStyleLargeFontSize}" Margin="0,0,0,10">在对端选择下列内容：</TextBlock>
+                <TextBlock HorizontalAlignment="Center" x:Uid="AsTransfer" FontSize="{StaticResource TextStyleExtraLargeFontSize}"  FontWeight="Normal" Margin="0,0,0,10"></TextBlock>
+                <InfoBar
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    IsOpen="False"
+                    x:Name="portInfoBar"
+                    x:Uid="PairPortChanged"
+                    Background="{ThemeResource SystemFillColorCautionBackgroundBrush}" >
+                </InfoBar>
+                <TextBlock HorizontalAlignment="Center" x:Uid="ChooseTheseInReceiver"  FontWeight="Normal" FontSize="{StaticResource TextStyleLargeFontSize}" Margin="0,0,0,10"></TextBlock>
 
                 <TextBlock FontSize="72px" x:Name="connectionEmojiBox" TextWrapping="Wrap"></TextBlock>
 
-                <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource TextStyleLargeFontSize}" Margin="0,10,0,0">或者输入IP地址：</TextBlock>
+                <TextBlock HorizontalAlignment="Center" x:Uid="InputIPAddress"   FontWeight="Normal" FontSize="{StaticResource TextStyleLargeFontSize}" Margin="0,10,0,0"></TextBlock>
                 <TextBlock x:Name="ipAddressBox" MinHeight="60" FontSize="24" HorizontalAlignment="Center" TextWrapping="Wrap" />
 
-                <Button x:Name="PairButton" Click="PairButton_Click" HorizontalAlignment="Center" Margin="0,10,0,0">刷新列表</Button>
+                <Button x:Name="PairButton" x:Uid="Refresh"   Click="PairButton_Click" HorizontalAlignment="Center" Margin="0,10,0,0"></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

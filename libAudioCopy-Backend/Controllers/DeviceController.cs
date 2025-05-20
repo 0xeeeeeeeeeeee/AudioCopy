@@ -20,21 +20,27 @@
  */
 
 using libAudioCopy;
+using libAudioCopy.Audio;
 using Microsoft.AspNetCore.Mvc;
 using NAudio.CoreAudioApi;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 [ApiController]
 [Route("api/device")]
 public class DeviceController : Controller
 {
     private readonly TokenService _tokens;
-    public DeviceController(TokenService tokens)
+    private readonly ConcurrentBag<MediaInfo> _SMTCInfo;
+    public DeviceController(TokenService tokens, ConcurrentBag<MediaInfo> SMTCInfo)
     {
         _tokens = tokens;
+        _SMTCInfo = SMTCInfo;
     }
 
     private bool CheckToken(string? token)
@@ -85,6 +91,22 @@ public class DeviceController : Controller
         return Ok(clients);
     }
 
+    [HttpGet("GetListeningClient")]
+    public async Task GetLiteningClients(string token, CancellationToken ct)//避免反复调用创建AudioProvider，造成卡顿
+    {
+        if (!CheckToken(token))
+        {
+            Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await Response.WriteAsync("Unauthorized, please check your token.");
+            return;
+        }
+        List<string> body = AudioProvider.ListeningClients.ToList();
+        
+        body.Add("none@none"); //防止空值导致异常
+        Response.ContentType = "application/json";
+        await Response.WriteAsJsonAsync(body.ToArray(), ct);
+    }
+
     [HttpGet("testState")]
     public IActionResult TestState(string token)
     {
@@ -96,6 +118,79 @@ public class DeviceController : Controller
         return Ok("Valid");
     }
 
+    [HttpPost("UploadSMTCInfo")]
+    public async Task<IActionResult> UploadSMTCInfo(string hostToken,MediaInfo info)
+    {
+        if (!IsHostTokenVaild(hostToken))
+        {
+            return Unauthorized("Unauthorized, please check your token.");
+        }
+
+        _SMTCInfo.Clear();
+
+        _SMTCInfo.Add(info);
+
+        return Ok();
+    }
+
+    [HttpGet("GetSMTCInfo")]
+    public IActionResult GetSMTCInfo(string token)
+    {
+        if (!CheckToken(token))
+        {
+            return Unauthorized("Unauthorized, please check your token.");
+        }
+        if(_SMTCInfo.TryTake(out var body))
+        {
+            _SMTCInfo.Add(body);
+
+            MediaInfo body1 = JsonSerializer.Deserialize<MediaInfo>(JsonSerializer.Serialize(body)); //隔离，防止莫名其妙的问题
+            body1.AlbumArtBase64 = null;
+            return Ok(body1);
+
+        }
+
+        return BadRequest();
+    }
+
+    [HttpGet("GetAlbumPhoto")]
+    public IActionResult GetSMTCAlbumPhoto(string? token = null)
+    {
+        try
+        {
+
+
+            if (token is null || !CheckToken(token))
+            {
+                goto fallback;
+            }
+            if (_SMTCInfo.TryTake(out var body))
+            {
+                _SMTCInfo.Add(body);
+                if (body != null && !string.IsNullOrEmpty(body.AlbumArtBase64))
+                {
+                    string base64 = body.AlbumArtBase64;
+                    var bytes = Convert.FromBase64String(base64);
+                    var head = bytes.Take(64);
+                    var headStr = Encoding.UTF8.GetString(head.ToArray());
+                    if (headStr.Contains("PNG")) return File(bytes, "image/png", "album.png");
+                    return File(bytes, "image/jpeg", "album.jpg");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"A {ex.GetType().Name} error happens:{ex.Message}");
+        }
+
+    fallback:
+            return File(
+                System.IO.File.ReadAllBytes(
+                    Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Environment.CurrentDirectory,
+                    "AudioCopy.png")), "image/png", "AudioCopy.png"); //返回一个默认值
+
+
+    }
 
     [HttpGet("/index")]
     public async Task Index(string? token = "")
@@ -106,9 +201,15 @@ public class DeviceController : Controller
             Response.StatusCode = StatusCodes.Status401Unauthorized;
             string html1 =
 $"""
-<!DOCTYPE html><html><head><meta charset='utf-8'/><title>AudioCopy</title></head><body>
-  <a href="https://github.com/0xeeeeeeeeeeee/AudioCopy" >AudioCopy</a>
-</body></html>
+<!DOCTYPE html><html><head><meta charset='utf-8'/>
+    <title>AudioCopy</title>
+</head>
+<body>
+    <img src="api/device/GetAlbumPhoto" width="100" height="100">
+    <br>   
+    <a href="https://github.com/0xeeeeeeeeeeee/AudioCopy">AudioCopy</a>
+</body>
+</html>
 """;
             await Response.BodyWriter.WriteAsync(Encoding.UTF8.GetBytes(html1));
             return;
@@ -153,6 +254,16 @@ $"""
             }
         }
         return address;
+    }
+
+    public class MediaInfo
+    {
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string AlbumArtist { get; set; }
+        public string AlbumTitle { get; set; }
+        public string PlaybackType { get; set; }
+        public string? AlbumArtBase64 { get; set; }
     }
 
 }

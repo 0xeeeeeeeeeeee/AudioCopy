@@ -26,6 +26,17 @@
     <None Remove="TransferPage.xaml" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="Strings\**\*.resw">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Strings\en-US\Setting.resw" />
+	  <Content Remove="Strings\zh-CN\Setting.resw" />
+	</ItemGroup>
+
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -35,7 +46,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
 	<Content Include="Assets\backend.zip" />
     <Content Include="Assets\backend_version.txt" />
-
+    <Content Include="Assets\ApplyLocalization.ps1"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -173,4 +184,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugStandalone|ARM64'">
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN;DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION;DEBUG</DefineConstants>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+ 
 </Project>

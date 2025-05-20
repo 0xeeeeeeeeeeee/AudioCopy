@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioQuality_Option3_Bits.PlaceholderText" xml:space="preserve">
+    <value>位</value>
+  </data>
+  <data name="AudioQuality_Option3_Channels.PlaceholderText" xml:space="preserve">
+    <value>通道</value>
+  </data>
+  <data name="AudioQuality_Option1.Text" xml:space="preserve">
+    <value>不重采样(使用系统配置的音质)</value>
+  </data>
+  <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
+    <value>如果需要采集位深超过16bit的音频，请使用预设或自定义采样率选项</value>
+  </data>
+  <data name="AudioQuality_Option2.Text" xml:space="preserve">
+    <value>使用预设重采样配置</value>
+  </data>
+  <data name="AudioQuality_Option3.Text" xml:space="preserve">
+    <value>自定义重采样配置</value>
+  </data>
+  <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
+    <value>RAW音频缓冲区大小</value>
+  </data>
+  <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
+    <value>采样率</value>
+  </data>
+  <data name="AudioQuality_SupportMP3" xml:space="preserve">
+    <value>(此格式支持MP3流)</value>
+  </data>
+  <data name="AudioQuality_Foramt" xml:space="preserve">
+    <value>{0} 通道，{1} 位，{2} Hz</value>
+  </data>
+  <data name="AudioQuality_Current" xml:space="preserve">
+    <value>当前音质：</value>
+  </data>
+  <data name="AudioQuality_CurrentUnavailable" xml:space="preserve">
+    <value>音质不可用，请检查后端</value>
+  </data>
+  <data name="BackendSetting_Title.Text" xml:space="preserve">
+    <value>后端设置</value>
+  </data>
+  <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
+    <value>要绑定的IP地址(留空代表任意地址)</value>
+  </data>
+  <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
+    <value>要绑定的端口号(留空代表默认)</value>
+  </data>
+  <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
+    <value>允许与非局域网地址配对(包含环回地址)</value>
+  </data>
+  <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
+    <value>将后端配置为开发环境 (仅供开发，请不要在生产环境下使用)</value>
+  </data>
+  <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
+    <value>自定义后端的环境变量 (慎用，可能带来未知的风险) 示例：key1=value1,key2=value2,...</value>
+  </data>
+  <data name="BackendSetting_BackendVersion" xml:space="preserve">
+    <value>后端版本：</value>
+  </data>
+  <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
+    <value>重启后端</value>
+  </data>
+  <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
+    <value>更新后端</value>
+  </data>
+  <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
+    <value>禁用自定义配置</value>
+  </data>
+  <data name="AboutPage_Title.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AboutString" xml:space="preserve">
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。[line]该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]调试信息：[line]数据目录： {1}[line][line]设置：[line]{2}[line][line]最新的日志路径：[line]{3}</value>
+  </data>
+  <data name="AboutPage_Privacy.Content" xml:space="preserve">
+    <value>隐私政策</value>
+  </data>
+  <data name="AdvancedSetting_Title.Text" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+  <data name="AdvancedSetting_Sure" xml:space="preserve">
+    <value>你确定要这么做吗？</value>
+  </data>
+  <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
+    <value>在“配对”界面显示非局域网地址和虚拟网卡</value>
+  </data>
+  <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
+    <value>始终允许播放MP3流</value>
+  </data>
+  <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
+    <value>允许后端在退出之后继续运行</value>
+  </data>
+  <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
+    <value>跳过初始化屏幕</value>
+  </data>
+  <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
+    <value>打开数据文件夹</value>
+  </data>
+  <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
+    <value>重置设备标识</value>
+  </data>
+  <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
+    <value>清除所有配对的设备</value>
+  </data>
+  <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
+    <value>完全重置后端</value>
+  </data>
+  <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
+    <value>重置所有设置</value>
+  </data>
+  <data name="Setting_AudioQuality.Text" xml:space="preserve">
+    <value>音质配置</value>
+  </data>
+  <data name="Setting_Backend.Text" xml:space="preserve">
+    <value>后端设置</value>
+  </data>
+  <data name="Setting_General.Text" xml:space="preserve">
+    <value>通用</value>
+  </data>
+  <data name="AdvancedSetting_Reset" xml:space="preserve">
+    <value>已重置，请重启应用程序</value>
+  </data>
+  <data name="AdvancedSetting_SureReset" xml:space="preserve">
+    <value>所有配对都将失效，你确定要这么做吗？</value>
+  </data>
+  <data name="BackendSetting_Rebooted" xml:space="preserve">
+    <value>完成，如果还有问题请尝试更新或者完全重置后端[line]在部分情况下，你可能需要重启应用程序</value>
+  </data>
+  <data name="BackendSetting_RebootRequired" xml:space="preserve">
+    <value>重新启动来应用更改</value>
+  </data>
+  <data name="BackendSetting_Dangerous" xml:space="preserve">
+    <value>这些设置非常危险，你确定要设置他们吗？</value>
+  </data>
+  <data name="BackendSettings_OptionsProblem" xml:space="preserve">
+    <value>选项似乎有问题，请修改。({0})</value>
+  </data>
+  <data name="GeneralSetting_Title.Text" xml:space="preserve">
+    <value>通用</value>
+  </data>
+  <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
+    <value>请在下方查看，点击重置</value>
+  </data>
+  <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
+    <value>下载完整版 AudioCopy</value>
+  </data>
+  <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
+    <value>此应用为接收端，要调节更多的设置，请转到发送端</value>
+  </data>
+  <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
+    <value>在电脑上打开链接：</value>
+  </data>
+  <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
+    <value>在浏览器中打开</value>
+  </data>
+  <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
+    <value>正在应用本地化设置，请稍等，不要关闭此窗口，也不要与应用程序交互。[line]应用程序会多次启动，这是正常情况</value>
+  </data>
+  <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
+    <value>查看日志</value>
+  </data>
+  <data name="ReceiverOnly_Lastest" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
+    <value>不同步来自于对端的媒体信息</value>
+  </data>
+</root>

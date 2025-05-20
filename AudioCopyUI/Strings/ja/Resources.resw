@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlayString" xml:space="preserve">
+    <value>{0}からのオーディオを再生</value>
+    <comment>{0}:设备名</comment>
+  </data>
+  <data name="MP3UnavailableString" xml:space="preserve">
+    <value>MP3（現在の設定では利用できません）</value>
+  </data>
+  <data name="RawAudioDescribe" xml:space="preserve">
+    <value>サーバー側はwasapiから16bit波形を収集し直接送信、受信側は直接再生</value>
+  </data>
+  <data name="ListeningClients.Text" xml:space="preserve">
+    <value>これらのデバイスは監視中です</value>
+  </data>
+  <data name="ChooseDevices" xml:space="preserve">
+    <value>監視するデバイスを選択</value>
+  </data>
+  <data name="PairedDevices.Text" xml:space="preserve">
+    <value>ペアリング済みデバイス：</value>
+  </data>
+  <data name="AsReceiver.Text" xml:space="preserve">
+    <value>受信側として</value>
+  </data>
+  <data name="AsTransfer.Text" xml:space="preserve">
+    <value>送信側として</value>
+  </data>
+  <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
+    <value>在接收端选择下列内容</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>またはIPアドレスを入力：</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>タップして再生</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>不明なデバイスからの音声を再生</value>
+  </data>
+  <data name="Setting_AudioFromat.Text" xml:space="preserve">
+    <value>オーディオ形式</value>
+  </data>
+  <data name="ChooseOne.Text" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="ApplyButton.Content" xml:space="preserve">
+    <value>アプリ</value>
+  </data>
+  <data name="ChooseOneButton.Content" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="Receive.Content" xml:space="preserve">
+    <value>受信</value>
+  </data>
+  <data name="Transfer.Content" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="Pair.Content" xml:space="preserve">
+    <value>ペアリング</value>
+  </data>
+  <data name="Init_StageFail" xml:space="preserve">
+    <value>バックエンド起動失敗({0})\r\nアンチウイルスソフトによるブロックまたはポートの競合を確認してください</value>
+  </data>
+  <data name="Init_Stage4" xml:space="preserve">
+    <value>バックエンド起動待ち中...</value>
+  </data>
+  <data name="Init_Stage3" xml:space="preserve">
+    <value>バックエンドを起動中（アンチウイルスソフトの警告は許可してください）...</value>
+  </data>
+  <data name="Init_Stage0.Text" xml:space="preserve">
+    <value>初期化中...</value>
+  </data>
+  <data name="Init_Stage2" xml:space="preserve">
+    <value>{0}バックエンドをv{1}に更新中です。起動に時間がかかる場合があります。セキュリティソフトの警告が表示された場合は許可してください。</value>
+  </data>
+  <data name="Init_Stage1" xml:space="preserve">
+    <value>既存のバックエンドを終了...</value>
+  </data>
+  <data name="Init_Upgrade" xml:space="preserve">
+    <value>アップグレード</value>
+  </data>
+  <data name="Init_Install" xml:space="preserve">
+    <value>インストール</value>
+  </data>
+  <data name="LogAndDialogue_Content" xml:space="preserve">
+    <value>{0}時に{1}エラーが発生しました：[line]{2}</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="Warn" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>ヒント</value>
+  </data>
+  <data name="PortBox.PlaceholderText" xml:space="preserve">
+    <value>ポート番号（相手側が入力を求めた場合のみ入力）</value>
+  </data>
+  <data name="AddressListBox.PlaceholderText" xml:space="preserve">
+    <value>取得したIPアドレスのリスト、ここで手動入力も可能</value>
+  </data>
+  <data name="SubmitButton.Content" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="BackendAbnormal" xml:space="preserve">
+    <value>バックエンドが正常に動作していない可能性があります。再起動をお試しください</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>削除済み</value>
+  </data>
+  <data name="FailedSetAudioDevices" xml:space="preserve">
+    <value>オーディオデバイスの設定に失敗しました：</value>
+  </data>
+  <data name="ViewDownside" xml:space="preserve">
+    <value>下記をご確認の上、リセットをクリックしてください</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>再生停止</value>
+  </data>
+  <data name="AudioFrom" xml:space="preserve">
+    <value>{0} からのオーディオ</value>
+  </data>
+  <data name="TryReconnect" xml:space="preserve">
+    <value>接続に失敗しました。再ペアリングを試しますか？</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>ペアリングされていません。ペアリングしますか？</value>
+  </data>
+  <data name="BackendNotAllow" xml:space="preserve">
+    <value>バックエンド設定でこの操作は許可されていません。設定で変更できます。</value>
+  </data>
+  <data name="PairTimeOut" xml:space="preserve">
+    <value>接続タイムアウト、アドレスが正しいか確認するか、別のアドレスに変更してください。</value>
+  </data>
+  <data name="SearchOnline" xml:space="preserve">
+    <value>オンラインで解決策を検索してみる</value>
+  </data>
+  <data name="FailPair" xml:space="preserve">
+    <value>ペアリングが正常に追加されましたが、保留中のペアリングリストから削除できません。クライアントを再起動することでこの問題を解決できます</value>
+  </data>
+  <data name="PairRequired" xml:space="preserve">
+    <value>{0}からのペアリングリクエストを検出しました。追加しますか？</value>
+  </data>
+  <data name="PairConfirm" xml:space="preserve">
+    <value>{0}からのペアリングリクエストを検出しました。追加しますか？</value>
+  </data>
+  <data name="PairDone" xml:space="preserve">
+    <value>ペアリングが成功しました！</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="PairFailed" xml:space="preserve">
+    <value>ペアリングに失敗しました。もう一度お試しください。</value>
+  </data>
+  <data name="PairAddressNotCorrect" xml:space="preserve">
+    <value>無効なアドレス</value>
+  </data>
+  <data name="RawAudioInfo" xml:space="preserve">
+    <value>再生を停止するとアプリが再起動しますが、これは正常な動作です</value>
+  </data>
+  <data name="RawAudioNoPrompt" xml:space="preserve">
+    <value>表示しない</value>
+  </data>
+  <data name="PairPortChanged.Title" xml:space="preserve">
+    <value>ポートが変更されました</value>
+  </data>
+  <data name="PairPortChangedMessage" xml:space="preserve">
+    <value>現在のポート番号が変更されました。現在のポートは{0}です。[line]相手側で手動でIPアドレスとポート番号を入力してください</value>
+  </data>
+  <data name="Init_TryReset" xml:space="preserve">
+    <value>バックエンドの更新または完全リセットを試してください</value>
+  </data>
+  <data name="Init_TryReboot" xml:space="preserve">
+    <value>アプリを再起動してみてください</value>
+  </data>
+  <data name="Init_Desc" xml:space="preserve">
+    <value>設定してバックエンドを起動</value>
+  </data>
+  <data name="Init_ContinueBoot" xml:space="preserve">
+    <value>エラーを無視して起動を続行</value>
+  </data>
+  <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
+    <value>メディアアルバムカバー</value>
+  </data>
+  <data name="MediaInfo_Title.Text" xml:space="preserve">
+    <value>不明なメディア</value>
+  </data>
+  <data name="MediaInfo_Artist.Text" xml:space="preserve">
+    <value>不明なアーティスト</value>
+  </data>
+  <data name="MediaInfo_Album.Text" xml:space="preserve">
+    <value>不明アルバム</value>
+  </data>
+  <data name="MediaInfo_FromDevice" xml:space="preserve">
+    <value>{0}からのメディア情報：</value>
+  </data>
+</root>

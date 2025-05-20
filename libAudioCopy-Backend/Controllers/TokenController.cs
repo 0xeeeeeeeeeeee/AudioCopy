@@ -20,6 +20,7 @@
  */
 
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Concurrent;
 using System.Net;
 
 namespace libAudioCopy.Controllers
@@ -29,11 +30,11 @@ namespace libAudioCopy.Controllers
     public class TokenController : ControllerBase
     {
         private readonly TokenService _tokens;
-        private readonly Dictionary<string, string> _pairList;
+        private readonly ConcurrentDictionary<string, string> _pairList;
         private bool AllowLoopbackPair, AllowInternetPair;
         string StringTable = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-        public TokenController(TokenService tokens, Dictionary<string, string> pairList)
+        public TokenController(TokenService tokens, ConcurrentDictionary<string, string> pairList)
         {
             _tokens = tokens;
             _pairList = pairList;
@@ -132,7 +133,7 @@ namespace libAudioCopy.Controllers
 
             if (!udid.Aggregate(true, (a, b) => a && StringTable.Contains(b))) return BadRequest("°üº¬·Ç·¨×Ö·û");
 
-            _pairList.Add(udid, name);
+            _pairList.TryAdd(udid, name);
             return Created("", null);
         }
     }

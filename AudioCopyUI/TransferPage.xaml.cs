@@ -55,9 +55,12 @@ namespace AudioCopyUI
             c.BaseAddress = new Uri(sourceAddress);
             c.Timeout = TimeSpan.FromSeconds(5);
 
+            //deviceMenu.Content = localize("ChooseDevices");
+            //Localized_PairedDevices.Text = localize("PairedDevices");
+
             _ = UpdateClientsAsync();
             _ = LoadClientListAsync();
-            _ = LoadAudioDevicesAsync();
+            //_ = LoadAudioDevicesAsync();
 
             StartTimer();
         }
@@ -65,14 +68,14 @@ namespace AudioCopyUI
         private async void OnOptionSelected(MenuFlyout menuFlyout, string selectedOption)
         {
             var id = Array.IndexOf(existDevices.ToArray(), selectedOption);
-            deviceMenu.Content = selectedOption;
+            //deviceMenu.Content = selectedOption;
             SettingUtility.SetSettings("AudioDeviceName", selectedOption);
             var rsp = await c.PutAsync(
-                $"/api/audio/SetCaptureOptions?deviceId={id}{(SettingUtility.GetOrAddSettings("resampleType", "1") != "1" ? "&format=" + Uri.EscapeDataString(SettingUtility.GetOrAddSettings("resampleFormat", "48000,16,2")) : "" )}&hostToken={SettingUtility.HostToken}"
+                $"/api/audio/SetCaptureOptions?deviceId=-1{(SettingUtility.GetOrAddSettings("resampleType", "1") != "1" ? "&format=" + Uri.EscapeDataString(SettingUtility.GetOrAddSettings("resampleFormat", "48000,16,2")) : "" )}&token={token}"
                 ,null);
             if (!rsp.IsSuccessStatusCode)
             {
-                await ShowDialogue("错误", $"设置音频设备失败：{await rsp.Content.ReadAsStringAsync()}", "好的", null, this);
+                await ShowDialogue(localize("Error"), localize("FailedSetAudioDevices") + $"{await rsp.Content.ReadAsStringAsync()}", localize("Accept"), null, this);
             }
         }
 
@@ -84,37 +87,37 @@ namespace AudioCopyUI
         }
 
 
-        private async Task LoadAudioDevicesAsync()
-        {
-            try
-            {
-                var response = await c.GetStringAsync($"/api/device/GetAudioDevices?token={token}");
-                var devices = JsonSerializer.Deserialize<string[]>(response);
+        //private async Task LoadAudioDevicesAsync()
+        //{
+        //    try
+        //    {
+        //        var response = await c.GetStringAsync($"/api/device/GetAudioDevices?token={token}");
+        //        var devices = JsonSerializer.Deserialize<string[]>(response);
 
-                if (devices != null)
-                {
-                    if (lastCount != devices.Length)
-                    {
-                        deviceMenuFlyout.Items.Clear();
-                        existDevices = new();
-                        lastCount = devices.Length;
-                    }
-                    foreach (var item in devices)
-                    {
-                        if (!existDevices.Contains(item))
-                        {
-                            AddOptionToDropDown(deviceMenuFlyout, item);
-                            existDevices.Add(item);
-                        }
+        //        if (devices != null)
+        //        {
+        //            if (lastCount != devices.Length)
+        //            {
+        //                deviceMenuFlyout.Items.Clear();
+        //                existDevices = new();
+        //                lastCount = devices.Length;
+        //            }
+        //            foreach (var item in devices)
+        //            {
+        //                if (!existDevices.Contains(item))
+        //                {
+        //                    AddOptionToDropDown(deviceMenuFlyout, item);
+        //                    existDevices.Add(item);
+        //                }
                         
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log($"LoadAudioDevicesAsync error: {ex.Message}", "warn");
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log($"LoadAudioDevicesAsync error: {ex.Message}", "warn");
+        //    }
+        //}
 
 
 
@@ -134,8 +137,7 @@ namespace AudioCopyUI
                 }
                 using (HttpClient client = new HttpClient())
                 {
-                    var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-                    var response = await c.GetStringAsync($"/api/token/list?hostToken={token}");
+                    var response = await c.GetStringAsync($"/api/token/list?hostToken={SettingUtility.HostToken}");
                     var clientList = JsonSerializer.Deserialize<string[]>(response);
                     foreach (var clientName in clientList)
                     {
@@ -164,7 +166,7 @@ namespace AudioCopyUI
         {
             if (sender is MenuFlyoutItem menuItem && menuItem.DataContext is string clientName)
             {
-                if (!await ShowDialogue("提示", $"要删除{clientName.Split('@')[0].Replace(' ', '\0').Trim()}吗？", "取消", "删除", this))
+                if (!await ShowDialogue(localize("Info"), $"要删除{clientName.Split('@')[0].Replace(' ', '\0').Trim()}吗？", localize("Cancel"), "删除", this))
                 {
                     BindedClientList.Remove(clientName); 
                     _ = c.DeleteAsync($"api/token/remove?token={clientName.Split('@').Last()}&hostToken={SettingUtility.HostToken}");
@@ -184,7 +186,7 @@ namespace AudioCopyUI
                         SettingUtility.SetSettings("deviceMapping", JsonSerializer.Serialize(kvp));
                     }
                     catch (Exception) { }
-                    await ShowDialogue("提示", "已删除", "好的", null, this);
+                    await ShowDialogue(localize("Info"), localize("Deleted"), localize("Accept"), null, this);
                 }
 
             }
@@ -201,15 +203,15 @@ namespace AudioCopyUI
                     {
                         _ = UpdateClientsAsync();
                         _ = LoadClientListAsync();
-                        _ = LoadAudioDevicesAsync();
+                        //_ = LoadAudioDevicesAsync();
                         try
                         {
-                            backendStatusBox.Text = c.GetAsync("/index").GetAwaiter().GetResult().StatusCode == System.Net.HttpStatusCode.Unauthorized ? "后端状态：正常" : "后端状态：异常";
+                            //backendStatusBox.Text = c.GetAsync("/index").GetAwaiter().GetResult().StatusCode == System.Net.HttpStatusCode.Unauthorized ? "后端状态：正常" : "后端状态：异常";
                         }
                         catch (Exception)
                         {
-                            backendStatusBox.Text = "后端状态：未知";
-                            _ = ShowDialogue("提示", "后端可能不正常，可尝试重启", "我知道了", null, this);
+                            //backendStatusBox.Text = "后端状态：未知";
+                            _ = ShowDialogue(localize("Info"), localize("BackendAbnormal"), localize("Accept"), null, this);
                         }
                     }
                 );
@@ -221,7 +223,7 @@ namespace AudioCopyUI
         {
             try
             {
-                var rsp = await c.GetAsync($"/api/audio/GetListeningClient?token={token}");
+                var rsp = await c.GetAsync($"/api/device/GetListeningClient?token={token}");
                 var response = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
                 var strs = JsonSerializer.Deserialize<string[]>(response);
 

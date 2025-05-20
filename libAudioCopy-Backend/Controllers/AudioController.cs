@@ -73,30 +73,13 @@ public class AudioController : ControllerBase
     private bool IsHostTokenVaild(string hostToken) => (Environment.GetEnvironmentVariable("AudioCopy_hostToken") ?? "") == hostToken;
 
 
-    [HttpGet("GetListeningClient")]
-    public async Task GetLiteningClients(string token,CancellationToken ct)
-    {
-        if (!CheckToken(token))
-        {
-            Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await Response.WriteAsync("Unauthorized, please check your token.");
-            return;
-        }
-        List<string> body = new();
-        foreach (var item in _provider.SubscribedClients.Values)
-        {
-            body.Add($"{item.Item1}@{item.Item2}");
-        }
-        body.Add("none@none"); //∑¿÷πø’÷µµº÷¬“Ï≥£
-        Response.ContentType = "application/json";
-        await Response.WriteAsJsonAsync(body.ToArray(), ct);
-    }
+    
 
 
     [HttpPut("SetCaptureOptions")]
-    public async Task SetCaptureOptions(int deviceId = -1, string? format = "", string hostToken = "", CancellationToken ct = default)
+    public async Task SetCaptureOptions(string? format = "", string token = "", CancellationToken ct = default)
     {
-        if (!IsHostTokenVaild(hostToken))
+        if (!CheckToken(token))
         {
             Response.StatusCode = StatusCodes.Status401Unauthorized;
             await Response.WriteAsync("Unauthorized, please check your token.");
@@ -107,7 +90,7 @@ public class AudioController : ControllerBase
 
         _provider = new AudioProvider(
             (fmtArr.Length == 3) ? new WaveFormat(int.Parse(fmtArr[0]), int.Parse(fmtArr[1]), int.Parse(fmtArr[2])) : null,
-            deviceId);
+            -1);
 
         return;
 

@@ -49,6 +49,8 @@ namespace AudioCopyUI.SettingViews
     /// </summary>
     public sealed partial class AdvancedSetting : Page
     {
+
+
         public AdvancedSetting()
         {
             this.InitializeComponent();
@@ -67,6 +69,36 @@ namespace AudioCopyUI.SettingViews
             {
                 keepBackendRun.IsChecked = true;
             }
+
+            if(bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
+            {
+                skipSplashScreen.IsChecked = true;
+            }
+
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False")))
+            {
+                disableShowHostSMTCInfo.IsChecked = true;
+            }
+
+
+            foreach (var item in Localizer.locate)
+            {
+                var i = new MenuFlyoutItem { Text = item };
+                i.Click += LangChanged;
+                OptionsFlyout.Items.Add(i);
+
+            }
+        }
+
+        private async void LangChanged(object sender, RoutedEventArgs e)
+        {
+            var text = (e.OriginalSource as MenuFlyoutItem).Text;
+
+            var id = Localizer.locateId[Array.IndexOf(Localizer.locate, text)];
+
+            await Program.ChangeLang(id);
+
+            
         }
 
         private void OptionsChanged(object sender, RoutedEventArgs e)
@@ -74,40 +106,42 @@ namespace AudioCopyUI.SettingViews
             SettingUtility.SetSettings("AlwaysAllowMP3", (forceMP3Audio.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("ShowAllAdapter", (showNonLocalAddress.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("SkipSplash", (skipSplashScreen.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString()); 
 
         }
 
         private async void resetUUID_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("警告", "所有配对都将失效，你确定要这么做吗？", "取消", "确认", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_SureReset"), localize("Cancel"), localize("Accept"), this))
             {
                 SettingUtility.SetSettings("udid", AlgorithmServices.MakeRandString(128));
-                await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
 
         private async void resetTokens_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("警告", "所有配对都将失效，你确定要这么做吗？", "取消", "确认", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_SureReset"), localize("Cancel"), localize("Accept"), this))
             {
                 SettingUtility.SetSettings("deviceMapping", "{}");
                 Program.KillBackend();
                 File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
-                await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
 
         private async void resetAllSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("警告", "你确定要这么做吗？", "取消", "确认", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_Sure"), localize("Cancel"), localize("Accept"), this))
             {
                 Program.KillBackend();
                 File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
-                await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
@@ -119,13 +153,13 @@ namespace AudioCopyUI.SettingViews
 
         private async void resetBackend_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("警告", "你确定要这么做吗？", "取消", "确认", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_Sure"), localize("Cancel"), localize("Accept"), this))
             {
                 Program.KillBackend();
                 await Task.Delay(1000);
                 Directory.Delete(Path.Combine(LocalStateFolder, @"backend"), true);
                 SettingUtility.SetSettings("ForceUpgradeBackend", "True");
-                await ShowDialogue("提示", "已重置，请重启应用程序", "好的", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }

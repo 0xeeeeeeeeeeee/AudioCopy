@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlayString" xml:space="preserve">
+    <value>{0}'dan ses çal</value>
+    <comment>{0}:设备名</comment>
+  </data>
+  <data name="MP3UnavailableString" xml:space="preserve">
+    <value>MP3 (yapılandırmanıza göre şu anda kullanılamıyor)</value>
+  </data>
+  <data name="RawAudioDescribe" xml:space="preserve">
+    <value>Sunucu, wasapi'den 16bit dalga formunu toplar ve doğrudan gönderir, ardından alıcı doğrudan çalar.</value>
+  </data>
+  <data name="ListeningClients.Text" xml:space="preserve">
+    <value>Bu cihazlar dinleme yapıyor</value>
+  </data>
+  <data name="ChooseDevices" xml:space="preserve">
+    <value>Dinlenecek cihazı seç</value>
+  </data>
+  <data name="PairedDevices.Text" xml:space="preserve">
+    <value>Eşleştirilmiş cihazlar:</value>
+  </data>
+  <data name="AsReceiver.Text" xml:space="preserve">
+    <value>Alıcı uç olarak</value>
+  </data>
+  <data name="AsTransfer.Text" xml:space="preserve">
+    <value>Gönderici olarak</value>
+  </data>
+  <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
+    <value>Alıcı tarafında aşağıdakileri seçin</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>veya IP adresini girin:</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tıklayarak oynat</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>Bilinmeyen bir cihazdan ses çal</value>
+  </data>
+  <data name="Setting_AudioFromat.Text" xml:space="preserve">
+    <value>ses formatı</value>
+  </data>
+  <data name="ChooseOne.Text" xml:space="preserve">
+    <value>birini seç</value>
+  </data>
+  <data name="ApplyButton.Content" xml:space="preserve">
+    <value>Uygulama</value>
+  </data>
+  <data name="ChooseOneButton.Content" xml:space="preserve">
+    <value>Birini seç</value>
+  </data>
+  <data name="Receive.Content" xml:space="preserve">
+    <value>Alma</value>
+  </data>
+  <data name="Transfer.Content" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="Pair.Content" xml:space="preserve">
+    <value>Eşleştir</value>
+  </data>
+  <data name="Init_StageFail" xml:space="preserve">
+    <value>Arka uç başlatılamadı ({0})\r\nLütfen arka ucun antivirüs yazılımı tarafından engellenip engellenmediğini veya bağlantı noktasının başka bir program tarafından kullanılıp kullanılmadığını kontrol edin</value>
+  </data>
+  <data name="Init_Stage4" xml:space="preserve">
+    <value>Arka uç başlatılırken bekleniyor...</value>
+  </data>
+  <data name="Init_Stage3" xml:space="preserve">
+    <value>Arka uç başlatılıyor (antivirüs uyarısı verirse izin verin)...</value>
+  </data>
+  <data name="Init_Stage0.Text" xml:space="preserve">
+    <value>Başlatılıyor...</value>
+  </data>
+  <data name="Init_Stage2" xml:space="preserve">
+    <value>{0} arka ucu v{1} sürümüne yükseltiliyor, başlatma daha uzun sürebilir. Antivirüs uyarısı alırsanız izin verin.</value>
+  </data>
+  <data name="Init_Stage1" xml:space="preserve">
+    <value>Mevcut arka uç sonlandırılıyor...</value>
+  </data>
+  <data name="Init_Upgrade" xml:space="preserve">
+    <value>yükseltme</value>
+  </data>
+  <data name="Init_Install" xml:space="preserve">
+    <value>Kurulum</value>
+  </data>
+  <data name="LogAndDialogue_Content" xml:space="preserve">
+    <value>{0} sırasında {1} hatası oluştu: [line]{2}</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Warn" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>İpucu</value>
+  </data>
+  <data name="PortBox.PlaceholderText" xml:space="preserve">
+    <value>Port numarası (sadece karşı taraf giriş istediğinde girin)</value>
+  </data>
+  <data name="AddressListBox.PlaceholderText" xml:space="preserve">
+    <value>Alınan IP adresi listesi, buraya da manuel olarak girilebilir</value>
+  </data>
+  <data name="SubmitButton.Content" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="BackendAbnormal" xml:space="preserve">
+    <value>Arka uç düzgün çalışmayabilir, yeniden başlatmayı deneyebilirsiniz.</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>silindi</value>
+  </data>
+  <data name="FailedSetAudioDevices" xml:space="preserve">
+    <value>Ses aygıtı ayarlanamadı:</value>
+  </data>
+  <data name="ViewDownside" xml:space="preserve">
+    <value>Aşağıda görüntüleyin, sıfırlamak için tıklayın</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>Oynatmayı durdur</value>
+  </data>
+  <data name="AudioFrom" xml:space="preserve">
+    <value>{0} sesi dosyası</value>
+  </data>
+  <data name="TryReconnect" xml:space="preserve">
+    <value>Bağlantı başarısız, yeniden eşleştirmeyi denemek ister misiniz?</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Eşleşme yapmadınız, eşleşmek ister misiniz?</value>
+  </data>
+  <data name="BackendNotAllow" xml:space="preserve">
+    <value>Arka uç yapılandırmanız bu işleme izin vermiyor, ayarlardan değiştirebilirsiniz.</value>
+  </data>
+  <data name="PairTimeOut" xml:space="preserve">
+    <value>Bağlantı zaman aşımına uğradı, lütfen adresin doğru olup olmadığını kontrol edin veya adresi değiştirin.</value>
+  </data>
+  <data name="SearchOnline" xml:space="preserve">
+    <value>Çözüm için çevrimiçi arama yapmayı deneyin</value>
+  </data>
+  <data name="FailPair" xml:space="preserve">
+    <value>Eşleştirme başarıyla eklendi, ancak eşleştirme bekleyenler listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
+  </data>
+  <data name="PairRequired" xml:space="preserve">
+    <value>{0} ile eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
+  </data>
+  <data name="PairConfirm" xml:space="preserve">
+    <value>{0} eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
+  </data>
+  <data name="PairDone" xml:space="preserve">
+    <value>Eşleştirme başarıyla eklendi!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="PairFailed" xml:space="preserve">
+    <value>Eşleştirme eklenemedi, lütfen tekrar deneyin.</value>
+  </data>
+  <data name="PairAddressNotCorrect" xml:space="preserve">
+    <value>Geçersiz adres</value>
+  </data>
+  <data name="RawAudioInfo" xml:space="preserve">
+    <value>Lütfen unutmayın, uygulama oynatmayı durdurduğunuzda yeniden başlayacaktır, bu normal bir durumdur.</value>
+  </data>
+  <data name="RawAudioNoPrompt" xml:space="preserve">
+    <value>Bir daha gösterme</value>
+  </data>
+  <data name="PairPortChanged.Title" xml:space="preserve">
+    <value>Port değiştirildi</value>
+  </data>
+  <data name="PairPortChangedMessage" xml:space="preserve">
+    <value>Lütfen dikkat, mevcut port numarası değiştirildi, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
+  </data>
+  <data name="Init_TryReset" xml:space="preserve">
+    <value>Lütfen arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin</value>
+  </data>
+  <data name="Init_TryReboot" xml:space="preserve">
+    <value>Uygulamayı yeniden başlatmayı deneyin</value>
+  </data>
+  <data name="Init_Desc" xml:space="preserve">
+    <value>Yapılandır ve arka ucu başlat</value>
+  </data>
+  <data name="Init_ContinueBoot" xml:space="preserve">
+    <value>Hataları yoksay ve başlatmaya devam et</value>
+  </data>
+  <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Medya albüm kapağı</value>
+  </data>
+  <data name="MediaInfo_Title.Text" xml:space="preserve">
+    <value>Bilinmeyen medya</value>
+  </data>
+  <data name="MediaInfo_Artist.Text" xml:space="preserve">
+    <value>Bilinmeyen Sanatçı</value>
+  </data>
+  <data name="MediaInfo_Album.Text" xml:space="preserve">
+    <value>Bilinmeyen Albüm</value>
+  </data>
+  <data name="MediaInfo_FromDevice" xml:space="preserve">
+    <value>{0} medya bilgileri:</value>
+  </data>
+</root>

@@ -5,31 +5,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:Microsoft.UI.Xaml"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="12">
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            
             <StackPanel Orientation="Vertical">
+                <DropDownButton x:Name="LocateDropdown" Margin="0,0,10,0">
+                    <DropDownButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF2B7;" />
+                            <TextBlock Margin="10,0">Choose a language</TextBlock>
+                        </StackPanel>
+                    </DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <MenuFlyout x:Name="OptionsFlyout" />
+                    </DropDownButton.Flyout>
+                </DropDownButton>
                 <StackPanel>
-                    <TextBlock FontSize="28px" >此应用为接收端，要调节更多的设置，请转到发送端</TextBlock>
-                    <Button Margin="0,12,0,0" Click="Button_Click_1" Width="180" >
-                        <StackPanel Orientation="Vertical">
-                            <Image x:Name="logoIcon" Margin="0,10,0,0" Source="https://get.microsoft.com/images/zh-cn%20dark.svg" Width="200"/>
-                            <TextBlock Margin="0,-10,0,0" >下载完整版 AudioCopy</TextBlock>
+                    <TextBlock FontSize="28px" x:Uid="/Setting/ReceiverOnly_ThisIsReceiverOnly" TextWrapping="Wrap" ></TextBlock>
+                    <Button Margin="0,12,0,0" Click="Button_Click_1" Width="Auto" Height="Auto" >
+                        <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" x:Name="logoPanel" Padding="5">
+                            <FontIcon Glyph="&#xE896;" />
+                            <TextBlock x:Uid="/Setting/ReceiverOnly_DownloadFullAudioCopy" x:Name="logoName" Margin="12,0,0,0" FontSize="16px" > </TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Margin="0,10,0,0">
-                    <TextBlock FontSize="28px" >高级选项</TextBlock>
+                    <TextBlock x:Uid="/Setting/GeneralSetting_Title" Margin="0,10" FontSize="28px" />
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableShowHostSMTCInfo"  x:Name="disableShowHostSMTCInfo" Click="disableShowHostSMTCInfo_Click"/>
 
                     <StackPanel Margin="0,12,0,12" Orientation="Horizontal">
-                        <Button x:Name="viewLog" Content="查看日志">
+                        <Button x:Name="viewLog" x:Uid="/Setting/ReceiverOnly_ViewLog">
                             <Button.Flyout>
                                 <Flyout>
                                     <StackPanel>
-                                        <DropDownButton  x:Name="logs" Content="选择一个"  >
+                                        <DropDownButton  x:Name="logs" x:Uid="ChooseOneButton"  >
                                             <DropDownButton.Flyout>
                                                 <MenuFlyout x:Name="logsMenuFlyout" />
                                             </DropDownButton.Flyout>
@@ -42,13 +56,13 @@
                     </StackPanel>
 
                     <StackPanel  Orientation="Horizontal">
-                        <Button Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click">重置设备标识</Button>
-                        <Button Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click">重置所有设置</Button>
+                        <Button x:Uid="/Setting/AdvancedSetting_resetUUID"  Margin="0" x:Name="resetUUID" Click="resetUUID_Click"/>
+                        <Button x:Uid="/Setting/AdvancedSetting_resetAllSettings" Margin="12,0" x:Name="resetAllSettings" Click="resetAllSettings_Click"/>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                    <TextBlock FontSize="28px" >关于</TextBlock>
+                    <TextBlock FontSize="28px" x:Uid="/Setting/AboutPage_Title" />
                     <StackPanel Orientation="Horizontal">
                         <Button Background="Transparent" Click="Button_Click">
                             <Image Source="/Assets/AudioCopy.png" Width="150" HorizontalAlignment="Left"></Image>

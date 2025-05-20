@@ -18,7 +18,7 @@
         <!-- 左侧内容 -->
         <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" Margin="8">
-                <TextBlock HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Margin="0,0,0,10">作为接受端(此应用只支持作为接收端，更多图标请向下滚动)</TextBlock>
+                <TextBlock x:Uid="AsReceiver" HorizontalAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Margin="0,0,0,10"></TextBlock>
 
                 <ScrollViewer Height="Auto" MinHeight="400" VerticalScrollBarVisibility="Auto">
                     <controls:ItemsRepeater x:Name="EmojiRepeater">
@@ -51,14 +51,14 @@
                             <ColumnDefinition Width="1.5*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="addressListBox" PlaceholderText="获取的IP地址列表，也可以在这里手动输入" Margin="0,0,8,0" />
-                        <TextBox Grid.Column="1" x:Name="portBox" PlaceholderText="端口号(只在对端提示输入时输入)" Margin="0,0,8,0" TextChanged="portBox_TextChanged" />
-                        <Button Grid.Column="2" Click="IpSubmitButtonClick" x:Name="submitButton">提交</Button>
+                        <TextBox x:Name="addressListBox"  x:Uid="AddressListBox" Margin="0,0,8,0" />
+                        <TextBox Grid.Column="1" x:Name="portBox" x:Uid="PortBox" Margin="0,0,8,0" TextChanged="portBox_TextChanged" />
+                        <Button Grid.Column="2" Click="IpSubmitButtonClick" x:Name="submitButton" x:Uid="SubmitButton"></Button>
                     </Grid>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
 
-        
+
     </Grid>
 </Page>

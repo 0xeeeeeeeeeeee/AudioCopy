@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioQuality_Option3_Bits.PlaceholderText" xml:space="preserve">
+    <value>konum</value>
+  </data>
+  <data name="AudioQuality_Option3_Channels.PlaceholderText" xml:space="preserve">
+    <value>kanal</value>
+  </data>
+  <data name="AudioQuality_Option1.Text" xml:space="preserve">
+    <value>Yeniden örnekleme yapma (sistem yapılandırmasındaki ses kalitesini kullan)</value>
+  </data>
+  <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
+    <value>16 bit'den daha yüksek bit derinliğine sahip ses kaydetmek istiyorsanız, ön ayarları veya özel örnekleme oranı seçeneklerini kullanın</value>
+  </data>
+  <data name="AudioQuality_Option2.Text" xml:space="preserve">
+    <value>Önceden ayarlanmış yeniden örnekleme yapılandırmasını kullan</value>
+  </data>
+  <data name="AudioQuality_Option3.Text" xml:space="preserve">
+    <value>Özel Örnekleme Yapılandırması</value>
+  </data>
+  <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
+    <value>RAW ses arabellek boyutu</value>
+  </data>
+  <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
+    <value>örnekleme hızı</value>
+  </data>
+  <data name="AudioQuality_SupportMP3" xml:space="preserve">
+    <value>(Bu format MP3 akışını destekler)</value>
+  </data>
+  <data name="AudioQuality_Foramt" xml:space="preserve">
+    <value>{0} kanal, {1} bit, {2} Hz</value>
+  </data>
+  <data name="AudioQuality_Current" xml:space="preserve">
+    <value>Mevcut ses kalitesi:</value>
+  </data>
+  <data name="AudioQuality_CurrentUnavailable" xml:space="preserve">
+    <value>Ses kalitesi kullanılamıyor, lütfen arka ucu kontrol edin</value>
+  </data>
+  <data name="BackendSetting_Title.Text" xml:space="preserve">
+    <value>Arka uç ayarları</value>
+  </data>
+  <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
+    <value>Bağlanacak IP adresi (boş bırakılırsa herhangi bir adres kabul edilir)</value>
+  </data>
+  <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
+    <value>Bağlanacak port numarası (boş bırakılırsa varsayılan kullanılır)</value>
+  </data>
+  <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
+    <value>Yerel olmayan ağ adresleriyle eşleştirmeye izin ver (döngü adresleri dahil)</value>
+  </data>
+  <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
+    <value>Arka ucu geliştirme ortamı olarak yapılandır (sadece geliştirme için, lütfen üretim ortamında kullanmayın)</value>
+  </data>
+  <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
+    <value>Özel arka uç ortam değişkenleri (Dikkatli kullanın, bilinmeyen risklere yol açabilir) Örnek: key1=value1,key2=value2,...</value>
+  </data>
+  <data name="BackendSetting_BackendVersion" xml:space="preserve">
+    <value>Arka uç sürümü:</value>
+  </data>
+  <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
+    <value>Arka ucu yeniden başlat</value>
+  </data>
+  <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
+    <value>arka uç güncelleme</value>
+  </data>
+  <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
+    <value>Özel yapılandırmayı devre dışı bırak</value>
+  </data>
+  <data name="AboutPage_Title.Text" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="AboutString" xml:space="preserve">
+    <value>AudioCopy {0} Telif Hakkı 0xeeeeeeeeeeee (0x12e) 2025.[line]Projenin bazı kodları "Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH) kaynağından alınmıştır ve fikir de buradan esinlenmiştir.[line]Bu proje GNU GPLv2 lisansı ile lisanslanmıştır - detaylar için lisansı inceleyin (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Hata ayıklama bilgileri:[line]Veri dizini: {1}[line][line]Ayarlar:[line]{2}[line][line]Son günlük dosyası yolu:[line]{3}</value>
+  </data>
+  <data name="AboutPage_Privacy.Content" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
+  </data>
+  <data name="AdvancedSetting_Title.Text" xml:space="preserve">
+    <value>Gelişmiş Ayarlar</value>
+  </data>
+  <data name="AdvancedSetting_Sure" xml:space="preserve">
+    <value>Bunu yapmak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
+    <value>"Eşleştirme" arayüzünde yerel ağ dışı adresleri ve sanal ağ kartlarını göster</value>
+  </data>
+  <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
+    <value>MP3 akışını her zaman oynatmaya izin ver</value>
+  </data>
+  <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
+    <value>Arka planın çıkıştan sonra çalışmaya devam etmesine izin ver</value>
+  </data>
+  <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
+    <value>Başlatma ekranını atla</value>
+  </data>
+  <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
+    <value>Veri klasörünü aç</value>
+  </data>
+  <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
+    <value>Cihaz kimliğini sıfırla</value>
+  </data>
+  <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
+    <value>Eşleştirilmiş tüm cihazları temizle</value>
+  </data>
+  <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
+    <value>Arka ucu tamamen sıfırla</value>
+  </data>
+  <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
+    <value>Tüm ayarları sıfırla</value>
+  </data>
+  <data name="Setting_AudioQuality.Text" xml:space="preserve">
+    <value>Ses Kalitesi Yapılandırması</value>
+  </data>
+  <data name="Setting_Backend.Text" xml:space="preserve">
+    <value>Arka uç ayarları</value>
+  </data>
+  <data name="Setting_General.Text" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="AdvancedSetting_Reset" xml:space="preserve">
+    <value>Sıfırlandı, lütfen uygulamayı yeniden başlatın</value>
+  </data>
+  <data name="AdvancedSetting_SureReset" xml:space="preserve">
+    <value>Tüm eşleşmeler geçersiz olacaktır, bunu yapmak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="BackendSetting_Rebooted" xml:space="preserve">
+    <value>Tamamlandı, sorun devam ederse arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin[line]Bazı durumlarda uygulamayı yeniden başlatmanız gerekebilir</value>
+  </data>
+  <data name="BackendSetting_RebootRequired" xml:space="preserve">
+    <value>Değişiklikleri uygulamak için yeniden başlatın</value>
+  </data>
+  <data name="BackendSetting_Dangerous" xml:space="preserve">
+    <value>Bu ayarlar çok tehlikeli, onları ayarlamak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="BackendSettings_OptionsProblem" xml:space="preserve">
+    <value>Bir sorun gibi görünüyor, lütfen değiştirin. ({0})</value>
+  </data>
+  <data name="GeneralSetting_Title.Text" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
+    <value>Aşağıda görüntüleyin, sıfırlamak için tıklayın</value>
+  </data>
+  <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
+    <value>AudioCopy'nın tam sürümünü indirin</value>
+  </data>
+  <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
+    <value>Bu uygulama alıcı uçtadır, daha fazla ayar için gönderici uca gidin</value>
+  </data>
+  <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
+    <value>Bilgisayarda bağlantıyı aç:</value>
+  </data>
+  <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
+    <value>Tarayıcıda aç</value>
+  </data>
+  <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
+    <value>Yerelleştirme ayarları uygulanıyor, lütfen bekleyin, bu pencereyi kapatmayın veya uygulamayla etkileşime geçmeyin.[line]Uygulamanın birkaç kez başlatılması normaldir.</value>
+  </data>
+  <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
+    <value>Günlükleri görüntüle</value>
+  </data>
+  <data name="ReceiverOnly_Lastest" xml:space="preserve">
+    <value>en yeni</value>
+  </data>
+  <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
+    <value>Eş zamanlı olmayan karşı uç medya bilgisi</value>
+  </data>
+</root>

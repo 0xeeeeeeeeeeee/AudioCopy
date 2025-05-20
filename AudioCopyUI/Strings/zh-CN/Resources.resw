@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlayString" xml:space="preserve">
+    <value>播放来自{0}的音频</value>
+    <comment>{0}:设备名</comment>
+  </data>
+  <data name="MP3UnavailableString" xml:space="preserve">
+    <value>MP3(根据你的配置当前不可用)</value>
+  </data>
+  <data name="RawAudioDescribe" xml:space="preserve">
+    <value>服务端从wasapi采集16bit波形并直接发送，然后接收端直接播放</value>
+  </data>
+  <data name="ListeningClients.Text" xml:space="preserve">
+    <value>这些设备正在监听</value>
+  </data>
+  <data name="ChooseDevices" xml:space="preserve">
+    <value>选择要监听的设备</value>
+  </data>
+  <data name="PairedDevices.Text" xml:space="preserve">
+    <value>已配对的设备：</value>
+  </data>
+  <data name="AsReceiver.Text" xml:space="preserve">
+    <value>作为接收端</value>
+  </data>
+  <data name="AsTransfer.Text" xml:space="preserve">
+    <value>作为发送端</value>
+  </data>
+  <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
+    <value>在接收端选择下列内容</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>或者输入IP地址：</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>点击来播放</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>播放来自未知设备的音频</value>
+  </data>
+  <data name="Setting_AudioFromat.Text" xml:space="preserve">
+    <value>音频格式</value>
+  </data>
+  <data name="ChooseOne.Text" xml:space="preserve">
+    <value>选择一个</value>
+  </data>
+  <data name="ApplyButton.Content" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="ChooseOneButton.Content" xml:space="preserve">
+    <value>选择一个</value>
+  </data>
+  <data name="Receive.Content" xml:space="preserve">
+    <value>接收</value>
+  </data>
+  <data name="Transfer.Content" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="Pair.Content" xml:space="preserve">
+    <value>配对</value>
+  </data>
+  <data name="Init_StageFail" xml:space="preserve">
+    <value>后端启动失败({0})\r\n请检查后端是否被杀毒软件拦截或端口是否被其他程序占用</value>
+  </data>
+  <data name="Init_Stage4" xml:space="preserve">
+    <value>等待后端启动...</value>
+  </data>
+  <data name="Init_Stage3" xml:space="preserve">
+    <value>启动后端中(若杀毒软件提示请放行)...</value>
+  </data>
+  <data name="Init_Stage0.Text" xml:space="preserve">
+    <value>初始化中...</value>
+  </data>
+  <data name="Init_Stage2" xml:space="preserve">
+    <value>正在{0}后端到v{1}，可能会花上更多的时间来启动，若杀毒软件有提示请放行。</value>
+  </data>
+  <data name="Init_Stage1" xml:space="preserve">
+    <value>结束已有的后端...</value>
+  </data>
+  <data name="Init_Upgrade" xml:space="preserve">
+    <value>升级</value>
+  </data>
+  <data name="Init_Install" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="LogAndDialogue_Content" xml:space="preserve">
+    <value>{0}时发生了{1}错误：[line]{2}</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Warn" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="PortBox.PlaceholderText" xml:space="preserve">
+    <value>端口号(只在对端提示输入时输入)</value>
+  </data>
+  <data name="AddressListBox.PlaceholderText" xml:space="preserve">
+    <value>获取的IP地址列表，也可以在这里手动输入</value>
+  </data>
+  <data name="SubmitButton.Content" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="BackendAbnormal" xml:space="preserve">
+    <value>后端可能不正常，可尝试重启</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>已删除</value>
+  </data>
+  <data name="FailedSetAudioDevices" xml:space="preserve">
+    <value>设置音频设备失败：</value>
+  </data>
+  <data name="ViewDownside" xml:space="preserve">
+    <value>请在下方查看，点击重置</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>停止播放</value>
+  </data>
+  <data name="AudioFrom" xml:space="preserve">
+    <value>来自 {0} 的音频</value>
+  </data>
+  <data name="TryReconnect" xml:space="preserve">
+    <value>连接失败，要尝试重新配对吗？</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>你尚未配对，要去配对吗？</value>
+  </data>
+  <data name="BackendNotAllow" xml:space="preserve">
+    <value>你的后端配置不允许此操作，可在设置修改。</value>
+  </data>
+  <data name="PairTimeOut" xml:space="preserve">
+    <value>连接超时，请检查地址是否正确或者更换地址。</value>
+  </data>
+  <data name="SearchOnline" xml:space="preserve">
+    <value>尝试在线搜索解决方案</value>
+  </data>
+  <data name="FailPair" xml:space="preserve">
+    <value>配对已添加成功，但是无法将其从待配对列表中删除，可以通过重启客户端来解决这个问题</value>
+  </data>
+  <data name="PairRequired" xml:space="preserve">
+    <value>检测到来自{0}的配对请求，是否添加？</value>
+  </data>
+  <data name="PairConfirm" xml:space="preserve">
+    <value>检测到来自{0}的配对请求，是否添加？</value>
+  </data>
+  <data name="PairDone" xml:space="preserve">
+    <value>配对已添加成功！</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="PairFailed" xml:space="preserve">
+    <value>添加配对失败，请重试。</value>
+  </data>
+  <data name="PairAddressNotCorrect" xml:space="preserve">
+    <value>地址无效</value>
+  </data>
+  <data name="RawAudioInfo" xml:space="preserve">
+    <value>请注意，当你停止播放时应用程序会重启，这是正常现象</value>
+  </data>
+  <data name="RawAudioNoPrompt" xml:space="preserve">
+    <value>不再提示</value>
+  </data>
+  <data name="PairPortChanged.Title" xml:space="preserve">
+    <value>端口已改变</value>
+  </data>
+  <data name="PairPortChangedMessage" xml:space="preserve">
+    <value>请注意，当前的端口号已改变，目前的端口为{0}[line]请在对端手动输入IP地址和端口号</value>
+  </data>
+  <data name="Init_TryReset" xml:space="preserve">
+    <value>请尝试更新或者完全重置后端</value>
+  </data>
+  <data name="Init_TryReboot" xml:space="preserve">
+    <value>尝试重启应用程序</value>
+  </data>
+  <data name="Init_Desc" xml:space="preserve">
+    <value>配置并启动后端</value>
+  </data>
+  <data name="Init_ContinueBoot" xml:space="preserve">
+    <value>忽略错误并继续启动</value>
+  </data>
+  <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
+    <value>媒体专辑封面</value>
+  </data>
+  <data name="MediaInfo_Title.Text" xml:space="preserve">
+    <value>未知媒体</value>
+  </data>
+  <data name="MediaInfo_Artist.Text" xml:space="preserve">
+    <value>未知艺术家</value>
+  </data>
+  <data name="MediaInfo_Album.Text" xml:space="preserve">
+    <value>未知专辑</value>
+  </data>
+  <data name="MediaInfo_FromDevice" xml:space="preserve">
+    <value>来自{0}的媒体信息：</value>
+  </data>
+</root>

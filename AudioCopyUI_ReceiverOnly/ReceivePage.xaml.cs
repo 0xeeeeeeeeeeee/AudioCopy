@@ -27,7 +27,6 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Media;
@@ -35,6 +34,14 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Controls;
 using static AudioCopyUI_ReceiverOnly.GlobalUtility;
+using static AudioCopyUI_ReceiverOnly.Logger;
+using static AudioCopyUI_ReceiverOnly.Localizer;
+using System.Diagnostics;
+using Windows.System;
+using Windows.UI.Xaml.Media.Imaging;
+using Newtonsoft.Json; //System.Text.Json似乎有点问题，反序列化MediaInfo全返回null
+using Windows.Foundation.Metadata;
+
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -49,21 +56,20 @@ namespace AudioCopyUI_ReceiverOnly
         private SystemMediaTransportControls smtc;
         HttpClient c = new HttpClient();
         MediaPlayer mediaPlayer = new MediaPlayer();
-        string deviceName = "未知设备";
+        CancellationTokenSource cts = new CancellationTokenSource();
+        bool playing = false;
+        string deviceName = "";
+        string ClientToken = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
+
 
         public ReceivePage()
         {
             this.InitializeComponent();
             if (!string.IsNullOrEmpty(SettingUtility.GetOrAddSettings("sourceAddress", "")))
                 c.BaseAddress = new Uri(SettingUtility.GetOrAddSettings("sourceAddress", ""));
-
-            var mediaPlayer = PlayerElement.MediaPlayer;
-
-
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False"))) MedidInfoPanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
         }
-
-       
 
         async Task<bool> TryConnect()
         {
@@ -71,7 +77,7 @@ namespace AudioCopyUI_ReceiverOnly
             {
                 if (string.IsNullOrEmpty(SettingUtility.GetOrAddSettings("sourceAddress", "")))
                 {
-                    if (await ShowDialogue("提示", "你尚未配对，要去配对吗？", "好的", "取消", this))
+                    if (await ShowDialogue(localize("Info"), localize("NotPaired"), localize("Accept"), localize("Cancel"), this))
                     {
                         this.Frame.Navigate(typeof(PairingPage));
                         return false;
@@ -82,7 +88,7 @@ namespace AudioCopyUI_ReceiverOnly
                 var rsp = await c.GetAsync("/index");
                 if (rsp.StatusCode != System.Net.HttpStatusCode.Unauthorized) //no token, should be 401
                 {
-                    if (await ShowDialogue("提示", "连接失败，要尝试重新配对吗？", "好的", "取消", this))
+                    if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
                     {
                         this.Frame.Navigate(typeof(PairingPage));
                         return false;
@@ -95,39 +101,137 @@ namespace AudioCopyUI_ReceiverOnly
                     rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Environment.MachineName}");
                     if (rsp.IsSuccessStatusCode)
                     {
-                        var rspString = await rsp.Content.ReadAsStringAsync();    
+                        var rspString = await rsp.Content.ReadAsStringAsync();
                         if (rspString.StartsWith("AudioCopy"))
                         {
-                            var name = rspString.Substring(9);
-                            playButton.Content = $"播放来自{name}的音频";
-                            deviceName = name;
+                            deviceName = rspString.Substring(9);
+                            playButton.Content = String.Format(localize("PlayString"), deviceName);
                         }
                     }
                 }
                 catch (Exception) { }
+                new Thread(async () =>
+                {
+                    string perious = "";
+                    //if (!ApiInformation.IsMethodPresent("System.Diagnostics.Stopwatch", "StartNew")) throw new SillyWACKVersionLieException();
+                    //if (!ApiInformation.IsMethodPresent("Windows.UI.Xaml.Dispatcher", "TryRunAsync")) throw new SillyWACKVersionLieException();
+                    //if (!ApiInformation.IsTypePresent("System.UriBuilder")) throw new SillyWACKVersionLieException();
 
+                    Stopwatch timer = Stopwatch.StartNew();
+                    Random r = new Random();
+                    while (true)
+                    {
+                        try
+                        {
+                            rsp = await c.GetAsync($"/api/device/GetSMTCInfo?token={ClientToken}");
+                            if (rsp.IsSuccessStatusCode)
+                            {
+                                var rspStr = await rsp.Content.ReadAsStringAsync();
+                                var infoBody = JsonConvert.DeserializeObject<MediaInfo>(rspStr);
+                                if (infoBody != null)
+                                {
+                                    if (infoBody.Artist == "AudioCopy @ 0xeeeeeeeeeeee") break;
+                                    await this.Dispatcher.TryRunAsync(
+                                            Windows.UI.Core.CoreDispatcherPriority.Normal,
+                                            async () =>
+                                            {
+                                                try
+                                                {
+
+
+                                                    if (perious != infoBody.Title || timer.Elapsed.TotalSeconds > 60)
+                                                    {
+                                                        if (timer.Elapsed.TotalSeconds > 60) timer.Restart();
+                                                        MediaInfo_FromDevice.Text = string.Format(localize("MediaInfo_FromDevice"), deviceName);
+                                                        MediaInfo_Title.Text = infoBody.Title;
+                                                        MediaInfo_Album.Text = infoBody.AlbumArtist;
+                                                        MediaInfo_Artist.Text = infoBody.Artist;
+                                                        UriBuilder b = new UriBuilder(c.BaseAddress);
+                                                        b.Path = $"/api/device/GetAlbumPhoto";
+                                                        b.Query = $"?token={ClientToken}&randomThing={r.Next()}";
+                                                        MediaInfo_AlbumArt.Source = null;
+                                                        MediaInfo_AlbumArt.Source = new BitmapImage(b.Uri);
+                                                        perious = infoBody.Title;
+
+                                                        if (playing)
+                                                        {
+                                                            var updater = smtc.DisplayUpdater;
+                                                            updater.Type = MediaPlaybackType.Music;
+                                                            updater.MusicProperties.Title = string.Format(localize("AudioFrom"), deviceName);
+                                                            updater.MusicProperties.AlbumArtist = $"{infoBody.Title} - {infoBody.AlbumArtist}";
+                                                            updater.Thumbnail = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromUri(b.Uri);
+                                                            updater.Update();
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex1)
+                                                {
+                                                    //Log(ex1, "Get SMTC info", this);
+                                                }
+                                                finally
+                                                {
+                                                }
+
+
+                                            });
+                                    await Task.Delay(1500);
+
+                                }
+                            }
+                        }
+                        catch (Exception ex1)
+                        {
+                            Log(ex1, "Get SMTC info", this);
+                        }
+
+                    
+
+
+
+
+                    }
+                }).Start();
                 return true;
             }
             catch (Exception ex)
             {
+                Log(ex);
                 return false;
             }
 
 
         }
 
+        public class MediaInfo
+        {
+            public string Title { get; set; }
+            public string Artist { get; set; }
+            public string AlbumArtist { get; set; }
+            public string AlbumTitle { get; set; }
+            public string PlaybackType { get; set; }
+            public string AlbumArtBase64 { get; set; }
+        }
+
         private async void Button_Click(object sender, object e)
         {
 
+            if (playing)
+            {
+                playing = false;
+                mediaPlayer.Pause();
+                mediaPlayer.Dispose();
+                playButton.Content = String.Format(localize("PlayString"), deviceName);
+                return;
+            }
             if (!await TryConnect()) return;
-            mediaPlayer.Pause();
-            mediaPlayer.Source = null;
+            playing = true;
+            mediaPlayer = new MediaPlayer();
             string format;
             switch (SettingUtility.GetOrAddSettings("playingType", "2"))
             {
                 case "1":
                     format = "mp3";
-                        break;
+                    break;
                 case "2":
                     format = "wav";
                     break;
@@ -139,42 +243,41 @@ namespace AudioCopyUI_ReceiverOnly
                     break;
             }
 
-
-
             var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
             Uri source = new Uri(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
-            Logger.Log($"Playing at address:{source.ToString()}");
+            Log($"Playing at address:{source.ToString()}");
+            playButton.Content = localize("StopPlay");
+
 
 
             try
             {
-                mediaPlayer = new MediaPlayer();
+                smtc = mediaPlayer.SystemMediaTransportControls;
+                smtc.IsEnabled = true;
+                smtc.IsPauseEnabled = false;
+                smtc.ButtonPressed += Smtc_ButtonPressed;
+
                 mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-
                 PlayerElement.SetMediaPlayer(mediaPlayer);
-
                 mediaPlayer.Source = MediaSource.CreateFromUri(source);
                 mediaPlayer.Play();
 
-                await Task.Delay(1500); // 等待更新
+                var updater = smtc.DisplayUpdater;
+                updater.Type = MediaPlaybackType.Music;
+                updater.MusicProperties.Title = string.Format(localize("AudioFrom"), deviceName);
+                updater.Update();
 
-                if (smtc == null)
+                smtc.PropertyChanged += (s, ex) =>
                 {
-                    smtc = mediaPlayer.SystemMediaTransportControls;
-                    smtc.IsEnabled = true;
-                    smtc.IsPauseEnabled = false;
-                    smtc.ButtonPressed += Smtc_ButtonPressed;
+                    Smtc_ButtonPressed( new object(), new object());
+                };
 
-                    var updater = smtc.DisplayUpdater;
-                    updater.Type = MediaPlaybackType.Music;
-                    updater.MusicProperties.Title = $"Audio from {deviceName}";
-                    updater.Update();
-                }
+
+
             }
             catch (Exception ex)
             {
-                 await ShowDialogue("错误", $"播放流时发生了错误：{ex.Message}", "好的", null,this);
-
+                await LogAndDialogue(ex, "播放流", null, null, this);
             }
         }
 
@@ -184,11 +287,11 @@ namespace AudioCopyUI_ReceiverOnly
         }
 
 
-        private void Smtc_ButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
+        private void Smtc_ButtonPressed(object sender, object args)
         {
             var updater = smtc.DisplayUpdater;
             updater.Type = MediaPlaybackType.Music;
-            updater.MusicProperties.Title = $"Audio from {deviceName}";
+            updater.MusicProperties.Title = string.Format(localize("AudioFrom"), deviceName);
             updater.Update();
         }
 
@@ -198,8 +301,9 @@ namespace AudioCopyUI_ReceiverOnly
             SettingUtility.SetSettings("playingType", id.ToString());
         }
 
-        private async void Page_Loaded(object sender, object e)
+        private async void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+
             switch (SettingUtility.GetOrAddSettings("playingType", "2"))
             {
                 case "1":
@@ -212,7 +316,6 @@ namespace AudioCopyUI_ReceiverOnly
                     radioButton_3.IsChecked = true;
                     break;
 
-
             }
             if (await TryConnect())
             {
@@ -222,18 +325,16 @@ namespace AudioCopyUI_ReceiverOnly
                     var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
                     if (rsp.IsSuccessStatusCode)
                     {
-                        var body = JsonSerializer.Deserialize<AudioQualityObject>(await (rsp).Content.ReadAsStringAsync());
+                        var body = JsonConvert.DeserializeObject<AudioQualityObject>(await rsp.Content.ReadAsStringAsync());
                         radioButton_1.IsEnabled = body.isMp3Ready;
                         if (!body.isMp3Ready && !bool.Parse(SettingUtility.GetOrAddSettings("AlwaysAllowMP3", "False")))
                         {
-                            radioButton_1.Content += "(根据你的配置不可用)";
+                            radioButton_1.Content = localize("MP3UnavailableString");
                             if (radioButton_1.IsChecked ?? true) radioButton_2.IsChecked = true;
                         }
                     }
                 }
                 catch (Exception) { }
-
-
             }
         }
 

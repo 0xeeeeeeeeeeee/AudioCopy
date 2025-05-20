@@ -21,12 +21,16 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,7 +46,7 @@ namespace AudioCopyUI.SettingViews
         int bitrate, samplerate, channels;
         private bool loaded = false;
 
-        public double rawBuffer { get { return double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096; } set { SettingUtility.SetSettings("rawBufferSize", value.ToString()); _ = Save();  } }
+        public double rawBuffer { get { return double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096; } set { SettingUtility.SetSettings("rawBufferSize", value.ToString()); _ = Save(); } }
 
         public AudioQuality()
         {
@@ -71,6 +75,16 @@ namespace AudioCopyUI.SettingViews
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            foreach (var item in audioQualities)
+            {
+                MenuFlyoutItem i = new MenuFlyoutItem
+                {
+                    Text = item.ToString()
+                };
+                i.Click += MenuFlyoutItem_Click;
+                OptionsFlyout.Items.Add(i);
+            }
+
             try
             {
                 rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;
@@ -86,22 +100,24 @@ namespace AudioCopyUI.SettingViews
                     }
                     catch (Exception) { }
                     finally { Program.AlreadyAddMyself = true; }
-                }           
+                }
                 var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
                 AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
-                var text = $"{body.channels} 通道，{body.bitsPerSample} 位，{body.sampleRate} Hz ";
-                defaultAudioQualityBlock.Text += text;
+                var text = string.Format(localize("/Setting/AudioQuality_Foramt"), body.channels, body.bitsPerSample, body.sampleRate);
+                defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_Current") + text;
                 loaded = true;
                 rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out result) ? result : 4096;
 
             }
             catch (Exception)
             {
-                defaultAudioQualityBlock.Text += "目前不可用";
+                defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_CurrentUnavailable");
             }
+
+            
         }
 
-        
+
 
         private void itemSelected(UIElement sender, DropCompletedEventArgs args)
         {
@@ -124,7 +140,6 @@ namespace AudioCopyUI.SettingViews
                 await Save();
 
             }
-            //await ShowDialogue(id, id, id, id, this);
             SettingUtility.SetSettings("resampleType", id);
         }
 
@@ -132,29 +147,13 @@ namespace AudioCopyUI.SettingViews
         {
             var text = (e.OriginalSource as MenuFlyoutItem).Text;
             audioQualityDropdown.Content = text;
-            if (text.Contains('(')) text = text.Split('(')[0];
-            var parts = text.Split('，');
-            if (parts.Length == 3)
+            if (AudioQualityObject.TryParse(text, null, out var body))
             {
-                // Extract channels
-                if (int.TryParse(parts[0].Replace("通道", "").Trim(), out int parsedChannels))
-                {
-                    channels = parsedChannels;
-                }
+                bitrate = body.bitsPerSample;
+                samplerate = body.sampleRate;
+                channels = body.channels;
 
-                // Extract bitrate
-                if (int.TryParse(parts[1].Replace("位", "").Trim(), out int parsedBitrate))
-                {
-                    bitrate = parsedBitrate;
-                }
-
-                // Extract samplerate
-                if (int.TryParse(parts[2].Replace("Hz", "").Trim(), out int parsedSamplerate))
-                {
-                    samplerate = parsedSamplerate;
-                }
             }
-            //await ShowDialogue(text, $"{bitrate}bit {samplerate}hz {channels}channels", text, text, this);
             await Save();
 
         }
@@ -167,13 +166,12 @@ namespace AudioCopyUI.SettingViews
             bitrate = (int)bitRateBox.Value;
             samplerate = (int)sampleRateBox.Value;
             channels = (int)channelBox.Value;
-            //await ShowDialogue("", $"{bitrate}bit {samplerate}hz {channels}channels", "text", "text", this);
             await Save();
         }
 
         private async void rawBufferSize_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
         {
-            if(loaded) await Save();
+            if (loaded) await Save();
 
         }
 
@@ -181,16 +179,76 @@ namespace AudioCopyUI.SettingViews
         {
             SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
             SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
+            //await ShowDialogue("", $"{bitrate}bit {samplerate}hz {channels}channels {rawBufferSize.Value} bytes buf   ", "text", "text", this);
+
         }
 
 
-        public class AudioQualityObject
+        public class AudioQualityObject : IParsable<AudioQualityObject>
         {
             public int sampleRate { get; set; }
             public int bitsPerSample { get; set; }
             public int channels { get; set; }
             public bool isMp3Ready { get; set; }
+
+            public static AudioQualityObject Parse(string s, IFormatProvider? provider) => ParseAudioFormat(s);
+
+            public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out AudioQualityObject result)
+            {
+                try
+                {
+                    result = ParseAudioFormat(s);
+                    return true;
+                }
+                catch
+                {
+                    result = new AudioQualityObject { bitsPerSample = 0, channels = 0, sampleRate = 0 };
+                    return false;
+                }
+            }
+
+            static AudioQualityObject ParseAudioFormat(string input)
+            {
+                var match = Regex.Match(
+                    input,
+                    @"(\d+)\s*[^\d]+\s*(\d+)\s*[^\d]+\s*(\d+)",
+                    RegexOptions.IgnoreCase
+                );
+
+                if (!match.Success || match.Groups.Count < 4)
+                {
+                    throw new ArgumentException("无效的音频格式字符串");
+                }
+
+                return new AudioQualityObject
+                {
+                    channels = int.Parse(match.Groups[1].Value),
+                    bitsPerSample = int.Parse(match.Groups[2].Value),
+                    sampleRate = int.Parse(match.Groups[3].Value)
+                };
+            }
+
+            public override string ToString()
+            {
+                return string.Format(localize("/Setting/AudioQuality_Foramt"), channels, bitsPerSample, sampleRate) + (isMp3Ready ? " " + localize("/Setting/AudioQuality_SupportMP3") : "");
+            }
+            
         }
+        List<AudioQualityObject> audioQualities = new List<AudioQualityObject>
+        {
+    new AudioQualityObject { channels = 2, bitsPerSample = 16, sampleRate = 44100 ,isMp3Ready = true},
+    new AudioQualityObject { channels = 2, bitsPerSample = 16, sampleRate = 48000 ,isMp3Ready = true},
+    new AudioQualityObject { channels = 2, bitsPerSample = 16, sampleRate = 96000 },
+    new AudioQualityObject { channels = 2, bitsPerSample = 16, sampleRate = 192000 },
+    new AudioQualityObject { channels = 2, bitsPerSample = 24, sampleRate = 44100 },
+    new AudioQualityObject { channels = 2, bitsPerSample = 24, sampleRate = 48000 },
+    new AudioQualityObject { channels = 2, bitsPerSample = 24, sampleRate = 96000 },
+    new AudioQualityObject { channels = 2, bitsPerSample = 24, sampleRate = 192000 },
+    new AudioQualityObject { channels = 1, bitsPerSample = 16, sampleRate = 44100 ,isMp3Ready = true},
+    new AudioQualityObject { channels = 1, bitsPerSample = 16, sampleRate = 48000 ,isMp3Ready = true},
+    new AudioQualityObject { channels = 1, bitsPerSample = 24, sampleRate = 44100 },
+    new AudioQualityObject { channels = 1, bitsPerSample = 24, sampleRate = 48000 }
+};
 
     }
 }

@@ -23,6 +23,7 @@ using libAudioCopy.Audio;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
@@ -46,6 +47,8 @@ internal class Program
         builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker", LogLevel.None);
         builder.Logging.AddFilter("Microsoft.AspNetCore.Routing.EndpointMiddleware", LogLevel.None);
         builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor", LogLevel.None);
+        builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.StatusCodeResult", LogLevel.Information);
+
 
 
         PrintLocalNetworkAddresses();
@@ -53,7 +56,8 @@ internal class Program
 
         builder.Services.AddSingleton<AudioProvider>();
         builder.Services.AddSingleton<TokenService>();
-        builder.Services.AddSingleton<Dictionary<string, string>>(); //懒
+        builder.Services.AddSingleton<ConcurrentDictionary<string, string>>(); //懒
+        builder.Services.AddSingleton<ConcurrentBag<DeviceController.MediaInfo>>(); //懒
 
 
         builder.Services.AddControllers();
@@ -150,7 +154,7 @@ internal class Program
                     if (ipAddress.Address.AddressFamily == AddressFamily.InterNetwork &&
                         IsLocalNetwork(ipAddress.Address.ToString()))
                     {
-                        Console.WriteLine($"Interface: {networkInterface.Name}, IPַ: {ipAddress.Address}");
+                        Console.WriteLine($"Interface: {networkInterface.Name}, IP:{ipAddress.Address}");
                     }
                 }
             }

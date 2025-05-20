@@ -30,6 +30,9 @@ using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using static AudioCopyUI_ReceiverOnly.GlobalUtility;
+using static AudioCopyUI_ReceiverOnly.Logger;
+using static AudioCopyUI_ReceiverOnly.Localizer;
+using Windows.UI.Xaml.Media.Imaging;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -41,81 +44,97 @@ namespace AudioCopyUI_ReceiverOnly
     public sealed partial class SettingPage : Page
     {
         private string thanksText;
+        private string viewLogContent = "";
 
         public SettingPage()
         {
             this.InitializeComponent();
+
             string logFolderPath = Path.Combine(LocalStateFolder, "logs");
             var logFiles = Directory.GetFiles(logFolderPath, "*.log");
             var files = new List<string>();
-            foreach (var item in logFiles.OrderByDescending((f) => new FileInfo(f).CreationTime).Select((origin,index) => index == 0 ?  origin + "(����)" : origin ))
+            foreach (var item in logFiles.OrderByDescending((f) => new FileInfo(f).CreationTime).Select((origin,index) => index == 0 ? $"{origin}({localize("/Setting/ReceiverOnly_Lastest")})" : origin ))
             {
                 var m = new MenuFlyoutItem { Text = Path.GetFileName(item) };
                 m.Click += viewLog_Click;
                 logsMenuFlyout.Items.Add(m);
             }
+
             var version = Windows.ApplicationModel.Package.Current.Id.Version;
             string appVersion = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
 
 
             string settings = "";
-
             foreach (var item in ApplicationData.Current.LocalSettings.Values)
             {
                 settings += $"{item.Key} : {item.Value} \r\n";
             }
-
-            thanksText =    
-                $"AudioCopy (Receiver Only) {appVersion} Copyright 0xeeeeeeeeeeee (0x12e) 2025.\r\n" +
-                $"��Ŀ�Ĳ��ִ���������\"Stream What Your Hear\"(https://github.com/StreamWhatYouHear/SWYH)������Ҳ����������\r\n" +
-                $"����Ŀʹ��GNU GPLv2���֤������� - ������鿴���֤(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)" +
-                $"\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n" +
-                $"������Ϣ��\r\n" +
-                $"����Ŀ¼�� {LocalStateFolder}\r\n\r\n" +
-                $"���ã�\r\n" +
-                $"{settings}\r\n\r\n";
+            thanksText = string.Format(localize("/Setting/AboutString").Replace("[line]", Environment.NewLine), Assembly.GetExecutingAssembly().GetName().Version, LocalStateFolder, settings, ___LogPath___);
             thanksBox.Text = thanksText;
-            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Desktop")
+
+            foreach (var item in Localizer.locate)
             {
-                logoIcon.Scale = new System.Numerics.Vector3(1f + (float)Program.globalScale);
+                var i = new MenuFlyoutItem { Text = item };
+                i.Click += LangChanged;
+                OptionsFlyout.Items.Add(i);
+
+            }
+
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False")))
+            {
+                disableShowHostSMTCInfo.IsChecked = true;
             }
         }
 
-        
+        private async void LangChanged(object sender, RoutedEventArgs e)
+        {
+            var text = (e.OriginalSource as MenuFlyoutItem).Text;
+
+            var id = Localizer.locateId[Array.IndexOf(Localizer.locate, text)];
+
+            await ShowDialogue("Info", "Reboot to apply these changes.\r\nIn some case, you need to reboot this application for multiple times.", "OK", null, this);
+
+            await Program.ChangeLang(id);
+
+
+        }
+
+
 
         private async void resetUUID_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("����", "������Զ���ʧЧ����ȷ��Ҫ��ô����", "ȡ��", "ȷ��", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_SureReset"), localize("Cancel"), localize("Accept"), this))
             {
                 SettingUtility.SetSettings("udid", AlgorithmServices.MakeRandString(128));
-                await ShowDialogue("��ʾ", "�����ã�������Ӧ�ó���", "�õ�", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
 
         private async void resetAllSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (!await ShowDialogue("����", "��ȷ��Ҫ��ô����", "ȡ��", "ȷ��", this))
+            if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_Sure"), localize("Cancel"), localize("Accept"), this))
             {
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
-                await ShowDialogue("��ʾ", "�����ã�������Ӧ�ó���", "�õ�", null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
 
         private async void viewLog_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            viewLogContent = viewLog.Content as string;
             string name = (e.OriginalSource as MenuFlyoutItem).Text;
 
             thanksBox.Text = File.ReadAllText(Path.Combine(LocalStateFolder, $@"logs\{(name.EndsWith(')') ? name.Split('(')[0] : name)}"));
 
 
-            viewLog.Content = "�����·��鿴���������";
-            viewLog.Click += (a, b) => 
+            viewLog.Content = localize("/Setting/ReceiverOnly_ViewDownside");
+            viewLog.Click += (a, b) =>
             {
                 thanksBox.Text = thanksText;
-                viewLog.Content = "�鿴��־";
+                viewLog.Content = viewLogContent;
             };
 
 
@@ -128,18 +147,24 @@ namespace AudioCopyUI_ReceiverOnly
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Desktop")
+            if (AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Desktop")
             {
                 ContentDialog d = new ContentDialog
                 {
-                    Title = "��ʾ",
-                    Content = "�ڵ����ϴ����ӣ�https://apps.microsoft.com/detail/9P3XT4FS327L",
-                    PrimaryButtonText = "��������д�",
-                    CloseButtonText = "�õ�"
+                    Title = localize("Info"),
+                    Content = localize("/Setting/ReceiverOnly_LaunchLink") + " https://apps.microsoft.com/detail/9P3XT4FS327L",
+                    PrimaryButtonText = localize("/Setting/ReceiverOnly_OpenInBrowser"),
+                    CloseButtonText = localize("Accept")
                 };
                 if (await d.ShowAsync() != ContentDialogResult.Primary) return;
             }
             await Windows.System.Launcher.LaunchUriAsync(new Uri("https://apps.microsoft.com/detail/9P3XT4FS327L"));
+
+        }
+
+        private void disableShowHostSMTCInfo_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString());
 
         }
     }

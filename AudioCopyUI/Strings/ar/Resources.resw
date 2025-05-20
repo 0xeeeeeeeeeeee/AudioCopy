@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PlayString" xml:space="preserve">
+    <value>تشغيل الصوت من {0}</value>
+    <comment>{0}:设备名</comment>
+  </data>
+  <data name="MP3UnavailableString" xml:space="preserve">
+    <value>MP3 (غير متاح حاليًا حسب إعداداتك)</value>
+  </data>
+  <data name="RawAudioDescribe" xml:space="preserve">
+    <value>الخادم يجمع موجات 16 بت من WASAPI ويرسلها مباشرة، ثم يقوم المستقبل بتشغيلها مباشرة</value>
+  </data>
+  <data name="ListeningClients.Text" xml:space="preserve">
+    <value>هذه الأجهزة تستمع</value>
+  </data>
+  <data name="ChooseDevices" xml:space="preserve">
+    <value>اختر الجهاز الذي تريد الاستماع منه</value>
+  </data>
+  <data name="PairedDevices.Text" xml:space="preserve">
+    <value>الأجهزة المقترنة:</value>
+  </data>
+  <data name="AsReceiver.Text" xml:space="preserve">
+    <value>كجهة استقبال</value>
+  </data>
+  <data name="AsTransfer.Text" xml:space="preserve">
+    <value>كجهة إرسال</value>
+  </data>
+  <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
+    <value>في جهة الاستقبال، حدد المحتوى التالي</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>أو أدخل عنوان IP:</value>
+  </data>
+  <data name="Refresh.Content" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>انقر للعب</value>
+  </data>
+  <data name="PlayButton.Content" xml:space="preserve">
+    <value>تشغيل الصوت من جهاز غير معروف</value>
+  </data>
+  <data name="Setting_AudioFromat.Text" xml:space="preserve">
+    <value>تنسيق الصوت</value>
+  </data>
+  <data name="ChooseOne.Text" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="ApplyButton.Content" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="ChooseOneButton.Content" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="Receive.Content" xml:space="preserve">
+    <value>استقبال</value>
+  </data>
+  <data name="Transfer.Content" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="Pair.Content" xml:space="preserve">
+    <value>إقران</value>
+  </data>
+  <data name="Init_StageFail" xml:space="preserve">
+    <value>فشل بدء تشغيل الخلفية ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مشغولاً بواسطة برنامج آخر</value>
+  </data>
+  <data name="Init_Stage4" xml:space="preserve">
+    <value>في انتظار بدء التشغيل الخلفي...</value>
+  </data>
+  <data name="Init_Stage3" xml:space="preserve">
+    <value>جاري تشغيل الخلفية (إذا ظهرت رسالة برنامج مكافحة الفيروسات، يرجى السماح)...</value>
+  </data>
+  <data name="Init_Stage0.Text" xml:space="preserve">
+    <value>جاري التهيئة...</value>
+  </data>
+  <data name="Init_Stage2" xml:space="preserve">
+    <value>جارٍ {0} الخلفي إلى الإصدار v{1}، قد يستغرق بدء التشغيل وقتًا أطول، يُرجى السماح إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات.</value>
+  </data>
+  <data name="Init_Stage1" xml:space="preserve">
+    <value>إنهاء الخلفية الحالية...</value>
+  </data>
+  <data name="Init_Upgrade" xml:space="preserve">
+    <value>ترقية</value>
+  </data>
+  <data name="Init_Install" xml:space="preserve">
+    <value>التثبيت</value>
+  </data>
+  <data name="LogAndDialogue_Content" xml:space="preserve">
+    <value>حدث خطأ {1} عند {0}: [line]{2}</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>حسناً</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="Warn" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>تنبيه</value>
+  </data>
+  <data name="PortBox.PlaceholderText" xml:space="preserve">
+    <value>رقم المنفذ (أدخله فقط عندما يطلب منك الطرف الآخر ذلك)</value>
+  </data>
+  <data name="AddressListBox.PlaceholderText" xml:space="preserve">
+    <value>قائمة عناوين IP التي تم الحصول عليها، يمكن أيضًا إدخالها يدويًا هنا</value>
+  </data>
+  <data name="SubmitButton.Content" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="BackendAbnormal" xml:space="preserve">
+    <value>الخادم الخلفي قد لا يعمل بشكل صحيح، يمكنك محاولة إعادة التشغيل</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>تم الحذف</value>
+  </data>
+  <data name="FailedSetAudioDevices" xml:space="preserve">
+    <value>فشل في إعداد جهاز الصوت:</value>
+  </data>
+  <data name="ViewDownside" xml:space="preserve">
+    <value>عرض أدناه، انقر فوق إعادة تعيين</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>إيقاف التشغيل</value>
+  </data>
+  <data name="AudioFrom" xml:space="preserve">
+    <value>الصوت من {0}</value>
+  </data>
+  <data name="TryReconnect" xml:space="preserve">
+    <value>فشل الاتصال، هل تريد إعادة الاقتران؟</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>لم تقم بإقران الجهاز بعد، هل ترغب في الإقران الآن؟</value>
+  </data>
+  <data name="BackendNotAllow" xml:space="preserve">
+    <value>إعدادات الخادم الخلفي لا تسمح بهذا الإجراء، يمكنك تعديله في الإعدادات.</value>
+  </data>
+  <data name="PairTimeOut" xml:space="preserve">
+    <value>انتهت مهلة الاتصال، يرجى التحقق من صحة العنوان أو تغييره.</value>
+  </data>
+  <data name="SearchOnline" xml:space="preserve">
+    <value>حاول البحث عن حل عبر الإنترنت</value>
+  </data>
+  <data name="FailPair" xml:space="preserve">
+    <value>تمت إضافة الاقتران بنجاح، ولكن لا يمكن حذفه من قائمة الانتظار للاقتران. يمكن حل هذه المشكلة عن طريق إعادة تشغيل العميل.</value>
+  </data>
+  <data name="PairRequired" xml:space="preserve">
+    <value>تم الكشف عن طلب اقتران من {0}، هل تريد الإضافة؟</value>
+  </data>
+  <data name="PairConfirm" xml:space="preserve">
+    <value>تم الكشف عن طلب اقتران من {0}، هل تريد الإضافة؟</value>
+  </data>
+  <data name="PairDone" xml:space="preserve">
+    <value>تم إضافة الاقتران بنجاح!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>نجاح</value>
+  </data>
+  <data name="PairFailed" xml:space="preserve">
+    <value>添加配对失败，请重试。</value>
+  </data>
+  <data name="PairAddressNotCorrect" xml:space="preserve">
+    <value>عنوان غير صالح</value>
+  </data>
+  <data name="RawAudioInfo" xml:space="preserve">
+    <value>لاحظ أن التطبيق سيعيد التشغيل عند إيقاف التشغيل، وهذا طبيعي</value>
+  </data>
+  <data name="RawAudioNoPrompt" xml:space="preserve">
+    <value>لا تظهر مرة أخرى</value>
+  </data>
+  <data name="PairPortChanged.Title" xml:space="preserve">
+    <value>تم تغيير المنفذ</value>
+  </data>
+  <data name="PairPortChangedMessage" xml:space="preserve">
+    <value>لاحظ أن رقم المنفذ الحالي قد تغير، والمنفذ الحالي هو {0}[line] يرجى إدخال عنوان IP ورقم المنفذ يدويًا على الطرف الآخر</value>
+  </data>
+  <data name="Init_TryReset" xml:space="preserve">
+    <value>يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل</value>
+  </data>
+  <data name="Init_TryReboot" xml:space="preserve">
+    <value>جرب إعادة تشغيل التطبيق</value>
+  </data>
+  <data name="Init_Desc" xml:space="preserve">
+    <value>تكوين وتشغيل الخلفية</value>
+  </data>
+  <data name="Init_ContinueBoot" xml:space="preserve">
+    <value>تجاهل الأخطاء واستمر في التشغيل</value>
+  </data>
+  <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
+    <value>غلاف ألبوم الوسائط</value>
+  </data>
+  <data name="MediaInfo_Title.Text" xml:space="preserve">
+    <value>وسائط غير معروفة</value>
+  </data>
+  <data name="MediaInfo_Artist.Text" xml:space="preserve">
+    <value>فنان مجهول</value>
+  </data>
+  <data name="MediaInfo_Album.Text" xml:space="preserve">
+    <value>ألبوم غير معروف</value>
+  </data>
+  <data name="MediaInfo_FromDevice" xml:space="preserve">
+    <value>معلومات الوسائط من {0}:</value>
+  </data>
+</root>

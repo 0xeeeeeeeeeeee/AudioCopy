@@ -22,26 +22,26 @@
                 <NavigationViewItem Tag="Page1">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE90B;" />
-                        <TextBlock Text="音质配置" Margin="8,0,0,0" />
+                        <TextBlock x:Uid="/Setting/Setting_AudioQuality" Margin="8,0,0,0" />
                     </StackPanel>
                 </NavigationViewItem>
                 <NavigationViewItem  Tag="Page2">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE969;" />
-                        <TextBlock Text="后端设置" Margin="8,0,0,0" />
+                        <TextBlock x:Uid="/Setting/Setting_Backend" Margin="8,0,0,0" />
                     </StackPanel>
                 </NavigationViewItem>
 
                 <NavigationViewItem Tag="Page3">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE74C;" />
-                        <TextBlock Text="高级" Margin="8,0,0,0" />
+                        <TextBlock x:Uid="/Setting/Setting_General" Margin="8,0,0,0" />
                     </StackPanel>
                 </NavigationViewItem>
                 <NavigationViewItem Tag="PageAbout">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon Glyph="&#xE946;" />
-                        <TextBlock Text="关于" Margin="8,0,0,0" />
+                        <TextBlock x:Uid="/Setting/AboutPage_Title" Margin="8,0,0,0" />
                     </StackPanel>
                 </NavigationViewItem>
             </muxc:NavigationView.MenuItems>

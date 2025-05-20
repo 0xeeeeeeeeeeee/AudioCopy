@@ -36,6 +36,9 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Diagnostics;
 using System.Reflection;
 using Windows.Storage;
+using Windows.ApplicationModel.DataTransfer;
+using Microsoft.UI.Dispatching;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -58,11 +61,12 @@ namespace AudioCopyUI.SettingViews
                 settings += $"{item.Key} : {item.Value} \r\n";
             }
 
-            thanksBox.Text =
-$$"""
-AudioCopy {{Assembly.GetExecutingAssembly().GetName().Version}} Copyright 0xeeeeeeeeeeee (0x12e) 2025.
-项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。
-该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)
+            thanksBox.Text = string.Format(localize("/Setting/AboutString").Replace("[line]", Environment.NewLine), Assembly.GetExecutingAssembly().GetName().Version, LocalStateFolder, settings, ___LogPath___);
+         
+//$$"""
+//AudioCopy {{Assembly.GetExecutingAssembly().GetName().Version}} Copyright 0xeeeeeeeeeeee (0x12e) 2025.
+//项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。
+//该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)
 
 
 
@@ -70,21 +74,47 @@ AudioCopy {{Assembly.GetExecutingAssembly().GetName().Version}} Copyright 0xeeee
 
 
 
-调试信息：
-数据目录： {{LocalStateFolder}}
+//调试信息：
+//数据目录： {{LocalStateFolder}}
 
-设置：
-{{settings}}
+//设置：
+//{{settings}}
 
-最新的日志路径：
-{{___LogPath___}}
+//最新的日志路径：
+//{{___LogPath___}}
 
-""";
+//""";
+
+            
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/0xeeeeeeeeeeee/AudioCopy"));
+        }
+
+        private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            Program.KillBackend();
+            await ShowDialogue("info", "backend is now killed!", "ok", null, this);
+        }
+
+        private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Log(thanksBox.Text);
+            Process.Start(new ProcessStartInfo { FileName = ___LogPath___ , UseShellExecute = true });
+        }
+
+        private async void MenuFlyoutItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(Localizer.current == "zh-CN")
+            {
+                _ = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://www.bilibili.com/video/BV1GJ411x7h7"));
+            }
+            else
+            {
+                _ = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+            }
         }
     }
 }

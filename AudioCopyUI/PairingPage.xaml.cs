@@ -55,11 +55,15 @@ namespace AudioCopyUI
         public PairingPage()
         {
             this.InitializeComponent();
+            
             PairTimer();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            //Localized_AsReceiver.Text = localize("AsReceiver");
+            //Localized_AsTransfer.Text = localize("AsTransfer");
+            //PairButton.Content = localize("Refresh");
             await Task.Delay(1); //避免卡顿
             EmojiRepeater.ItemsSource = TypicalEmojis;
             await Task.Delay(10);
@@ -69,6 +73,12 @@ namespace AudioCopyUI
             await Task.Delay(10);
             ipAddressBox.Text = address.Aggregate("", (a, b) => $"{a}{Environment.NewLine}{b}");
             await Task.Delay(10);
+
+            if(Program.BackendPort != 23456)
+            {
+                portInfoBar.IsOpen = true;
+                portInfoBar.Message = string.Format(localize("PairPortChangedMessage") , Program.BackendPort);
+            }
         }
 
 
@@ -82,25 +92,25 @@ namespace AudioCopyUI
                     HttpClient c = new();
                     c.BaseAddress = new($"http://{item}:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
                     c.Timeout = TimeSpan.FromSeconds(5);
-                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Environment.MachineName}");
+                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Uri.EscapeDataString(Environment.MachineName)}");
                     if (rsp.IsSuccessStatusCode)
                     {
                         var rspString = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
                         if (rspString.StartsWith("AudioCopy"))
                         {
-                            if (await ShowDialogue("info", $"要和{rspString.Substring(9)}配对吗？", "ok", "no", this))
+                            if (await ShowDialogue(localize("Info"), string.Format(localize("PairRequired"), rspString.Substring(9)), localize("Accept"), localize("Cancel"), this))
                             {
-                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Environment.MachineName}");
+                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Uri.EscapeDataString(Environment.MachineName)}");
                                 if (rsp.IsSuccessStatusCode)
                                 {
                                     SettingUtility.SetSettings("sourceAddress", c.BaseAddress.ToString());
-                                    await ShowDialogue("提示", "链接成功", "好的", null, this);
+                                    await ShowDialogue(localize("Info"), localize("PairDone"), localize("Accept"), null, this);
                                 }
                                 else if (rsp.StatusCode == HttpStatusCode.BadRequest)
                                 {
                                     if (new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd().Trim() == "源不合法")
                                     {
-                                        await ShowDialogue("提示", "你的后端配置不允许此操作，可在设置修改。", "好的", null, this);
+                                        await ShowDialogue(localize("Info"), localize("BackendNotAllow"), localize("Accept"), null, this);
                                     }
 
                                 }
@@ -112,11 +122,11 @@ namespace AudioCopyUI
             }
             catch (TaskCanceledException)
             {
-                await ShowDialogue("提示", $"连接超时，请检查地址是否正确或者更换地址。", "好的", null, this);
+                await ShowDialogue(localize("Info"), localize("PairTimeOut"), localize("Accept"), null, this);
             }
             catch (Exception ex)
             {
-                if (!await ShowDialogue("提示", $"发生了{ex.GetType().Name}错误：{ex.Message}", "好的", "搜索解决方案", this))
+                if (!await LogAndDialogue(ex, localize("Pair.Content"), localize("Accept"), localize("SearchOnline"), this))
                 {
                     var question = $"{ex.GetType().Name} {ex.Message}";
                     bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri($"https://www.bing.com/search?q={Uri.EscapeDataString(question)}"));
@@ -195,8 +205,9 @@ namespace AudioCopyUI
             {
                 if (networkInterface.OperationalStatus == OperationalStatus.Up &&
                     networkInterface.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
+                    (bool.Parse(SettingUtility.GetOrAddSettings("ShowAllAdapter", "False")) || (
                     !networkInterface.Description.Contains("Vmware", StringComparison.OrdinalIgnoreCase) &&
-                    !networkInterface.Description.Contains("VirtualBox", StringComparison.OrdinalIgnoreCase))
+                    !networkInterface.Description.Contains("VirtualBox", StringComparison.OrdinalIgnoreCase))))
                 {
                     var ipProperties = networkInterface.GetIPProperties();
                     foreach (var ipAddress in ipProperties.UnicastAddresses)
@@ -340,7 +351,7 @@ namespace AudioCopyUI
         private async Task Pair(bool active = false)
         {
             HttpClient httpClient = new();
-            httpClient.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
+            httpClient.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("backendPort", "23456")}/");
             httpClient.Timeout = TimeSpan.FromSeconds(5);
             try
             {
@@ -354,7 +365,7 @@ namespace AudioCopyUI
                     {
                         foreach (var item in pairingList)
                         {
-                            bool userConfirmed = await ShowDialogue("配对请求", $"检测到来自{item.Value}的配对请求，是否添加？", "确定", "取消", this);
+                            bool userConfirmed = await ShowDialogue(localize("Info"), string.Format(localize("PairRequired"), item.Value), localize("Accept"), localize("Cancel"), this);
                             if (userConfirmed)
                             {
                                 var addResponse = httpClient.PostAsync($"api/token/add?token={item.Key}&hostToken={SettingUtility.HostToken}", null).GetAwaiter().GetResult();
@@ -366,7 +377,7 @@ namespace AudioCopyUI
                                     }
                                     catch (Exception)
                                     {
-                                        await ShowDialogue("成功", "配对已添加成功，但是无法将其从待配对列表中删除，可以通过重启客户端来解决这个问题", "知道了", null, this);
+                                        await ShowDialogue(localize("Success"), localize("FailPair"), localize("Accept"), null, this);
                                         return;
                                     }
                                     Dictionary<string, string> kvp;
@@ -383,7 +394,7 @@ namespace AudioCopyUI
 
                                     SettingUtility.SetSettings("deviceMapping", JsonSerializer.Serialize(kvp));
 
-                                    await ShowDialogue("成功", "配对已添加成功！", "好的", null, this);
+                                    await ShowDialogue(localize("Success"), localize("PairDone"), localize("Accept"), null, this);
                                 }
                                 else if(new StreamReader(addResponse.Content.ReadAsStream()).ReadToEnd() == "已存在") //不用管他
                                 {
@@ -392,7 +403,7 @@ namespace AudioCopyUI
                                         httpClient.DeleteAsync($"api/token/removePairing?token={item.Key}&hostToken={SettingUtility.HostToken}").GetAwaiter().GetResult();
                                     }
                                     catch (Exception) { }
-                                    await ShowDialogue("成功", "配对已添加成功！", "好的", null, this);
+                                    await ShowDialogue(localize("Success"), localize("PairDone"), localize("Accept"), null, this);
 
                                 }
                                 else
@@ -402,7 +413,7 @@ namespace AudioCopyUI
                                         httpClient.DeleteAsync($"api/token/removePairing?token={item.Key}&hostToken={SettingUtility.HostToken}").GetAwaiter().GetResult();
                                     }
                                     catch (Exception) { }
-                                    await ShowDialogue("错误", "添加配对失败，请重试。", "好的", null, this);
+                                    await ShowDialogue(localize("Error"), localize("PairFailed"), localize("Accept"), null, this);
                                 }
                             }
                         }
@@ -416,7 +427,7 @@ namespace AudioCopyUI
             }
             catch (Exception ex)
             {
-                if (active && !await ShowDialogue("提示", $"发生了{ex.GetType().Name}错误：{ex.Message}", "好的", "搜索解决方案", this))
+                if (!await LogAndDialogue(ex, localize("Pair.Content"), localize("Accept"), localize("SearchOnline"), this))
                 {
                     var question = $"{ex.GetType().Name} {ex.Message}";
                     bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri($"https://www.bing.com/search?q={Uri.EscapeDataString(question)}"));
@@ -436,7 +447,7 @@ namespace AudioCopyUI
                 }
                 else
                 {
-                    await ShowDialogue("提示", "地址无效", "好的", null, this);
+                    await ShowDialogue(localize("Info"), localize("PairAddressNotCorrect"), localize("Accept"), null, this);
                 }
             }
         }
