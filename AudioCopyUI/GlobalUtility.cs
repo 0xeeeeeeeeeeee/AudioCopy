@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Windows.Storage;
 
 namespace AudioCopyUI
@@ -56,11 +57,17 @@ namespace AudioCopyUI
                 {
                     while (true)
                     {
-                        if (isShowing.TryGetValue(element, out var key))
+                        try
                         {
-                            if (!key) break;
+
+
+                            if (isShowing.TryGetValue(element, out var key))
+                            {
+                                if (!key) break;
+                            }
+                            else break;//not exist
                         }
-                        else break;//not exist
+                        catch { return; }
                     }
                 });
                 t.Start();
@@ -91,6 +98,7 @@ namespace AudioCopyUI
             return string.IsNullOrWhiteSpace(str) ? $"Localization resource not found:{key}" : str.Replace("[line]", Environment.NewLine);
         }
 
+       
 
     }
 

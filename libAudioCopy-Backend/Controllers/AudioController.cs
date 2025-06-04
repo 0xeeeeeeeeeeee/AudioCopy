@@ -21,6 +21,7 @@
 
 using libAudioCopy;
 using libAudioCopy.Audio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using NAudio.CoreAudioApi;
@@ -31,6 +32,9 @@ using System.Net;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Text.Json;
+
+namespace libAudioCopy_Backend.Controllers;
+
 
 [ApiController]
 [Route("api/audio")]

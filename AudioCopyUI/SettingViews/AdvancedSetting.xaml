@@ -41,6 +41,8 @@
             <StackPanel Margin="0,12,0,0" Orientation="Vertical">
                 <StackPanel Margin="0,0" Orientation="Vertical">
                     <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_forceMP3Audio" x:Name="forceMP3Audio" Click="OptionsChanged"/>
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_devMode" Content="devMode"  x:Name="devMode" Click="OptionsChanged"/>
+
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal">
                     <Button x:Uid="/Setting/AdvancedSetting_resetUUID"  Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click"/>

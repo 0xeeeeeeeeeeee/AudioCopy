@@ -146,169 +146,177 @@ namespace AudioCopyUI
             }
 
             BackendVersionCode = ver;
+            try
+            {
+                var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
+                var backendAsb = Assembly.LoadFrom(backendAsbPath);
+                var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
+                Log($"Backend assembly info:{backendAsb.FullName} SHA256:{backendHash}");
+            }
+            catch
+            {
+                Log($"Backend assembly info unavailable!","warn");
 
-            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
-            var backendAsb = Assembly.LoadFrom(backendAsbPath);
-            var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
-            Log($"Backend assembly info:{backendAsb.FullName} SHA256:{backendHash}");
+            }
+
         }
 
         public static int BackendPort = -1;
 
         public static async Task BootBackend(int port = -1)
         {
-            if (port != -1)
-            {
-                KillBackend();
-                Log($"User override port to:{port}");
-            }
+//            if (port != -1)
+//            {
+//                KillBackend();
+//                Log($"User override port to:{port}");
+//            }
 
-            var backendPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, @"backend\libAudioCopy-Backend.exe");
-            var i = new ProcessStartInfo
-            {
-                FileName = backendPath,
-                WorkingDirectory = Path.Combine(LocalStateFolder, "backend"),
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
+//            var backendPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, @"backend\libAudioCopy-Backend.exe");
+//            var i = new ProcessStartInfo
+//            {
+//                FileName = backendPath,
+//                WorkingDirectory = Path.Combine(LocalStateFolder, "backend"),
+//                RedirectStandardError = true,
+//                RedirectStandardOutput = true,
+//                RedirectStandardInput = true,
+//                UseShellExecute = false,
+//                CreateNoWindow = true,
 
-            };
+//            };
 
-            var hostToken = AlgorithmServices.MakeRandString(256);
-            SettingUtility.SetSettings("hostToken", hostToken);
+//            var hostToken = AlgorithmServices.MakeRandString(256);
+//            SettingUtility.SetSettings("hostToken", hostToken);
 
-            if (port == -1) port = int.Parse(SettingUtility.GetOrAddSettings("backendPort", "23456"));
-            else SettingUtility.SetSettings("backendPort", port.ToString());
-            BackendPort = port;
-
-
-            var options = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("backendOptions") ?? "null");
-            if (bool.Parse(SettingUtility.GetOrAddSettings("ForceDefaultBackendSettings", "False")) || options is null)
-            {
-                i.EnvironmentVariables.Add("ASPNETCORE_URLS", $"http://+:{port}");
-#if DEBUG
-                i.EnvironmentVariables.Add("ASPNETCORE_ENVIRONMENT", "Development");
-#endif
-            }
-            else
-            {
-                Log($"Options: {SettingUtility.GetSetting("backendOptions")}");
-                foreach (var item in options)
-                {
-                    i.EnvironmentVariables.Add(item.Key, item.Value);
-                }
-
-                string format;
-
-                if ((format = SettingUtility.GetOrAddSettings("AudioDeviceName", "1")) != "1")
-                {
-                    i.EnvironmentVariables.Add("AudioCopy_DefaultAudioQuality", format);
-                }
-
-                if (!string.IsNullOrWhiteSpace(SettingUtility.GetOrAddSettings("AudioDeviceName", "")))
-                {
-                    var device = SettingUtility.GetOrAddSettings("AudioDeviceName", "");
-                    i.EnvironmentVariables.Add("AudioCopy_DefaultDeviceName", device);
-                }
-            }
-
-            i.EnvironmentVariables.Add("AudioCopy_hostToken", hostToken);
-            i.EnvironmentVariables.Add("ASPNETCORE_CONTENTROOT", Path.Combine(LocalStateFolder, "wwwroot"));
-            i.EnvironmentVariables.Add("ASPNETCORE_WEBROOT", Path.Combine(LocalStateFolder, "wwwroot"));
+//            if (port == -1) port = int.Parse(SettingUtility.GetOrAddSettings("backendPort", "23456"));
+//            else SettingUtility.SetSettings("backendPort", port.ToString());
+//            BackendPort = port;
 
 
-            if(port > 0 && port != 23456)
-            {
-                i.EnvironmentVariables["ASPNETCORE_URLS"] = $"http://+:{port}";
-            }
+//            var options = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("backendOptions") ?? "null");
+//            if (bool.Parse(SettingUtility.GetOrAddSettings("ForceDefaultBackendSettings", "False")) || options is null)
+//            {
+//                i.EnvironmentVariables.Add("ASPNETCORE_URLS", $"http://+:{port}");
+//#if DEBUG
+//                i.EnvironmentVariables.Add("ASPNETCORE_ENVIRONMENT", "Development");
+//#endif
+//            }
+//            else
+//            {
+//                Log($"Options: {SettingUtility.GetSetting("backendOptions")}");
+//                foreach (var item in options)
+//                {
+//                    i.EnvironmentVariables.Add(item.Key, item.Value);
+//                }
 
-            backendProcess = new();
-            backendProcess.StartInfo = i;
-            Exception? exc = null;
-            bool loaded = false;
-            backendProcess.OutputDataReceived += (sender, e) => { if (e.Data != null) Log(e.Data ?? "", "backend_stdout"); };
-            backendProcess.ErrorDataReceived += (sender, e) =>
-            {
-                if (e.Data != null)
-                {
-                    Log(e.Data ?? "", "backend_stderr");
-                    if (e.Data.StartsWith("ERROR!"))
-                    {
-                        var str = e.Data.Substring(6);
-                        BackendExceptionObject ex = JsonSerializer.Deserialize<BackendExceptionObject>(str);
-                        if (ex is not null)
-                        {
-                            try
-                            {
-                                Log(ex.ToException(), "后端", backendProcess);
-                                if (___PublicStackOn___) exc = ex.ToException();
-                                else Log(ex.ToException(),"backend","BackendProcess");
-                            }
-                            catch (Exception ex1)
-                            {
-                                Log(new Exception($"Failed to convert exception string:{ex} because {ex1}",ex1), "后端", backendProcess);
+//                string format;
 
-                            }
+//                if ((format = SettingUtility.GetOrAddSettings("AudioDeviceName", "1")) != "1")
+//                {
+//                    i.EnvironmentVariables.Add("AudioCopy_DefaultAudioQuality", format);
+//                }
 
-                        }
-                        else
-                        {
-                            Log(new Exception($"Unreadable exception string:{ex}"), "后端", backendProcess);
-                        }
-                    }
-                }
-            };
+//                if (!string.IsNullOrWhiteSpace(SettingUtility.GetOrAddSettings("AudioDeviceName", "")))
+//                {
+//                    var device = SettingUtility.GetOrAddSettings("AudioDeviceName", "");
+//                    i.EnvironmentVariables.Add("AudioCopy_DefaultDeviceName", device);
+//                }
+//            }
+
+//            i.EnvironmentVariables.Add("AudioCopy_hostToken", hostToken);
+//            i.EnvironmentVariables.Add("ASPNETCORE_CONTENTROOT", Path.Combine(LocalStateFolder, "wwwroot"));
+//            i.EnvironmentVariables.Add("ASPNETCORE_WEBROOT", Path.Combine(LocalStateFolder, "wwwroot"));
+
+
+//            if(port > 0 && port != 23456)
+//            {
+//                i.EnvironmentVariables["ASPNETCORE_URLS"] = $"http://+:{port}";
+//            }
+
+//            backendProcess = new();
+//            backendProcess.StartInfo = i;
+//            Exception? exc = null;
+//            bool loaded = false;
+//            backendProcess.OutputDataReceived += (sender, e) => { if (e.Data != null) Log(e.Data ?? "", "backend_stdout"); };
+//            backendProcess.ErrorDataReceived += (sender, e) =>
+//            {
+//                if (e.Data != null)
+//                {
+//                    Log(e.Data ?? "", "backend_stderr");
+//                    if (e.Data.StartsWith("ERROR!"))
+//                    {
+//                        var str = e.Data.Substring(6);
+//                        BackendExceptionObject ex = JsonSerializer.Deserialize<BackendExceptionObject>(str);
+//                        if (ex is not null)
+//                        {
+//                            try
+//                            {
+//                                Log(ex.ToException(), "后端", backendProcess);
+//                                if (___PublicStackOn___) exc = ex.ToException();
+//                                else Log(ex.ToException(),"backend","BackendProcess");
+//                            }
+//                            catch (Exception ex1)
+//                            {
+//                                Log(new Exception($"Failed to convert exception string:{ex} because {ex1}",ex1), "后端", backendProcess);
+
+//                            }
+
+//                        }
+//                        else
+//                        {
+//                            Log(new Exception($"Unreadable exception string:{ex}"), "后端", backendProcess);
+//                        }
+//                    }
+//                }
+//            };
                 
-            Log(localize("Init_Stage3"), "showToGUI");
-            await Task.Run(() =>
-            {
-                backendProcess.Start();
-            });
-            backendProcess.BeginOutputReadLine();
-            backendProcess.BeginErrorReadLine();
-            Log(localize("Init_Stage4"), "showToGUI");
+            //Log(localize("Init_Stage3"), "showToGUI");
+            //await Task.Run(() =>
+            //{
+            //    backendProcess.Start();
+            //});
+            //backendProcess.BeginOutputReadLine();
+            //backendProcess.BeginErrorReadLine();
+            //Log(localize("Init_Stage4"), "showToGUI");
 
-            CancellationTokenSource cts = new();
-            cts.CancelAfter(10000);
+            //CancellationTokenSource cts = new();
+            //cts.CancelAfter(10000);
 
-            await Task.Run(async () =>
-            {
-                Stopwatch sw = Stopwatch.StartNew();
-                HttpClient c = new();
-                c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("backendPort", "23456")}/");
-                c.Timeout = new TimeSpan(0, 0, 5);
+            //await Task.Run(async () =>
+            //{
+            //    Stopwatch sw = Stopwatch.StartNew();
+            //    HttpClient c = new();
+            //    c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("backendPort", "23456")}/");
+            //    c.Timeout = new TimeSpan(0, 0, 5);
 
 
 
-                Exception? exception = null;
-                while (true)
-                {
-                    if (exc is not null) throw exc;
-                    try
-                    {
-                        if ((await c.GetAsync("/index")).StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                        {
-                            Log("Backend booted.");
-                            return;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log(ex, "后端启动", Program.BootBackend);
-                        exception = ex;
-                    }
-                    await Task.Delay(50);
+            //    Exception? exception = null;
+            //    while (true)
+            //    {
+            //        if (exc is not null) throw exc;
+            //        try
+            //        {
+            //            if ((await c.GetAsync("/index")).StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            //            {
+            //                Log("Backend booted.");
+            //                return;
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Log(ex, "后端启动", Program.BootBackend);
+            //            exception = ex;
+            //        }
+            //        await Task.Delay(50);
 
-                    if (sw.Elapsed.TotalSeconds > 15)
-                    {
-                        if (exception is not null) throw new InvalidOperationException(string.Format(localize("Init_StageFail"), $"{exception.GetType().Name}:{exception.Message}"), exception);
+            //        if (sw.Elapsed.TotalSeconds > 15)
+            //        {
+            //            if (exception is not null) throw new InvalidOperationException(string.Format(localize("Init_StageFail"), $"{exception.GetType().Name}:{exception.Message}"), exception);
 
-                        throw new InvalidOperationException(string.Format(localize("Init_StageFail"), "Request timeout."));
-                    }
-                }
-            });
+            //            throw new InvalidOperationException(string.Format(localize("Init_StageFail"), "Request timeout."));
+            //        }
+            //    }
+            //});
 
             
 
@@ -325,72 +333,6 @@ namespace AudioCopyUI
             Process.Start(new ProcessStartInfo { FileName = "powershell.exe", Arguments = $"-File {f.Path} \"{localize("/Setting/AdvancedSetting_ApplyLocate") }\"", UseShellExecute = true });
         }
 
-
-
-        public class BackendExceptionObject
-        {
-            public string Type { get; set; }
-            public string Message { get; set; }
-            public string StackTrace { get; set; }
-            public string? InnerException { get; set; }
-
-            public Exception ToException()
-            {
-                var obj = this;
-
-                Exception inner = InnerException is null ? null : new Exception(InnerException);
-                
-
-                Type exType = null;
-                if (!string.IsNullOrWhiteSpace(obj.Type))
-                {
-                    exType = System.Type.GetType(obj.Type)
-                        ?? AppDomain.CurrentDomain.GetAssemblies()
-                            .Select(a => a.GetType(obj.Type))
-                            .FirstOrDefault(t => t != null);
-                }
-
-                Exception ex = null;
-                if (exType != null && typeof(Exception).IsAssignableFrom(exType))
-                {
-                    try
-                    {
-                        ex = (Exception)Activator.CreateInstance(exType, obj.Message, inner);
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            ex = (Exception)Activator.CreateInstance(exType, obj.Message);
-                        }
-                        catch
-                        {
-                            try
-                            {
-                                ex = (Exception)Activator.CreateInstance(exType);
-                            }
-                            catch
-                            {
-                                ex = new Exception(obj.Message, inner);
-                            }
-                        }
-                    }
-                }
-
-                if (ex == null)
-                {
-                    ex = new Exception(obj.Message, inner);
-                }
-
-                if (!string.IsNullOrWhiteSpace(obj.StackTrace))
-                {
-                    ex.Data["RemoteStackTrace"] = obj.StackTrace;
-                }
-
-                return ex;
-            }
-
-        }
 
 
         [global::System.STAThreadAttribute]
@@ -414,6 +356,7 @@ namespace AudioCopyUI
             }
             try
             {
+                
                 Log("Starting GUI...");
                 global::WinRT.ComWrappersSupport.InitializeComWrappers();
                 global::Microsoft.UI.Xaml.Application.Start((p) =>
@@ -512,20 +455,31 @@ namespace AudioCopyUI
             {
                 OnFileActivated(activatedEventArgs);
             }
-
-            if (SettingUtility.Exists("Language"))
+            try
             {
-                var locate = SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag);
-                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = locate;
+                if (SettingUtility.Exists("Language"))
+                {
+                    var locate = SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag);
+                    Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = locate;
+                }
+                else
+                {
+                    var inputTag = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
+                    string? selectedLang = Localizer.Match(inputTag);
+                    Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = selectedLang ?? "en-US";
+                }
+
+                Log($"default lang:{Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} Lang(in setting):{SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag)}");
+
             }
-            else
+            catch(Exception ex)
             {
-                var inputTag = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
-                string? selectedLang = Localizer.Match(inputTag);
-                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = selectedLang ?? "en-US";
+                Log(ex,"Set locate",this);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride =  "en-US"; //fallback
+                await Program.ChangeLang("en-US");
             }
 
-            Log($"default lang:{Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} Lang(in setting):{SettingUtility.GetOrAddSettings("Language", Windows.Globalization.Language.CurrentInputMethodLanguageTag)}");
+
 
             loader = ResourceLoader.GetForViewIndependentUse();
 

@@ -19,9 +19,10 @@
 *	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Microsoft.AspNetCore.Hosting;
 using System.Text.Json;
 
-namespace libAudioCopy
+namespace libAudioCopy_Backend
 {
     public class TokenService
     {

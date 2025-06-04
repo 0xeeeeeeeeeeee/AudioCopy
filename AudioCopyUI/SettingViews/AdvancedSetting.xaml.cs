@@ -80,6 +80,10 @@ namespace AudioCopyUI.SettingViews
                 disableShowHostSMTCInfo.IsChecked = true;
             }
 
+            if (bool.Parse(SettingUtility.GetOrAddSettings("EnableDevelopmentMode", "False")))
+            {
+                devMode.IsChecked = true;
+            }
 
             foreach (var item in Localizer.locate)
             {
@@ -107,7 +111,8 @@ namespace AudioCopyUI.SettingViews
             SettingUtility.SetSettings("ShowAllAdapter", (showNonLocalAddress.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("SkipSplash", (skipSplashScreen.IsChecked ?? false).ToString());
-            SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString()); 
+            SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("EnableDevelopmentMode", (devMode.IsChecked ?? false).ToString());
 
         }
 
