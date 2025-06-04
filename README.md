@@ -26,9 +26,10 @@ AudioCopy可以以几乎无损的音质、相对较低的延迟把一个设备�
 ```mermaid
 graph TD
     A1[Application 1] -- DirectSound--> DS[DirectSound API]
+    A4[Application 2] -- DirectSound--> DS
     A2[System Sounds] -- DirectSound--> DS
-    DS -->|WASAPI shared mode| B[WASAPI render client]
-    A3[Application 2] -- WASAPI shared mode--> B
+    DS -- WASAPI shared mode--> B[WASAPI render client]
+    A3[Application 3] -- WASAPI shared mode--> B
     B --> C[Audio engine]
     C -- Loopback source----> G[Loopback data offload]
     C ---> D[System Mixer]
@@ -43,6 +44,7 @@ graph TD
     A1
     A2
     A3
+    A4
     DS
     B
     C
@@ -60,23 +62,38 @@ graph TD
     subgraph Endpoint device
     E --> F[Hardware Decoder/DAC]
 
-    F -- Analogue/Digital signal--> X[Speaker, earphones, TV speaker...]
 
     end
 
 
-    subgraph AudioCopy moudle
+    subgraph AudioClone
     I -- Register a stream--> S[Audio stream]
-    S --> J["Codec<br>(MP3,WAV,FLAC or raw)"]
-    J --> K[ASP.NET Web server]
-    K --> M[HTTP Endpoint]
+    S --> K["Codec<br>(MP3,WAV,FLAC)"]
+    S -- RAW PCM data --> M
+    K --> M["AudioClone server<br>(via ASP.NET Web server)"]
+
+    M --> N[HTTP Endpoint]
+    I -- Register a stream--> S1[Audio stream]
+
+
+    S1 --> Z[AudioClone<br>Loopback recorder]
+    Z --> Z2["Codec<br>(MP3,WAV,FLAC)"]
     
-    S --> N[AudioClone module]
-    N ---> V[AudioClone media player]
-    V -- WASAPI Shared mode<br>(To another endpoint)-->B
-    J --> Z[AudioClone<br>Loopback recorder] 
-    Z --> File
+
+    I -- Register a stream--> S2[Audio stream]
+
+    S2 --> V[AudioClone Repeater]
+    V -->V1[AudioClone Repeater Player]
+    
+    
     end
+
+    N --> M1[Another devices]
+    Z2 ---> File
+    V1 -- WASAPI Shared mode---> V2[Another endpoint device]
+    F -- Analogue/Digital signal-------> X[Speaker, earphones, TV speaker...]
+
+
 ```
 
 请注意`AudioClone`功能目前尚未实现，会在后续的版本中完善。
