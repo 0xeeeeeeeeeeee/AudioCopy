@@ -80,10 +80,7 @@ namespace AudioCopyUI.SettingViews
                 disableShowHostSMTCInfo.IsChecked = true;
             }
 
-            if (bool.Parse(SettingUtility.GetOrAddSettings("EnableDevelopmentMode", "False")))
-            {
-                devMode.IsChecked = true;
-            }
+            
 
             foreach (var item in Localizer.locate)
             {
@@ -112,7 +109,6 @@ namespace AudioCopyUI.SettingViews
             SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("SkipSplash", (skipSplashScreen.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString());
-            SettingUtility.SetSettings("EnableDevelopmentMode", (devMode.IsChecked ?? false).ToString());
 
         }
 
@@ -142,10 +138,12 @@ namespace AudioCopyUI.SettingViews
         {
             if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_Sure"), localize("Cancel"), localize("Accept"), this))
             {
-                Program.KillBackend();
-                File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
+                (e.OriginalSource as Button).Content = new ProgressRing { IsActive = true };
+                await Program.KillBackend();
+                //ClearDirectory(LocalStateFolder);
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
+                SettingUtility.SetSettings("ResetEverything", "True");
                 await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
@@ -160,12 +158,35 @@ namespace AudioCopyUI.SettingViews
         {
             if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_Sure"), localize("Cancel"), localize("Accept"), this))
             {
-                Program.KillBackend();
+                await Program.KillBackend();
                 await Task.Delay(1000);
                 Directory.Delete(Path.Combine(LocalStateFolder, @"backend"), true);
                 SettingUtility.SetSettings("ForceUpgradeBackend", "True");
                 await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
                 Program.ExitApp(true);
+            }
+        }
+
+        private async void UpgradeBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            SettingUtility.SetSettings("ForceUpgradeBackend", "True");
+            await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
+            Program.ExitApp(true);
+        }
+
+        public static void ClearDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+                return;
+
+            foreach (var file in Directory.GetFiles(path))
+            {
+                File.Delete(file);
+            }
+
+            foreach (var dir in Directory.GetDirectories(path))
+            {
+                Directory.Delete(dir, true);
             }
         }
     }

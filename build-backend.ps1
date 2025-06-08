@@ -2,17 +2,18 @@
 # 设定项目路径和输出目录
 Set-Location "D:\code\AudioCopy"
 $backendDir   = ".\libAudioCopy-Backend"
-$flacBackendDir = ".\libAudioCopy-Backend-Resources"
+$flacBackendDir = ".\StaticResources"
 $assetsDir    = ".\AudioCopyUI\Assets"
-$publishDir   = Join-Path $backendDir "publish_temp"
+$publishDir   = ".\PublishTemp"
 $zipFileName  = "backend.zip"
 $zipFilePath  = Join-Path (Get-Location) $zipFileName
 $versionFile  = Join-Path $assetsDir "backend_version.txt"
 
+
 # 1. 找到并解析 .csproj 文件
 $csproj = Get-ChildItem $backendDir -Filter *.csproj | Select-Object -First 1
 if (-not $csproj) {
-    Write-Error "未找到任何 .csproj 文件于 $backendDir"
+    Write-Error "δ????κ? .csproj ????? $backendDir"
     exit 1
 }
 
@@ -30,12 +31,26 @@ Write-Host "版本从 $oldVersion 更新为 $newVersion" -ForegroundColor Green
 # 清理旧的发布目录
 if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
 # 调用 dotnet publish
+$BackendDir = Join-Path $publishDir "backend"
+
 dotnet publish $csproj.FullName `
     -c Release `
     --sc `
-    -o $publishDir `
+    -o $BackendDir `
     -p:Version=$newVersion `
     | Write-Host
+
+$CloneDir = Join-Path $publishDir "AudioClone"
+
+dotnet publish "..\AudioClone\AudioClone.Server\AudioClone.Server.csproj" `
+    -c Release `
+    --sc `
+    -o $BackendDir `
+    -p:Version=$newVersion `
+    | Write-Host
+
+
+
 
 if (Test-Path $flacBackendDir) {
     Copy-Item -Path (Join-Path $flacBackendDir "*") -Destination $publishDir -Recurse -Force

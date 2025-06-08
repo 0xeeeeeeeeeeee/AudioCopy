@@ -110,6 +110,8 @@ namespace AudioCopyUI
 
         public static string HostToken => GetOrAddSettings("hostToken", "abcd");
 
+        public static bool OldBackend => bool.Parse(SettingUtility.GetOrAddSettings("OldBackend", "False"));
+
         public static string GetSetting(string key) => localSettings.Values[key] as string;
         public static void TryGetSettings(string key, out string target, string defaultValue = "")
         {
@@ -142,6 +144,7 @@ namespace AudioCopyUI
         }
 
         public static bool Exists(string key) => localSettings.Values.ContainsKey(key);
+        
     }
 
     class Logger

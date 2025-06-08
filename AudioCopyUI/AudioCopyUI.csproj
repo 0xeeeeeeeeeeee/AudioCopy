@@ -22,6 +22,7 @@
     <None Remove="SettingPage.xaml" />
     <None Remove="SettingViews\AboutPage.xaml" />
     <None Remove="SettingViews\AdvancedSetting.xaml" />
+    <None Remove="SettingViews\DeveloperSetting.xaml" />
     <None Remove="SplashScreen.xaml" />
     <None Remove="TransferPage.xaml" />
   </ItemGroup>
@@ -30,11 +31,6 @@
 		<Content Include="Strings\**\*.resw">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Remove="Strings\en-US\Setting.resw" />
-	  <Content Remove="Strings\zh-CN\Setting.resw" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -71,7 +67,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250401001" />
     <PackageReference Include="NAudio" Version="2.2.1" />
@@ -85,6 +80,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>header.cs</LastGenOutput>
     </None>
+    <Page Update="SettingViews\DeveloperSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="SplashScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +189,22 @@
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Strings\ar\" />
+    <Folder Include="Strings\de\" />
+    <Folder Include="Strings\en-GB\" />
+    <Folder Include="Strings\en-US\" />
+    <Folder Include="Strings\es\" />
+    <Folder Include="Strings\fr\" />
+    <Folder Include="Strings\it\" />
+    <Folder Include="Strings\ja\" />
+    <Folder Include="Strings\ko\" />
+    <Folder Include="Strings\pl\" />
+    <Folder Include="Strings\pt-BR\" />
+    <Folder Include="Strings\ru\" />
+    <Folder Include="Strings\tr\" />
+    <Folder Include="Strings\zh-Hant\" />
   </ItemGroup>
  
 </Project>

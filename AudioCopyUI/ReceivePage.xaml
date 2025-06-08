@@ -16,7 +16,7 @@
                 <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="PlayButton" ></Button>
                 <StackPanel Orientation="Vertical" Margin="60,10,0,0"  HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                        <RadioButton Content="MP3" ToolTipService.ToolTip="MPEG-2 Audio Layer III" Click="radioButtons_Click" GroupName="MyGroup" x:Name="radioButton_1" />
+                        <RadioButton Content="MP3" ToolTipService.ToolTip="MPEG-2 Audio Layer III" Click="radioButtons_Click" GroupName="MyGroup" x:Name="radioButton_1" Visibility="Collapsed" />
                         <RadioButton Content="WAV" ToolTipService.ToolTip="Waveform Audio File Format" GroupName="MyGroup" x:Name="radioButton_2" Click="radioButtons_Click" />
                         <RadioButton Content="FLAC" ToolTipService.ToolTip="Free Lossless Audio Codec" GroupName="MyGroup" x:Name="radioButton_3" Click="radioButtons_Click" />
                         <RadioButton Content="RAW" ToolTipService.ToolTip="服务端从wasapi采集16bit波形并直接发送，然后接收端直接播放" GroupName="MyGroup" x:Name="radioButton_4" Click="radioButtons_Click" />
@@ -30,7 +30,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/AudioCopy.png" x:Name="MediaInfo_AlbumArt" Width="120" Height="120" x:Uid="MediaInfo_AlbumArt"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock x:Uid="MediaInfo_Title" x:Name="MediaInfo_Title" FontSize="48px" Margin="24,-8"/>
+                            <TextBlock x:Uid="MediaInfo_Title" TextWrapping="Wrap" MaxWidth="1500" x:Name="MediaInfo_Title" FontSize="48px" Margin="24,-8"/>
                             <TextBlock x:Uid="MediaInfo_Artist" x:Name="MediaInfo_Artist" FontSize="18px" Margin="24,16" VerticalAlignment="Bottom"/>
                             <TextBlock x:Uid="MediaInfo_Album" x:Name="MediaInfo_Album" FontSize="18px" Margin="24,0" VerticalAlignment="Bottom"/>
                         </StackPanel>
@@ -39,7 +39,29 @@
             </StackPanel>
         </StackPanel>
 
-        
+        <Border x:Name="NewBackendInfoBar"
+                   Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}"
+        BorderThickness="2"
+        CornerRadius="8"
+        Padding="24"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Visibility="Visible">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock x:Name="NewBackendBar"
+                   Width="Auto" 
+                   FontSize="20" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,16"
+                   TextAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="16">
+                    <Button x:Uid="AcceptButton" Click="EnableNewBackend_Click" x:Name="EnableNewAPI" Width="80"/>
+                    <Button x:Uid="NolongerShow" Click="HideInfoBar_Click" Width="100"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+
         <MediaPlayerElement
             Visibility="Collapsed"
     x:Name="PlayerElement"

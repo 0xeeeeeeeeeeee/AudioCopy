@@ -70,43 +70,43 @@ namespace AudioCopyUI
                 // the title bar, such as the back button, if used
             }
 
-            //new Thread(async () =>
-            //{
-            //    Stopwatch sw = Stopwatch.StartNew();
-            //    while (!loaded)
-            //    {
+            new Thread(async () =>
+            {
+                Stopwatch sw = Stopwatch.StartNew();
+                while (!loaded)
+                {
 
 
-            //        this.DispatcherQueue.TryEnqueue(
-            //                            DispatcherQueuePriority.Normal,
-            //                            () =>
-            //                            {
-            //                                if (bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
-            //                                {
-            //                                    TitleTextBlock.Text = $"AudioCopy - {___PublicBuffer___}";
-            //                                }
-            //                                else
-            //                                {
-            //                                    logsBox.Text = ___PublicBuffer___;
-            //                                    if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
-            //                                }
-            //                            }
-            //                        );
-            //        await Task.Delay(10);
+                    this.DispatcherQueue.TryEnqueue(
+                                        DispatcherQueuePriority.Normal,
+                                        () =>
+                                        {
+                                            if (bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
+                                            {
+                                                TitleTextBlock.Text = $"AudioCopy - {___PublicBuffer___}";
+                                            }
+                                            else
+                                            {
+                                                logsBox.Text = ___PublicBuffer___;
+                                                if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
+                                            }
+                                        }
+                                    );
+                    await Task.Delay(10);
 
-            //    }
-
-
-            //    this.DispatcherQueue.TryEnqueue(
-            //                            DispatcherQueuePriority.Normal,
-            //                            () =>
-            //                            {
-            //                                TitleTextBlock.Text = "AudioCopy";
-            //                            }
-            //                            );
+                }
 
 
-            //}).Start();
+                this.DispatcherQueue.TryEnqueue(
+                                        DispatcherQueuePriority.Normal,
+                                        () =>
+                                        {
+                                            TitleTextBlock.Text = "AudioCopy";
+                                        }
+                                        );
+
+
+            }).Start();
 
         }
 
@@ -159,6 +159,7 @@ namespace AudioCopyUI
 
         private async void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
+            ___PublicStackOn___ = true;
             xamlRoot = AppTitleBar.XamlRoot;
             dispatcher = DispatcherQueue.GetForCurrentThread(); 
             if (bool.Parse(SettingUtility.GetOrAddSettings("SkipSplash", "False")))
@@ -181,31 +182,7 @@ namespace AudioCopyUI
                 {
                     await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
                     SettingUtility.SetSettings("ForceUpgradeBackend", "False");
-                    //await Program.BootBackend();
-                    //BackendThread = new Thread(async () =>
-                    //{
-                    //    //var app = libAudioCopy_Backend.Backend.PrepareApp(async (ex) => {/* this.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.High, () => _ = LogAndDialogue(ex, "backend", localize("Accept"), null, AppTitleBar.XamlRoot, null));*/}, (a) => this.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.High, () => a.Invoke()));
-                    //    //try
-                    //    //{       
-
-                    //    //    app.Run("http://+:23456");
-                    //    //}
-                    //    //catch (Exception ex)
-                    //    //{
-                    //    //    await LogAndDialogue(ex, "backend", localize("Accept"), null, this, null);
-                    //    //}
-                    //});
-                    //BackendThread.Start();
-                    Backend.Backend.Init(new Action<Action>(async a =>
-                    {
-                        var tcs = new TaskCompletionSource();
-                        this.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.High, () =>
-                        {
-                            a();
-                            tcs.SetResult();
-                        });
-                        await tcs.Task; // 等待a()执行完成
-                    }));
+                    await Program.BootBackend();
                     ___PublicStackOn___ = false;
                     await Program.PostInit();
                     loaded = true;
@@ -234,7 +211,9 @@ namespace AudioCopyUI
             }
             catch (Exception ex)
             {
+#if DEBUG
                 throw;
+#endif
                 if (await LogAndDialogue(ex, localize("Init_Desc"), localize("Init_TryReboot"), localize("Init_ContinueBoot"), this, AppTitleBar.XamlRoot,localize("Init_TryReset")))
                 {
                     Program.ExitApp(true);

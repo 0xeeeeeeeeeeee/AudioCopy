@@ -235,7 +235,7 @@ public class AudioController : ControllerBase
         {
             var i = new ProcessStartInfo
             {
-                FileName = @"flac.exe",
+                FileName = Path.Combine(Environment.CurrentDirectory, "..","flac.exe"),
                 Arguments = "--best --ogg --force-raw-format --endian=little " +
                              $"--sign=signed --channels={_provider.channels} --bps={_provider.bitRate} --sample-rate={_provider.sampleRate} --stdout -",
                 UseShellExecute = false,

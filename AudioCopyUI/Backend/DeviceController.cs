@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.Media.Control;
+using Windows.Storage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace AudioCopyUI.Backend
@@ -18,15 +20,19 @@ namespace AudioCopyUI.Backend
     {
         public static void Init(RouteGroupBuilder group)
         {
-            group.MapGet("/BootAudioClone", (string token) =>
+            group.MapGet("/BootAudioClone", async (string token) =>
             {
                 if (!TokenController.Auth(token))
                 {
                     return Results.Unauthorized();
                 }
-                AudioCloneHelper.Boot();
-                return Results.Ok(AudioCloneHelper.Port.ToString());
+                await AudioCloneHelper.Boot();
+                return Results.Text($"{AudioCloneHelper.Port}/api/audio/{{0}}?token={AudioCloneHelper.Token}&clientName={{1}}");
             });
+
+            Stopwatch sw = Stopwatch.StartNew();
+            MediaInfo? i = null;
+            string lastTitle = "";
 
             group.MapGet("/GetSMTCInfo", async (string token) =>
             {
@@ -34,10 +40,17 @@ namespace AudioCopyUI.Backend
                 {
                     return Results.Unauthorized();
                 }
-
-                var i = await GetSMTCAsync();
+                
+                while (sw.Elapsed.TotalSeconds < 30) // 避免无意义的请求
+                {
+                    i = await GetSMTCAsync();
+                    if (lastTitle == "" || i is null || i.Title != lastTitle) break;
+                    await Task.Delay(1000);
+                }
+                if (sw.Elapsed.TotalSeconds > 30) sw.Restart();
+                if (i is null) return Results.NoContent();
+                lastTitle = i.Title;
                 i.AlbumArtBase64 = null;
-
                 return Results.Ok(i);
             });
 
@@ -65,23 +78,39 @@ namespace AudioCopyUI.Backend
                 }
                 catch (Exception ex)
                 {
-                    Console.Error.WriteLine($"A {ex.GetType().Name} error happens:{ex.Message}");
+                    Log(ex, "Get album photo", "Backend-DeviceController");
                 }
 
             fallback:
                 return Results.File(
                     System.IO.File.ReadAllBytes(
-                        Path.Combine(GlobalUtility.LocalStateFolder,"staticResource\\",
+                        Path.Combine(GlobalUtility.LocalStateFolder,"backend\\",
                         "AudioCopy.png")), "image/png", "AudioCopy.png"); //返回一个默认值
+
+            });
+
+            group.MapGet("/RebootClient", async (string token) =>
+            {
+                if (!TokenController.Auth(token))
+                {
+                    return Results.Unauthorized();
+                }
+
+                var uri = new Uri("ms-appx:///Assets/ApplyLocalization.ps1");
+                StorageFile f = await StorageFile.GetFileFromApplicationUriAsync(uri);
+                Process.Start(new ProcessStartInfo { FileName = "powershell.exe", Arguments = $"-File {f.Path}", UseShellExecute = true });
+
+                await Task.Delay(5000);
+                return Results.Ok();
 
             });
         }
 
 
-        private static async Task<MediaInfo> GetSMTCAsync()
+        private static async Task<MediaInfo?> GetSMTCAsync()
         {
             MediaInfo? i = null;
-            var tcs = new TaskCompletionSource<MediaInfo>();
+            var tcs = new TaskCompletionSource<MediaInfo?>();
 
             MainWindow.dispatcher.TryEnqueue(async () =>
             {
@@ -100,7 +129,7 @@ namespace AudioCopyUI.Backend
             return await tcs.Task;
         }
 
-        public static async Task<MediaInfo> GetCurrentMediaInfoAsync()
+        public static async Task<MediaInfo?> GetCurrentMediaInfoAsync()
         {
             var sessions = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
             var currentSession = sessions.GetCurrentSession();
@@ -113,10 +142,9 @@ namespace AudioCopyUI.Backend
                 Artist = mediaProperties.Artist,
                 AlbumArtist = mediaProperties.AlbumArtist,
                 AlbumTitle = mediaProperties.AlbumTitle,
-                PlaybackType = mediaProperties.PlaybackType.ToString()
+                PlaybackType = mediaProperties.PlaybackType.ToString() ?? "Music"
             };
 
-            // 获取专辑封面
             if (mediaProperties.Thumbnail != null)
             {
                 using var stream = await mediaProperties.Thumbnail.OpenReadAsync();
@@ -135,7 +163,7 @@ namespace AudioCopyUI.Backend
             public string AlbumArtist { get; set; }
             public string AlbumTitle { get; set; }
             public string PlaybackType { get; set; }
-            public string AlbumArtBase64 { get; set; }
+            public string? AlbumArtBase64 { get; set; }
         }
     }
 }

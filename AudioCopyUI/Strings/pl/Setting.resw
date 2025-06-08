@@ -69,7 +69,7 @@
     <value>Bez próbkowania (użyj jakości dźwięku skonfigurowanej w systemie)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>Jeśli chcesz nagrać dźwięk o głębi bitowej większej niż 16 bitów, użyj opcji wstępnie ustawionej lub niestandardowej częstotliwości próbkowania.</value>
+    <value>Jeśli chcesz nagrywać dźwięk o głębi bitowej większej niż 16 bitów, użyj opcji wstępnie ustawionej lub niestandardowej częstotliwości próbkowania</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Użyj wstępnie ustawionej konfiguracji próbkowania</value>
@@ -78,16 +78,13 @@
     <value>Niestandardowa konfiguracja próbkowania</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
-    <value>Rozmiar bufora audio RAW</value>
+    <value>Rozmiar buforu RAW audio</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Częstotliwość próbkowania</value>
   </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(Obsługuje strumieniowanie MP3)</value>
-  </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
-    <value>{0} kanałów, {1} bitów, {2} Hz</value>
+    <value>{0} kanał, {1} bit, {2} Hz</value>
   </data>
   <data name="AudioQuality_Current" xml:space="preserve">
     <value>Aktualna jakość dźwięku:</value>
@@ -99,22 +96,22 @@
     <value>Ustawienia zaplecza</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
-    <value>Adres IP do powiązania (pozostaw puste dla dowolnego adresu)</value>
+    <value>Adres IP do powiązania (pozostaw pusty dla dowolnego adresu)</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>Numer portu do powiązania (pozostaw puste dla domyślnego)</value>
+    <value>Numer portu do powiązania (pozostaw pusty dla domyślnego)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
-    <value>Zezwalaj na parowanie z adresami spoza sieci lokalnej (w tym z adresami pętli zwrotnej)</value>
+    <value>Zezwalaj na parowanie z adresami spoza sieci LAN (w tym z adresami pętli zwrotnej)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
     <value>Skonfiguruj backend jako środowisko deweloperskie (tylko do celów deweloperskich, nie używaj w środowisku produkcyjnym)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
-    <value>Niestandardowe zmienne środowiskowe backendu (używaj ostrożnie, mogą powodować nieznane ryzyko) Przykład: key1=value1,key2=value2,...</value>
+    <value>Niestandardowe zmienne środowiskowe backendu (używaj ostrożnie, mogą powodować nieznane ryzyko) np.: key1=value1,key2=value2,...</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
-    <value>Wersja zaplecza:</value>
+    <value>Wersja backendu:</value>
   </data>
   <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
     <value>Uruchom ponownie backend</value>
@@ -129,7 +126,7 @@
     <value>O</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Część kodu projektu pochodzi z "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), pomysł również stamtąd.[line]Projekt jest dostępny na licencji GNU GPLv2 - szczegóły w pliku licencji (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Informacje debugowania:[line]Katalog danych: {1}[line][line]Ustawienia:[line]{2}[line][line]Ostatnia ścieżka logu:[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]W przyszłości będzie budowany na komponencie AudioClone.[line]Część kodu projektu pochodzi z "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), pomysł również stamtąd.[line]Projekt jest licencjonowany na GNU GPLv2 - szczegóły w licencji (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Informacje debugowania:[line]Katalog danych: {1}[line][line]Ustawienia:[line]{2}[line][line]Najnowsza ścieżka logu:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Polityka prywatności</value>
@@ -147,7 +144,7 @@
     <value>Zawsze zezwalaj na odtwarzanie strumieni MP3</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>Pozwól na działanie w tle po zamknięciu</value>
+    <value>Pozwól na kontynuację działania w tle po zamknięciu</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>Pomiń ekran inicjalizacji</value>
@@ -162,7 +159,7 @@
     <value>Wyczyść wszystkie sparowane urządzenia</value>
   </data>
   <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
-    <value>Pełny reset zaplecza</value>
+    <value>Pełny reset backendu</value>
   </data>
   <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
     <value>Zresetuj wszystkie ustawienia</value>
@@ -180,31 +177,31 @@
     <value>Zresetowano, uruchom ponownie aplikację</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>Wszystkie sparowania zostaną unieważnione, czy na pewno chcesz to zrobić?</value>
+    <value>Wszystkie sparowania zostaną unieważnione. Czy na pewno chcesz to zrobić?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
-    <value>Gotowe, jeśli nadal występują problemy, spróbuj zaktualizować lub całkowicie zresetować backend[line]W niektórych przypadkach może być konieczne ponowne uruchomienie aplikacji</value>
+    <value>Zakończono. Jeśli problem nadal występuje, spróbuj zaktualizować lub całkowicie zresetować backend[line]W niektórych przypadkach może być konieczne ponowne uruchomienie aplikacji</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>Uruchom ponownie, aby zastosować zmiany</value>
+    <value>Uruchom ponownie backend, aby zastosować zmiany</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
     <value>Te ustawienia są bardzo niebezpieczne, czy na pewno chcesz je ustawić?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>Wystąpił problem z opcjami, proszę poprawić. ({0})</value>
+    <value>Wybrane opcje wydają się nieprawidłowe, proszę poprawić. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>Ogólne</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>Sprawdź poniżej, kliknij reset</value>
+    <value>Proszę sprawdzić poniżej, kliknij reset</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>Pobierz pełną wersję AudioCopy</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
-    <value>Ta aplikacja działa jako odbiornik. Aby dostosować więcej ustawień, przejdź do aplikacji nadawczej.</value>
+    <value>Ta aplikacja jest odbiornikiem. Aby dostosować więcej ustawień, przejdź do nadajnika.</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
     <value>Otwórz link na komputerze:</value>
@@ -213,15 +210,27 @@
     <value>Otwórz w przeglądarce</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Stosowanie ustawień lokalizacyjnych, proszę czekać, nie zamykaj tego okna ani nie wchodź w interakcję z aplikacją.[line]Aplikacja uruchomi się wielokrotnie, to normalne zachowanie.</value>
+    <value>Trwa stosowanie ustawień lokalizacyjnych, proszę czekać, nie zamykać tego okna ani nie wchodzić w interakcję z aplikacją.[line]Aplikacja może uruchomić się wielokrotnie, jest to normalne.</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
-    <value>Zobacz dziennik</value>
+    <value>Wyświetl dziennik</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
-    <value>najnowsze</value>
+    <value>Najnowsza</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
-    <value>Niesynchronizacja informacji multimedialnych z drugiej strony</value>
+    <value>Niesynchronizowane informacje multimedialne od strony przeciwnej</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>Włącz Swagger dla nowego backendu (tylko do celów rozwojowych, nie używaj w środowisku produkcyjnym)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>Użyj starego backendu</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>Ponieważ przenieśliśmy backend do samej aplikacji i AudioClone, te ustawienia wkrótce zostaną wycofane, a poniższe ustawienia nie mają wpływu na nowy backend.</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>Ostrzeżenie: Te ustawienia są obecnie nieaktywne dla nowego backendu i zawsze będą używać opcji „Bez próbkowania (użyj jakości dźwięku skonfigurowanej w systemie)”.</value>
   </data>
 </root>

@@ -68,18 +68,7 @@ namespace AudioCopyUI.SettingViews
             {
                 if (int.TryParse(PortBindBox.Text, out var result) && (result < 0 && result > 65535)) throw new ArgumentOutOfRangeException("Port should around 0 and 65535.");
 
-                if (disableCustomSettings.IsChecked == true)
-                {
-                    SettingUtility.SetSettings("ForceDefaultBackendSettings", "True");
-                    await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
-                    return;
-                }
-                else
-                {
-                    SettingUtility.SetSettings("ForceDefaultBackendSettings", "False");
-                }
-
-                if (useDevelopmentMode.IsChecked == true || !string.IsNullOrWhiteSpace(customEnvironmentVars.Text))
+                if (useDevelopmentMode.IsChecked == true || devMode.IsChecked == true || !string.IsNullOrWhiteSpace(customEnvironmentVars.Text))
                 {
                     if (await ShowDialogue(localize("Warn"), localize("/Setting/BackendSetting_Dangerous"), localize("Cancel"), "¼ÌÐø", this))
                     {
@@ -88,9 +77,14 @@ namespace AudioCopyUI.SettingViews
                     }
                 }
 
+                if(oldBackend.IsChecked == false)
+                {
+                    await ShowDialogue(localize("Info"), localize("NewBackendPrompt"), localize("Accept"), null, this);
+                }
+
                 Dictionary<string, string> config = new Dictionary<string, string>
                 {
-                    { "ASPNETCORE_URLS", $"http://{(string.IsNullOrWhiteSpace(AddressBindBox.Text)? "+" : AddressBindBox.Text )}:{(!string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456") }" },
+                    { "ASPNETCORE_URLS", $"http://+:{(!string.IsNullOrWhiteSpace(PortBindBox.Text) && uint.TryParse(PortBindBox.Text, out var i) && i <= 65535 ? PortBindBox.Text : "23456") }" },
                     { "ASPNETCORE_ENVIRONMENT", (useDevelopmentMode.IsChecked ?? false) ? "Development" : "Production" },
                     //{ "AudioCopy_AllowLoopbackPair", (allowLoopbackPair.IsChecked ?? false).ToString() },
                     { "AudioCopy_AllowInternetPair", (allowNonLocalPair.IsChecked ?? false).ToString() }
@@ -103,10 +97,22 @@ namespace AudioCopyUI.SettingViews
                     config.Add(kvp[0], kvp[1]);
                 }
 
+                SettingUtility.SetSettings("EnableSwagger", (devMode.IsChecked ?? false).ToString());
                 SettingUtility.SetSettings("backendOptions", JsonSerializer.Serialize(config));
                 SettingUtility.SetSettings("backendPort", !string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456");
-                await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
 
+                if (disableCustomSettings.IsChecked == true || oldBackend.IsChecked == true)
+                {
+                    SettingUtility.SetSettings("ForceDefaultBackendSettings", (disableCustomSettings.IsChecked ?? false).ToString());
+                    SettingUtility.SetSettings("OldBackend", (oldBackend.IsChecked ?? false).ToString());
+                }
+                else
+                {
+                    SettingUtility.SetSettings("ForceDefaultBackendSettings", "False");
+                    SettingUtility.SetSettings("OldBackend", "False");
+                }
+
+                await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
             }
             catch (Exception ex)
             {
@@ -123,24 +129,31 @@ namespace AudioCopyUI.SettingViews
         {
             var c = rebootBackend.Content;
             rebootBackend.Content = new ProgressRing { IsActive = true };
+            await Program.KillBackend();
             await Program.BootBackend();
             rebootBackend.Content = c;
             await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_Rebooted"), localize("Accept"), null, this);
         }
 
-        private async void UpgradeBackend_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
-            SettingUtility.SetSettings("ForceUpgradeBackend", "True");
-            await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), null, this);
-            Program.ExitApp(true);
-        }
+        
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy-Backend.dll");
+            if (bool.Parse(SettingUtility.GetOrAddSettings("OldBackend", "False")))
+            {
+                oldBackend.IsChecked = true;
+            }
+            if (bool.Parse(SettingUtility.GetOrAddSettings("EnableSwagger", "False")))
+            {
+                devMode.IsChecked = true;
+            }
+            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy_Backend.dll");
             var backendAsb = Assembly.LoadFrom(backendAsbPath);
             var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
-            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion")}{Program.BackendVersionCode} \r\n ({backendAsb.FullName} SHA256:{backendHash})";
+            var cloneAsbPath = Path.Combine(LocalStateFolder, @"backend\AudioClone.Server.dll");
+            var cloneAsb = Assembly.LoadFrom(cloneAsbPath);
+            var cloneHash = await AlgorithmServices.ComputeFileSHA256Async(cloneAsbPath);
+            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion")}{Program.BackendVersionCode} \r\n ({backendAsb.FullName} SHA256:{backendHash})\r\n ({cloneAsb.FullName} SHA256:{cloneHash})";
 
             var port = SettingUtility.GetOrAddSettings("backendPort", "23456");
             if (port != "23456") PortBindBox.Text = port;

@@ -28,7 +28,9 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using Windows.System;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
@@ -51,6 +53,7 @@ namespace AudioCopyUI.SettingViews
         public AudioQuality()
         {
             this.InitializeComponent();
+            _ = AudioCloneHelper.Boot();
             bitrate = 0;
             samplerate = 0;
             channels = 0;
@@ -91,27 +94,42 @@ namespace AudioCopyUI.SettingViews
 
                 var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
                 HttpClient c = new();
-                c.BaseAddress = new($"http://127.0.0.1:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
-                if (!Program.AlreadyAddMyself)
-                {
-                    try
-                    {
-                        _ = await c.PostAsync($"api/token/add?token={token}&hostToken={SettingUtility.HostToken}", null);
-                    }
-                    catch (Exception) { }
-                    finally { Program.AlreadyAddMyself = true; }
-                }
-                var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
-                AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
-                var text = string.Format(localize("/Setting/AudioQuality_Foramt"), body.channels, body.bitsPerSample, body.sampleRate);
-                defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_Current") + text;
+                c.BaseAddress = new($"http://127.0.0.1:{AudioCloneHelper.Port}/");
+
+                //if (!Program.AlreadyAddMyself)
+                //{
+                //    try
+                //    {
+                //        _ = await c.PostAsync($"api/token/add?token={token}&hostToken={SettingUtility.HostToken}", null);
+                //    }
+                //    catch (Exception) { }
+                //    finally { Program.AlreadyAddMyself = true; }
+                //}
+                //new Thread(async () =>
+                //{
+                //    try
+                //    {
+
+
+                //        var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
+                //        AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
+                //        var text = string.Format(localize("/Setting/AudioQuality_Foramt"), body.channels, body.bitsPerSample, body.sampleRate);
+                //        this.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.High, () =>
+                //        {
+                //            defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_Current") + text;
+                //        });
+                //    }catch
+                //    {
+                //        return;
+                //    }
+                //}).Start();
                 loaded = true;
                 rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out result) ? result : 4096;
 
             }
             catch (Exception)
             {
-                defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_CurrentUnavailable");
+                //defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_CurrentUnavailable");
             }
 
             
@@ -179,6 +197,10 @@ namespace AudioCopyUI.SettingViews
         {
             SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
             SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
+            if (await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), localize("Cancel"), this))
+            {
+                await Program.BootBackend();
+            }
             //await ShowDialogue("", $"{bitrate}bit {samplerate}hz {channels}channels {rawBufferSize.Value} bytes buf   ", "text", "text", this);
 
         }
@@ -230,7 +252,7 @@ namespace AudioCopyUI.SettingViews
 
             public override string ToString()
             {
-                return string.Format(localize("/Setting/AudioQuality_Foramt"), channels, bitsPerSample, sampleRate) + (isMp3Ready ? " " + localize("/Setting/AudioQuality_SupportMP3") : "");
+                return string.Format(localize("/Setting/AudioQuality_Foramt"), channels, bitsPerSample, sampleRate);
             }
             
         }

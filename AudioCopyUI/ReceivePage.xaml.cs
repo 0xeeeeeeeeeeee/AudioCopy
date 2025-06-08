@@ -19,6 +19,7 @@
 *	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
 */
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using NAudio.Wave;
@@ -27,6 +28,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Pipes;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -57,7 +59,7 @@ namespace AudioCopyUI
         private bool playing;
         private bool updated;
         string ClientToken = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-
+        private bool SMTCRunning;
 
         public ReceivePage()
         {
@@ -67,8 +69,15 @@ namespace AudioCopyUI
 
             if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False"))) MedidInfoPanel.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
 
-
-
+            c.Timeout = TimeSpan.FromSeconds(45);
+            if(bool.Parse(SettingUtility.GetOrAddSettings("NoShowNewBackend", "False")))
+            {
+                NewBackendInfoBar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                NewBackendBar.Text = localize("NewBackendBar");
+            }
         }
 
         async Task<bool> TryConnect()
@@ -84,18 +93,36 @@ namespace AudioCopyUI
                     }
                     else return false;
                 }
+                HttpResponseMessage rsp;
 
-                var rsp = await c.GetAsync("/index");
-                if (rsp.StatusCode != System.Net.HttpStatusCode.Unauthorized) //no token, should be 401
+                if (SettingUtility.OldBackend)
                 {
-                    if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
-                    {
-                        this.Frame.Navigate(typeof(PairingPage));
-                        return false;
-                    }
-                    else return false;
-                }
+                    rsp = await c.GetAsync("/Index");
 
+                    if (rsp.StatusCode != HttpStatusCode.Unauthorized)
+                    {
+                        if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
+                        {
+                            this.Frame.Navigate(typeof(PairingPage));
+                            return false;
+                        }
+                        else return false;
+                    }
+                }
+                else
+                {
+                    rsp = await c.GetAsync("/Detect");
+
+                    if (!rsp.IsSuccessStatusCode)
+                    {
+                        if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
+                        {
+                            this.Frame.Navigate(typeof(PairingPage));
+                            return false;
+                        }
+                        else return false;
+                    }
+                }
                 try
                 {
                     rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Environment.MachineName}");
@@ -111,11 +138,17 @@ namespace AudioCopyUI
                 }catch (Exception) { }
                 new Thread(async () =>
                 {
+                    if (SMTCRunning) return;
+                    SMTCRunning = true;
                     string perious = "";
                     Stopwatch timer = Stopwatch.StartNew();
                     while (true)
-                    { 
-                        if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False"))) goto upload;
+                    {
+                        if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False")))
+                        {
+                            if (SettingUtility.OldBackend) goto upload;
+                            else return;
+                        }
                         try
                         {
                             rsp = await c.GetAsync($"/api/device/GetSMTCInfo?token={ClientToken}");
@@ -140,7 +173,7 @@ namespace AudioCopyUI
                                                         MediaInfo_Artist.Text = infoBody.Artist;
                                                         UriBuilder b = new UriBuilder(c.BaseAddress);
                                                         b.Path = $"/api/device/GetAlbumPhoto";
-                                                        b.Query = $"?token={ClientToken}&randomThing={Random.Shared.Next()}";
+                                                        b.Query = $"?token={ClientToken}&randomThing={Random.Shared.Next()}"; //确保图片被刷新
                                                         MediaInfo_AlbumArt.Source = null;
                                                         MediaInfo_AlbumArt.Source = new BitmapImage(b.Uri);
                                                         perious = infoBody.Title;
@@ -168,13 +201,16 @@ namespace AudioCopyUI
                         }
                         catch (Exception ex1)
                         {
-                            Log(ex1,"Get SMTC info",this);
+                            Log(ex1, "Get SMTC info", this);
                         }
+                        if (!SettingUtility.OldBackend) continue;
+                        await Task.Delay(1500);
+
 
                     upload:
                         try
                         {
-                            var body = await GetCurrentMediaInfoAsync();
+                            var body = await Backend.DeviceController.GetCurrentMediaInfoAsync();
                             var bodyJson = JsonSerializer.Serialize(body);
                             rsp = await c.PostAsync($"/api/device/UploadSMTCInfo?hostToken={SettingUtility.HostToken}", new StringContent(bodyJson, System.Text.Encoding.UTF8, "application/json"));
                             if (!rsp.IsSuccessStatusCode) Log($"failed to update SMTC:{await rsp.Content.ReadAsStringAsync()}", "warn");
@@ -185,7 +221,7 @@ namespace AudioCopyUI
                         }
                         finally
                         {
-                            await Task.Delay(1500);
+                            
                         }
 
 
@@ -206,6 +242,11 @@ namespace AudioCopyUI
 
         private async void Button_Click(object sender, object? e)
         {
+            var cont = playButton.Content;
+            playButton.IsEnabled = false;
+            playButton.Content = new ProgressRing { IsActive = true };
+            replayCount = 0;
+            replayPromptShowed = false;
             var token = ClientToken;
             if (rawPlaying)
             {
@@ -233,18 +274,36 @@ namespace AudioCopyUI
                 "4" => "raw",
                 _ => "wav"
             };
+            UriBuilder builder = new();
+            
+            Uri source;
+            if (SettingUtility.OldBackend)
+            {
+                source = new(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
 
-            Uri source = new(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
+            }
+            else if(bool.Parse(SettingUtility.GetOrAddSettings("OverrideAudioCloneOptions", "False")))
+            {
+                source = new Uri($"http://127.0.0.1:{AudioCloneHelper.Port}/api/audio/{format}?token={SettingUtility.GetOrAddSettings("OverrideAudioCloneToken", "null")}&clientName={Environment.MachineName}");
+            }
+            else
+            {
+                var rsp = await c.GetAsync($"/api/device/BootAudioClone?token={token}");
+                var addr = await rsp.Content.ReadAsStringAsync();
+                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr,format,Environment.MachineName); 
+                source = new Uri(baseAddr);
+            }
+            
             Log($"Playing at address:{source.ToString()}");
+
             playButton.Content = localize("StopPlay");
+            playButton.IsEnabled = true;
 
             if (format == "raw")
             {
                 if (bool.Parse(SettingUtility.GetOrAddSettings("PromptRawPlayback", "True"))) await ShowRawPlaybackPrompt();
                 rawPlaying = true;
-
                 PlayRaw(source, cts.Token);
-
                 return;
 
             }
@@ -279,35 +338,10 @@ namespace AudioCopyUI
             {
                 await LogAndDialogue(ex, "播放流", null, null, this);
             }
+            
         }
 
-        public async Task<MediaInfo> GetCurrentMediaInfoAsync()
-        {
-            var sessions = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-            var currentSession = sessions.GetCurrentSession();
-            if (currentSession == null) return null;
-
-            var mediaProperties = await currentSession.TryGetMediaPropertiesAsync();
-            var info = new MediaInfo
-            {
-                Title = mediaProperties.Title,
-                Artist = mediaProperties.Artist,
-                AlbumArtist = mediaProperties.AlbumArtist,
-                AlbumTitle = mediaProperties.AlbumTitle,
-                PlaybackType = mediaProperties.PlaybackType.ToString()
-            };
-
-            // 获取专辑封面
-            if (mediaProperties.Thumbnail != null)
-            {
-                using var stream = await mediaProperties.Thumbnail.OpenReadAsync();
-                using var ms = new MemoryStream();
-                await stream.AsStreamForRead().CopyToAsync(ms);
-                info.AlbumArtBase64 = Convert.ToBase64String(ms.ToArray());
-            }
-
-            return info;
-        }
+        
 
         public class MediaInfo
         {
@@ -318,86 +352,122 @@ namespace AudioCopyUI
             public string PlaybackType { get; set; }
             public string AlbumArtBase64 { get; set; }
         }
+        int replayCount = 0;
+        bool replayPromptShowed = false;
 
-        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        private async void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
         {
+            replayCount++;
+            if(replayCount > 30 && !replayPromptShowed)
+            {
+                replayPromptShowed = true;              
+                this.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.High, async () =>
+                {
+                    await ShowDialogue(localize("Info"), localize("PlayingWinUIMediaPlayerElementBug"), localize("Accept"), null, this);
+                    if (rawPlaying)
+                    {
+                        rawPlaying = false;
+                        cts.Cancel();
+                        Program.ExitApp(true);
+                        return;
+                    }
+                    else if (playing)
+                    {
+                        playing = false;
+                        mediaPlayer.Pause();
+                        mediaPlayer.Dispose();
+                        playButton.Content = String.Format(localize("PlayString"), deviceName);
+                        return;
+                    }
+                });
+                return;
+            }
             sender.Play();
         }
 
         private async void PlayRaw(Uri source, CancellationToken token)
         {
-            AudioQualityObject body;
             try
             {
-                var _token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-                var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={_token}");
-                body = JsonSerializer.Deserialize<AudioQualityObject>(await rsp.Content.ReadAsStringAsync());
-            }
-            catch (Exception)
-            {
-                throw new NotSupportedException("Cannot get host audio settings.");
-            }
 
-            var waveFormat = new WaveFormat(body.sampleRate, 16 , body.channels);
 
-            var bufferedProvider = new BufferedWaveProvider(waveFormat)
-            {
-                BufferDuration = TimeSpan.FromSeconds(2), 
-                DiscardOnBufferOverflow = true          
-            };
-
-            Task producer = Task.Run(async () =>
-            {
+                AudioQualityObject body;
                 try
                 {
-                    using (HttpClient rawClient = new HttpClient())
-                    using (var stream = await rawClient.GetStreamAsync(source))
+                    var _token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
+                    var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={_token}");
+                    body = JsonSerializer.Deserialize<AudioQualityObject>(await rsp.Content.ReadAsStringAsync());
+                }
+                catch (Exception)
+                {
+                    throw new NotSupportedException("Cannot get host audio settings.");
+                }
+
+                var waveFormat = new WaveFormat(body.sampleRate, 16, body.channels);
+
+                var bufferedProvider = new BufferedWaveProvider(waveFormat)
+                {
+                    BufferDuration = TimeSpan.FromSeconds(2),
+                    DiscardOnBufferOverflow = true
+                };
+
+                Task producer = Task.Run(async () =>
+                {
+                    try
                     {
-                        byte[] buffer = new byte[int.TryParse(SettingUtility.GetOrAddSettings("rawBufferSize","4096"), out var result) ? result : 4096]; 
-                        while (!token.IsCancellationRequested)
+                        using (HttpClient rawClient = new HttpClient())
+                        using (var stream = await rawClient.GetStreamAsync(source))
                         {
-                            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
-                            if (bytesRead > 0)
+                            byte[] buffer = new byte[int.TryParse(SettingUtility.GetOrAddSettings("rawBufferSize", "4096"), out var result) ? result : 4096];
+                            while (!token.IsCancellationRequested)
                             {
-                                bufferedProvider.AddSamples(buffer, 0, bytesRead);
+                                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
+                                if (bytesRead > 0)
+                                {
+                                    bufferedProvider.AddSamples(buffer, 0, bytesRead);
+                                }
+                                else
+                                {
+                                    await Task.Delay(50, token);
+                                }
                             }
-                            else
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log(ex, "网络接收", this);
+                    }
+                }, token);
+
+                Task consumer = Task.Run(async () =>
+                {
+                    try
+                    {
+                        using (var waveOut = new WaveOutEvent())
+                        {
+                            waveOut.Init(bufferedProvider);
+                            waveOut.Play();
+
+                            while (waveOut.PlaybackState == PlaybackState.Playing && !token.IsCancellationRequested)
                             {
                                 await Task.Delay(50, token);
                             }
+
+                            waveOut.Stop();
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Log(ex, "网络接收",this);
-                }
-            }, token);
-
-            Task consumer = Task.Run(async () =>
-            {
-                try
-                {
-                    using (var waveOut = new WaveOutEvent())
+                    catch (Exception ex)
                     {
-                        waveOut.Init(bufferedProvider);
-                        waveOut.Play();
-
-                        while (waveOut.PlaybackState == PlaybackState.Playing && !token.IsCancellationRequested)
-                        {
-                            await Task.Delay(50,token);
-                        }
-
-                        waveOut.Stop();
+                        Log(ex, "播放", this);
                     }
-                }
-                catch (Exception ex)
-                {
-                    Log(ex, "播放", this);
-                }
-            }, token);
+                }, token);
 
-            await Task.WhenAll(producer, consumer);
+                await Task.WhenAll(producer, consumer);
+            }
+            catch(Exception ex)
+            {
+                await LogAndDialogue(ex, "播放", localize("Accept"), null, this);
+            }
         }
 
         private void Smtc_ButtonPressed(object sender, object args)
@@ -484,6 +554,25 @@ namespace AudioCopyUI
             return result == ContentDialogResult.Primary;
         }
 
+        private async void EnableNewBackend_Click(object sender, RoutedEventArgs e)
+        {
+            await ShowDialogue(localize("Info"), localize("NewBackendPrompt"), localize("Accept"), null, this);
+            SettingUtility.SetSettings("OldBackend", "False");
+            var c = EnableNewAPI.Content;
+            EnableNewAPI.Content = new ProgressRing { IsActive = true };          
+            await Program.KillBackend();
+            await Program.BootBackend();
+            EnableNewAPI.Content = c;
+            NewBackendInfoBar.Visibility = Visibility.Collapsed;
+            SettingUtility.SetSettings("NoShowNewBackend", "True");
+        }
+
+        private void HideInfoBar_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUtility.SetSettings("NoShowNewBackend", "True");
+            NewBackendInfoBar.Visibility = Visibility.Collapsed;
+        }
+
         public class AudioQualityObject
         {
             public int sampleRate { get; set; }
@@ -521,6 +610,8 @@ namespace AudioCopyUI
                 _position += bytesToCopy;
                 return bytesToCopy;
             }
+
+            
 
             public override bool CanRead => true;
             public override bool CanSeek => false;

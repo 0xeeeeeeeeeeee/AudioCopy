@@ -371,3 +371,4 @@ FodyWeavers.xsd
 /libAudioCopy-Backend-standalone
 *.lnk
 /.vscode
+/PublishTemp

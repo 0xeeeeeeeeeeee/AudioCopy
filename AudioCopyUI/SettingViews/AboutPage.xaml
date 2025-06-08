@@ -16,9 +16,9 @@
                     <Image Source="/Assets/AudioCopy.png" Width="150" HorizontalAlignment="Left"></Image>
                     <Button.ContextFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="kill backend" Click="MenuFlyoutItem_Click" />
-                            <MenuFlyoutItem Text="open lastest log" Click="MenuFlyoutItem_Click_1" />
-                            <MenuFlyoutItem Text="magic button" Click="MenuFlyoutItem_Click_2" />
+                            <MenuFlyoutItem Text="调试菜单" Click="MenuFlyoutItem_Click" />
+                            <MenuFlyoutItem Text="打开日志" Click="MenuFlyoutItem_Click_1" />
+                            <MenuFlyoutItem Text="😕" Click="MenuFlyoutItem_Click_2" />
                         </MenuFlyout>
 
                     </Button.ContextFlyout>

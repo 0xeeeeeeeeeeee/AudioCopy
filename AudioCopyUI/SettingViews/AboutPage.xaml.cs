@@ -95,8 +95,7 @@ namespace AudioCopyUI.SettingViews
 
         private async void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            Program.KillBackend();
-            await ShowDialogue("info", "backend is now killed!", "ok", null, this);
+            this.Frame.Navigate(typeof(DeveloperSetting));
         }
 
         private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)

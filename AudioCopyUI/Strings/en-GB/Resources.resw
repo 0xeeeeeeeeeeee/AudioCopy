@@ -67,7 +67,7 @@
     <value>MP3 (currently unavailable based on your configuration)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>The server captures 16-bit waveform from WASAPI and sends it directly, then the receiver plays it back immediately.</value>
+    <value>The server captures 16-bit waveform from WASAPI and sends it directly, then the receiver plays it back immediately</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>These devices are listening</value>
@@ -82,22 +82,22 @@
     <value>As the receiving end</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
-    <value>As sender</value>
+    <value>As the sending end</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Select the following at the receiving end</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>or enter IP address:</value>
+    <value>Or enter IP address:</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Refresh</value>
   </data>
   <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Tap to play</value>
+    <value>Click to play</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Playing audio from unknown device</value>
+    <value>Play audio from unknown device</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
     <value>Audio format</value>
@@ -106,10 +106,10 @@
     <value>Select one</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
-    <value>application</value>
+    <value>Application</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Choose one</value>
+    <value>Select one</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>Receive</value>
@@ -121,19 +121,19 @@
     <value>Pairing</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Backend failed to start ({0})\r\nPlease check if the backend is blocked by antivirus software or if the port is occupied by another program</value>
+    <value>Backend startup failed ({0})\r\nPlease check if the backend is blocked by antivirus software or if the port is occupied by another program</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Waiting for backend to start...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Starting backend (please allow if antivirus prompts)...</value>
+    <value>Starting backend (allow if prompted by antivirus)...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Initialising...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Upgrading {0} backend to v{1}, it may take longer to start up. Please allow if your antivirus software prompts.</value>
+    <value>Connecting to {0} backend at v{1}, this may take longer to start. Please allow if your antivirus software prompts.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Ending existing backend...</value>
@@ -145,9 +145,12 @@
     <value>Install</value>
   </data>
   <data name="LogAndDialogue_Content" xml:space="preserve">
-    <value>An error {1} occurred at {0}:[line]{2}</value>
+    <value>An error {1} occurred at {0}: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -160,7 +163,7 @@
     <value>Warning</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>Hint</value>
+    <value>Prompt</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
     <value>Port number (only enter when prompted by the peer)</value>
@@ -178,10 +181,10 @@
     <value>Deleted</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
-    <value>Failed to set up audio device:</value>
+    <value>Failed to set audio device:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Please check below, click to reset</value>
+    <value>Please see below, click to reset</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Stop playback</value>
@@ -190,7 +193,7 @@
     <value>Audio from {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Connection failed. Would you like to try pairing again?</value>
+    <value>Connection failed, would you like to try pairing again?</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
     <value>You are not paired yet. Would you like to pair?</value>
@@ -202,16 +205,16 @@
     <value>Connection timed out. Please check if the address is correct or try a different address.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
-    <value>Try searching online for a solution</value>
+    <value>Search online for a solution</value>
   </data>
   <data name="FailPair" xml:space="preserve">
     <value>Pairing added successfully, but it cannot be removed from the pending pairing list. This issue can be resolved by restarting the client.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>Pairing request detected from {0}, add it?</value>
+    <value>Pairing request detected from {0}. Add it?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Pairing request detected from {0}, add it?</value>
+    <value>Pair with {0}?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Pairing added successfully!</value>
@@ -220,13 +223,13 @@
     <value>Success</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Pairing failed, please try again.</value>
+    <value>Pairing failed (server returned {0}), please try again.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Invalid address</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Please note that the app will restart when you stop playback, which is normal</value>
+    <value>Please note that the application will restart when you stop playback, which is normal</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Do not show again</value>
@@ -235,7 +238,7 @@
     <value>Port changed</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Please note that the current port number has been changed. The current port is {0}[line]Please manually enter the IP address and port number on the peer side</value>
+    <value>Please note that the current port number has changed, the current port is {0}[line]Please manually enter the IP address and port number on the peer side</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Please try updating or completely resetting the backend</value>
@@ -262,6 +265,21 @@
     <value>Unknown Album</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
-    <value>Media information from {0}:</value>
+    <value>Media info from {0}:</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>We are splitting and migrating the backend to the application itself and AudioClone, which will significantly improve performance and bring more features. [line]If you'd like to try the new backend, you can enable it, but this requires you to upgrade all clients. You can toggle this feature anytime under "Settings - Backend Settings - Use Legacy Backend".</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>You have enabled a new backend, so we recommend upgrading all clients. If you prefer not to upgrade, you can disable this feature in 'Settings &gt; Backend Settings &gt; Use Legacy Backend'.</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>Do not show me again</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>There seems to be an issue with your system codecs causing audio stream stuttering. Please try using RAW audio (if available)</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>Please note: [line]Older versions of the client have limited support for newer versions, so it's best to upgrade all clients. [line]After enabling the new backend here, although pairing records between the new and old backends will sync, you may need to manually pair again. [line]Some features are currently unavailable when using the new backend. [line]You can switch versions anytime under 'Settings - Backend Settings - Use Old Backend'.</value>
   </data>
 </root>

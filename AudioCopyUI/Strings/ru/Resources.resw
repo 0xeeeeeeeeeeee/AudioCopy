@@ -60,14 +60,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>Воспроизведение аудио из {0}</value>
+    <value>Воспроизвести аудио с {0}</value>
     <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (в данный момент недоступно в вашей конфигурации)</value>
+    <value>MP3 (в настоящее время недоступно в соответствии с вашими настройками)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Сервер собирает 16-битную волновую форму через WASAPI и отправляет напрямую, затем получатель воспроизводит её напрямую</value>
+    <value>Сервер собирает 16-битную волновую форму через WASAPI и отправляет напрямую, затем клиент воспроизводит её напрямую</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Эти устройства прослушиваются</value>
@@ -79,13 +79,13 @@
     <value>Сопряженные устройства:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>как приемник</value>
+    <value>Как приемник</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Как отправитель</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>На принимающей стороне выберите следующее:</value>
+    <value>На принимающей стороне выберите следующее содержимое</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>или введите IP-адрес:</value>
@@ -103,7 +103,7 @@
     <value>Аудиоформат</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>выбрать</value>
+    <value>Выбрать</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>приложение</value>
@@ -112,16 +112,16 @@
     <value>Выбрать</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
-    <value>получить</value>
+    <value>Получить</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
     <value>Отправить</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
-    <value>сопряжение</value>
+    <value>Сопряжение</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не блокирует ли серверную часть антивирус или не занят ли порт другой программой</value>
+    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не блокирует ли серверную часть антивирус или не занят ли порт другим приложением</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Ожидание запуска серверной части...</value>
@@ -136,10 +136,10 @@
     <value>Идет подключение к бэкенду {0} до версии v{1}, это может занять больше времени для запуска. Если антивирус выдаст предупреждение, разрешите действие.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Завершение работающего серверного процесса...</value>
+    <value>Завершение работающего сервера...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>обновление</value>
+    <value>Обновление</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Установка</value>
@@ -148,7 +148,10 @@
     <value>Произошла ошибка {1} в {0}: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
-    <value>хорошо</value>
+    <value>Хорошо</value>
+  </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
+    <value>Хорошо</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
@@ -160,7 +163,7 @@
     <value>Предупреждение</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>подсказка</value>
+    <value>Подсказка</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
     <value>Номер порта (вводить только при запросе удаленной стороны)</value>
@@ -175,28 +178,28 @@
     <value>Серверная часть может работать некорректно, попробуйте перезапустить</value>
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>удалено</value>
+    <value>Удалено</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
     <value>Не удалось настроить аудиоустройство:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Пожалуйста, смотрите ниже и нажмите "Сброс"</value>
+    <value>Пожалуйста, посмотрите ниже, нажмите сброс</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Остановить воспроизведение</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>Аудио из {0}</value>
+    <value>Аудио от {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Не удалось подключиться. Попробовать снова выполнить сопряжение?</value>
+    <value>Не удалось подключиться. Попробовать выполнить сопряжение снова?</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>Вы еще не подключились, хотите подключиться?</value>
+    <value>Вы еще не в паре, хотите создать пару?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>Ваша серверная конфигурация не позволяет это действие. Можно изменить в настройках.</value>
+    <value>Ваша конфигурация сервера не позволяет это действие. Можно изменить в настройках.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
     <value>Превышено время ожидания подключения. Проверьте правильность адреса или попробуйте другой.</value>
@@ -205,28 +208,28 @@
     <value>Попробуйте поискать решение в интернете</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Пара успешно добавлена, но её нельзя удалить из списка ожидающих подключения. Эту проблему можно решить, перезапустив клиент.</value>
+    <value>Сопряжение успешно добавлено, но его нельзя удалить из списка ожидающих сопряжения. Эту проблему можно решить, перезапустив клиент.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>Обнаружен запрос на сопряжение от {0}, добавить?</value>
+    <value>Обнаружен запрос на сопряжение от {0}. Добавить?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Обнаружен запрос на сопряжение от {0}. Добавить?</value>
+    <value>Сопрячь с {0}?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Пара успешно добавлена!</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>успех</value>
+    <value>Успех</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Не удалось добавить сопряжение. Повторите попытку.</value>
+    <value>Не удалось добавить пару (сервер вернул {0}), попробуйте снова.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Неверный адрес</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Обратите внимание, что при остановке воспроизведения приложение перезапускается — это нормально.</value>
+    <value>Обратите внимание, что при остановке воспроизведения приложение перезапустится - это нормально</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Не показывать снова</value>
@@ -235,22 +238,22 @@
     <value>Порт изменен</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>请注意, текущий номер порта был изменен, текущий порт: {0}[line]Пожалуйста, введите IP-адрес и номер порта вручную на удаленной стороне</value>
+    <value>Обратите внимание, текущий номер порта изменен, текущий порт: {0}[line]Введите IP-адрес и номер порта вручную на удаленной стороне</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>Попробуйте обновить или полностью сбросить серверную часть</value>
+    <value>Попробуйте обновить или полностью сбросить бэкенд</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
     <value>Попробуйте перезапустить приложение</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>Настроить и запустить серверную часть</value>
+    <value>Настроить и запустить бэкенд</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
     <value>Игнорировать ошибки и продолжить запуск</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Обложка медиа-альбома</value>
+    <value>Обложка медиаальбома</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
     <value>Неизвестный носитель</value>
@@ -263,5 +266,20 @@
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>Медиаинформация от {0}:</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>Мы разделяем и переносим бэкенд в само приложение и AudioClone, что значительно повысит производительность и добавит больше функций.[line]Если вы хотите попробовать новый бэкенд, вы можете его включить, но для этого потребуется обновить все клиенты. Вы всегда можете переключиться обратно в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>Вы включили новый бэкенд, поэтому мы рекомендуем обновить все клиенты. Если вы не хотите обновлять, вы также можете отключить эту функцию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>Не напоминать мне</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>В вашей системе, похоже, есть проблема с кодеками, из-за чего аудиопоток зависает. Попробуйте использовать RAW-аудио (если доступно).</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>Обратите внимание: [line]Старые версии клиентов имеют ограниченную поддержку новых версий, лучше обновить все клиенты. [line]После включения нового бэкенда здесь, хотя записи сопряжения нового и старого бэкенда будут синхронизированы, вам может потребоваться вручную выполнить сопряжение снова. [line]В настоящее время при использовании нового бэкенда некоторые функции недоступны. [line]Вы можете в любой момент переключить версию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
   </data>
 </root>

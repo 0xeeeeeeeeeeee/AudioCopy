@@ -55,7 +55,8 @@ namespace AudioCopyUI
         public PairingPage()
         {
             this.InitializeComponent();
-            
+            EmojiRepeater.ItemsSource = TypicalEmojis;
+
             PairTimer();
         }
 
@@ -64,8 +65,7 @@ namespace AudioCopyUI
             //Localized_AsReceiver.Text = localize("AsReceiver");
             //Localized_AsTransfer.Text = localize("AsTransfer");
             //PairButton.Content = localize("Refresh");
-            await Task.Delay(1); //避免卡顿
-            EmojiRepeater.ItemsSource = TypicalEmojis;
+            //await Task.Delay(1); //避免卡顿
             await Task.Delay(10);
             address = GetLocalNetworkAddresses();            
             await Task.Delay(10);
@@ -78,6 +78,13 @@ namespace AudioCopyUI
             {
                 portInfoBar.IsOpen = true;
                 portInfoBar.Message = string.Format(localize("PairPortChangedMessage") , Program.BackendPort);
+            }
+
+            if (!SettingUtility.OldBackend)
+            {
+                portInfoBar.IsOpen = true;
+                portInfoBar.Title = localize("Info");
+                portInfoBar.Message = localize("NewBackendEnabled");
             }
         }
 
@@ -92,7 +99,7 @@ namespace AudioCopyUI
                     HttpClient c = new();
                     c.BaseAddress = new($"http://{item}:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
                     c.Timeout = TimeSpan.FromSeconds(5);
-                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Uri.EscapeDataString(Environment.MachineName)}");
+                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Uri.EscapeDataString(Environment.MachineName)}&version=2");
                     if (rsp.IsSuccessStatusCode)
                     {
                         var rspString = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
@@ -100,7 +107,7 @@ namespace AudioCopyUI
                         {
                             if (await ShowDialogue(localize("Info"), string.Format(localize("PairRequired"), rspString.Substring(9)), localize("Accept"), localize("Cancel"), this))
                             {
-                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Uri.EscapeDataString(Environment.MachineName)}");
+                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Uri.EscapeDataString(Environment.MachineName)}&version=2");
                                 if (rsp.IsSuccessStatusCode)
                                 {
                                     SettingUtility.SetSettings("sourceAddress", c.BaseAddress.ToString());
@@ -108,9 +115,9 @@ namespace AudioCopyUI
                                 }
                                 else if (rsp.StatusCode == HttpStatusCode.BadRequest)
                                 {
-                                    if (new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd().Trim() == "源不合法")
+                                    //if (new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd().Trim() == "源不合法")
                                     {
-                                        await ShowDialogue(localize("Info"), localize("BackendNotAllow"), localize("Accept"), null, this);
+                                        await ShowDialogue(localize("Error"), string.Format(localize("PairFailed"), await rsp.Content.ReadAsStringAsync()), localize("Accept"), null, this);
                                     }
 
                                 }
@@ -289,15 +296,19 @@ namespace AudioCopyUI
 
         private void PairTimer()
         {
-            _timer = new Timer(3000);
-            _timer.Elapsed += (s, e) =>
+            if (SettingUtility.OldBackend)
             {
-                this.DispatcherQueue.TryEnqueue(
-                    DispatcherQueuePriority.Normal,
-                    () => _ = Pair()
-                );
-            };
-            _timer.Start();
+                _timer = new Timer(3000);
+                _timer.Elapsed += (s, e) =>
+                {
+                    this.DispatcherQueue.TryEnqueue(
+                        DispatcherQueuePriority.Normal,
+                        () => _ = Pair()
+                    );
+                };
+                _timer.Start();
+            }
+            
         }
 
 
@@ -345,7 +356,7 @@ namespace AudioCopyUI
                     DispatcherQueuePriority.Normal,
                     () => Page_Loaded(new(),new())
                 );
-            await Pair(true);
+            //await Pair(true);
         }
 
         private async Task Pair(bool active = false)
@@ -396,7 +407,7 @@ namespace AudioCopyUI
 
                                     await ShowDialogue(localize("Success"), localize("PairDone"), localize("Accept"), null, this);
                                 }
-                                else if(new StreamReader(addResponse.Content.ReadAsStream()).ReadToEnd() == "已存在") //不用管他
+                                else if (new StreamReader(addResponse.Content.ReadAsStream()).ReadToEnd() == "已存在") //不用管他
                                 {
                                     try
                                     {
@@ -435,7 +446,7 @@ namespace AudioCopyUI
             }
         }
 
-        
+
 
         private async void IpSubmitButtonClick(object sender, RoutedEventArgs e)
         {

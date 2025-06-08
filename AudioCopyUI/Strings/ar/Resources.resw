@@ -73,7 +73,7 @@
     <value>هذه الأجهزة تستمع</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
-    <value>اختر الجهاز الذي تريد الاستماع منه</value>
+    <value>اختر الجهاز الذي تريد مراقبته</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
     <value>الأجهزة المقترنة:</value>
@@ -85,7 +85,7 @@
     <value>كجهة إرسال</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>في جهة الاستقبال، حدد المحتوى التالي</value>
+    <value>في جهة الاستقبال، حدد ما يلي</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>أو أدخل عنوان IP:</value>
@@ -94,7 +94,7 @@
     <value>تحديث</value>
   </data>
   <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>انقر للعب</value>
+    <value>انقر للتشغيل</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
     <value>تشغيل الصوت من جهاز غير معروف</value>
@@ -103,7 +103,7 @@
     <value>تنسيق الصوت</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>اختر</value>
+    <value>اختيار</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>تطبيق</value>
@@ -121,19 +121,19 @@
     <value>إقران</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>فشل بدء تشغيل الخلفية ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مشغولاً بواسطة برنامج آخر</value>
+    <value>فشل بدء التشغيل الخلفي ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مستخدمًا بواسطة برنامج آخر</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>في انتظار بدء التشغيل الخلفي...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>جاري تشغيل الخلفية (إذا ظهرت رسالة برنامج مكافحة الفيروسات، يرجى السماح)...</value>
+    <value>جارٍ تشغيل الخلفية (إذا ظهر تحذير من برنامج مكافحة الفيروسات، يرجى السماح)...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>جاري التهيئة...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>جارٍ {0} الخلفي إلى الإصدار v{1}، قد يستغرق بدء التشغيل وقتًا أطول، يُرجى السماح إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات.</value>
+    <value>يتم تحديث {0} إلى الإصدار v{1}، وقد يستغرق بدء التشغيل وقتًا أطول. يُرجى السماح بالإجراء إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>إنهاء الخلفية الحالية...</value>
@@ -150,6 +150,9 @@
   <data name="Accept" xml:space="preserve">
     <value>حسناً</value>
   </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
+    <value>حسنًا</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>إلغاء</value>
   </data>
@@ -160,10 +163,10 @@
     <value>تحذير</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>تنبيه</value>
+    <value>تلميح</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>رقم المنفذ (أدخله فقط عندما يطلب منك الطرف الآخر ذلك)</value>
+    <value>رقم المنفذ (أدخله فقط عند مطالبة الطرف الآخر بذلك)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
     <value>قائمة عناوين IP التي تم الحصول عليها، يمكن أيضًا إدخالها يدويًا هنا</value>
@@ -172,13 +175,13 @@
     <value>إرسال</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>الخادم الخلفي قد لا يعمل بشكل صحيح، يمكنك محاولة إعادة التشغيل</value>
+    <value>الخلفية قد لا تعمل بشكل صحيح، يمكنك محاولة إعادة التشغيل</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>تم الحذف</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
-    <value>فشل في إعداد جهاز الصوت:</value>
+    <value>فشل في تعيين جهاز الصوت:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
     <value>عرض أدناه، انقر فوق إعادة تعيين</value>
@@ -193,10 +196,10 @@
     <value>فشل الاتصال، هل تريد إعادة الاقتران؟</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>لم تقم بإقران الجهاز بعد، هل ترغب في الإقران الآن؟</value>
+    <value>لم يتم إقرانك بعد، هل تريد الإقران الآن؟</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>إعدادات الخادم الخلفي لا تسمح بهذا الإجراء، يمكنك تعديله في الإعدادات.</value>
+    <value>إعدادات الخادم الخلفي الخاصة بك لا تسمح بهذه العملية، يمكنك تعديلها في الإعدادات.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
     <value>انتهت مهلة الاتصال، يرجى التحقق من صحة العنوان أو تغييره.</value>
@@ -205,28 +208,28 @@
     <value>حاول البحث عن حل عبر الإنترنت</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>تمت إضافة الاقتران بنجاح، ولكن لا يمكن حذفه من قائمة الانتظار للاقتران. يمكن حل هذه المشكلة عن طريق إعادة تشغيل العميل.</value>
+    <value>تمت إضافة الاقتران بنجاح، ولكن لا يمكن حذفه من قائمة الانتظار، يمكن حل هذه المشكلة عن طريق إعادة تشغيل العميل</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>تم الكشف عن طلب اقتران من {0}، هل تريد الإضافة؟</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>تم الكشف عن طلب اقتران من {0}، هل تريد الإضافة؟</value>
+    <value>هل تريد الاقتران بـ {0}؟</value>
   </data>
   <data name="PairDone" xml:space="preserve">
-    <value>تم إضافة الاقتران بنجاح!</value>
+    <value>تمت إضافة الاقتران بنجاح!</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>نجاح</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>添加配对失败，请重试。</value>
+    <value>فشل إضافة الاقتران (الخادم أعاد {0})، يرجى إعادة المحاولة.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>عنوان غير صالح</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>لاحظ أن التطبيق سيعيد التشغيل عند إيقاف التشغيل، وهذا طبيعي</value>
+    <value>لاحظ أنه عند إيقاف التشغيل، سيتم إعادة تشغيل التطبيق، وهذا أمر طبيعي</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>لا تظهر مرة أخرى</value>
@@ -235,19 +238,19 @@
     <value>تم تغيير المنفذ</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>لاحظ أن رقم المنفذ الحالي قد تغير، والمنفذ الحالي هو {0}[line] يرجى إدخال عنوان IP ورقم المنفذ يدويًا على الطرف الآخر</value>
+    <value>لاحظ أن رقم المنفذ الحالي قد تغير، المنفذ الحالي هو {0}[line]الرجاء إدخال عنوان IP ورقم المنفذ يدويًا على الطرف الآخر</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
-    <value>جرب إعادة تشغيل التطبيق</value>
+    <value>حاول إعادة تشغيل التطبيق</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>تكوين وتشغيل الخلفية</value>
+    <value>تكوين وتشغيل الواجهة الخلفية</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
-    <value>تجاهل الأخطاء واستمر في التشغيل</value>
+    <value>تجاهل الأخطاء والمتابعة</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
     <value>غلاف ألبوم الوسائط</value>
@@ -263,5 +266,20 @@
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>معلومات الوسائط من {0}:</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>نحن نقوم بتقسيم وترحيل الواجهة الخلفية إلى التطبيق نفسه وإلى AudioClone، مما سيؤدي إلى تحسين كبير في الأداء وإضافة المزيد من الميزات. [line] إذا كنت ترغب في تجربة الواجهة الخلفية الجديدة، يمكنك تمكينها، ولكن هذا يتطلب منك تحديث جميع العملاء. يمكنك دائمًا تبديل هذه الميزة من خلال "الإعدادات - إعدادات الواجهة الخلفية - استخدام الواجهة الخلفية القديمة".</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>لقد قمت بتمكين خلفية جديدة، لذلك نوصي بتحديث جميع العملاء. إذا كنت لا ترغب في التحديث، يمكنك أيضًا تعطيل هذه الميزة في "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>لا تذكرني مرة أخرى</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>يبدو أن هناك مشكلة في برامج الترميز في نظامك مما تسبب في توقف تدفق الصوت، يرجى محاولة استخدام الصوت الخام (إذا كان متاحًا)</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>لاحظ ما يلي: [line]الإصدارات القديمة من العميل توفر دعمًا محدودًا للإصدارات الجديدة، لذا يُفضل تحديث جميع العملاء. [line]بعد تفعيل الخلفية الجديدة هنا، على الرغم من أن سجلات الاقتران بين الخلفية الجديدة والقديمة ستتزامن، قد تحتاج إلى إعادة الاقتران يدويًا. [line]حاليًا، بعض الميزات غير متوفرة عند استخدام الخلفية الجديدة. [line]يمكنك التبديل بين الإصدارات في أي وقت من خلال "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
   </data>
 </root>

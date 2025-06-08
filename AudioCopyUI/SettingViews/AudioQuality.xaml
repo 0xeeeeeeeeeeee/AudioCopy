@@ -12,7 +12,8 @@
     <Grid Padding="12">
         <StackPanel>
             <TextBlock x:Uid="Setting_AudioFromat" FontSize="28px" ></TextBlock>
-            <TextBlock Margin="0,15,0,0" FontSize="16px" x:Name="defaultAudioQualityBlock" ></TextBlock>
+           <!-- <TextBlock Margin="0,15,0,0" FontSize="16px" x:Name="defaultAudioQualityBlock" ></TextBlock> -->
+            <TextBlock x:Uid="/Setting/AudioQuality_NotAvailable" Margin="0,0,0,5" FontSize="18px" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
 
             <StackPanel Orientation="Vertical" Spacing="0">
                 <RadioButton x:Name="resampleOption_1" Margin="1"  Click="resampleOption_Click">

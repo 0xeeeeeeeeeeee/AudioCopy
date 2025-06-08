@@ -66,13 +66,13 @@
     <value>канал</value>
   </data>
   <data name="AudioQuality_Option1.Text" xml:space="preserve">
-    <value>не передискретизировать (использовать качество звука, заданное в системе)</value>
+    <value>Не передискретизировать (использовать качество звука из системных настроек)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>Если необходимо записать аудио с разрядностью более 16 бит, используйте опции предустановленной или пользовательской частоты дискретизации.</value>
+    <value>Если необходимо записывать аудио с глубиной битности более 16 бит, используйте опцию предустановленной или пользовательской частоты дискретизации</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
-    <value>использовать предустановленную конфигурацию ресемплинга</value>
+    <value>Использовать предустановленную конфигурацию ресемплинга</value>
   </data>
   <data name="AudioQuality_Option3.Text" xml:space="preserve">
     <value>Пользовательская конфигурация ресемплинга</value>
@@ -81,13 +81,10 @@
     <value>Размер буфера RAW-аудио</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
-    <value>частота дискретизации</value>
-  </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(Поддерживает потоковое вещание в формате MP3)</value>
+    <value>Частота дискретизации</value>
   </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
-    <value>{0} каналов, {1} бит, {2} Гц</value>
+    <value>{0} канал, {1} бит, {2} Гц</value>
   </data>
   <data name="AudioQuality_Current" xml:space="preserve">
     <value>Текущее качество звука:</value>
@@ -96,7 +93,7 @@
     <value>Качество звука недоступно, проверьте серверную часть</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Настройки серверной части</value>
+    <value>Настройки сервера</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>IP-адрес для привязки (оставьте пустым для любого адреса)</value>
@@ -108,10 +105,10 @@
     <value>Разрешить сопряжение с адресами вне локальной сети (включая loopback-адреса)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
-    <value>Настроить серверную часть для среды разработки (только для разработки, не использовать в рабочей среде)</value>
+    <value>Настройте серверную часть для среды разработки (только для разработки, не используйте в рабочей среде)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
-    <value>Пользовательские переменные окружения для бэкенда (используйте с осторожностью, могут привести к непредвиденным рискам) Пример: key1=value1,key2=value2,...</value>
+    <value>Пользовательские переменные окружения для бэкенда (используйте с осторожностью, могут привести к неизвестным рискам) Пример: key1=value1,key2=value2,...</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
     <value>Версия серверной части:</value>
@@ -126,22 +123,22 @@
     <value>Отключить пользовательскую конфигурацию</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>О</value>
+    <value>О программе</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Авторские права 0xeeeeeeeeeeee (0x12e) 2025.[line]Часть кода проекта взята из "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), идея также принадлежит этому проекту.[line]Проект лицензирован под GNU GPLv2 - подробности см. в лицензии (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Отладочная информация:[line]Каталог данных: {1}[line][line]Настройки:[line]{2}[line][line]Последний путь к логу:[line]{3}</value>
+    <value>AudioCopy {0} Авторские права 0xeeeeeeeeeeee (0x12e) 2025.[line]В будущем будет построен на основе компонента AudioClone.[line]Часть кода проекта взята из "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), идея также принадлежит ему.[line]Проект распространяется под лицензией GNU GPLv2 - подробности см. в лицензии (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Отладочная информация:[line]Каталог данных: {1}[line][line]Настройки:[line]{2}[line][line]Последний путь к логу:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Политика конфиденциальности</value>
   </data>
   <data name="AdvancedSetting_Title.Text" xml:space="preserve">
-    <value>Расширенные настройки</value>
+    <value>Дополнительные настройки</value>
   </data>
   <data name="AdvancedSetting_Sure" xml:space="preserve">
     <value>Вы уверены, что хотите это сделать?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>Отображение адресов вне локальной сети и виртуальных сетевых адаптеров в интерфейсе "Сопряжение"</value>
+    <value>Отображение нелокальных адресов и виртуальных сетевых карт в интерфейсе "Сопряжение"</value>
   </data>
   <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
     <value>Всегда разрешать воспроизведение MP3-потоков</value>
@@ -168,60 +165,72 @@
     <value>Сбросить все настройки</value>
   </data>
   <data name="Setting_AudioQuality.Text" xml:space="preserve">
-    <value>Качество звука</value>
+    <value>Настройки качества звука</value>
   </data>
   <data name="Setting_Backend.Text" xml:space="preserve">
-    <value>Настройки серверной части</value>
+    <value>Настройки сервера</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
-    <value>Общий</value>
+    <value>Общие</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
     <value>Сброшено, перезапустите приложение</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>Все сопряжения станут недействительными. Вы уверены, что хотите продолжить?</value>
+    <value>Все сопряжения станут недействительными, вы уверены, что хотите продолжить?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
     <value>Готово. Если проблемы сохраняются, попробуйте обновить или полностью сбросить бэкенд[line]В некоторых случаях может потребоваться перезапуск приложения</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>Перезапустите для применения изменений</value>
+    <value>Перезапустить сервер для применения изменений</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
     <value>Эти настройки очень опасны, вы уверены, что хотите их установить?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>Возникла проблема с настройками, исправьте. ({0})</value>
+    <value>В параметрах, похоже, есть проблема, исправьте. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
-    <value>Универсальный</value>
+    <value>Общий</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>Пожалуйста, посмотрите ниже и нажмите "Сбросить"</value>
+    <value>Пожалуйста, посмотрите ниже, нажмите сброс</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>Скачать полную версию AudioCopy</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
-    <value>Это приложение является приемником. Для настройки дополнительных параметров перейдите в передатчик.</value>
+    <value>Это приложение является приемником. Для настройки дополнительных параметров перейдите к передатчику.</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
-    <value>Откройте ссылку на компьютере:</value>
+    <value>Открыть ссылку на компьютере:</value>
   </data>
   <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
     <value>Открыть в браузере</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Применяются настройки локализации, пожалуйста, подождите, не закрывайте это окно и не взаимодействуйте с приложением.\r\n[line]\r\nПриложение может запускаться несколько раз, это нормально.</value>
+    <value>Применяются настройки локализации, пожалуйста, подождите, не закрывайте это окно и не взаимодействуйте с приложением.[line]Приложение может запускаться несколько раз, это нормально.</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>Просмотр журнала</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
-    <value>последний</value>
+    <value>Последние</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>несинхронизированная медиаинформация от удаленной стороны</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>Включить Swagger для нового бэкенда (только для разработки, не использовать в продакшене)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>Использовать старый бэкенд</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>Поскольку мы разделили бэкенд между самим приложением и AudioClone, эти настройки скоро будут устаревшими, и следующие настройки не будут работать с новым бэкендом.</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>Предупреждение: эти настройки в настоящее время не действуют для нового бэкенда и всегда будут использовать опцию «Без ресемплинга (использовать качество звука системы)».</value>
   </data>
 </root>

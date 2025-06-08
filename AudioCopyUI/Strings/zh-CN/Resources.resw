@@ -208,6 +208,9 @@
   <data name="Accept" xml:space="preserve">
     <value>好的</value>
   </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
+    <value>好的</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -269,7 +272,7 @@
     <value>检测到来自{0}的配对请求，是否添加？</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>检测到来自{0}的配对请求，是否添加？</value>
+    <value>要和{0}配对吗？</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>配对已添加成功！</value>
@@ -278,7 +281,7 @@
     <value>成功</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>添加配对失败，请重试。</value>
+    <value>添加配对失败(服务器返回了{0})，请重试。</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>地址无效</value>
@@ -321,5 +324,20 @@
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>来自{0}的媒体信息：</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>我们正在拆分并迁移后端到应用程序本身和AudioClone中，这样可以大幅度的提升性能，以及带来更多的功能。[line]如果你想试试看新的后端，你可以启用它，但是此操作需要你升级所有的客户端。你可以随时在「设置-后端设置-使用旧的后端」来开关此功能。</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>你启用了新的后端，因此你我们建议你升级所有的客户端。如果你不想升级，你也可以在「设置-后端设置-使用旧的后端」来禁用此功能。</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>不再提示我</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>你的系统编解码器似乎有点问题导致了音频流卡住，请尝试使用RAW音频（如果可用）</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>请注意：[line]旧版本的客户端对新版本的支持有限，最好升级所有的客户端。[line]在这里启用了新的后端之后，虽然新后端和就后端的配对记录会同步，但是可能需要你手动再次配对。[line]目前使用新后端时部分功能不可用。[line]你可以随时在「设置-后端设置-使用旧的后端」来切换版本。</value>
   </data>
 </root>

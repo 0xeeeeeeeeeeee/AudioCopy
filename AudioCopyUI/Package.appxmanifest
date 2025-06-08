@@ -11,7 +11,7 @@
   <Identity
     Name="0xeeeeeeeeeeee.AudioCopy"
     Publisher="CN=0AD263CD-E10E-4A8B-A187-25C0A41C69D7"
-    Version="1.2.0.0" />
+    Version="2.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="aa229465-9839-4956-a25c-57173ecc1dad" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

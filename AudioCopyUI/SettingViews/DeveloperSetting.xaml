@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="AudioCopyUI.SettingViews.DeveloperSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudioCopyUI.SettingViews"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid Padding="12">
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="设置"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="8">
+                    <ComboBox x:Name="SettingsComboBox"
+                              Width="200"
+                              DisplayMemberPath="Key"
+                              SelectedValuePath="Key"
+                              SelectionChanged="SettingsComboBox_SelectionChanged"/>
+                    <Button Content="删除" Click="DeleteSetting_Click" Margin="0,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="8" Margin="0,8,0,0">
+                    <TextBox x:Name="SettingValueTextBox" Width="200" PlaceholderText="设置值"/>
+                    <Button Content="修改" Click="ModifySetting_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="8" Margin="0,8,0,0">
+                    <TextBox x:Name="NewSettingKeyTextBox" Width="100" PlaceholderText="新建设置名"/>
+                    <TextBox x:Name="NewSettingValueTextBox" Width="100" PlaceholderText="新建设置值"/>
+                    <Button Content="添加" Click="AddSetting_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <CheckBox Content="禁用V1配对兼容性" x:Name="V1PairingCheckBox" Click="OptionsChanged" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="OverrideCloneAddress" Width="Auto" HorizontalAlignment="Left" MaxWidth="250" PlaceholderText="覆盖AudioClone的端口"/>
+                <TextBox x:Name="OverrideCloneToken" Width="Auto" HorizontalAlignment="Left" MaxWidth="250" PlaceholderText="覆盖AudioClone的Token"/>
+                <Button Content="覆盖" Click="OverrideCloneAddress_Click" Margin="8,0,0,0"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        
+    </Grid>
+</Page>
