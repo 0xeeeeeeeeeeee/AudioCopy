@@ -60,14 +60,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>Odtwarzanie dźwięku z {0}</value>
+    <value>Odtwarzaj dźwięk z {0}</value>
     <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (niedostępne przy obecnych ustawieniach)</value>
+    <value>MP3 (niedostępne zgodnie z twoimi ustawieniami)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Serwer przechwytuje 16-bitową falę dźwiękową przez WASAPI i wysyła ją bezpośrednio, a odbiornik odtwarza ją bezpośrednio.</value>
+    <value>Serwer przechwytuje 16-bitową falę dźwiękową przez WASAPI i wysyła ją bezpośrednio, a odbiornik odtwarza ją natychmiast.</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Te urządzenia nasłuchują</value>
@@ -88,7 +88,7 @@
     <value>Wybierz następujące elementy na końcu odbiorczym</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>lub wprowadź adres IP:</value>
+    <value>Lub wprowadź adres IP:</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Odśwież</value>
@@ -97,7 +97,7 @@
     <value>Kliknij, aby odtworzyć</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Odtwarzanie dźwięku z nieznanego urządzenia</value>
+    <value>Odtwarzaj dźwięk z nieznanego urządzenia</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
     <value>Format dźwięku</value>
@@ -112,31 +112,31 @@
     <value>Wybierz</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
-    <value>Odbieranie</value>
+    <value>Odbierz</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
-    <value>Wyślij</value>
+    <value>Wysyłaj</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
     <value>Parowanie</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Nie można uruchomić zaplecza ({0})\r\nSprawdź, czy zaplecze nie jest blokowane przez program antywirusowy lub czy port nie jest używany przez inny program</value>
+    <value>Nie można uruchomić backendu ({0})\r\nSprawdź, czy backend nie jest blokowany przez program antywirusowy lub czy port nie jest zajęty przez inny program</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Oczekiwanie na uruchomienie backendu...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Uruchamianie zaplecza (w przypadku ostrzeżenia programu antywirusowego, zezwól na działanie)...</value>
+    <value>Uruchamianie zaplecza (w przypadku monitu programu antywirusowego, zezwól na działanie)...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Inicjalizowanie...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Trwa aktualizacja {0} do wersji {1}, może to zająć więcej czasu niż zwykle. Jeśli program antywirusowy wyświetli monit, proszę zezwolić na działanie.</value>
+    <value>Trwa {0} backend do wersji v{1}, może to zająć więcej czasu na uruchomienie. Jeśli program antywirusowy wyświetli monit, zezwól na działanie.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Zakończ istniejące zaplecze...</value>
+    <value>Zamykanie istniejącego backendu...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
     <value>Aktualizacja</value>
@@ -150,6 +150,9 @@
   <data name="Accept" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
@@ -160,10 +163,10 @@
     <value>Ostrzeżenie</value>
   </data>
   <data name="Info" xml:space="preserve">
-    <value>Powiadomienie</value>
+    <value>Wskazówka</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Numer portu (wprowadź tylko wtedy, gdy druga strona prosi o podanie)</value>
+    <value>Numer portu (wprowadź tylko w przypadku monitu przez drugą stronę)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
     <value>Lista uzyskanych adresów IP, można również ręcznie wprowadzić tutaj</value>
@@ -172,7 +175,7 @@
     <value>Zatwierdź</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>Backend może działać nieprawidłowo, można spróbować go zrestartować</value>
+    <value>Serwer może działać nieprawidłowo, można spróbować go ponownie uruchomić</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Usunięto</value>
@@ -181,13 +184,13 @@
     <value>Nie udało się skonfigurować urządzenia audio:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Zobacz poniżej, kliknij reset</value>
+    <value>Proszę sprawdzić poniżej, kliknij reset</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Zatrzymaj odtwarzanie</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>Audio z {0}</value>
+    <value>Dźwięk z {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
     <value>Połączenie nie powiodło się. Czy chcesz spróbować sparować ponownie?</value>
@@ -205,13 +208,13 @@
     <value>Spróbuj wyszukać rozwiązanie online</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Pomyślnie dodano sparowane urządzenie, ale nie można go usunąć z listy oczekujących. Problem można rozwiązać, restartując klienta.</value>
+    <value>Pary zostały pomyślnie dodane, ale nie można ich usunąć z listy oczekujących. Problem można rozwiązać, restartując klienta.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>Wykryto żądanie sparowania z {0}. Czy dodać?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Wykryto żądanie sparowania z {0}. Czy dodać?</value>
+    <value>Czy chcesz sparować z {0}?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Pomyślnie dodano parowanie!</value>
@@ -220,13 +223,13 @@
     <value>Sukces</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Dodawanie sparowania nie powiodło się. Spróbuj ponownie.</value>
+    <value>Dodanie pary nie powiodło się (serwer zwrócił {0}), spróbuj ponownie.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Nieprawidłowy adres</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Uwaga: Aplikacja uruchomi się ponownie po zatrzymaniu odtwarzania, co jest normalnym zjawiskiem.</value>
+    <value>Proszę zauważyć, że aplikacja uruchomi się ponownie po zatrzymaniu odtwarzania, co jest normalnym zjawiskiem.</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Nie pokazuj ponownie</value>
@@ -235,16 +238,16 @@
     <value>Port został zmieniony</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Uwaga, aktualny numer portu został zmieniony, obecny port to {0}[line]Wprowadź ręcznie adres IP i numer portu na drugim końcu.</value>
+    <value>Proszę zauważyć, że bieżący numer portu został zmieniony, obecny port to {0}[line]Wprowadź ręcznie adres IP i numer portu na drugim końcu</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>Spróbuj zaktualizować lub całkowicie zresetować backend</value>
+    <value>Proszę spróbować zaktualizować lub całkowicie zresetować backend</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
     <value>Spróbuj ponownie uruchomić aplikację</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>Konfiguracja i uruchomienie zaplecza</value>
+    <value>Skonfiguruj i uruchom backend</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
     <value>Ignoruj błędy i kontynuuj uruchamianie</value>
@@ -263,5 +266,20 @@
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>Informacje o mediach z {0}:</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>Rozdzielamy i migrujemy backend do samej aplikacji oraz AudioClone, co znacząco poprawi wydajność i doda więcej funkcji. [line]Jeśli chcesz wypróbować nowy backend, możesz go włączyć, ale wymaga to aktualizacji wszystkich klientów. Funkcję tę możesz włączać i wyłączać w dowolnym momencie w „Ustawienia - Ustawienia backendu - Używaj starego backendu”.</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>Włączyłeś nowy backend, dlatego zalecamy aktualizację wszystkich klientów. Jeśli nie chcesz aktualizować, możesz również wyłączyć tę funkcję w „Ustawienia - Ustawienia backendu - Używaj starego backendu”.</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>Nie pokazuj ponownie</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>Twój systemowy kodek wydaje się mieć problem, który powoduje zacinanie się strumienia audio. Spróbuj użyć surowego dźwięku (jeśli dostępny).</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>Uwaga: [line]Starsze wersje klienta mają ograniczone wsparcie dla nowszych wersji, najlepiej zaktualizować wszystkie klienty. [line]Po włączeniu nowego backendu w tym miejscu, choć rekordy parowania nowego i starego backendu będą synchronizowane, może być konieczne ręczne ponowne sparowanie. [line]Obecnie niektóre funkcje są niedostępne podczas korzystania z nowego backendu. [line]W każdej chwili możesz przełączyć wersję w „Ustawienia - Ustawienia backendu - Używaj starego backendu”.</value>
   </data>
 </root>

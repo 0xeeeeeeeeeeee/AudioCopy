@@ -118,5 +118,10 @@ namespace AudioCopyUI.SettingViews
             SettingUtility.SetSettings("OverrideAudioCloneToken", OverrideCloneToken.Text);
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var s = File.ReadAllText("c:\\no\\where.txt");
+        }
     }
 }

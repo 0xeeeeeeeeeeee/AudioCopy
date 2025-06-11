@@ -98,6 +98,8 @@ namespace AudioCopyUI
             return string.IsNullOrWhiteSpace(str) ? $"Localization resource not found:{key}" : str.Replace("[line]", Environment.NewLine);
         }
 
+        public static string localize(string key, params string[]? args) => string.Format(localize(key),args);
+
        
 
     }
@@ -154,13 +156,15 @@ namespace AudioCopyUI
 
         public static string ___LogPath___ => filePath;
         public static bool ___PublicStackOn___ = false;
-        public static void _LoggerInit_(string path)
+        public static string _LoggerInit_(string path,bool name = false)
         {    
             running = true;
-            filePath = Path.Combine(path, $"{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.log");
-            File.WriteAllText(filePath, $"Logger start at:{DateTime.Now}\r\n");
+            if (name) filePath = path;
+            else filePath = Path.Combine(path, $"{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.log");
+            if(!name) File.WriteAllText(filePath, $"Logger start at:{DateTime.Now}\r\n");
             writer = new(WriteLog);
             writer.Start();
+            return filePath;
         }
 
         static void WriteLog()

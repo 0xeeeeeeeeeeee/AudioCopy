@@ -60,17 +60,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>{0}'dan ses çal</value>
+    <value>{0} sesini çal</value>
     <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (yapılandırmanıza göre şu anda kullanılamıyor)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Sunucu, wasapi'den 16bit dalga formunu toplar ve doğrudan gönderir, ardından alıcı doğrudan çalar.</value>
+    <value>Sunucu, WASAPI'den 16 bit dalga formunu toplar ve doğrudan gönderir, alıcı ise doğrudan çalar.</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
-    <value>Bu cihazlar dinleme yapıyor</value>
+    <value>Bu cihazlar dinlemede</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
     <value>Dinlenecek cihazı seç</value>
@@ -79,7 +79,7 @@
     <value>Eşleştirilmiş cihazlar:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>Alıcı uç olarak</value>
+    <value>Alıcı taraf olarak</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Gönderici olarak</value>
@@ -88,7 +88,7 @@
     <value>Alıcı tarafında aşağıdakileri seçin</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>veya IP adresini girin:</value>
+    <value>veya IP adresi girin:</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Yenile</value>
@@ -100,16 +100,16 @@
     <value>Bilinmeyen bir cihazdan ses çal</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
-    <value>ses formatı</value>
+    <value>Ses biçimi</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>birini seç</value>
+    <value>Birini seç</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>Uygulama</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Birini seç</value>
+    <value>Birini seçin</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>Alma</value>
@@ -118,13 +118,13 @@
     <value>Gönder</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
-    <value>Eşleştir</value>
+    <value>Eşleştirme</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
     <value>Arka uç başlatılamadı ({0})\r\nLütfen arka ucun antivirüs yazılımı tarafından engellenip engellenmediğini veya bağlantı noktasının başka bir program tarafından kullanılıp kullanılmadığını kontrol edin</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>Arka uç başlatılırken bekleniyor...</value>
+    <value>Arka uç başlatılmayı bekliyor...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
     <value>Arka uç başlatılıyor (antivirüs uyarısı verirse izin verin)...</value>
@@ -133,13 +133,13 @@
     <value>Başlatılıyor...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>{0} arka ucu v{1} sürümüne yükseltiliyor, başlatma daha uzun sürebilir. Antivirüs uyarısı alırsanız izin verin.</value>
+    <value>{0} arka ucu v{1} sürümüne güncelleniyor, başlatma daha uzun sürebilir, antivirüs uyarısı alırsanız izin verin.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Mevcut arka uç sonlandırılıyor...</value>
+    <value>Mevcut arka ucu sonlandır...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>yükseltme</value>
+    <value>Yükseltme</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Kurulum</value>
@@ -148,6 +148,9 @@
     <value>{0} sırasında {1} hatası oluştu: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
     <value>Tamam</value>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -163,37 +166,37 @@
     <value>İpucu</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Port numarası (sadece karşı taraf giriş istediğinde girin)</value>
+    <value>Port numarası (sadece karşı taraf istediğinde girin)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Alınan IP adresi listesi, buraya da manuel olarak girilebilir</value>
+    <value>Alınan IP adresleri listesi, buraya elle de girilebilir</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Gönder</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>Arka uç düzgün çalışmayabilir, yeniden başlatmayı deneyebilirsiniz.</value>
+    <value>Arka uç düzgün çalışmayabilir, yeniden başlatmayı deneyebilirsiniz</value>
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>silindi</value>
+    <value>Silindi</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
     <value>Ses aygıtı ayarlanamadı:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Aşağıda görüntüleyin, sıfırlamak için tıklayın</value>
+    <value>Lütfen aşağıya bakın, sıfırlamak için tıklayın</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Oynatmayı durdur</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>{0} sesi dosyası</value>
+    <value>{0} sesi</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
     <value>Bağlantı başarısız, yeniden eşleştirmeyi denemek ister misiniz?</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>Eşleşme yapmadınız, eşleşmek ister misiniz?</value>
+    <value>Henüz eşleşmediniz, eşleşmek ister misiniz?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Arka uç yapılandırmanız bu işleme izin vermiyor, ayarlardan değiştirebilirsiniz.</value>
@@ -205,13 +208,13 @@
     <value>Çözüm için çevrimiçi arama yapmayı deneyin</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Eşleştirme başarıyla eklendi, ancak eşleştirme bekleyenler listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
+    <value>Eşleştirme başarıyla eklendi, ancak bekleme listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>{0} ile eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
+    <value>{0} eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>{0} eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
+    <value>{0} ile eşleştirmek istiyor musunuz?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Eşleştirme başarıyla eklendi!</value>
@@ -220,13 +223,13 @@
     <value>Başarılı</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Eşleştirme eklenemedi, lütfen tekrar deneyin.</value>
+    <value>Eşleştirme eklenemedi (sunucu {0} döndürdü), lütfen tekrar deneyin.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Geçersiz adres</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Lütfen unutmayın, uygulama oynatmayı durdurduğunuzda yeniden başlayacaktır, bu normal bir durumdur.</value>
+    <value>Lütfen unutmayın, oynatmayı durdurduğunuzda uygulama yeniden başlayacaktır, bu normal bir durumdur</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Bir daha gösterme</value>
@@ -235,7 +238,7 @@
     <value>Port değiştirildi</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Lütfen dikkat, mevcut port numarası değiştirildi, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
+    <value>Lütfen dikkat, mevcut port numarası değişti, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Lütfen arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin</value>
@@ -253,7 +256,7 @@
     <value>Medya albüm kapağı</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
-    <value>Bilinmeyen medya</value>
+    <value>Bilinmeyen ortam</value>
   </data>
   <data name="MediaInfo_Artist.Text" xml:space="preserve">
     <value>Bilinmeyen Sanatçı</value>
@@ -262,6 +265,21 @@
     <value>Bilinmeyen Albüm</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
-    <value>{0} medya bilgileri:</value>
+    <value>{0} medya bilgisi:</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>Arka ucu uygulamanın kendisine ve AudioClone'a bölüp taşıyoruz, bu da performansı büyük ölçüde artıracak ve daha fazla özellik sunacak.[line]Yeni arka ucu denemek isterseniz, etkinleştirebilirsiniz, ancak bu işlem tüm istemcilerinizi güncellemenizi gerektirir. Bu özelliği istediğiniz zaman "Ayarlar-Arka Uç Ayarları-Eski Arka Ucu Kullan" seçeneğinden açıp kapatabilirsiniz.</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>Yeni bir arka uç etkinleştirdiğiniz için tüm istemcileri güncellemenizi öneririz. Güncelleme yapmak istemiyorsanız, "Ayarlar - Arka Uç Ayarları - Eski Arka Ucunu Kullan" seçeneğiyle bu özelliği devre dışı bırakabilirsiniz.</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>Bana bir daha hatırlatma</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>Sistem kod çözücünüzde görülen bir sorun nedeniyle ses akışı takılıyor gibi görünüyor, lütfen RAW sesi (eğer mevcutsa) kullanmayı deneyin</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>Lütfen dikkat edin: [line]Eski sürüm istemcilerinin yeni sürüm desteği sınırlıdır, tüm istemcileri güncellemeniz önerilir.[line]Burada yeni arka uç etkinleştirildikten sonra, yeni ve eski arka uçların eşleşme kayıtları senkronize edilse de, manuel olarak tekrar eşleştirme yapmanız gerekebilir.[line]Şu anda yeni arka uç kullanılırken bazı işlevler kullanılamaz.[line]Sürümler arasında geçiş yapmak için istediğiniz zaman "Ayarlar-Arka Uç Ayarları-Eski Arka Ucu Kullan" seçeneğini kullanabilirsiniz.</value>
   </data>
 </root>

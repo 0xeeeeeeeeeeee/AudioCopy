@@ -67,28 +67,28 @@
     <value>MP3 (indisponible selon votre configuration actuelle)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Le serveur collecte une forme d'onde 16 bits via WASAPI et l'envoie directement, puis le récepteur la lit immédiatement</value>
+    <value>Le serveur capture une forme d'onde 16 bits via WASAPI et l'envoie directement, puis le récepteur la lit immédiatement</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
-    <value>Ces appareils écoutent</value>
+    <value>Ces appareils sont en écoute</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
     <value>Sélectionnez l'appareil à écouter</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
-    <value>Appareils appariés :</value>
+    <value>Appareils appairés :</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
     <value>En tant que récepteur</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
-    <value>En tant qu'émetteur</value>
+    <value>En tant qu'expéditeur</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Sélectionnez les éléments suivants côté réception</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>Ou saisissez une adresse IP :</value>
+    <value>ou saisissez une adresse IP :</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Actualiser</value>
@@ -97,22 +97,22 @@
     <value>Cliquez pour jouer</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Lecture audio depuis un appareil inconnu</value>
+    <value>Diffuser l'audio d'un appareil inconnu</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
-    <value>format audio</value>
+    <value>Format audio</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
     <value>Choisir un</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
-    <value>application</value>
+    <value>Application</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Choisir</value>
+    <value>Choisir un</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
-    <value>recevoir</value>
+    <value>Recevoir</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
     <value>Envoyer</value>
@@ -121,7 +121,7 @@
     <value>Jumelage</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Échec du démarrage du backend ({0})\r\nVeuillez vérifier si le backend est bloqué par un antivirus ou si le port est utilisé par un autre programme</value>
+    <value>Échec du démarrage du backend ({0})\r\nVérifiez si le backend est bloqué par un antivirus ou si le port est utilisé par un autre programme</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>En attente du démarrage du backend...</value>
@@ -133,21 +133,24 @@
     <value>Initialisation en cours...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Connexion au backend {0} en cours vers v{1}, cela peut prendre plus de temps pour démarrer. Si votre antivirus affiche une alerte, veuillez l'autoriser.</value>
+    <value>Connexion au backend {0} en version v{1}, cela peut prendre plus de temps pour démarrer. Si votre antivirus affiche une alerte, veuillez l'autoriser.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Fin de la session backend en cours...</value>
+    <value>Arrêt du backend en cours...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
     <value>Mise à niveau</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
-    <value>installation</value>
+    <value>Installation</value>
   </data>
   <data name="LogAndDialogue_Content" xml:space="preserve">
     <value>Une erreur {1} s'est produite à {0} : [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
+    <value>D'accord</value>
+  </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
     <value>D'accord</value>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -166,7 +169,7 @@
     <value>Numéro de port (à saisir uniquement si demandé par l'autre extrémité)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Liste des adresses IP obtenues, vous pouvez également les saisir manuellement ici</value>
+    <value>Liste des adresses IP obtenues, peut également être saisie manuellement ici</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Soumettre</value>
@@ -181,7 +184,7 @@
     <value>Échec de la configuration du périphérique audio :</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Veuillez consulter ci-dessous, cliquez sur réinitialiser</value>
+    <value>Veuillez consulter ci-dessous, cliquez sur Réinitialiser</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Arrêter la lecture</value>
@@ -193,13 +196,13 @@
     <value>Échec de la connexion. Voulez-vous essayer de réapparier ?</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>Vous n'êtes pas encore jumelé, voulez-vous le faire ?</value>
+    <value>Vous n'êtes pas encore jumelé, voulez-vous vous jumeler ?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>Votre configuration back-end ne permet pas cette opération, vous pouvez la modifier dans les paramètres.</value>
+    <value>Votre configuration back-end ne permet pas cette opération. Vous pouvez la modifier dans les paramètres.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Connexion expirée, veuillez vérifier l'adresse ou en essayer une autre.</value>
+    <value>Connexion expirée, vérifiez l'adresse ou changez d'adresse.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Essayer de rechercher une solution en ligne</value>
@@ -208,10 +211,10 @@
     <value>L'appariement a été ajouté avec succès, mais il n'a pas pu être supprimé de la liste d'appariement en attente. Vous pouvez résoudre ce problème en redémarrant le client.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>Détecté une demande d'appariement de {0}, ajouter ?</value>
+    <value>Détection d'une demande d'appariement de {0}, ajouter ?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Détection d'une demande d'appariement de {0}, ajouter ?</value>
+    <value>Voulez-vous jumeler avec {0} ?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Appariement ajouté avec succès !</value>
@@ -220,28 +223,28 @@
     <value>Succès</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Échec de l'appariement, veuillez réessayer.</value>
+    <value>Échec de l'ajout de la paire (le serveur a renvoyé {0}), veuillez réessayer.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Adresse invalide</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Veuillez noter que l'application redémarre lorsque vous arrêtez la lecture, ce qui est normal.</value>
+    <value>Veuillez noter que l'application redémarrera lorsque vous arrêterez la lecture, ce qui est normal.</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Ne plus afficher</value>
   </data>
   <data name="PairPortChanged.Title" xml:space="preserve">
-    <value>Le port a été modifié</value>
+    <value>Port modifié</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Veuillez noter que le numéro de port actuel a changé, le port actuel est {0}[line]Veuillez saisir manuellement l'adresse IP et le numéro de port à l'autre extrémité</value>
+    <value>Veuillez noter que le numéro de port actuel a changé, le port actuel est {0}[line]Veuillez saisir manuellement l'adresse IP et le numéro de port sur l'extrémité distante</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>Veuillez essayer de mettre à jour ou de réinitialiser complètement le backend.</value>
+    <value>Veuillez essayer de mettre à jour ou de réinitialiser complètement le backend</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
-    <value>Essayez de redémarrer l'application</value>
+    <value>Essayer de redémarrer l'application</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
     <value>Configurer et démarrer le backend</value>
@@ -262,6 +265,21 @@
     <value>Album inconnu</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
-    <value>Informations média de {0} :</value>
+    <value>Message média de {0} :</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>Nous sommes en train de séparer et migrer le backend vers l'application elle-même et AudioClone, ce qui améliorera considérablement les performances et offrira plus de fonctionnalités. [line]Si vous souhaitez essayer le nouveau backend, vous pouvez l'activer, mais cette opération nécessite la mise à jour de tous les clients. Vous pouvez activer ou désactiver cette fonctionnalité à tout moment dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>Vous avez activé un nouveau backend, nous vous recommandons donc de mettre à niveau tous les clients. Si vous ne souhaitez pas effectuer la mise à niveau, vous pouvez également désactiver cette fonctionnalité dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>Ne plus me le rappeler</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>Votre codec système semble avoir un problème qui bloque le flux audio, essayez d'utiliser l'audio RAW (si disponible)</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>Veuillez noter : [line]Les anciennes versions du client ont une prise en charge limitée des nouvelles versions, il est préférable de mettre à jour tous les clients. [line]Après avoir activé le nouveau backend ici, bien que les enregistrements d'appairage entre le nouveau et l'ancien backend soient synchronisés, vous devrez peut-être les réappairer manuellement. [line]Certaines fonctionnalités ne sont pas disponibles lors de l'utilisation du nouveau backend. [line]Vous pouvez à tout moment changer de version dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
   </data>
 </root>

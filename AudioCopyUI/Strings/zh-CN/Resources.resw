@@ -340,4 +340,7 @@
   <data name="NewBackendPrompt" xml:space="preserve">
     <value>请注意：[line]旧版本的客户端对新版本的支持有限，最好升级所有的客户端。[line]在这里启用了新的后端之后，虽然新后端和就后端的配对记录会同步，但是可能需要你手动再次配对。[line]目前使用新后端时部分功能不可用。[line]你可以随时在「设置-后端设置-使用旧的后端」来切换版本。</value>
   </data>
+  <data name="CrashReportHeader" xml:space="preserve">
+    <value>AudioCopy v{0} 崩溃报告[line]如果你反复遇到此问题，请提交Issue或者发送此文件到此邮箱地址：hexadecimal0x12e@icloud.com[line]日志文件位于此文件夹下：{1}[line]---</value>
+  </data>
 </root>

@@ -141,9 +141,6 @@
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>采样率</value>
   </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(此格式支持MP3流)</value>
-  </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
     <value>{0} 通道，{1} 位，{2} Hz</value>
   </data>
@@ -187,7 +184,7 @@
     <value>关于</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。[line]该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]调试信息：[line]数据目录： {1}[line][line]设置：[line]{2}[line][line]最新的日志路径：[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]未来将基于AudioClone组件构建。[line]项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。[line]该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]调试信息：[line]数据目录： {1}[line][line]设置：[line]{2}[line][line]最新的日志路径：[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>隐私政策</value>
@@ -244,7 +241,7 @@
     <value>完成，如果还有问题请尝试更新或者完全重置后端[line]在部分情况下，你可能需要重启应用程序</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>重新启动来应用更改</value>
+    <value>重新启动后端来应用更改</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
     <value>这些设置非常危险，你确定要设置他们吗？</value>
@@ -281,5 +278,17 @@
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>不同步来自于对端的媒体信息</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>启用新后端的Swagger (仅供开发，请不要在生产环境下使用)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>使用旧的后端</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>由于我们把后端拆分到了应用程序本身和AudioClone里，这些设置即将被弃用，并且下面这些设置对新的后端均无效。</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>警告：这些设置目前对新的后端无效，将始终「使用不重采样(使用系统配置的音质)」选项。</value>
   </data>
 </root>

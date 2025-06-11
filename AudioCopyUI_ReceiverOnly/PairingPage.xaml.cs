@@ -79,7 +79,7 @@ namespace AudioCopyUI_ReceiverOnly
                     HttpClient c = new HttpClient();
                     c.BaseAddress = new Uri($"http://{item}:{SettingUtility.GetOrAddSettings("defaultPort", "23456")}/");
                     c.Timeout = TimeSpan.FromSeconds(5);
-                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Environment.MachineName}");
+                    var rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Uri.EscapeDataString(Environment.MachineName)}&version=2");
                     if (rsp.IsSuccessStatusCode)
                     {
                         var rspString = await rsp.Content.ReadAsStringAsync();
@@ -87,7 +87,7 @@ namespace AudioCopyUI_ReceiverOnly
                         {
                             if (await ShowDialogue(localize("Info"), string.Format(localize("PairRequired"), rspString.Substring(9)), localize("Accept"), localize("Cancel"), this))
                             {
-                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Environment.MachineName}");
+                                rsp = await c.GetAsync($"/RequirePair?udid={SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128))}&name={Uri.EscapeDataString(Environment.MachineName)}&version=2");
                                 if (rsp.IsSuccessStatusCode)
                                 {
                                     SettingUtility.SetSettings("sourceAddress", c.BaseAddress.ToString());
@@ -95,9 +95,9 @@ namespace AudioCopyUI_ReceiverOnly
                                 }
                                 else if (rsp.StatusCode == HttpStatusCode.BadRequest)
                                 {
-                                    if ((await rsp.Content.ReadAsStringAsync()).Trim() == "源不合法")
+                                    //if (new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd().Trim() == "源不合法")
                                     {
-                                        await ShowDialogue(localize("Info"), localize("BackendNotAllow"), localize("Accept"), null, this);
+                                        await ShowDialogue(localize("Error"), string.Format(localize("PairFailed"), await rsp.Content.ReadAsStringAsync()), localize("Accept"), null, this);
                                     }
 
                                 }

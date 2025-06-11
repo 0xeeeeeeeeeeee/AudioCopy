@@ -60,7 +60,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AudioQuality_Option3_Bits.PlaceholderText" xml:space="preserve">
-    <value>konum</value>
+    <value>bit</value>
   </data>
   <data name="AudioQuality_Option3_Channels.PlaceholderText" xml:space="preserve">
     <value>kanal</value>
@@ -69,22 +69,19 @@
     <value>Yeniden örnekleme yapma (sistem yapılandırmasındaki ses kalitesini kullan)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>16 bit'den daha yüksek bit derinliğine sahip ses kaydetmek istiyorsanız, ön ayarları veya özel örnekleme oranı seçeneklerini kullanın</value>
+    <value>16 bit'den daha yüksek bit derinliğine sahip ses kaydetmek istiyorsanız, ön ayar veya özel örnekleme hızı seçeneklerini kullanın</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Önceden ayarlanmış yeniden örnekleme yapılandırmasını kullan</value>
   </data>
   <data name="AudioQuality_Option3.Text" xml:space="preserve">
-    <value>Özel Örnekleme Yapılandırması</value>
+    <value>Özel Yeniden Örnekleme Yapılandırması</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
-    <value>RAW ses arabellek boyutu</value>
+    <value>HAMİ ses arabellek boyutu</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
-    <value>örnekleme hızı</value>
-  </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(Bu format MP3 akışını destekler)</value>
+    <value>örnekleme oranı</value>
   </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
     <value>{0} kanal, {1} bit, {2} Hz</value>
@@ -96,7 +93,7 @@
     <value>Ses kalitesi kullanılamıyor, lütfen arka ucu kontrol edin</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Arka uç ayarları</value>
+    <value>Arka Uç Ayarları</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>Bağlanacak IP adresi (boş bırakılırsa herhangi bir adres kabul edilir)</value>
@@ -105,10 +102,10 @@
     <value>Bağlanacak port numarası (boş bırakılırsa varsayılan kullanılır)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
-    <value>Yerel olmayan ağ adresleriyle eşleştirmeye izin ver (döngü adresleri dahil)</value>
+    <value>Yerel olmayan LAN adresleriyle eşleştirmeye izin ver (döngü adresleri dahil)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
-    <value>Arka ucu geliştirme ortamı olarak yapılandır (sadece geliştirme için, lütfen üretim ortamında kullanmayın)</value>
+    <value>Arka ucu geliştirme ortamı olarak yapılandır (sadece geliştirme için, lütfen üretim ortamında kullanma)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
     <value>Özel arka uç ortam değişkenleri (Dikkatli kullanın, bilinmeyen risklere yol açabilir) Örnek: key1=value1,key2=value2,...</value>
@@ -129,7 +126,7 @@
     <value>Hakkında</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Telif Hakkı 0xeeeeeeeeeeee (0x12e) 2025.[line]Projenin bazı kodları "Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH) kaynağından alınmıştır ve fikir de buradan esinlenmiştir.[line]Bu proje GNU GPLv2 lisansı ile lisanslanmıştır - detaylar için lisansı inceleyin (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Hata ayıklama bilgileri:[line]Veri dizini: {1}[line][line]Ayarlar:[line]{2}[line][line]Son günlük dosyası yolu:[line]{3}</value>
+    <value>AudioCopy {0} Telif Hakkı 0xeeeeeeeeeeee (0x12e) 2025.[line]Gelecekte AudioClone bileşeni üzerine inşa edilecektir.[line]Projenin bazı kodları "Stream What Your Hear"dan (https://github.com/StreamWhatYouHear/SWYH) alınmıştır ve fikir de buradan gelmektedir.[line]Bu proje GNU GPLv2 lisansı ile lisanslanmıştır - detaylar için lütfen lisansı inceleyin (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Hata ayıklama bilgileri:[line]Veri dizini: {1}[line][line]Ayarlar:[line]{2}[line][line]Son günlük dosyası yolu:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Gizlilik Politikası</value>
@@ -147,7 +144,7 @@
     <value>MP3 akışını her zaman oynatmaya izin ver</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>Arka planın çıkıştan sonra çalışmaya devam etmesine izin ver</value>
+    <value>Arka uç, çıkıştan sonra çalışmaya devam edebilir</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>Başlatma ekranını atla</value>
@@ -171,7 +168,7 @@
     <value>Ses Kalitesi Yapılandırması</value>
   </data>
   <data name="Setting_Backend.Text" xml:space="preserve">
-    <value>Arka uç ayarları</value>
+    <value>Arka plan ayarları</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
     <value>Genel</value>
@@ -180,31 +177,31 @@
     <value>Sıfırlandı, lütfen uygulamayı yeniden başlatın</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>Tüm eşleşmeler geçersiz olacaktır, bunu yapmak istediğinizden emin misiniz?</value>
+    <value>Tüm eşleşmeler geçersiz olacak, bunu yapmak istediğinizden emin misiniz?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
     <value>Tamamlandı, sorun devam ederse arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin[line]Bazı durumlarda uygulamayı yeniden başlatmanız gerekebilir</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>Değişiklikleri uygulamak için yeniden başlatın</value>
+    <value>Değişiklikleri uygulamak için arka ucu yeniden başlat</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
     <value>Bu ayarlar çok tehlikeli, onları ayarlamak istediğinizden emin misiniz?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>Bir sorun gibi görünüyor, lütfen değiştirin. ({0})</value>
+    <value>Seçeneklerde bir sorun var, lütfen düzenleyin. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>Genel</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>Aşağıda görüntüleyin, sıfırlamak için tıklayın</value>
+    <value>Lütfen aşağıya bakın, sıfırlamak için tıklayın</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
-    <value>AudioCopy'nın tam sürümünü indirin</value>
+    <value>AudioCopy'nın Tam Sürümünü İndir</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
-    <value>Bu uygulama alıcı uçtadır, daha fazla ayar için gönderici uca gidin</value>
+    <value>Bu uygulama alıcı uçtur, daha fazla ayar için gönderici uca gidin</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
     <value>Bilgisayarda bağlantıyı aç:</value>
@@ -213,15 +210,27 @@
     <value>Tarayıcıda aç</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Yerelleştirme ayarları uygulanıyor, lütfen bekleyin, bu pencereyi kapatmayın veya uygulamayla etkileşime geçmeyin.[line]Uygulamanın birkaç kez başlatılması normaldir.</value>
+    <value>Yerelleştirme ayarları uygulanıyor, lütfen bekleyin, bu pencereyi kapatmayın veya uygulamayla etkileşime geçmeyin. [line] Uygulamanın birkaç kez başlatılması normaldir.</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>Günlükleri görüntüle</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
-    <value>en yeni</value>
+    <value>son</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>Eş zamanlı olmayan karşı uç medya bilgisi</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>Yeni arka uç için Swagger'ı etkinleştir (sadece geliştirme için, üretim ortamında kullanmayın)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>Eski arka uç kullan</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>Arka ucu uygulamanın kendisine ve AudioClone'a ayırdığımız için bu ayarlar yakında kullanımdan kaldırılacak ve aşağıdaki ayarlar yeni arka uç için geçersiz olacaktır.</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>Uyarı: Bu ayarlar şu anda yeni arka uçlar için geçerli değildir, her zaman "Yeniden örnekleme kullanma (sistem yapılandırmasındaki ses kalitesini kullan)" seçeneği kullanılacaktır.</value>
   </data>
 </root>

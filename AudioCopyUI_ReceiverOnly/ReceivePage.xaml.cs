@@ -60,7 +60,7 @@ namespace AudioCopyUI_ReceiverOnly
         bool playing = false;
         string deviceName = "";
         string ClientToken = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-
+        bool v2 = false;
 
         public ReceivePage()
         {
@@ -84,16 +84,24 @@ namespace AudioCopyUI_ReceiverOnly
                     }
                     else return false;
                 }
-
-                var rsp = await c.GetAsync("/index");
+                var rsp = await c.GetAsync("/index");//v1
                 if (rsp.StatusCode != System.Net.HttpStatusCode.Unauthorized) //no token, should be 401
                 {
-                    if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
+                    rsp = await c.GetAsync("/Detect");//v2
+
+                    if (!rsp.IsSuccessStatusCode)
                     {
-                        this.Frame.Navigate(typeof(PairingPage));
-                        return false;
+                        if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
+                        {
+                            this.Frame.Navigate(typeof(PairingPage));
+                            return false;
+                        }
+                        else return false;
                     }
-                    else return false;
+                    else
+                    {
+                        v2 = true;
+                    }
                 }
 
                 try
@@ -244,7 +252,18 @@ namespace AudioCopyUI_ReceiverOnly
             }
 
             var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-            Uri source = new Uri(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
+            Uri source;
+            if (!v2)
+            {
+                source = new Uri(c.BaseAddress, $"/api/audio/{format}?token={token}&clientName={Environment.MachineName}");
+            }
+            else
+            {
+                var rsp = await c.GetAsync($"/api/device/BootAudioClone?token={token}");
+                var addr = await rsp.Content.ReadAsStringAsync();
+                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr, format, Environment.MachineName);
+                source = new Uri(baseAddr);
+            }
             Log($"Playing at address:{source.ToString()}");
             playButton.Content = localize("StopPlay");
 
@@ -281,8 +300,29 @@ namespace AudioCopyUI_ReceiverOnly
             }
         }
 
-        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        int replayCount = 0;
+        bool replayPromptShowed = false;
+
+        private async void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
         {
+            replayCount++;
+            if (replayCount > 30 && !replayPromptShowed)
+            {
+                replayPromptShowed = true;
+                await this.Dispatcher.TryRunAsync(Windows.UI.Core.CoreDispatcherPriority.High, async () =>
+                {
+                    await ShowDialogue(localize("Info"), localize("PlayingWinUIMediaPlayerElementBug"), localize("Accept"), null, this);
+                    if (playing)
+                    {
+                        playing = false;
+                        mediaPlayer.Pause();
+                        mediaPlayer.Dispose();
+                        playButton.Content = String.Format(localize("PlayString"), deviceName);
+                        return;
+                    }
+                });
+                return;
+            }
             sender.Play();
         }
 

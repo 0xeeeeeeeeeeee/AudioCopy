@@ -69,7 +69,7 @@
     <value>No resampling (use system-configured audio quality)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>If you need to capture audio with a bit depth exceeding 16bit, please use the preset or custom sample rate options.</value>
+    <value>For audio capture with bit depths exceeding 16bit, please use the preset or custom sample rate options</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Use preset resampling configuration</value>
@@ -83,9 +83,6 @@
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Sample rate</value>
   </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(Supports MP3 streaming)</value>
-  </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
     <value>{0} channel, {1} bit, {2} Hz</value>
   </data>
@@ -93,10 +90,10 @@
     <value>Current audio quality:</value>
   </data>
   <data name="AudioQuality_CurrentUnavailable" xml:space="preserve">
-    <value>Audio quality unavailable, please check the backend</value>
+    <value>Sound quality unavailable, please check backend</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Backend Settings</value>
+    <value>Backend settings</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>IP address to bind (leave blank for any address)</value>
@@ -105,13 +102,13 @@
     <value>Port number to bind (leave blank for default)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
-    <value>Allow pairing with non-LAN addresses (including loopback addresses)</value>
+    <value>Allow pairing with non-LAN addresses (including loopback)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
-    <value>Configure the backend as a development environment (For development only, do not use in production)</value>
+    <value>Configure the backend as a development environment (for development only, do not use in production)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
-    <value>Environment variables for custom backend (Use with caution, may cause unknown risks) Example: key1=value1,key2=value2,...</value>
+    <value>Custom backend environment variables (Use with caution, may pose unknown risks) Example: key1=value1,key2=value2,...</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
     <value>Backend version:</value>
@@ -129,7 +126,7 @@
     <value>About</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Portions of the code are derived from "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), and the concept is also inspired by it.[line]This project is licensed under the GNU GPLv2 license - see the license for details (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Debug information:[line]Data directory: {1}[line][line]Settings:[line]{2}[line][line]Latest log path:[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Future versions will be built upon the AudioClone component.[line]Portions of this project's code are derived from "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), and the concept is also inspired by it.[line]This project is licensed under GNU GPLv2 - see the license for details (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Debug information:[line]Data directory: {1}[line][line]Settings:[line]{2}[line][line]Latest log path:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Privacy Policy</value>
@@ -141,13 +138,13 @@
     <value>Are you sure you want to do this?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>Display non-LAN addresses and virtual network adapters in the "Pairing" interface</value>
+    <value>Show non-LAN addresses and virtual NICs in the 'Pairing' interface</value>
   </data>
   <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
     <value>Always allow MP3 streaming</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>Allow the backend to continue running after exiting</value>
+    <value>Allow the backend to continue running after exit</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>Skip initialisation screen</value>
@@ -156,64 +153,64 @@
     <value>Open data folder</value>
   </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
-    <value>Reset Device Identifier</value>
+    <value>Reset device identifier</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>Clear all paired devices</value>
   </data>
   <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
-    <value>Fully reset backend</value>
+    <value>Full backend reset</value>
   </data>
   <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
     <value>Reset all settings</value>
   </data>
   <data name="Setting_AudioQuality.Text" xml:space="preserve">
-    <value>Audio quality settings</value>
+    <value>Sound Quality Settings</value>
   </data>
   <data name="Setting_Backend.Text" xml:space="preserve">
-    <value>Backend Settings</value>
+    <value>Backend settings</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
     <value>General</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
-    <value>Reset complete. Please restart the application.</value>
+    <value>Reset completed, please restart the application</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>All pairings will become invalid. Are you sure you want to do this?</value>
+    <value>All pairings will be invalidated, are you sure you want to do this?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
     <value>Done. If issues persist, try updating or fully resetting the backend[line]In some cases, you may need to restart the application</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>Restart to apply changes</value>
+    <value>Restart the backend to apply changes</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
-    <value>These settings are very dangerous, are you sure you want to configure them?</value>
+    <value>These settings are very dangerous, are you sure you want to set them?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>There seems to be an issue with the options, please modify. ({0})</value>
+    <value>There seems to be an issue with the options, please amend. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>General</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>Please see below and click reset</value>
+    <value>Please see below, click to reset</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>Download full version AudioCopy</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
-    <value>This app is the receiver. To adjust more settings, please go to the sender.</value>
+    <value>This application is the receiver. To adjust more settings, please go to the sender.</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
-    <value>在电脑上打开链接：</value>
+    <value>Open the link on your computer:</value>
   </data>
   <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
     <value>Open in browser</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Applying localisation settings, please wait. Do not close this window or interact with the application.[line]The application will launch multiple times - this is normal.</value>
+    <value>Applying localisation settings, please wait. Do not close this window or interact with the application.[line]The application will launch multiple times - this is expected behaviour</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>View logs</value>
@@ -222,6 +219,18 @@
     <value>Latest</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
-    <value>Media information from the peer is out of sync</value>
+    <value>Out of sync with peer media information</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>Enable Swagger for new backend (Development only, do not use in production)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>Using the legacy backend</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>Since we've separated the backend into the application itself and AudioClone, these settings will be deprecated, and the following settings will no longer work with the new backend.</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>Warning: These settings are currently ineffective for new backends and will always use the 'No resampling (use system-configured audio quality)' option.</value>
   </data>
 </root>

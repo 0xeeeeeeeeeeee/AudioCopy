@@ -67,7 +67,7 @@
     <value>MP3（現在の設定では利用できません）</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>サーバー側はwasapiから16bit波形を収集し直接送信、受信側は直接再生</value>
+    <value>サーバー側はWASAPIから16bit波形を収集し直接送信し、受信側は直接再生します</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>これらのデバイスは監視中です</value>
@@ -85,7 +85,7 @@
     <value>送信側として</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>在接收端选择下列内容</value>
+    <value>受信側で以下を選択</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>またはIPアドレスを入力：</value>
@@ -94,7 +94,7 @@
     <value>更新</value>
   </data>
   <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>タップして再生</value>
+    <value>クリックして再生</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
     <value>不明なデバイスからの音声を再生</value>
@@ -103,13 +103,13 @@
     <value>オーディオ形式</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>選択</value>
+    <value>選択する</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>アプリ</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>選択</value>
+    <value>選択する</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>受信</value>
@@ -121,22 +121,22 @@
     <value>ペアリング</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>バックエンド起動失敗({0})\r\nアンチウイルスソフトによるブロックまたはポートの競合を確認してください</value>
+    <value>バックエンドの起動に失敗しました({0})\r\nアンチウイルスソフトによるブロックまたはポートが他のプログラムに占有されていないか確認してください</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>バックエンド起動待ち中...</value>
+    <value>バックエンドの起動を待っています...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>バックエンドを起動中（アンチウイルスソフトの警告は許可してください）...</value>
+    <value>バックエンドを起動中（アンチウイルスソフトの警告が出た場合は許可してください）...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>初期化中...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>{0}バックエンドをv{1}に更新中です。起動に時間がかかる場合があります。セキュリティソフトの警告が表示された場合は許可してください。</value>
+    <value>{0}をバックエンドからv{1}にアップデート中です。起動に時間がかかる場合があります。アンチウイルスソフトの警告が表示された場合は許可してください。</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>既存のバックエンドを終了...</value>
+    <value>既存のバックエンドを終了中...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
     <value>アップグレード</value>
@@ -148,7 +148,10 @@
     <value>{0}時に{1}エラーが発生しました：[line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
-    <value>はい</value>
+    <value>了解しました</value>
+  </data>
+  <data name="AcceptButton.Content" xml:space="preserve">
+    <value>了解しました</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
@@ -166,13 +169,13 @@
     <value>ポート番号（相手側が入力を求めた場合のみ入力）</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>取得したIPアドレスのリスト、ここで手動入力も可能</value>
+    <value>取得したIPアドレスのリスト、ここで手動で入力することも可能</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>送信</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>バックエンドが正常に動作していない可能性があります。再起動をお試しください</value>
+    <value>バックエンドが正常に動作していない可能性があります。再起動を試してください</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>削除済み</value>
@@ -184,10 +187,10 @@
     <value>下記をご確認の上、リセットをクリックしてください</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
-    <value>再生停止</value>
+    <value>再生を停止</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>{0} からのオーディオ</value>
+    <value>{0}からのオーディオ</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
     <value>接続に失敗しました。再ペアリングを試しますか？</value>
@@ -196,55 +199,55 @@
     <value>ペアリングされていません。ペアリングしますか？</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>バックエンド設定でこの操作は許可されていません。設定で変更できます。</value>
+    <value>あなたのバックエンド設定ではこの操作は許可されていません。設定で変更できます。</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>接続タイムアウト、アドレスが正しいか確認するか、別のアドレスに変更してください。</value>
+    <value>接続がタイムアウトしました。アドレスが正しいか確認するか、別のアドレスに変更してください。</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>オンラインで解決策を検索してみる</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>ペアリングが正常に追加されましたが、保留中のペアリングリストから削除できません。クライアントを再起動することでこの問題を解決できます</value>
+    <value>ペアリングは正常に追加されましたが、保留中のペアリングリストから削除できません。この問題を解決するにはクライアントを再起動してください</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>{0}からのペアリングリクエストを検出しました。追加しますか？</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>{0}からのペアリングリクエストを検出しました。追加しますか？</value>
+    <value>{0}とペアリングしますか？</value>
   </data>
   <data name="PairDone" xml:space="preserve">
-    <value>ペアリングが成功しました！</value>
+    <value>ペアリングが正常に追加されました！</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>ペアリングに失敗しました。もう一度お試しください。</value>
+    <value>ペアリング追加に失敗しました（サーバーが{0}を返しました）。再試行してください。</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
-    <value>無効なアドレス</value>
+    <value>アドレスが無効です</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
     <value>再生を停止するとアプリが再起動しますが、これは正常な動作です</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
-    <value>表示しない</value>
+    <value>再表示しない</value>
   </data>
   <data name="PairPortChanged.Title" xml:space="preserve">
     <value>ポートが変更されました</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>現在のポート番号が変更されました。現在のポートは{0}です。[line]相手側で手動でIPアドレスとポート番号を入力してください</value>
+    <value>現在のポート番号が変更されました。現在のポートは{0}です[line]相手側で手動でIPアドレスとポート番号を入力してください</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>バックエンドの更新または完全リセットを試してください</value>
+    <value>バックエンドを更新または完全にリセットしてください</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
-    <value>アプリを再起動してみてください</value>
+    <value>アプリケーションを再起動してみてください</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>設定してバックエンドを起動</value>
+    <value>バックエンドの設定と起動</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
     <value>エラーを無視して起動を続行</value>
@@ -263,5 +266,20 @@
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>{0}からのメディア情報：</value>
+  </data>
+  <data name="NewBackendBar" xml:space="preserve">
+    <value>バックエンドをアプリケーション本体とAudioCloneに分割・移行中です。これによりパフォーマンスが大幅に向上し、より多くの機能が利用可能になります。[line]新しいバックエンドをお試しになりたい場合は、有効にすることができますが、すべてのクライアントのアップグレードが必要です。「設定-バックエンド設定-旧バックエンドを使用する」でいつでも切り替え可能です。</value>
+  </data>
+  <data name="NewBackendEnabled" xml:space="preserve">
+    <value>新しいバックエンドが有効化されましたので、すべてのクライアントをアップグレードすることをお勧めします。アップグレードしたくない場合は、「設定-バックエンド設定-古いバックエンドを使用する」でこの機能を無効にすることもできます。</value>
+  </data>
+  <data name="NolongerShow.Content" xml:space="preserve">
+    <value>再度通知しない</value>
+  </data>
+  <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
+    <value>システムのコーデックに問題があるため、オーディオストリームが停止しています。RAWオーディオ（利用可能な場合）をお試しください</value>
+  </data>
+  <data name="NewBackendPrompt" xml:space="preserve">
+    <value>ご注意ください：[line]旧バージョンのクライアントは新バージョンのサポートが限られています。すべてのクライアントをアップグレードすることをお勧めします。[line]ここで新しいバックエンドを有効にした後、新しいバックエンドと古いバックエンドのペアリング記録は同期されますが、手動で再度ペアリングが必要な場合があります。[line]現在、新しいバックエンドを使用する際に一部の機能が利用できません。[line]「設定-バックエンド設定-古いバックエンドを使用する」でいつでもバージョンを切り替えることができます。</value>
   </data>
 </root>

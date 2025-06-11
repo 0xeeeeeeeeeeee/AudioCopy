@@ -18,6 +18,7 @@
 *	 You should have received a copy of the GNU General Public License
 *	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
 */
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Shapes;
@@ -32,6 +33,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -59,7 +61,6 @@ namespace AudioCopyUI
         public static void ExitApp(bool reboot = false)
         {
             __FlushLog__();
-            if (!reboot && !bool.Parse(SettingUtility.GetOrAddSettings("KeepBackendRun", "False"))) KillBackend();
             Thread.Sleep(100);
             if (reboot)
             {
@@ -68,8 +69,11 @@ namespace AudioCopyUI
                 _ = c.GetAsync($"api/device/RebootClient?hostToken={SettingUtility.HostToken}&delay=50");
                 Thread.Sleep(10000);
             }
+            ApplicationCloseTokenSource.Cancel();
             Environment.Exit(0);
         }
+
+        
 
         public static void RebootApp(int delay = 50)
         {
@@ -89,10 +93,10 @@ namespace AudioCopyUI
             await AudioCloneHelper.Kill();
         }
 
-        public static async Task BootBackend(int port = -1)
+        public static async Task BootBackend(int port = -1,bool STA = false)
         {
             if (SettingUtility.OldBackend) await BootOldBackend(port);
-            else await BootNewBackend(port);
+            else await BootNewBackend(port, STA);
         }
 
         public static async Task KillOldBackend()
@@ -194,6 +198,9 @@ namespace AudioCopyUI
 
         public static bool IsBackendRunning => !(backendProcess is not null ? backendProcess.HasExited : true);
 
+        public static bool CloseApplication { get; private set; }
+        public static CancellationTokenSource ApplicationCloseTokenSource { get; private set; }
+        public static bool AppRunning { get; private set; }
 
         public static async Task BootOldBackend(int port = -1)
         {
@@ -274,30 +281,6 @@ namespace AudioCopyUI
                 if (e.Data != null)
                 {
                     Log(e.Data ?? "", "backend_stderr");
-                    //if (e.Data.StartsWith("ERROR!"))
-                    //{
-                    //    var str = e.Data.Substring(6);
-                    //    BackendExceptionObject ex = JsonSerializer.Deserialize<BackendExceptionObject>(str);
-                    //    if (ex is not null)
-                    //    {
-                    //        try
-                    //        {
-                    //            Log(ex.ToException(), "后端", backendProcess);
-                    //            if (___PublicStackOn___) exc = ex.ToException();
-                    //            else Log(ex.ToException(), "backend", "BackendProcess");
-                    //        }
-                    //        catch (Exception ex1)
-                    //        {
-                    //            Log(new Exception($"Failed to convert exception string:{ex} because {ex1}", ex1), "后端", backendProcess);
-
-                    //        }
-
-                    //    }
-                    //    else
-                    //    {
-                    //        Log(new Exception($"Unreadable exception string:{ex}"), "后端", backendProcess);
-                    //    }
-                    //}
                 }
             };
 
@@ -352,10 +335,22 @@ namespace AudioCopyUI
 
         }
 
-        public static async Task BootNewBackend(int port = -1)
+        public static async Task BootNewBackend(int port = -1,bool STA = false)
         {
+            if(Backend.Backend.Running)
+            {
+                if(port != -1)
+                {
+                    await Backend.Backend.backend.StopAsync(default);
+                    await BootBackend(port);
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            } 
             if(!SettingUtility.Exists("OldBackend")) SettingUtility.SetSettings("OldBackend", "True");
-            await KillBackend();
             Log($"Port: {port}");
             if (port == -1) port = int.Parse(SettingUtility.GetOrAddSettings("backendPort", "23456"));
             //else SettingUtility.SetSettings("backendPort", port.ToString());
@@ -363,7 +358,7 @@ namespace AudioCopyUI
 
             try
             {
-                Backend.Backend.Init($"http://+:{BackendPort}");
+                Backend.Backend.Init($"http://+:{BackendPort}",STA);
             }
             catch(Exception  ex)
             {
@@ -423,16 +418,48 @@ namespace AudioCopyUI
         }
 
 
+        static string logPath = "";
 
         [global::System.STAThreadAttribute]
         static async Task Main(string[] args)
         {
             try
             {
+                if (!Directory.Exists(Path.Combine(LocalStateFolder, "logs"))) Directory.CreateDirectory(Path.Combine(LocalStateFolder, "logs"));
+
+                ApplicationCloseTokenSource = new();
+
+                if (args.Length > 0)
+                {
+                    var tag = args[0].Split(':')[1];
+                    if(tag == "fromTray")
+                    {
+                        _LoggerInit_(SettingUtility.GetOrAddSettings("logPath", "null"),true);
+                    }
+                    else
+                    {
+                        SettingUtility.SetSettings("logPath", "null");
+                    }
+                }
+                else
+                {
+                }
+                if(string.IsNullOrEmpty(___LogPath___)) _LoggerInit_(Path.Combine(LocalStateFolder, "logs"));
+
+
+                Log($"Bootup args:{string.Concat(args)}");
+
+
+                ___PublicStackOn___ = true;
+
+                
+
+
                 if (File.Exists(Path.Combine(LocalStateFolder, "wait.txt")))
                 {
                     _ = MessageBox(new IntPtr(0), $"点击确定来继续启动", localize("Info"), 0);
                 }
+
                 if (File.Exists(Path.Combine(LocalStateFolder, "overrideSetting.json"))) //用来救援（不用手动挂载注册表了）
                 {
                     var dict = JsonSerializer.Deserialize<Dictionary<string, string?>>(File.ReadAllText(Path.Combine(LocalStateFolder, "overrideSetting.json"))) ?? new();
@@ -450,45 +477,114 @@ namespace AudioCopyUI
                             else
                                 ApplicationData.Current.LocalSettings.Values.Remove(item.Key);
                         }
+                        Log($"Override setting {item.Key} to {item.Value}...");
                     }
                     File.Move(Path.Combine(LocalStateFolder, "overrideSetting.json"), Path.Combine(LocalStateFolder, "overrideSetting.json.old"));
                 }
 
                 if(bool.Parse(SettingUtility.GetOrAddSettings("ResetEverything", "False")))
                 {
+                    Log("Resetting...");
                     await Program.KillBackend();
                     SettingViews.AdvancedSetting.ClearDirectory(LocalStateFolder);
                     SettingUtility.SetSettings("ResetEverything", "False");
 
                 }
-
-                if (!Directory.Exists(Path.Combine(LocalStateFolder, "logs"))) Directory.CreateDirectory(Path.Combine(LocalStateFolder, "logs"));
-                ___PublicStackOn___ = true;
-
-                _LoggerInit_(Path.Combine(LocalStateFolder, "logs"));
-            }
-            catch (Exception ex)
-            {
-                Environment.FailFast(ex.Message, ex);
-                Environment.Exit(1);
-            }
-            try
-            {
-                
-                Log("Starting GUI...");
-                global::WinRT.ComWrappersSupport.InitializeComWrappers();
-                global::Microsoft.UI.Xaml.Application.Start((p) =>
+                Thread backendThread = new(async () =>
                 {
-                    var context = new global::Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext(global::Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread());
-                    global::System.Threading.SynchronizationContext.SetSynchronizationContext(context);
-                    new App();
+                    Log("Starting backend...");
+                    await BootBackend(-1,true);
                 });
+                Thread trayThread = new(AudioCopyUI_Tray.Program.Main);
+
+
+                if(args.Length > 0)
+                {
+                    //tag = args[0].Split(':')[1];
+                    //switch (tag)
+                    //{
+                    //    case "GUIonly":
+                    //        goto app;
+                    //    case "BackendOnly":
+                    //        goto backend;
+                    //    case "TrayOnly":
+                    //        goto tray;
+                    //    default:
+                    //        tag = "";
+                    //        break;
+                    //}
+                }
+
+            //backend:
+                backendThread.Start();
+            //    if (tag == "") goto tray;
+            //    else goto wait;
+            //tray:
+                trayThread.Start();
+            //    if (tag == "") goto app;
+            //    else goto wait;
+            //app:
+                appThread = new(BootGUI);
+                appThread.Start();
+                appThread.Join();
+                Debug.WriteLine("Appthread ended.");
+
+           //wait:
+                await Task.Delay(-1, ApplicationCloseTokenSource.Token);
             }
             catch (Exception ex)
             {
                 Crash(ex);
             }
 
+        }
+
+        static void BootGUI()
+        {
+            AppRunning = true;
+            AudioCopyUI_TrayHelper.TrayHelper.BootApp = new(async () =>
+            {
+                if (AppRunning)
+                {
+                    //todo:focus mainwindow
+                }
+                Log("Restarting GUI...");
+                SettingUtility.SetSettings("logPath", ___LogPath___);
+                Process.Start(new ProcessStartInfo { FileName = "audiocopy:fromTray"   , UseShellExecute = true });
+                await Task.Delay(800);
+                Program.ExitApp();
+            });
+            AudioCopyUI_TrayHelper.TrayHelper.CloseApp = CloseGUI;
+            Log("Starting GUI...");
+            global::WinRT.ComWrappersSupport.InitializeComWrappers(); //from:App.g.i.cs
+            global::Microsoft.UI.Xaml.Application.Start((p) =>
+            {
+                var context = new global::Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext(global::Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread());
+                global::System.Threading.SynchronizationContext.SetSynchronizationContext(context);
+                new App();
+            });
+            AppRunning = false;
+            //while (true)
+            //{
+            //    Debug.WriteLine(1);
+            //}
+
+        }
+
+        static Thread appThread = new(BootGUI);
+
+        public static bool RebootGUI = false;
+
+        public static void CloseGUI()
+        {
+            MainWindow.dispatcher.TryEnqueue(
+                                        DispatcherQueuePriority.High,
+                                        () =>
+                                        {
+                                            App.Window?.Close();
+
+                                        }
+                                        );
         }
 
         internal static void Crash(Exception ex)
@@ -501,12 +597,55 @@ namespace AudioCopyUI
             }
             finally
             {
+                string innerExceptionInfo = "None";
+                if (ex.InnerException != null)
+                {
+                    innerExceptionInfo = 
+$"""
+Type: {ex.InnerException.GetType().Name}                        
+Message: {ex.InnerException.Message}
+StackTrace:
+{ex.InnerException.StackTrace}
+
+""";
+                }              
+
+                var logPath = Path.Combine(LocalStateFolder, "logs\\", $"Crashlog-{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.log");
+                var logMessage = 
+$"""
+{localize("CrashReportHeader",(Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0,0,0,0)).ToString(),Path.Combine(LocalStateFolder,"logs"))}
+Exception type: {ex.GetType().Name}
+Message: {ex.Message}
+StackTrace:
+{ex.StackTrace}
+
+From:{(ex.TargetSite is not null ? ex.TargetSite.ToString() : "unknown")}
+InnerException:
+{innerExceptionInfo}
+
+Exception data:
+{string.Join("\r\n", ex.Data.Cast<System.Collections.DictionaryEntry>().Select(k => $"{k.Key} : {k.Value}"))}
+
+Settings:
+{ApplicationData.Current.LocalSettings.Values.Aggregate("", (s, k) => s += $"{k.Key} : {k.Value as string} \r\n")}
+
+Environment:
+OS version: {Environment.OSVersion}
+CLR Version:{Environment.Version}
+Command line: {Environment.CommandLine}
+Current directory: {Environment.CurrentDirectory}
+
+Latest log:
+{File.ReadAllText(___LogPath___)}
+
+(report ended here)
+""";
+                File.WriteAllText(logPath, logMessage);
                 Thread.Sleep(100);
+                Process.Start(new ProcessStartInfo { FileName = logPath, UseShellExecute = true });
                 Environment.FailFast(ex.Message, ex);
                 Environment.Exit(1);
             }
-
-
         }
 
         internal static async Task PostInit()
@@ -518,6 +657,9 @@ namespace AudioCopyUI
 
 
         }
+
+
+
     }
 
 
@@ -610,7 +752,7 @@ namespace AudioCopyUI
 
         private void Window_Closed(object sender, WindowEventArgs args)
         {
-            Program.ExitApp();
+            //Program.ExitApp();
         }
 
         // TODO This is an example method for the case when app is activated through a file.

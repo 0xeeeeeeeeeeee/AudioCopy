@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;DebugStandalone</Configurations>
+	  <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\backend.zip" />
@@ -205,6 +206,10 @@
     <Folder Include="Strings\ru\" />
     <Folder Include="Strings\tr\" />
     <Folder Include="Strings\zh-Hant\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AudioCopyUI_TrayHelper\AudioCopyUI_TrayHelper.csproj" />
+    <ProjectReference Include="..\AudioCopyUI_Tray\AudioCopyUI_Tray.csproj" />
   </ItemGroup>
  
 </Project>

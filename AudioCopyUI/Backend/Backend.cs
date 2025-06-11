@@ -29,15 +29,11 @@ namespace AudioCopyUI.Backend
 
         public const int VersionCode = 2;
 
+        public static bool Running { get; private set; }
 
-        public static void Init(string uri = "http://+:23456")
+
+        public static void Init(string uri = "http://+:23456", bool STA = false)
         {
-            if (bool.Parse(SettingUtility.GetOrAddSettings("OldBackend", "False")))
-            {
-                _ = Program.BootBackend();
-                return;
-            }
-
             var builder = WebApplication.CreateBuilder();
             builder.Logging.ClearProviders();
             //builder.Logging.AddEventSourceLogger();
@@ -118,12 +114,20 @@ $""""""
             var tokenGroup = backend.MapGroup("/api/token");
             DeviceController.Init(deviceGroup);
             TokenController.Init(tokenGroup);
-            
 
+            if (STA)
+            {
+                Running = true;
+                backend.Run(uri);
+                Running = false;
+                return;
+            }
 
             Thread t = new(() =>
             {
+                Running = true;
                 backend.Run(uri);
+                Running = false;
             });
             t.Start();
             return;

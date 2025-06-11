@@ -66,7 +66,7 @@
     <value>頻道</value>
   </data>
   <data name="AudioQuality_Option1.Text" xml:space="preserve">
-    <value>不重新取樣（使用系統設定的音質）</value>
+    <value>不重新取樣(使用系統設定的音質)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
     <value>如果需要採集位元深度超過16bit的音訊，請使用預設或自訂取樣率選項</value>
@@ -75,16 +75,13 @@
     <value>使用預設重採樣配置</value>
   </data>
   <data name="AudioQuality_Option3.Text" xml:space="preserve">
-    <value>自定義重採樣配置</value>
+    <value>自訂重採樣設定</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
-    <value>RAW音頻緩衝區大小</value>
+    <value>RAW音訊緩衝區大小</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>取樣率</value>
-  </data>
-  <data name="AudioQuality_SupportMP3" xml:space="preserve">
-    <value>(此格式支援MP3串流)</value>
   </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
     <value>{0} 通道，{1} 位元，{2} Hz</value>
@@ -102,10 +99,10 @@
     <value>要綁定的IP地址（留空代表任意地址）</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>要綁定的埠號（留空代表預設）</value>
+    <value>要綁定的端口號（留空代表預設）</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
-    <value>允許與非區域網路位址配對（包含迴圈位址）</value>
+    <value>允許與非區域網路位址配對(包含環回位址)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
     <value>將後端配置為開發環境 (僅供開發，請勿在生產環境下使用)</value>
@@ -123,13 +120,13 @@
     <value>更新後端</value>
   </data>
   <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
-    <value>停用自訂設定</value>
+    <value>停用自訂配置</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
     <value>關於</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} 版權所有 0xeeeeeeeeeeee (0x12e) 2025。[line]項目的部分代碼來自於「Stream What Your Hear」(https://github.com/StreamWhatYouHear/SWYH)，創意也源自於它。[line]該項目使用GNU GPLv2許可證進行授權 - 詳情請查看許可證(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]除錯資訊：[line]資料目錄： {1}[line][line]設定：[line]{2}[line][line]最新的日誌路徑：[line]{3}</value>
+    <value>AudioCopy {0} 版權所有 0xeeeeeeeeeeee (0x12e) 2025。[line]未來將基於AudioClone組件構建。[line]項目的部分代碼來自於"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，創意也來自於它。[line]該項目使用GNU GPLv2許可證進行許可 - 詳情請查看許可證(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]調試信息：[line]數據目錄： {1}[line][line]設定：[line]{2}[line][line]最新的日誌路徑：[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>隱私政策</value>
@@ -162,7 +159,7 @@
     <value>清除所有配對的裝置</value>
   </data>
   <data name="AdvancedSetting_resetBackend.Content" xml:space="preserve">
-    <value>完全重置後端</value>
+    <value>完全重設後端</value>
   </data>
   <data name="AdvancedSetting_resetAllSettings.Content" xml:space="preserve">
     <value>重設所有設定</value>
@@ -183,10 +180,10 @@
     <value>所有配對都將失效，你確定要這麼做嗎？</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
-    <value>完成，如果還有問題請嘗試更新或完全重置後端[line]在部分情況下，你可能需要重啟應用程式</value>
+    <value>完成，如果還有問題請嘗試更新或完全重設後端[line]在部分情況下，你可能需要重新啟動應用程式</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>重新啟動以套用變更</value>
+    <value>重新啟動後端以套用變更</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
     <value>這些設定非常危險，你確定要設定它們嗎？</value>
@@ -198,7 +195,7 @@
     <value>通用</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>請在下方查看，點擊重設</value>
+    <value>請在下方查看，點擊重置</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>下載完整版 AudioCopy</value>
@@ -216,12 +213,24 @@
     <value>正在套用本地化設定，請稍候，不要關閉此視窗，也不要與應用程式互動。[line]應用程式會多次啟動，這是正常情況</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
-    <value>查看記錄</value>
+    <value>查看日誌</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
     <value>最新</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>不同步來自於對端的媒體資訊</value>
+  </data>
+  <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
+    <value>啟用新後端的Swagger (僅供開發，請勿在生產環境下使用)</value>
+  </data>
+  <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
+    <value>使用舊的後端</value>
+  </data>
+  <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
+    <value>由於我們將後端拆分到了應用程式本身和AudioClone裡，這些設定即將被棄用，並且下面這些設定對新的後端均無效。</value>
+  </data>
+  <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
+    <value>警告：這些設定目前對新的後端無效，將始終「使用不重採樣（使用系統設定的音質）」選項。</value>
   </data>
 </root>

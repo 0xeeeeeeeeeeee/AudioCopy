@@ -38,7 +38,7 @@
                 <TextBox x:Name="OverrideCloneToken" Width="Auto" HorizontalAlignment="Left" MaxWidth="250" PlaceholderText="覆盖AudioClone的Token"/>
                 <Button Content="覆盖" Click="OverrideCloneAddress_Click" Margin="8,0,0,0"/>
             </StackPanel>
-
+            <Button Content="Crash" Click="Button_Click"/>
         </StackPanel>
 
         

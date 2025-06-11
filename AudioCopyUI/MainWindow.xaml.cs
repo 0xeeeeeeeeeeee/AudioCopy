@@ -37,6 +37,8 @@ namespace AudioCopyUI
 
         public static DispatcherQueue dispatcher { get; private set; }
 
+        public static bool CloseWindow { get; set; }
+
         public MainWindow()
         {
 
@@ -104,6 +106,24 @@ namespace AudioCopyUI
                                             TitleTextBlock.Text = "AudioCopy";
                                         }
                                         );
+
+                //while (true)
+                //{
+                //    if (CloseWindow)
+                //    {
+                //        CloseWindow = false;
+                //        this.DispatcherQueue.TryEnqueue(
+                //                        DispatcherQueuePriority.High,
+                //                        async () =>
+                //                        {
+                //                            await Task.Delay(1000);
+                //                            this.Close();
+                //                        }
+                //                        );
+                //        return;
+                //    }
+                //    await Task.Delay(1500);
+                //}
 
 
             }).Start();
@@ -344,7 +364,8 @@ namespace AudioCopyUI
                 MainNavigationView.IsPaneVisible = true;    
             }
         }
-       
+
+        
     }
 
 }
