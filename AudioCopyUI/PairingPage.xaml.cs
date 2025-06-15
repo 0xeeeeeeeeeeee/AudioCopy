@@ -80,12 +80,12 @@ namespace AudioCopyUI
                 portInfoBar.Message = string.Format(localize("PairPortChangedMessage") , Program.BackendPort);
             }
 
-            if (!SettingUtility.OldBackend)
-            {
-                portInfoBar.IsOpen = true;
-                portInfoBar.Title = localize("Info");
-                portInfoBar.Message = localize("NewBackendEnabled");
-            }
+            //if (!SettingUtility.OldBackend)
+            //{
+            //    portInfoBar.IsOpen = true;
+            //    portInfoBar.Title = localize("Info");
+            //    portInfoBar.Message = localize("NewBackendEnabled");
+            //}
         }
 
 

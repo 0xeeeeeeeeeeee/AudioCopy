@@ -107,23 +107,7 @@ namespace AudioCopyUI
                                         }
                                         );
 
-                //while (true)
-                //{
-                //    if (CloseWindow)
-                //    {
-                //        CloseWindow = false;
-                //        this.DispatcherQueue.TryEnqueue(
-                //                        DispatcherQueuePriority.High,
-                //                        async () =>
-                //                        {
-                //                            await Task.Delay(1000);
-                //                            this.Close();
-                //                        }
-                //                        );
-                //        return;
-                //    }
-                //    await Task.Delay(1500);
-                //}
+                
 
 
             }).Start();
@@ -137,9 +121,16 @@ namespace AudioCopyUI
 
         private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+#if DEBUG
+            Stopwatch sw = Stopwatch.StartNew();
+#endif
             if (args.IsSettingsSelected)
             {
                 PageFrame.Navigate(typeof(SettingPage));
+#if DEBUG
+                sw.Stop();
+                Log($"It takes {sw.Elapsed.TotalMilliseconds}ms to navigate to SettingPage.","diag");
+#endif
                 return;
             }
 
@@ -162,6 +153,11 @@ namespace AudioCopyUI
 
 
                 }
+#if DEBUG
+                sw.Stop();
+                Log($"It takes {sw.Elapsed.TotalMilliseconds}ms to navigate to {pageTag}", "diag");
+#endif
+
             }
         }
 
@@ -262,6 +258,57 @@ namespace AudioCopyUI
             
         }
 
+        private async void Window_Closed(object sender, WindowEventArgs args)
+        {
+            if (Program.ExitHandled)
+            {
+                args.Handled = false;
+                return;
+            }
+            
+            args.Handled = true;
+            Log("Closing...");
+            string closePref = SettingUtility.GetOrAddSettings("CloseAction", "null");
+            Program.ExitHandled = closePref != "null";
+            if (closePref == "null")
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = localize("Info"),
+                    Content = localize("ExitOptions"), //"您希望关闭窗口时：\n\n- 完全退出程序\n- 最小化到托盘",
+                    PrimaryButtonText = localize("ExitOption1"), //"完全退出",
+                    SecondaryButtonText = localize("ExitOption2"), //"最小化到托盘",
+                    CloseButtonText = localize("Cancel"), //"取消",
+                    XamlRoot = MainWindow.xamlRoot
+                };
+
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    SettingUtility.SetSettings("CloseAction", "Exit");
+                    Program.ExitApp();
+                }
+                else if (result == ContentDialogResult.Secondary)
+                {
+                    SettingUtility.SetSettings("CloseAction", "MinimizeToTray");
+                    Program.CloseGUI();
+                }
+                else
+                {
+                    args.Handled = true;
+                }
+            }
+            else if (closePref == "Exit")
+            {
+                Program.ExitApp();
+            }
+            else if (closePref == "MinimizeToTray")
+            {
+                Program.CloseGUI();
+                args.Handled = true;
+            }
+        }
+
         private void OnBackClicked(object sender, RoutedEventArgs e)
         {
             if (PageFrame.CanGoBack)
@@ -341,10 +388,7 @@ namespace AudioCopyUI
             return scaleFactorPercent / 100.0;
         }
 
-        private void Window_Closed(object sender, WindowEventArgs args)
-        {
-            if (isTemporarilySetPort) SettingUtility.SetSettings("backendPort", "23456");
-        }
+
 
         private async void skipButton_Click(object sender, RoutedEventArgs e)
         {

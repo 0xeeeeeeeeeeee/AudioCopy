@@ -80,7 +80,24 @@ namespace AudioCopyUI.SettingViews
                 disableShowHostSMTCInfo.IsChecked = true;
             }
 
-            
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False")))
+            {
+                disableTray.IsChecked = true;
+            }
+
+            if (SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray")
+            {
+                trayMode.IsChecked = true;
+            }
+            else if(SettingUtility.GetOrAddSettings("CloseAction", "null") == "null")
+            {
+                trayMode.IsThreeState = true;
+                trayMode.IsChecked = null;
+
+            }
+
+            trayMode.IsEnabled = disableTray.IsChecked != true;
+
 
             foreach (var item in Localizer.locate)
             {
@@ -102,13 +119,23 @@ namespace AudioCopyUI.SettingViews
             
         }
 
-        private void OptionsChanged(object sender, RoutedEventArgs e)
+        private async void OptionsChanged(object sender, RoutedEventArgs e)
         {
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False")) != (disableTray.IsChecked ?? false))
+            {
+                await ShowDialogue(localize("Info"), localize("RebootRequired"), localize("Accept"),null, this);
+            }
+            trayMode.IsEnabled = disableTray.IsChecked != true;
+
             SettingUtility.SetSettings("AlwaysAllowMP3", (forceMP3Audio.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("ShowAllAdapter", (showNonLocalAddress.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("SkipSplash", (skipSplashScreen.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("DisableTray", (disableTray.IsChecked ?? false).ToString());
+
+            SettingUtility.SetSettings("CloseAction", (trayMode.IsChecked ?? false) ? "MinimizeToTray" : "Exit");
+            AudioCopyUI_TrayHelper.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
 
         }
 
@@ -187,6 +214,17 @@ namespace AudioCopyUI.SettingViews
             foreach (var dir in Directory.GetDirectories(path))
             {
                 Directory.Delete(dir, true);
+            }
+        }
+
+        private async void ClearClone_Click(object sender, RoutedEventArgs e)
+        {
+            if (await ShowDialogue(localize("Info"), localize("/Setting/AudioQuality_RebootRequired"), localize("Accept"), localize("Cancel"), this))
+            {
+                var cont = ClearClone.Content;
+                ClearClone.Content = new ProgressRing { IsActive = true };
+                await AudioCloneHelper.Kill();
+                ClearClone.Content = cont;
             }
         }
     }

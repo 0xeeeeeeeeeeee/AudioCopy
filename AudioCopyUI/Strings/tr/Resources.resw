@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,26 +60,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>{0} sesini çal</value>
-    <comment>{0}:设备名</comment>
+    <value>{0} sesini oynat</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (yapılandırmanıza göre şu anda kullanılamıyor)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Sunucu, WASAPI'den 16 bit dalga formunu toplar ve doğrudan gönderir, alıcı ise doğrudan çalar.</value>
+    <value>Sunucu wasapi'den 16bit dalga formu toplar ve dogrudan gonderir, alici ise dogrudan calar</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Bu cihazlar dinlemede</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
-    <value>Dinlenecek cihazı seç</value>
+    <value>Dinlenecek cihazı seçin</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
     <value>Eşleştirilmiş cihazlar:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>Alıcı taraf olarak</value>
+    <value>Alıcı olarak</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Gönderici olarak</value>
@@ -155,10 +96,10 @@
     <value>Tıklayarak oynat</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Bilinmeyen bir cihazdan ses çal</value>
+    <value>Bilinmeyen cihazdan ses çal</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
-    <value>Ses biçimi</value>
+    <value>Ses formatı</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
     <value>Birini seç</value>
@@ -167,7 +108,7 @@
     <value>Uygulama</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Birini seçin</value>
+    <value>Birini seç</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>Alma</value>
@@ -177,6 +118,9 @@
   </data>
   <data name="Pair.Content" xml:space="preserve">
     <value>Eşleştirme</value>
+  </data>
+  <data name="PairText" xml:space="preserve">
+    <value>Eşleştir</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
     <value>Arka uç başlatılamadı ({0})\r\nLütfen arka ucun antivirüs yazılımı tarafından engellenip engellenmediğini veya bağlantı noktasının başka bir program tarafından kullanılıp kullanılmadığını kontrol edin</value>
@@ -191,13 +135,13 @@
     <value>Başlatılıyor...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>{0} arka ucu v{1} sürümüne güncelleniyor, başlatma daha uzun sürebilir, antivirüs uyarısı alırsanız izin verin.</value>
+    <value>{0} arka uç sürümüne v{1} güncelleniyor, başlatma daha uzun sürebilir, antivirüs uyarı verirse izin verin.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Mevcut arka ucu sonlandır...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>Yükseltme</value>
+    <value>Güncelleme</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Kurulum</value>
@@ -224,10 +168,10 @@
     <value>İpucu</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Port numarası (sadece karşı taraf istediğinde girin)</value>
+    <value>Port numarası (sadece karşı taraf giriş yapmanızı istediğinde girin)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Alınan IP adresleri listesi, buraya elle de girilebilir</value>
+    <value>Alınan IP adresi listesi, buraya elle de girilebilir</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Gönder</value>
@@ -253,9 +197,6 @@
   <data name="TryReconnect" xml:space="preserve">
     <value>Bağlantı başarısız, yeniden eşleştirmeyi denemek ister misiniz?</value>
   </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>Henüz eşleşmediniz, eşleşmek ister misiniz?</value>
-  </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Arka uç yapılandırmanız bu işleme izin vermiyor, ayarlardan değiştirebilirsiniz.</value>
   </data>
@@ -266,7 +207,7 @@
     <value>Çözüm için çevrimiçi arama yapmayı deneyin</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Eşleştirme başarıyla eklendi, ancak bekleme listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
+    <value>Eşleştirme başarıyla eklendi, ancak eşleştirme bekleyen listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>{0} eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
@@ -287,7 +228,7 @@
     <value>Geçersiz adres</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Lütfen unutmayın, oynatmayı durdurduğunuzda uygulama yeniden başlayacaktır, bu normal bir durumdur</value>
+    <value>Lütfen unutmayın, uygulama oynatmayı durdurduğunuzda yeniden başlayacaktır, bu normal bir durumdur</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Bir daha gösterme</value>
@@ -296,7 +237,7 @@
     <value>Port değiştirildi</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Lütfen dikkat, mevcut port numarası değişti, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
+    <value>Lütfen dikkat, mevcut port numarası değiştirildi, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Lütfen arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin</value>
@@ -323,24 +264,51 @@
     <value>Bilinmeyen Albüm</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
-    <value>{0} medya bilgisi:</value>
+    <value>{0} kaynaklı medya bilgisi:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Arka ucu uygulamanın kendisine ve AudioClone'a bölüp taşıyoruz, bu da performansı büyük ölçüde artıracak ve daha fazla özellik sunacak.[line]Yeni arka ucu denemek isterseniz, etkinleştirebilirsiniz, ancak bu işlem tüm istemcilerinizi güncellemenizi gerektirir. Bu özelliği istediğiniz zaman "Ayarlar-Arka Uç Ayarları-Eski Arka Ucu Kullan" seçeneğinden açıp kapatabilirsiniz.</value>
+    <value>Arka ucu uygulamanın kendisine ve AudioClone'a bölündü ve taşındı, bu nedenle bu sürümde eski arka ucu tamamen kaldırdık.[line]Bu, istemcilerinizin düzgün çalışmasını sağlamak için tüm istemcileri yükseltmeniz gerektiği anlamına gelir.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>Yeni bir arka uç etkinleştirdiğiniz için tüm istemcileri güncellemenizi öneririz. Güncelleme yapmak istemiyorsanız, "Ayarlar - Arka Uç Ayarları - Eski Arka Ucunu Kullan" seçeneğiyle bu özelliği devre dışı bırakabilirsiniz.</value>
+    <value>Yeni bir arka uç etkinleştirdiğiniz için tüm istemcileri güncellemenizi öneririz. Güncellemek istemiyorsanız, "Ayarlar - Arka Uç Ayarları - Eski Arka Ucu Kullan" seçeneği ile bu özelliği devre dışı bırakabilirsiniz.</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
-    <value>Bana bir daha hatırlatma</value>
+    <value>Bana tekrar sorma</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>Sistem kod çözücünüzde görülen bir sorun nedeniyle ses akışı takılıyor gibi görünüyor, lütfen RAW sesi (eğer mevcutsa) kullanmayı deneyin</value>
+    <value>Sistem kod çözücünüzde bir sorun var gibi görünüyor, bu da ses akışının takılmasına neden oldu[line]Lütfen başka bir ses seçeneği deneyin</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
-    <value>Lütfen dikkat edin: [line]Eski sürüm istemcilerinin yeni sürüm desteği sınırlıdır, tüm istemcileri güncellemeniz önerilir.[line]Burada yeni arka uç etkinleştirildikten sonra, yeni ve eski arka uçların eşleşme kayıtları senkronize edilse de, manuel olarak tekrar eşleştirme yapmanız gerekebilir.[line]Şu anda yeni arka uç kullanılırken bazı işlevler kullanılamaz.[line]Sürümler arasında geçiş yapmak için istediğiniz zaman "Ayarlar-Arka Uç Ayarları-Eski Arka Ucu Kullan" seçeneğini kullanabilirsiniz.</value>
+    <value>Lütfen dikkat: [line]Eski sürüm istemciler yeni sürümle sınırlı desteğe sahiptir, tüm istemcileri güncellemeniz önerilir.[line]Yeni arka uç burada etkinleştirildikten sonra, yeni ve eski arka uçların eşleşme kayıtları senkronize edilse de, manuel olarak tekrar eşleştirme yapmanız gerekebilir.[line]Şu anda yeni arka uç kullanılırken bazı işlevler kullanılamaz.[line]Sürümler arasında geçiş yapmak için istediğiniz zaman "Ayarlar-Arka Uç Ayarları-Eski arka ucu kullan" seçeneğini kullanabilirsiniz.</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value />
+    <value>AudioCopy v{0} Çökme Raporu[line]Bu sorunu sürekli yaşıyorsanız, lütfen bir Issue oluşturun (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) veya bu dosyayı şu e-posta adresine gönderin: hexadecimal0x12e@icloud.com[line]Günlük dosyası şu klasörde bulunur: {1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>Pencereyi kapatırken ne yapılmasını istersiniz[line]Daha sonra Ayarlar-Genel bölümünden değiştirebilirsiniz[line](Program sistem tepsisine küçültüldüğünde sunucu ve ses alma işlevlerini desteklemeye devam eder)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>Tamamen Çık</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>Simge durumuna küçült</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Henüz eşleşmediniz, eşleşmek ister misiniz?</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>Bu uç veya karşı uç çok eski ya da çok yeni, tüm istemcilerin güncellenmesi önerilir.</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>Uygulamayı yeniden başlatmanız gerekiyor</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>Tamamen Çık</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>Arayüzü Kapat</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>AudioCopy'yi Başlat</value>
   </data>
 </root>

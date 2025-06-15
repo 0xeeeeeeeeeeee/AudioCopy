@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -119,13 +61,12 @@
   </resheader>
   <data name="PlayString" xml:space="preserve">
     <value>Riproduci audio da {0}</value>
-    <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (non disponibile in base alla tua configurazione corrente)</value>
+    <value>MP3 (non disponibile in base alla tua configurazione attuale)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Il server acquisisce l'onda a 16 bit da WASAPI e la invia direttamente, quindi il ricevitore la riproduce direttamente</value>
+    <value>Il server acquisisce la forma d'onda a 16 bit da WASAPI e la invia direttamente, quindi il ricevitore la riproduce direttamente</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Questi dispositivi sono in ascolto</value>
@@ -137,13 +78,13 @@
     <value>Dispositivi associati:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>Come destinatario</value>
+    <value>Come ricevitore</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Come mittente</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>Selezionare il seguente sul lato ricevente</value>
+    <value>Seleziona il seguente sul lato ricevente</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>Oppure inserisci l'indirizzo IP:</value>
@@ -161,7 +102,7 @@
     <value>Formato audio</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>Scegli</value>
+    <value>Scegliere</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>Applicazione</value>
@@ -178,20 +119,23 @@
   <data name="Pair.Content" xml:space="preserve">
     <value>Abbinamento</value>
   </data>
+  <data name="PairText" xml:space="preserve">
+    <value>Abbinamento</value>
+  </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Avvio del backend fallito ({0})\r\nVerificare se il backend è bloccato dall'antivirus o se la porta è occupata da altri programmi</value>
+    <value>Avvio del backend non riuscito ({0})\r\nVerificare se il backend è bloccato dall'antivirus o se la porta è occupata da altri programmi</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>Attesa avvio backend...</value>
+    <value>In attesa dell'avvio del backend...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Avvio del backend in corso (se l'antivirus richiede autorizzazione, concedila)...</value>
+    <value>Avvio del backend in corso (se l'antivirus richiede autorizzazioni, consentire)...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Inizializzazione in corso...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Sto aggiornando il backend {0} alla versione v{1}, potrebbe richiedere più tempo per l'avvio. Se il software antivirus mostra un avviso, per favore consentilo.</value>
+    <value>Aggiornamento del backend {0} alla versione v{1}, potrebbe richiedere più tempo per l'avvio. Se il software antivirus mostra un avviso, si prega di consentire l'operazione.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Terminazione del backend esistente...</value>
@@ -227,7 +171,7 @@
     <value>Numero di porta (inserire solo se richiesto dal peer)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Elenco degli indirizzi IP ottenuti, è possibile inserirli manualmente qui</value>
+    <value>Elenco degli indirizzi IP ottenuti, può anche essere inserito manualmente qui</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Invia</value>
@@ -251,16 +195,13 @@
     <value>Audio da {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Connessione fallita. Vuoi provare a riconnetterti?</value>
-  </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>Non sei ancora abbinato, vuoi abbinarti?</value>
+    <value>Connessione fallita, vuoi provare a riconnetterti?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>La tua configurazione del backend non consente questa operazione, puoi modificarla nelle impostazioni.</value>
+    <value>La configurazione del tuo backend non consente questa operazione. Puoi modificarla nelle impostazioni.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Connessione scaduta, verifica che l'indirizzo sia corretto o cambia indirizzo.</value>
+    <value>Connessione scaduta, controlla l'indirizzo o provane un altro.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Prova a cercare una soluzione online</value>
@@ -287,7 +228,7 @@
     <value>Indirizzo non valido</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Si prega di notare che l'applicazione si riavvierà quando interrompi la riproduzione, questo è un comportamento normale</value>
+    <value>Nota che l'applicazione si riavvierà quando interrompi la riproduzione, è un comportamento normale</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Non mostrare più</value>
@@ -311,10 +252,10 @@
     <value>Ignora gli errori e continua l'avvio</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Copertina dell'album multimediale</value>
+    <value>Copertina album multimediale</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
-    <value>Supporto sconosciuto</value>
+    <value>Media sconosciuta</value>
   </data>
   <data name="MediaInfo_Artist.Text" xml:space="preserve">
     <value>Artista sconosciuto</value>
@@ -326,7 +267,7 @@
     <value>Informazioni multimediali da {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Stiamo suddividendo e migrando il backend all'interno dell'applicazione stessa e ad AudioClone, il che migliorerà notevolmente le prestazioni e introdurrà nuove funzionalità. [line]Se vuoi provare il nuovo backend, puoi abilitarlo, ma questa operazione richiede l'aggiornamento di tutti i client. Puoi attivare o disattivare questa funzione in qualsiasi momento in "Impostazioni - Impostazioni backend - Usa backend precedente".</value>
+    <value>Abbiamo separato e migrato il backend nell'applicazione stessa e in AudioClone, quindi in questa versione abbiamo completamente abbandonato il vecchio backend.[line]Ciò significa che è necessario aggiornare tutti i client per garantire che funzionino correttamente.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>Hai abilitato un nuovo backend, pertanto ti consigliamo di aggiornare tutti i client. Se non vuoi aggiornare, puoi anche disabilitare questa funzione in "Impostazioni - Impostazioni backend - Usa backend precedente".</value>
@@ -335,12 +276,39 @@
     <value>Non mostrarmelo più</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>Il tuo codec di sistema sembra avere problemi causando il blocco del flusso audio, prova a utilizzare l'audio RAW (se disponibile)</value>
+    <value>Il tuo codec di sistema sembra avere qualche problema, causando il blocco del flusso audio[line]Prova a utilizzare altre opzioni audio</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
-    <value>Nota bene: [line]Le versioni precedenti del client hanno un supporto limitato per le nuove versioni, è consigliabile aggiornare tutti i client. [line]Dopo aver abilitato il nuovo backend qui, anche se i record di abbinamento del nuovo e del vecchio backend verranno sincronizzati, potrebbe essere necessario eseguire nuovamente l'abbinamento manualmente. [line]Attualmente, alcune funzionalità non sono disponibili quando si utilizza il nuovo backend. [line]Puoi sempre cambiare versione in "Impostazioni - Impostazioni backend - Usa il vecchio backend".</value>
+    <value>Nota bene: [line]Le versioni precedenti del client hanno un supporto limitato per le nuove versioni, è consigliabile aggiornare tutti i client. [line]Dopo aver abilitato il nuovo backend qui, sebbene i record di abbinamento del nuovo e del vecchio backend verranno sincronizzati, potrebbe essere necessario eseguire nuovamente l'abbinamento manualmente. [line]Attualmente, alcune funzionalità non sono disponibili quando si utilizza il nuovo backend. [line]Puoi sempre passare alla versione precedente in "Impostazioni - Impostazioni backend - Usa backend precedente".</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value />
+    <value>AudioCopy v{0} report di crash[line]Se riscontri ripetutamente questo problema, segnala un Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) o invia questo file all'indirizzo email: hexadecimal0x12e@icloud.com[line]Il file di log si trova in questa cartella: {1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>Quale comportamento desideri quando chiudi la finestra?[line]Puoi modificarlo successivamente in Impostazioni &gt; Generale[line](Quando l'applicazione viene ridotta a icona nella barra delle applicazioni, supporta ancora il funzionamento come server e la ricezione dell'audio)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>Esci completamente</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>Riduci a icona</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Non sei ancora abbinato, vuoi abbinarti?</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>Lato locale o remoto troppo vecchio o nuovo, si consiglia di aggiornare tutti i client.</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>Devi riavviare l'applicazione per applicare queste modifiche.</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>Esci completamente</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>Chiudi interfaccia</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>Avvia AudioCopy</value>
   </data>
 </root>

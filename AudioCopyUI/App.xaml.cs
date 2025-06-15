@@ -51,9 +51,16 @@ namespace AudioCopyUI
     public static class Program
     {
         private static Process? backendProcess = null;
-        public static string BackendVersionCode = "unknown";
         public static ConcurrentQueue<string> logs = new();
         internal static bool AlreadyAddMyself;
+
+        public static int BackendPort = -1;
+        public static string BackendVersionCode = "unknown";
+        public static bool IsBackendRunning => !(backendProcess is not null ? backendProcess.HasExited : true);
+        public static bool CloseApplication { get; private set; }
+        public static CancellationTokenSource ApplicationCloseTokenSource { get; private set; }
+        public static bool AppRunning { get; private set; }
+        public static bool ExitHandled { get; internal set; }
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern int MessageBox(IntPtr hWnd, String text, String caption, uint type);
@@ -88,20 +95,20 @@ namespace AudioCopyUI
 
         public static async Task KillBackend()
         {
-            await KillOldBackend();
+            //await KillOldBackend();
             await StopNewBackend();
             await AudioCloneHelper.Kill();
         }
 
         public static async Task BootBackend(int port = -1,bool STA = false)
         {
-            if (SettingUtility.OldBackend) await BootOldBackend(port);
-            else await BootNewBackend(port, STA);
+            //if (SettingUtility.OldBackend) await BootOldBackend(port);
+            await BootNewBackend(port, STA);
         }
 
         public static async Task KillOldBackend()
         {
-
+            throw new NotSupportedException("Old backend is no longer supported.");
             if (backendProcess is not null)
                 try
                 {
@@ -139,7 +146,6 @@ namespace AudioCopyUI
 
         internal static async Task UpgradeBackend(bool force = false)
         {
-            await Program.KillBackend();
             var uri = new Uri("ms-appx:///Assets/backend_version.txt");
             StorageFile version = await StorageFile.GetFileFromApplicationUriAsync(uri);
             var ver = await FileIO.ReadTextAsync(version);
@@ -156,13 +162,14 @@ namespace AudioCopyUI
 
             if (force || !Path.Exists(path) || File.ReadAllText(path) != ver)
             {
+                await AudioCloneHelper.Kill();
                 Log(string.Format(localize("Init_Stage2"), Path.Exists(path) ? "更新" : "安装并初始化", ver), "showToGUI");
                 uri = new Uri("ms-appx:///Assets/backend.zip");
                 StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
                 ZipArchive zipArchive = new ZipArchive(await file.OpenStreamForReadAsync(), ZipArchiveMode.Read);
                 var destPath = LocalStateFolder;
                 //Directory.CreateDirectory(destPath);
-                if (force)
+                if (force || (int.TryParse(File.ReadAllText(path).Split('.').FirstOrDefault(),out var v) && v == 1))
                 {
                     Directory.Delete(Path.Combine(destPath,"backend"), true);
                 }
@@ -181,7 +188,7 @@ namespace AudioCopyUI
             BackendVersionCode = ver;
             try
             {
-                var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy_Backend.dll");
+                var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\AudioClone.Server.dll");
                 var backendAsb = Assembly.LoadFrom(backendAsbPath);
                 var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
                 Log($"Backend assembly info:{backendAsb.FullName} SHA256:{backendHash}");
@@ -194,16 +201,12 @@ namespace AudioCopyUI
 
         }
 
-        public static int BackendPort = -1;
-
-        public static bool IsBackendRunning => !(backendProcess is not null ? backendProcess.HasExited : true);
-
-        public static bool CloseApplication { get; private set; }
-        public static CancellationTokenSource ApplicationCloseTokenSource { get; private set; }
-        public static bool AppRunning { get; private set; }
+        
 
         public static async Task BootOldBackend(int port = -1)
         {
+            throw new NotSupportedException("Old backend is no longer supported.");
+
             if (port != -1)
             {
                 KillBackend();
@@ -441,11 +444,22 @@ namespace AudioCopyUI
                         SettingUtility.SetSettings("logPath", "null");
                     }
                 }
-                else
-                {
-                }
-                if(string.IsNullOrEmpty(___LogPath___)) _LoggerInit_(Path.Combine(LocalStateFolder, "logs"));
 
+                Console.SetOut(new InterceptingTextWriter(Console.Out, "stdout"));
+
+                Console.SetError(new InterceptingTextWriter(Console.Out, "stderr"));
+
+
+#if DEBUG
+                if (!SettingUtility.Exists("RealtimeLogging")) SettingUtility.SetSettings("RealtimeLogging", true.ToString());
+#else
+                if (!SettingUtility.Exists("RealtimeLogging")) SettingUtility.SetSettings("RealtimeLogging", false.ToString());  
+#endif
+
+                if (string.IsNullOrEmpty(___LogPath___)) _LoggerInit_(Path.Combine(LocalStateFolder, "logs"));
+
+                //Console.WriteLine("This is a message from console.");
+                //Console.Error.WriteLine("This is also a message from console.");
 
                 Log($"Bootup args:{string.Concat(args)}");
 
@@ -490,51 +504,30 @@ namespace AudioCopyUI
                     SettingUtility.SetSettings("ResetEverything", "False");
 
                 }
+                appThread = new(BootGUI);
+                appThread.Start();
+                
+
                 Thread backendThread = new(async () =>
                 {
                     Log("Starting backend...");
                     await BootBackend(-1,true);
                 });
                 Thread trayThread = new(AudioCopyUI_Tray.Program.Main);
-
-
-                if(args.Length > 0)
-                {
-                    //tag = args[0].Split(':')[1];
-                    //switch (tag)
-                    //{
-                    //    case "GUIonly":
-                    //        goto app;
-                    //    case "BackendOnly":
-                    //        goto backend;
-                    //    case "TrayOnly":
-                    //        goto tray;
-                    //    default:
-                    //        tag = "";
-                    //        break;
-                    //}
-                }
-
-            //backend:
                 backendThread.Start();
-            //    if (tag == "") goto tray;
-            //    else goto wait;
-            //tray:
-                trayThread.Start();
-            //    if (tag == "") goto app;
-            //    else goto wait;
-            //app:
-                appThread = new(BootGUI);
-                appThread.Start();
+                if (!bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False"))) trayThread.Start();
+
                 appThread.Join();
                 Debug.WriteLine("Appthread ended.");
-
-           //wait:
                 await Task.Delay(-1, ApplicationCloseTokenSource.Token);
             }
             catch (Exception ex)
             {
                 Crash(ex);
+            }
+            finally
+            {
+                Log("App is closing...");
             }
 
         }
@@ -544,17 +537,56 @@ namespace AudioCopyUI
             AppRunning = true;
             AudioCopyUI_TrayHelper.TrayHelper.BootApp = new(async () =>
             {
-                if (AppRunning)
+                if (AppRunning) //带到前台
                 {
-                    //todo:focus mainwindow
+                    MainWindow.dispatcher.TryEnqueue(DispatcherQueuePriority.High,
+                        () =>
+                        {
+                            if (App.Window is not null)
+                            {
+                                App.Window.Activate();
+                                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Window);
+                                if (hwnd != IntPtr.Zero)
+                                {
+                                    NativeMethods.SetForegroundWindow(hwnd);
+                                    NativeMethods.SetFocus(hwnd);
+                                }
+                            }
+                        });
+                    return;
                 }
                 Log("Restarting GUI...");
                 SettingUtility.SetSettings("logPath", ___LogPath___);
-                Process.Start(new ProcessStartInfo { FileName = "audiocopy:fromTray"   , UseShellExecute = true });
+                Process.Start(new ProcessStartInfo { FileName = "audiocopy:fromTray" , UseShellExecute = true });
                 await Task.Delay(800);
                 Program.ExitApp();
             });
             AudioCopyUI_TrayHelper.TrayHelper.CloseApp = CloseGUI;
+            AudioCopyUI_TrayHelper.TrayHelper.GetSMTC = new Action(async () =>
+            {
+                Backend.DeviceController.MediaInfo? i = null;
+                MainWindow.dispatcher.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal,
+                    async () =>
+                    {
+                        i = await Backend.DeviceController.GetCurrentMediaInfoAsync();
+                    });
+                await Task.Delay(1000);
+                if (i is null)
+                {
+                    AudioCopyUI_TrayHelper.TrayHelper.Artist = "应用程序尚未启动";
+                    AudioCopyUI_TrayHelper.TrayHelper.Title = "请先启动";
+                    AudioCopyUI_TrayHelper.TrayHelper.listeningClient = -1;
+                    return;
+                }
+                AudioCopyUI_TrayHelper.TrayHelper.Artist = i.Artist;
+                AudioCopyUI_TrayHelper.TrayHelper.Title = i.Title;
+                AudioCopyUI_TrayHelper.TrayHelper.listeningClient = 0; //todo:实现
+
+            });
+            AudioCopyUI_TrayHelper.TrayHelper.IsNotStandalone = true;
+            AudioCopyUI_TrayHelper.TrayHelper.Shutdown = new Action(() => ExitApp(false));
+            AudioCopyUI_TrayHelper.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
+            
             Log("Starting GUI...");
             global::WinRT.ComWrappersSupport.InitializeComWrappers(); //from:App.g.i.cs
             global::Microsoft.UI.Xaml.Application.Start((p) =>
@@ -564,10 +596,6 @@ namespace AudioCopyUI
                 new App();
             });
             AppRunning = false;
-            //while (true)
-            //{
-            //    Debug.WriteLine(1);
-            //}
 
         }
 
@@ -582,7 +610,8 @@ namespace AudioCopyUI
                                         () =>
                                         {
                                             App.Window?.Close();
-
+                                            AudioCopyUI_TrayHelper.TrayHelper.GUIRunning = false;
+                                            Log("GUI closed.");
                                         }
                                         );
         }
@@ -597,6 +626,9 @@ namespace AudioCopyUI
             }
             finally
             {
+                
+
+
                 string innerExceptionInfo = "None";
                 if (ex.InnerException != null)
                 {
@@ -608,12 +640,49 @@ StackTrace:
 {ex.InnerException.StackTrace}
 
 """;
-                }              
+                }
 
-                var logPath = Path.Combine(LocalStateFolder, "logs\\", $"Crashlog-{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.log");
+                if (___LogPath___ == "") //通常没法获取数据目录代表着WinRT没被初始化
+                {
+                    _ = MessageBox(new IntPtr(0), "AudioCopy crashed.\r\nPlease send me the entire report according to the instructions in the report.", "Crashed", 0);
+                    var miniLogPath = Path.Combine(Directory.CreateTempSubdirectory("audiocopy_").FullName, "crash.log");
+                    File.WriteAllText(miniLogPath,
+$"""
+You receive this crash report because of we can't write log, probably means the WinRT Component is not ready.
+Is the UWP runtime on your computer normal?
+
+To feedback, please hold Windows-R and input "%userprofile%\AppData\Local\Packages\", then compress the folder "0xeeeeeeeeeeee.AudioCopy_f91nmrsqwpk6y", and email it to me at hexadecimal0x12e@icloud.com along with this report,
+or write a issue at https://github.com/0xeeeeeeeeeeee/AudioCopy/issues and upload them. You also needed to provide the version of the AudioCopy you used.
+
+This report is in {Path.GetDirectoryName(miniLogPath)}
+---
+Exception type: {ex.GetType().Name}
+Message: {ex.Message}
+StackTrace:
+{ex.StackTrace}
+
+From:{(ex.TargetSite is not null ? ex.TargetSite.ToString() : "unknown")}
+InnerException:
+{innerExceptionInfo}
+
+Exception data:
+{string.Join("\r\n", ex.Data.Cast<System.Collections.DictionaryEntry>().Select(k => $"{k.Key} : {k.Value}"))}
+
+Environment:
+OS version: {Environment.OSVersion}
+CLR Version:{Environment.Version}
+Command line: {Environment.CommandLine}
+Current directory: {Environment.CurrentDirectory}
+"""
+                        );
+                    Process.Start(new ProcessStartInfo { FileName = miniLogPath, UseShellExecute = true });
+                    Environment.FailFast(ex.Message, ex);
+                    Environment.Exit(1);
+                }
+
                 var logMessage = 
 $"""
-{localize("CrashReportHeader",(Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0,0,0,0)).ToString(),Path.Combine(LocalStateFolder,"logs"))}
+{localize("CrashReportHeader",VersionString, Path.Combine(LocalStateFolder, "crashlog"))}
 Exception type: {ex.GetType().Name}
 Message: {ex.Message}
 StackTrace:
@@ -636,11 +705,22 @@ Command line: {Environment.CommandLine}
 Current directory: {Environment.CurrentDirectory}
 
 Latest log:
-{File.ReadAllText(___LogPath___)}
+{(string.IsNullOrEmpty(___LogPath___ ) ? "Unavailable" : File.ReadAllText(___LogPath___))}
 
 (report ended here)
 """;
-                File.WriteAllText(logPath, logMessage);
+                Directory.CreateDirectory(Path.Combine(LocalStateFolder, "crashlog"));
+                string logPath;
+                try
+                {
+                    logPath = Path.Combine(LocalStateFolder, "crashlog\\", $"Crashlog-{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.log");
+                    File.WriteAllText(logPath, logMessage);
+                }
+                catch (Exception) //避免最坏的情况（整个UWP运行时都不可用）
+                {
+                    logPath = Path.Combine(Directory.CreateTempSubdirectory("audiocopy_").FullName, "crash.log");
+                    File.WriteAllText(logPath, logMessage);
+                }
                 Thread.Sleep(100);
                 Process.Start(new ProcessStartInfo { FileName = logPath, UseShellExecute = true });
                 Environment.FailFast(ex.Message, ex);
@@ -745,14 +825,57 @@ Latest log:
 
             // Initialize MainWindow here
             Window = new MainWindow();
-            Window.Closed += Window_Closed;
+            //Window.Closed += Window_Closed;
             Window.Activate();
             WindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(Window);
+
+            AudioCopyUI_TrayHelper.TrayHelper.GUIRunning = true;
+            AudioCopyUI_TrayHelper.TrayHelper.Resource.Shutdown = localize("Tray_Shutdown");
+            AudioCopyUI_TrayHelper.TrayHelper.Resource.Close = localize("Tray_Close");
+            AudioCopyUI_TrayHelper.TrayHelper.Resource.Exit = localize("Tray_Exit");
+            AudioCopyUI_TrayHelper.TrayHelper.Resource.Launch = localize("Tray_Launch");
         }
 
-        private void Window_Closed(object sender, WindowEventArgs args)
+        private async void Window_Closed(object sender, WindowEventArgs args)
         {
-            //Program.ExitApp();
+            string closePref = SettingUtility.GetOrAddSettings("CloseAction", "null");
+            if (closePref == "null")
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = localize("Info"),
+                    Content = localize("ExitOptions"), //"您希望关闭窗口时：\n\n- 完全退出程序\n- 最小化到托盘",
+                    PrimaryButtonText = localize("ExitOption1"), //"完全退出",
+                    SecondaryButtonText = localize("ExitOption2"), //"最小化到托盘",
+                    CloseButtonText = localize("Cancel"), //"取消",
+                    XamlRoot = MainWindow.xamlRoot
+                };
+
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    SettingUtility.SetSettings("CloseAction", "Exit");
+                    Program.ExitApp();
+                }
+                else if (result == ContentDialogResult.Secondary)
+                {
+                    SettingUtility.SetSettings("CloseAction", "MinimizeToTray");
+                    Program.CloseGUI();
+                }
+                else
+                {
+                    args.Handled = true;
+                }
+            }
+            else if (closePref == "Exit")
+            {
+                Program.ExitApp();
+            }
+            else if (closePref == "MinimizeToTray")
+            {
+                Program.CloseGUI();
+                args.Handled = true;
+            }
         }
 
         // TODO This is an example method for the case when app is activated through a file.
@@ -768,5 +891,14 @@ Latest log:
 
         public static ResourceLoader? loader = null;
 
+    }
+
+    internal static class NativeMethods
+    {
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetFocus(IntPtr hWnd);
     }
 }

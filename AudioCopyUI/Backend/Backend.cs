@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging.EventSource;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -25,7 +28,6 @@ namespace AudioCopyUI.Backend
 
         public static Action<Action>? Dispatcher { get; private set; } = null;
 
-        private static MyEventListener? _eventListener; 
 
         public const int VersionCode = 2;
 
@@ -36,12 +38,20 @@ namespace AudioCopyUI.Backend
         {
             var builder = WebApplication.CreateBuilder();
             builder.Logging.ClearProviders();
-            //builder.Logging.AddEventSourceLogger();
+            //builder.Logging.AddConsole();
+            builder.Logging.AddSimpleConsole();
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Hosting", LogLevel.None);
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker", LogLevel.None);
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Routing.EndpointMiddleware", LogLevel.None);
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor", LogLevel.None);
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Mvc.StatusCodeResult", LogLevel.Error);
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Http.Result", LogLevel.Error);
 
-            //_eventListener ??= new MyEventListener();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            
 
             if (bool.Parse(SettingUtility.GetOrAddSettings("EnableSwagger", "False")))
             {
@@ -56,6 +66,18 @@ namespace AudioCopyUI.Backend
                 });
             }
             backend = builder.Build();
+            backend.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                    if (contextFeature != null)
+                    {
+                        await context.Response.WriteAsync($"A {contextFeature.Error.GetType().Name} exception happens: {contextFeature.Error.Message}");
+                        Log(contextFeature.Error, "process request", "IntegratedBackend");
+                    }
+                });
+            });
             if (bool.Parse(SettingUtility.GetOrAddSettings("EnableSwagger", "False")))
             {
                 backend.UseSwagger();
@@ -97,6 +119,11 @@ $""""""
                 return VersionCode.ToString();
             });
 
+            //backend.MapGet("/crash", () =>
+            //{
+            //    throw new NotSupportedException("fun thing hah :)");
+            //});
+
             backend.MapGet("/api/audio/GetAudioFormat", async (string token) =>
             {
                 if (!TokenController.Auth(token)) return Results.Unauthorized();
@@ -133,25 +160,7 @@ $""""""
             return;
         }
 
-        class MyEventListener : EventListener
-        {
-            protected override void OnEventSourceCreated(EventSource eventSource) //从mslearn那里复制黏贴的
-            {
-                if (eventSource.Name == "Microsoft-Extensions-Logging")
-                {                  
-                    var args = new Dictionary<string, string>() { { "FilterSpecs", "App*:Information;*" } };
-                    EnableEvents(eventSource, EventLevel.Error, LoggingEventSource.Keywords.FormattedMessage, args);
-                }
-            }
-            protected override void OnEventWritten(EventWrittenEventArgs eventData)
-            {
-                // Look for the formatted message event, which has the following argument layout (as defined in the LoggingEventSource):
-                // FormattedMessage(LogLevel Level, int FactoryID, string LoggerName, string EventId, string FormattedMessage);
-                if (eventData.EventName == "FormattedMessage")
-                    Log(eventData.Payload[4] as string, $"IntegratedBackend-{(LogLevel)eventData.Payload[0]}-{(eventData.Payload[2] ?? "Unknown source") as string}" );
-                    //Console.WriteLine($"Logger {}: {}");
-            }
-        }
+       
 
 
     }

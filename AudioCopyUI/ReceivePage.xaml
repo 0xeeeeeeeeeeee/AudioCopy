@@ -40,7 +40,7 @@
         </StackPanel>
 
         <Border x:Name="NewBackendInfoBar"
-                   Background="{ThemeResource SystemFillColorSuccessBackgroundBrush}"
+                   Background="{ThemeResource SystemFillColorCautionBackgroundBrush}"
         BorderThickness="2"
         CornerRadius="8"
         Padding="24"
@@ -55,7 +55,7 @@
                    Margin="0,0,0,16"
                    TextAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="16">
-                    <Button x:Uid="AcceptButton" Click="EnableNewBackend_Click" x:Name="EnableNewAPI" Width="80"/>
+                    <Button x:Uid="AcceptButton" Click="EnableNewBackend_Click" x:Name="EnableNewAPI" Width="80" Visibility="Collapsed"/>
                     <Button x:Uid="NolongerShow" Click="HideInfoBar_Click" Width="100"/>
                 </StackPanel>
             </StackPanel>

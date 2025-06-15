@@ -33,6 +33,7 @@
                 </StackPanel>
             </StackPanel>
             <CheckBox Content="禁用V1配对兼容性" x:Name="V1PairingCheckBox" Click="OptionsChanged" />
+            <CheckBox Content="启用实时日志" x:Name="devShell" Click="OptionsChanged" />
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="OverrideCloneAddress" Width="Auto" HorizontalAlignment="Left" MaxWidth="250" PlaceholderText="覆盖AudioClone的端口"/>
                 <TextBox x:Name="OverrideCloneToken" Width="Auto" HorizontalAlignment="Left" MaxWidth="250" PlaceholderText="覆盖AudioClone的Token"/>

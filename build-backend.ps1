@@ -1,7 +1,7 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 # 设定项目路径和输出目录
 Set-Location "D:\code\AudioCopy"
-$backendDir   = ".\libAudioCopy-Backend"
+$backendDir   = "..\AudioClone\AudioClone.Server\"
 $flacBackendDir = ".\StaticResources"
 $assetsDir    = ".\AudioCopyUI\Assets"
 $publishDir   = ".\PublishTemp"
@@ -37,17 +37,16 @@ dotnet publish $csproj.FullName `
     -c Release `
     --sc `
     -o $BackendDir `
-    -p:Version=$newVersion `
     | Write-Host
 
-$CloneDir = Join-Path $publishDir "AudioClone"
+# $CloneDir = Join-Path $publishDir "AudioClone"
 
-dotnet publish "..\AudioClone\AudioClone.Server\AudioClone.Server.csproj" `
-    -c Release `
-    --sc `
-    -o $BackendDir `
-    -p:Version=$newVersion `
-    | Write-Host
+# dotnet publish "..\AudioClone\AudioClone.Server\AudioClone.Server.csproj" `
+#     -c Release `
+#     --sc `
+#     -o $BackendDir `
+#     -p:Version=$newVersion `
+#     | Write-Host
 
 
 

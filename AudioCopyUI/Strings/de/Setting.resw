@@ -66,10 +66,10 @@
     <value>Kanal</value>
   </data>
   <data name="AudioQuality_Option1.Text" xml:space="preserve">
-    <value>Keine Neuabtastung (verwendet die vom System eingestellte Audioqualität)</value>
+    <value>Nicht neu abtasten (Systemkonfigurierte Audioqualität verwenden)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>Wenn Sie Audio mit einer Bittiefe von mehr als 16 Bit aufnehmen möchten, verwenden Sie die Option für voreingestellte oder benutzerdefinierte Abtastraten.</value>
+    <value>Wenn Sie Audio mit einer Bittiefe von mehr als 16 Bit aufnehmen möchten, verwenden Sie die Optionen für voreingestellte oder benutzerdefinierte Abtastraten.</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Vorgefertigte Resampling-Konfiguration verwenden</value>
@@ -79,6 +79,9 @@
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
     <value>RAW-Audiopuffergröße</value>
+  </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>Dadurch werden alle aktuellen Verbindungen getrennt. Möchten Sie fortfahren?</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Abtastrate</value>
@@ -93,13 +96,16 @@
     <value>Tonqualität nicht verfügbar, bitte Backend prüfen</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Backend-Einstellungen</value>
+    <value>Integrierte Backend-Einstellungen</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>AudioClone-Einstellungen</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>Zu bindende IP-Adresse (leer lassen für beliebige Adresse)</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>Zu bindende Portnummer (leer lassen für Standard)</value>
+    <value>Zu bindende Portnummer (leer für Standard)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
     <value>Erlaube die Kopplung mit Adressen außerhalb des lokalen Netzwerks (einschließlich Loopback-Adressen)</value>
@@ -126,7 +132,7 @@
     <value>Über</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Zukünftig basierend auf der AudioClone-Komponente aufgebaut.[line]Teile des Projektcodes stammen von "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), die Idee ebenfalls.[line]Dieses Projekt ist unter der GNU GPLv2-Lizenz lizenziert - Details siehe Lizenz (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Debug-Informationen:[line]Datenverzeichnis: {1}[line][line]Einstellungen:[line]{2}[line][line]Letzter Log-Pfad:[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Basiert auf AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone).[line]Das Projekt verwendet NAudio für Audioaufnahme und -wiedergabe.[line]Die Idee stammt von "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH).[line]AudioCopy ist unter der GNU GPLv2-Lizenz lizenziert[line][line][line][line][line][line][line][line]Debug-Informationen:[line]Datenverzeichnis: {1}[line][line]Einstellungen:[line]{2}[line][line]Letzter Log-Pfad:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Datenschutzrichtlinie</value>
@@ -138,13 +144,13 @@
     <value>Sind Sie sicher, dass Sie das tun möchten?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>Auf der "Kopplung"-Oberfläche werden nicht-lokale Netzwerkadressen und virtuelle Netzwerkkarten angezeigt</value>
+    <value>Auf der "Kopplungs"-Oberfläche nicht-lokale Netzwerkadressen und virtuelle Netzwerkkarten anzeigen</value>
   </data>
   <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
     <value>Immer MP3-Streams wiedergeben erlauben</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>Erlauben, dass das Backend nach dem Beenden weiterläuft</value>
+    <value>Erlaube dem Backend, nach dem Beenden weiterzulaufen</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>Startbildschirm überspringen</value>
@@ -152,8 +158,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>Datenordner öffnen</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>Beim Beenden in das System-Tray minimieren</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>Deaktivieren Sie das Tray</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>Gerätekennung zurücksetzen</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>Alle AudioClone-Server mit einem Klick beenden</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>Alle gekoppelten Geräte löschen</value>
@@ -177,19 +192,19 @@
     <value>Zurückgesetzt, bitte starten Sie die Anwendung neu</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>Alle Kopplungen werden ungültig. Sind Sie sicher, dass Sie fortfahren möchten?</value>
+    <value>Alle Kopplungen werden ungültig. Möchten Sie fortfahren?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
-    <value>Fertig. Falls Probleme bestehen, versuchen Sie bitte ein Update oder eine vollständige Zurücksetzung des Backends.[line]In einigen Fällen müssen Sie die Anwendung möglicherweise neu starten.</value>
+    <value>Fertig. Bei weiteren Problemen versuchen Sie bitte ein Update oder einen vollständigen Reset des Backends.[line]In einigen Fällen müssen Sie die Anwendung möglicherweise neu starten.</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
     <value>Backend neu starten, um Änderungen zu übernehmen</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
-    <value>Diese Einstellungen sind sehr gefährlich, sind Sie sicher, dass Sie sie einstellen möchten?</value>
+    <value>Diese Einstellungen sind sehr gefährlich, sind Sie sicher, dass Sie sie setzen möchten?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>Bei den Optionen scheint ein Problem zu sein, bitte ändern. ({0})</value>
+    <value>Es scheint ein Problem mit den Optionen zu geben. Bitte ändern Sie diese. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>Allgemein</value>
@@ -198,7 +213,7 @@
     <value>Bitte unten anzeigen, auf Zurücksetzen klicken</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
-    <value>Vollversion von AudioCopy herunterladen</value>
+    <value>AudioCopy Vollversion herunterladen</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
     <value>Diese Anwendung ist der Empfänger. Um weitere Einstellungen anzupassen, gehen Sie bitte zum Sender.</value>
@@ -228,9 +243,9 @@
     <value>Altes Backend verwenden</value>
   </data>
   <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
-    <value>Da wir das Backend in die Anwendung selbst und in AudioClone aufgeteilt haben, werden diese Einstellungen bald veraltet sein, und die folgenden Einstellungen sind für das neue Backend ungültig.</value>
+    <value>Da wir das Backend in die Anwendung selbst und AudioClone aufgeteilt haben, werden diese Einstellungen bald veraltet sein, und die folgenden Einstellungen sind für das neue Backend ungültig.</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
-    <value>Warnung: Diese Einstellungen sind derzeit für neue Backends ungültig und verwenden immer die Option "Keine Neuabtastung (Systemkonfigurierte Audioqualität verwenden)".</value>
+    <value>Warnung: Diese Einstellungen sind derzeit für neue Backends ungültig und verwenden immer die Option "Kein Resampling (Systemkonfiguration für Tonqualität verwenden)".</value>
   </data>
 </root>

@@ -69,7 +69,7 @@
     <value>No resampling (use system-configured audio quality)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>For audio capture with bit depths exceeding 16bit, please use the preset or custom sample rate options</value>
+    <value>For audio capture with bit depth exceeding 16bit, please use preset or custom sample rate options</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Use preset resampling configuration</value>
@@ -79,6 +79,9 @@
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
     <value>RAW audio buffer size</value>
+  </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>This will disconnect all current connections. Continue?</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Sample rate</value>
@@ -93,7 +96,10 @@
     <value>Sound quality unavailable, please check backend</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Backend settings</value>
+    <value>Integrated backend settings</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>AudioClone Settings</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>IP address to bind (leave blank for any address)</value>
@@ -126,7 +132,7 @@
     <value>About</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Future versions will be built upon the AudioClone component.[line]Portions of this project's code are derived from "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), and the concept is also inspired by it.[line]This project is licensed under GNU GPLv2 - see the license for details (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Debug information:[line]Data directory: {1}[line][line]Settings:[line]{2}[line][line]Latest log path:[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]Built upon AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone).[line]This project utilises NAudio for audio capture and playback.[line]Project inspiration derived from "Stream What You Hear" (https://github.com/StreamWhatYouHear/SWYH).[line]AudioCopy is licensed under GNU GPLv2[line][line][line][line][line][line][line][line]Debug information:[line]Data directory: {1}[line][line]Settings:[line]{2}[line][line]Latest log path:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Privacy Policy</value>
@@ -138,10 +144,10 @@
     <value>Are you sure you want to do this?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>Show non-LAN addresses and virtual NICs in the 'Pairing' interface</value>
+    <value>Show non-LAN addresses and virtual NICs in "Pairing" interface</value>
   </data>
   <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
-    <value>Always allow MP3 streaming</value>
+    <value>Always allow MP3 stream playback</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
     <value>Allow the backend to continue running after exit</value>
@@ -152,8 +158,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>Open data folder</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>Minimise to tray on exit</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>Disable tray</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>Reset device identifier</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>One-click shutdown of all AudioClone servers</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>Clear all paired devices</value>
@@ -174,10 +189,10 @@
     <value>General</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
-    <value>Reset completed, please restart the application</value>
+    <value>Reset complete, please restart the application</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>All pairings will be invalidated, are you sure you want to do this?</value>
+    <value>All pairings will be invalidated. Are you sure you want to do this?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
     <value>Done. If issues persist, try updating or fully resetting the backend[line]In some cases, you may need to restart the application</value>
@@ -204,13 +219,13 @@
     <value>This application is the receiver. To adjust more settings, please go to the sender.</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
-    <value>Open the link on your computer:</value>
+    <value>Open link on computer:</value>
   </data>
   <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
     <value>Open in browser</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Applying localisation settings, please wait. Do not close this window or interact with the application.[line]The application will launch multiple times - this is expected behaviour</value>
+    <value>Applying localisation settings, please wait. Do not close this window or interact with the application.[line]The application will start multiple times - this is expected behaviour</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>View logs</value>
@@ -225,12 +240,12 @@
     <value>Enable Swagger for new backend (Development only, do not use in production)</value>
   </data>
   <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
-    <value>Using the legacy backend</value>
+    <value>Using the old backend</value>
   </data>
   <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
     <value>Since we've separated the backend into the application itself and AudioClone, these settings will be deprecated, and the following settings will no longer work with the new backend.</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
-    <value>Warning: These settings are currently ineffective for new backends and will always use the 'No resampling (use system-configured audio quality)' option.</value>
+    <value>Warning: These settings are currently ineffective for new backends and will always use the "No resampling (use system-configured audio quality)" option.</value>
   </data>
 </root>

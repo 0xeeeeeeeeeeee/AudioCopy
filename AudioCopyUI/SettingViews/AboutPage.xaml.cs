@@ -61,7 +61,7 @@ namespace AudioCopyUI.SettingViews
                 settings += $"{item.Key} : {item.Value} \r\n";
             }
 
-            thanksBox.Text = string.Format(localize("/Setting/AboutString").Replace("[line]", Environment.NewLine), Assembly.GetExecutingAssembly().GetName().Version, LocalStateFolder, settings, ___LogPath___);
+            thanksBox.Text = string.Format(localize("/Setting/AboutString"), VersionString, LocalStateFolder, settings, ___LogPath___);
          
 //$$"""
 //AudioCopy {{Assembly.GetExecutingAssembly().GetName().Version}} Copyright 0xeeeeeeeeeeee (0x12e) 2025.

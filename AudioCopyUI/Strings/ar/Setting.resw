@@ -66,10 +66,10 @@
     <value>قناة</value>
   </data>
   <data name="AudioQuality_Option1.Text" xml:space="preserve">
-    <value>عدم إعادة أخذ العينات (استخدم جودة الصوت المحددة في إعدادات النظام)</value>
+    <value>عدم إعادة أخذ العينات (استخدم جودة الصوت المحددة في النظام)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>إذا كنت بحاجة إلى تسجيل صوت بعمق بت يتجاوز 16 بت، يرجى استخدام خيار معدل العينة المحدد مسبقًا أو المخصص</value>
+    <value>إذا كنت بحاجة إلى التقاط صوت بعمق بت يتجاوز 16 بت، يرجى استخدام خيار معدل العينة المحدد مسبقًا أو المخصص</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>استخدام تكوين إعادة التشكيل المسبق</value>
@@ -78,7 +78,10 @@
     <value>إعدادات إعادة التشكيل المخصصة</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
-    <value>حجم المخزن المؤقت لـ RAW الصوتي</value>
+    <value>حجم المخزن المؤقت للصوت RAW</value>
+  </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>هذا سيفصل جميع الاتصالات الحالية، هل تريد المتابعة؟</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>معدل العينة</value>
@@ -93,22 +96,25 @@
     <value>جودة الصوت غير متاحة، يرجى التحقق من الخلفية</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>الإعدادات الخلفية</value>
+    <value>إعدادات الخلفية المتكاملة</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>إعدادات AudioClone</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>عنوان IP المطلوب ربطه (اتركه فارغًا لتمثيل أي عنوان)</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>رقم المنفذ المطلوب ربطه (اتركه فارغًا للقيمة الافتراضية)</value>
+    <value>رقم المنفذ المطلوب ربطه (اتركه فارغًا للافتراضي)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
     <value>السماح بالاقتران مع عناوين خارج الشبكة المحلية (بما في ذلك عنوان loopback)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
-    <value>تكوين الخلفية كبيئة تطوير (للتطوير فقط، يرجى عدم استخدامه في بيئة الإنتاج)</value>
+    <value>تكوين الخلفية كبيئة تطوير (للتطوير فقط، يرجى عدم استخدامها في بيئة الإنتاج)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
-    <value>متغيرات البيئة المخصصة للخلفية (استخدم بحذر، قد تحمل مخاطر غير معروفة) مثال: key1=value1,key2=value2,...</value>
+    <value>متغيرات البيئة المخصصة للخادم الخلفي (استخدم بحذر، قد تسبب مخاطر غير معروفة) مثال: key1=value1,key2=value2,...</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
     <value>الإصدار الخلفي:</value>
@@ -126,7 +132,7 @@
     <value>حول</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>نسخ الصوت {0} حقوق النشر 0xeeeeeeeeeeee (0x12e) 2025.[line]سيتم البناء في المستقبل على مكون AudioClone.[line]أجزاء من كود المشروع مأخوذة من "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH)، والفكرة مستوحاة منه أيضًا.[line]يتم ترخيص هذا المشروع بموجب رخصة GNU GPLv2 - للتفاصيل راجع الرخصة (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]معلومات التصحيح:[line]دليل البيانات: {1}[line][line]الإعدادات:[line]{2}[line][line]أحدث مسار للسجل:[line]{3}</value>
+    <value>نسخ الصوت {0} حقوق النشر 0xeeeeeeeeeeee (0x12e) 2025.[line]مبني على AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone).[line]يستخدم المشروع NAudio لتنفيذ تسجيل الصوت وتشغيله.[line]فكرة المشروع مستوحاة من "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH).[line]يتم ترخيص AudioCopy بموجب رخصة GNU GPLv2[line][line][line][line][line][line][line][line]معلومات التصحيح:[line]دليل البيانات: {1}[line][line]الإعدادات:[line]{2}[line][line]أحدث مسار للسجل:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>سياسة الخصوصية</value>
@@ -152,8 +158,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>فتح مجلد البيانات</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>التصغير إلى علبة النظام عند الخروج</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>تعطيل علبة النظام</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>إعادة تعيين معرف الجهاز</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>إغلاق جميع خوادم AudioClone بنقرة واحدة</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>مسح جميع الأجهزة المقترنة</value>
@@ -168,19 +183,19 @@
     <value>إعدادات جودة الصوت</value>
   </data>
   <data name="Setting_Backend.Text" xml:space="preserve">
-    <value>إعدادات الخلفية</value>
+    <value>الإعدادات الخلفية</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
     <value>عام</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
-    <value>تم إعادة الضبط، يرجى إعادة تشغيل التطبيق</value>
+    <value>تم إعادة التعيين، يرجى إعادة تشغيل التطبيق</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
     <value>سيتم إبطال جميع الاقترانات، هل أنت متأكد من رغبتك في القيام بذلك؟</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
-    <value>تم الانتهاء، إذا كانت هناك مشكلات، يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل[line]في بعض الحالات، قد تحتاج إلى إعادة تشغيل التطبيق</value>
+    <value>تم الانتهاء، إذا كانت هناك مشكلات أخرى، يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل[line]في بعض الحالات، قد تحتاج إلى إعادة تشغيل التطبيق</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
     <value>إعادة تشغيل الخلفية لتطبيق التغييرات</value>
@@ -189,19 +204,19 @@
     <value>هذه الإعدادات خطيرة جدًا، هل أنت متأكد أنك تريد تعيينها؟</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>يبدو أن هناك مشكلة في الخيار، يرجى تعديله. ({0})</value>
+    <value>يبدو أن هناك مشكلة في الخيارات، يرجى التعديل. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>عام</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>عرض أدناه، انقر فوق إعادة تعيين</value>
+    <value>يرجى الاطلاع أدناه، انقر فوق إعادة تعيين</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>تنزيل النسخة الكاملة من AudioCopy</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
-    <value>هذا التطبيق هو جهاز الاستقبال، لضبط المزيد من الإعدادات، يرجى الانتقال إلى جهاز الإرسال</value>
+    <value>هذا التطبيق هو جهة الاستقبال، لضبط المزيد من الإعدادات، يرجى الانتقال إلى جهة الإرسال</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
     <value>افتح الرابط على الكمبيوتر:</value>
@@ -231,6 +246,6 @@
     <value>نظرًا لأننا قمنا بفصل الواجهة الخلفية بين التطبيق نفسه وAudioClone، فإن هذه الإعدادات سيتم إيقاف استخدامها قريبًا، كما أن الإعدادات التالية لن تكون فعالة مع الواجهة الخلفية الجديدة.</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
-    <value>تحذير: هذه الإعدادات غير فعالة حاليًا بالنسبة للخلفية الجديدة، وسيتم دائمًا استخدام خيار "عدم إعادة التشكيل (استخدام جودة الصوت المحددة في النظام)".</value>
+    <value>تحذير: هذه الإعدادات غير فعالة حاليًا للواجهة الخلفية الجديدة، وسيتم دائمًا استخدام خيار "عدم إعادة التشكيل (استخدام جودة الصوت المحددة في النظام)".</value>
   </data>
 </root>

@@ -30,7 +30,7 @@
                 </StackPanel>
             </StackPanel>
             
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Visibility="Collapsed">
                 
                 <TextBlock x:Uid="/Setting/BackendSetting_ObsoleteSoon" Margin="0,0,0,5" FontSize="18px" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
                 <CheckBox x:Uid="/Setting/BackendSetting_oldBackend" Margin="0,0" x:Name="oldBackend" Click="OptionsChanged"></CheckBox>

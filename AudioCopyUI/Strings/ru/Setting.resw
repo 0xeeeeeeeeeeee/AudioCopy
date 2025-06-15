@@ -69,7 +69,7 @@
     <value>Не передискретизировать (использовать качество звука из системных настроек)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>Если необходимо записывать аудио с глубиной битности более 16 бит, используйте опцию предустановленной или пользовательской частоты дискретизации</value>
+    <value>Если требуется запись аудио с разрядностью более 16 бит, используйте опции предустановленной или пользовательской частоты дискретизации</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Использовать предустановленную конфигурацию ресемплинга</value>
@@ -80,11 +80,14 @@
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
     <value>Размер буфера RAW-аудио</value>
   </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>Это разорвет все текущие соединения. Продолжить?</value>
+  </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Частота дискретизации</value>
   </data>
   <data name="AudioQuality_Foramt" xml:space="preserve">
-    <value>{0} канал, {1} бит, {2} Гц</value>
+    <value>{0} каналов, {1} бит, {2} Гц</value>
   </data>
   <data name="AudioQuality_Current" xml:space="preserve">
     <value>Текущее качество звука:</value>
@@ -93,31 +96,34 @@
     <value>Качество звука недоступно, проверьте серверную часть</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>Настройки сервера</value>
+    <value>Интеграция настроек серверной части</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>Настройки AudioClone</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>IP-адрес для привязки (оставьте пустым для любого адреса)</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>Номер порта для привязки (оставьте пустым для значения по умолчанию)</value>
+    <value>Порт для привязки (оставьте пустым для значения по умолчанию)</value>
   </data>
   <data name="BackendSetting_allowNonLocalPair.Content" xml:space="preserve">
     <value>Разрешить сопряжение с адресами вне локальной сети (включая loopback-адреса)</value>
   </data>
   <data name="BackendSetting_useDevelopmentMode.Content" xml:space="preserve">
-    <value>Настройте серверную часть для среды разработки (только для разработки, не используйте в рабочей среде)</value>
+    <value>Настроить серверную часть для среды разработки (только для разработки, не использовать в рабочей среде)</value>
   </data>
   <data name="BackendSetting_customEnvironmentVars.PlaceholderText" xml:space="preserve">
-    <value>Пользовательские переменные окружения для бэкенда (используйте с осторожностью, могут привести к неизвестным рискам) Пример: key1=value1,key2=value2,...</value>
+    <value>Пользовательские переменные окружения для бэкенда (используйте с осторожностью, могут привести к непредвиденным рискам) Пример: key1=value1,key2=value2,...</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
-    <value>Версия серверной части:</value>
+    <value>Версия сервера:</value>
   </data>
   <data name="BackendSetting_RebootBackendButton.Content" xml:space="preserve">
-    <value>Перезапустить серверную часть</value>
+    <value>Перезапустить сервер</value>
   </data>
   <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
-    <value>Обновление серверной части</value>
+    <value>Обновление бэкенда</value>
   </data>
   <data name="BackendSetting_disableCustomSettings.Content" xml:space="preserve">
     <value>Отключить пользовательскую конфигурацию</value>
@@ -126,7 +132,7 @@
     <value>О программе</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Авторские права 0xeeeeeeeeeeee (0x12e) 2025.[line]В будущем будет построен на основе компонента AudioClone.[line]Часть кода проекта взята из "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH), идея также принадлежит ему.[line]Проект распространяется под лицензией GNU GPLv2 - подробности см. в лицензии (https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]Отладочная информация:[line]Каталог данных: {1}[line][line]Настройки:[line]{2}[line][line]Последний путь к логу:[line]{3}</value>
+    <value>AudioCopy {0} Авторские права 0xeeeeeeeeeeee (0x12e) 2025.[line]Создано на основе AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone).[line]Для записи и воспроизведения аудио используется NAudio.[line]Идея проекта вдохновлена "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH).[line]AudioCopy распространяется под лицензией GNU GPLv2[line][line][line][line][line][line][line][line]Отладочная информация:[line]Каталог данных: {1}[line][line]Настройки:[line]{2}[line][line]Последний путь к логу:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Политика конфиденциальности</value>
@@ -138,10 +144,10 @@
     <value>Вы уверены, что хотите это сделать?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>Отображение нелокальных адресов и виртуальных сетевых карт в интерфейсе "Сопряжение"</value>
+    <value>Отображать внелокальные адреса и виртуальные сетевые карты в интерфейсе "Сопряжение"</value>
   </data>
   <data name="AdvancedSetting_forceMP3Audio.Content" xml:space="preserve">
-    <value>Всегда разрешать воспроизведение MP3-потоков</value>
+    <value>Всегда разрешать воспроизведение MP3-потока</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
     <value>Разрешить фоновой работе продолжать работать после выхода</value>
@@ -152,8 +158,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>Открыть папку с данными</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>Свернуть в трей при выходе</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>Отключить значок в трее</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>Сбросить идентификатор устройства</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>Одним кликом закрыть все серверы AudioClone</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>Удалить все сопряженные устройства</value>
@@ -177,7 +192,7 @@
     <value>Сброшено, перезапустите приложение</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
-    <value>Все сопряжения станут недействительными, вы уверены, что хотите продолжить?</value>
+    <value>Все сопряжения будут отменены, вы уверены?</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
     <value>Готово. Если проблемы сохраняются, попробуйте обновить или полностью сбросить бэкенд[line]В некоторых случаях может потребоваться перезапуск приложения</value>
@@ -189,13 +204,13 @@
     <value>Эти настройки очень опасны, вы уверены, что хотите их установить?</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>В параметрах, похоже, есть проблема, исправьте. ({0})</value>
+    <value>Возникла проблема с параметрами, исправьте. ({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
-    <value>Общий</value>
+    <value>Общие</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
-    <value>Пожалуйста, посмотрите ниже, нажмите сброс</value>
+    <value>Пожалуйста, посмотрите ниже и нажмите "Сброс"</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
     <value>Скачать полную версию AudioCopy</value>
@@ -204,19 +219,19 @@
     <value>Это приложение является приемником. Для настройки дополнительных параметров перейдите к передатчику.</value>
   </data>
   <data name="ReceiverOnly_LaunchLink" xml:space="preserve">
-    <value>Открыть ссылку на компьютере:</value>
+    <value>Откройте ссылку на компьютере:</value>
   </data>
   <data name="ReceiverOnly_OpenInBrowser" xml:space="preserve">
     <value>Открыть в браузере</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Применяются настройки локализации, пожалуйста, подождите, не закрывайте это окно и не взаимодействуйте с приложением.[line]Приложение может запускаться несколько раз, это нормально.</value>
+    <value>Применяются настройки локализации, пожалуйста, подождите, не закрывайте это окно и не взаимодействуйте с приложением.[line]Приложение будет запущено несколько раз, это нормально.</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>Просмотр журнала</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
-    <value>Последние</value>
+    <value>последний</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>несинхронизированная медиаинформация от удаленной стороны</value>
@@ -231,6 +246,6 @@
     <value>Поскольку мы разделили бэкенд между самим приложением и AudioClone, эти настройки скоро будут устаревшими, и следующие настройки не будут работать с новым бэкендом.</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
-    <value>Предупреждение: эти настройки в настоящее время не действуют для нового бэкенда и всегда будут использовать опцию «Без ресемплинга (использовать качество звука системы)».</value>
+    <value>Предупреждение: эти настройки в настоящее время не действуют для нового бэкенда и всегда будет использоваться опция «Без ресемплинга (использовать качество звука из системных настроек)».</value>
   </data>
 </root>

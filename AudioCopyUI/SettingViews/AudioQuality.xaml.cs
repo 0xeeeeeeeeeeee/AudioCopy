@@ -197,9 +197,9 @@ namespace AudioCopyUI.SettingViews
         {
             SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
             SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
-            if (await ShowDialogue(localize("Info"), localize("/Setting/BackendSetting_RebootRequired"), localize("Accept"), localize("Cancel"), this))
+            if (await ShowDialogue(localize("Info"), localize("/Setting/AudioQuality_RebootRequired"), localize("Accept"), localize("Cancel"), this))
             {
-                await Program.BootBackend();
+                await AudioCloneHelper.Kill();
             }
             //await ShowDialogue("", $"{bitrate}bit {samplerate}hz {channels}channels {rawBufferSize.Value} bytes buf   ", "text", "text", this);
 

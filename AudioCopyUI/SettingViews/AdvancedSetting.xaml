@@ -30,10 +30,15 @@
                 <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_keepBackendRun"  x:Name="keepBackendRun" Click="OptionsChanged"/>
                 <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_skipSplashScreen"  x:Name="skipSplashScreen" Click="OptionsChanged"/>
                 <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableShowHostSMTCInfo"  x:Name="disableShowHostSMTCInfo" Click="OptionsChanged"/>
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableTray"  x:Name="disableTray" Click="OptionsChanged"/>
+
+                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_trayMode"  x:Name="trayMode" Click="OptionsChanged"/>
 
                 <StackPanel Orientation="Horizontal">
                     <Button Margin="0,4" x:Uid="/Setting/AdvancedSetting_openDataFolder"  x:Name="openDataFolder" Click="openDataFolder_Click"/>
                     <Button x:Uid="/Setting/BackendSetting_UpgradeBackendButton" Click="UpgradeBackend_Click" Margin="12,0"></Button>
+                    <Button x:Uid="/Setting/AdvancedSetting_ClearClone" x:Name="ClearClone" Click="ClearClone_Click" Margin="0,0"></Button>
+
                 </StackPanel>
 
 

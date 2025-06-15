@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -119,13 +61,12 @@
   </resheader>
   <data name="PlayString" xml:space="preserve">
     <value>تشغيل الصوت من {0}</value>
-    <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (غير متاح حاليًا حسب إعداداتك)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>الخادم يجمع موجات 16 بت من WASAPI ويرسلها مباشرة، ثم يقوم المستقبل بتشغيلها مباشرة</value>
+    <value>يقوم الخادم بجمع موجات 16 بت من WASAPI وإرسالها مباشرة، ثم يقوم المستقبل بتشغيلها مباشرة</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>هذه الأجهزة تستمع</value>
@@ -143,7 +84,7 @@
     <value>كجهة إرسال</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>في جهة الاستقبال، حدد ما يلي</value>
+    <value>في الطرف المستقبل، حدد المحتوى التالي</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>أو أدخل عنوان IP:</value>
@@ -152,7 +93,7 @@
     <value>تحديث</value>
   </data>
   <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>انقر للتشغيل</value>
+    <value>انقر للعب</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
     <value>تشغيل الصوت من جهاز غير معروف</value>
@@ -161,13 +102,13 @@
     <value>تنسيق الصوت</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>اختيار</value>
+    <value>اختر</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>تطبيق</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>اختر</value>
+    <value>اختيار</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>استقبال</value>
@@ -178,11 +119,14 @@
   <data name="Pair.Content" xml:space="preserve">
     <value>إقران</value>
   </data>
+  <data name="PairText" xml:space="preserve">
+    <value>إقران</value>
+  </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>فشل بدء التشغيل الخلفي ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مستخدمًا بواسطة برنامج آخر</value>
+    <value>فشل بدء التشغيل الخلفي ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مشغولاً بواسطة برنامج آخر</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>في انتظار بدء التشغيل الخلفي...</value>
+    <value>في انتظار بدء تشغيل الخلفية...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
     <value>جارٍ تشغيل الخلفية (إذا ظهر تحذير من برنامج مكافحة الفيروسات، يرجى السماح)...</value>
@@ -191,7 +135,7 @@
     <value>جاري التهيئة...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>يتم تحديث {0} إلى الإصدار v{1}، وقد يستغرق بدء التشغيل وقتًا أطول. يُرجى السماح بالإجراء إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات.</value>
+    <value>جارٍ {0} الخلفي إلى الإصدار v{1}، قد يستغرق الأمر وقتًا أطول للبدء. إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات، يُرجى السماح.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>إنهاء الخلفية الحالية...</value>
@@ -200,16 +144,16 @@
     <value>ترقية</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
-    <value>التثبيت</value>
+    <value>تثبيت</value>
   </data>
   <data name="LogAndDialogue_Content" xml:space="preserve">
     <value>حدث خطأ {1} عند {0}: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
-    <value>حسناً</value>
+    <value>حسنًا</value>
   </data>
   <data name="AcceptButton.Content" xml:space="preserve">
-    <value>حسنًا</value>
+    <value>حسناً</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>إلغاء</value>
@@ -239,10 +183,10 @@
     <value>تم الحذف</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
-    <value>فشل في تعيين جهاز الصوت:</value>
+    <value>فشل في إعداد جهاز الصوت:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>عرض أدناه، انقر فوق إعادة تعيين</value>
+    <value>يرجى الاطلاع أدناه، انقر فوق إعادة الضبط</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>إيقاف التشغيل</value>
@@ -253,11 +197,8 @@
   <data name="TryReconnect" xml:space="preserve">
     <value>فشل الاتصال، هل تريد إعادة الاقتران؟</value>
   </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>لم يتم إقرانك بعد، هل تريد الإقران الآن؟</value>
-  </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>إعدادات الخادم الخلفي الخاصة بك لا تسمح بهذه العملية، يمكنك تعديلها في الإعدادات.</value>
+    <value>إعدادات الخادم الخلفي الخاصة بك لا تسمح بهذا الإجراء، يمكنك تعديله في الإعدادات.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
     <value>انتهت مهلة الاتصال، يرجى التحقق من صحة العنوان أو تغييره.</value>
@@ -281,13 +222,13 @@
     <value>نجاح</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>فشل إضافة الاقتران (الخادم أعاد {0})، يرجى إعادة المحاولة.</value>
+    <value>فشل إضافة الاقتران (الخادم أعاد {0})، يرجى المحاولة مرة أخرى.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>عنوان غير صالح</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>لاحظ أنه عند إيقاف التشغيل، سيتم إعادة تشغيل التطبيق، وهذا أمر طبيعي</value>
+    <value>لاحظ أن التطبيق سيعيد التشغيل عند إيقاف التشغيل، وهذا أمر طبيعي</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>لا تظهر مرة أخرى</value>
@@ -308,7 +249,7 @@
     <value>تكوين وتشغيل الواجهة الخلفية</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
-    <value>تجاهل الأخطاء والمتابعة</value>
+    <value>تجاهل الأخطاء والمتابعة في التشغيل</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
     <value>غلاف ألبوم الوسائط</value>
@@ -317,7 +258,7 @@
     <value>وسائط غير معروفة</value>
   </data>
   <data name="MediaInfo_Artist.Text" xml:space="preserve">
-    <value>فنان مجهول</value>
+    <value>فنان غير معروف</value>
   </data>
   <data name="MediaInfo_Album.Text" xml:space="preserve">
     <value>ألبوم غير معروف</value>
@@ -326,7 +267,7 @@
     <value>معلومات الوسائط من {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>نحن نقوم بتقسيم وترحيل الواجهة الخلفية إلى التطبيق نفسه وإلى AudioClone، مما سيؤدي إلى تحسين كبير في الأداء وإضافة المزيد من الميزات. [line] إذا كنت ترغب في تجربة الواجهة الخلفية الجديدة، يمكنك تمكينها، ولكن هذا يتطلب منك تحديث جميع العملاء. يمكنك دائمًا تبديل هذه الميزة من خلال "الإعدادات - إعدادات الواجهة الخلفية - استخدام الواجهة الخلفية القديمة".</value>
+    <value>لقد قمنا بتقسيم وترحيل الواجهة الخلفية إلى التطبيق نفسه وإلى AudioClone، لذلك توقفنا تمامًا عن استخدام الواجهة الخلفية القديمة في هذا الإصدار. [line] هذا يعني أنك تحتاج إلى ترقية جميع العملاء لضمان عملهم بشكل صحيح.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>لقد قمت بتمكين خلفية جديدة، لذلك نوصي بتحديث جميع العملاء. إذا كنت لا ترغب في التحديث، يمكنك أيضًا تعطيل هذه الميزة في "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
@@ -335,12 +276,39 @@
     <value>لا تذكرني مرة أخرى</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>يبدو أن هناك مشكلة في برامج الترميز في نظامك مما تسبب في توقف تدفق الصوت، يرجى محاولة استخدام الصوت الخام (إذا كان متاحًا)</value>
+    <value>يبدو أن هناك مشكلة في برامج الترميز في نظامك، مما تسبب في توقف تدفق الصوت [line] يرجى محاولة استخدام خيارات الصوت الأخرى</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
-    <value>لاحظ ما يلي: [line]الإصدارات القديمة من العميل توفر دعمًا محدودًا للإصدارات الجديدة، لذا يُفضل تحديث جميع العملاء. [line]بعد تفعيل الخلفية الجديدة هنا، على الرغم من أن سجلات الاقتران بين الخلفية الجديدة والقديمة ستتزامن، قد تحتاج إلى إعادة الاقتران يدويًا. [line]حاليًا، بعض الميزات غير متوفرة عند استخدام الخلفية الجديدة. [line]يمكنك التبديل بين الإصدارات في أي وقت من خلال "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
+    <value>لاحظ ما يلي: [line]إصدارات العميل القديمة لها دعم محدود للإصدارات الجديدة، ومن الأفضل ترقية جميع العملاء. [line]بعد تمكين الواجهة الخلفية الجديدة هنا، على الرغم من أن سجلات الاقتران بين الواجهة الخلفية الجديدة والقديمة ستتزامن، فقد تحتاج إلى إعادة الاقتران يدويًا مرة أخرى. [line]حاليًا، بعض الميزات غير متوفرة عند استخدام الواجهة الخلفية الجديدة. [line]يمكنك التبديل بين الإصدارات في أي وقت من خلال "الإعدادات - إعدادات الواجهة الخلفية - استخدام الواجهة الخلفية القديمة".</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value />
+    <value>AudioCopy v{0} تقرير تعطل[line]إذا واجهت هذه المشكلة بشكل متكرر، يرجى تقديم Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) أو إرسال هذا الملف إلى عنوان البريد الإلكتروني: hexadecimal0x12e@icloud.com[line]ملف السجل موجود في هذا المجلد: {1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>ما هو السلوك الذي تريده عند إغلاق النافذة؟[line]يمكنك تعديله لاحقًا في الإعدادات - عام[line](البرنامج لا يزال يدعم العمل كخادم واستقبال الصوت عند تصغيره إلى علبة النظام)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>إغلاق كامل</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>التصغير إلى علبة النظام</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>لم يتم إقرانك بعد، هل تريد الإقران؟</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>الطرف المحلي أو الطرف البعيد قديم جدًا أو جديد جدًا، يُنصح بترقية جميع العملاء.</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>يجب عليك إعادة تشغيل التطبيق لتطبيق هذه التغييرات</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>الخروج تمامًا</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>إغلاق الواجهة</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>بدء AudioCopy</value>
   </data>
 </root>
