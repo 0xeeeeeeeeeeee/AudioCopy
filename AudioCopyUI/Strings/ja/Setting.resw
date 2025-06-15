@@ -69,16 +69,19 @@
     <value>リサンプリングしない（システム設定の音質を使用）</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>16bitを超えるビット深度のオーディオを収集する必要がある場合、プリセットまたはカスタムサンプルレートオプションを使用してください</value>
+    <value>16ビット以上のビット深度のオーディオを収集する必要がある場合は、プリセットまたはカスタムサンプルレートオプションを使用してください</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
-    <value>プリセットリサンプリング設定を使用</value>
+    <value>プリセットリサンプル設定を使用</value>
   </data>
   <data name="AudioQuality_Option3.Text" xml:space="preserve">
     <value>カスタムリサンプリング設定</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
     <value>RAWオーディオバッファサイズ</value>
+  </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>現在のすべての接続を切断します。続行しますか？</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>サンプリングレート</value>
@@ -93,7 +96,10 @@
     <value>音質が利用できません、バックエンドを確認してください</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>バックエンド設定</value>
+    <value>バックエンド設定の統合</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>AudioClone設定</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>バインドするIPアドレス（空欄は任意のアドレスを意味します）</value>
@@ -126,7 +132,7 @@
     <value>について</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} 著作権 0xeeeeeeeeeeee (0x12e) 2025.[line]将来的にはAudioCloneコンポーネントを基に構築されます。[line]プロジェクトの一部のコードは「Stream What Your Hear」(https://github.com/StreamWhatYouHear/SWYH)から取得され、アイデアもそれに由来します。[line]このプロジェクトはGNU GPLv2ライセンスで公開されています - 詳細はライセンスを参照してください(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]デバッグ情報：[line]データディレクトリ： {1}[line][line]設定：[line]{2}[line][line]最新のログパス：[line]{3}</value>
+    <value>AudioCopy {0} 著作権 0xeeeeeeeeeeee (0x12e) 2025。[line]AudioClone(https://github.com/0xeeeeeeeeeeee/AudioClone)を基に構築。[line]NAudioを使用して音声収録と再生を実装。[line]プロジェクトのアイデアは"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)に由来。[line]AudioCopyはGNU GPLv2ライセンスで公開[line][line][line][line][line][line][line][line]デバッグ情報：[line]データディレクトリ： {1}[line][line]設定：[line]{2}[line][line]最新のログパス：[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>プライバシーポリシー</value>
@@ -144,7 +150,7 @@
     <value>常にMP3ストリームの再生を許可する</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>バックエンドが終了後も実行を継続することを許可</value>
+    <value>終了後にバックエンドを実行し続けることを許可する</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>初期化画面をスキップ</value>
@@ -152,8 +158,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>データフォルダを開く</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>終了時にトレイに最小化</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>トレイを無効にする</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>デバイスIDをリセット</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>すべてのAudioCloneサーバーを一括停止</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>すべてのペアリング済みデバイスを消去</value>
@@ -171,10 +186,10 @@
     <value>バックエンド設定</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
-    <value>汎用</value>
+    <value>一般</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
-    <value>リセットされました。アプリケーションを再起動してください</value>
+    <value>リセットされました、アプリケーションを再起動してください</value>
   </data>
   <data name="AdvancedSetting_SureReset" xml:space="preserve">
     <value>すべてのペアリングが無効になります。実行しますか？</value>
@@ -189,7 +204,7 @@
     <value>これらの設定は非常に危険です。設定してもよろしいですか？</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
-    <value>オプションに問題があるようです、修正してください。({0})</value>
+    <value>オプションに問題があるようです。修正してください。({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
     <value>一般</value>
@@ -222,13 +237,13 @@
     <value>ピアからのメディア情報が同期されていません</value>
   </data>
   <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
-    <value>新バックエンドのSwaggerを有効にする（開発用のみ、本番環境では使用しないでください）</value>
+    <value>新しいバックエンドのSwaggerを有効にする（開発用のみ、本番環境では使用しないでください）</value>
   </data>
   <data name="BackendSetting_oldBackend.Content" xml:space="preserve">
     <value>古いバックエンドを使用する</value>
   </data>
   <data name="BackendSetting_ObsoleteSoon.Text" xml:space="preserve">
-    <value>バックエンドをアプリケーション本体とAudioCloneに分割したため、これらの設定は間もなく廃止予定です。また、以下の設定は新しいバックエンドでは無効になります。</value>
+    <value>バックエンドをアプリケーション本体とAudioCloneに分割したため、これらの設定は間もなく非推奨となり、以下の設定は新しいバックエンドでは無効になります。</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
     <value>警告：これらの設定は現在新しいバックエンドでは無効で、常に「リサンプリングしない（システム設定の音質を使用）」オプションが適用されます。</value>

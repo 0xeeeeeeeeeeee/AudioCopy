@@ -154,6 +154,7 @@ namespace AudioCopyUI
 
                 foreach (var item in Backend.TokenController.Devices)
                 {
+                    if (item.Value == "localhost") continue;
                     clientDisplayName = ($"{item.Value}                                     @{item.Key}");
                     if (!BindedClientList.Contains(clientDisplayName)) BindedClientList.Add(clientDisplayName);
 
@@ -174,25 +175,29 @@ namespace AudioCopyUI
             {
                 if (!await ShowDialogue(localize("Info"), $"要删除{clientName.Split('@')[0].Replace(' ', '\0').Trim()}吗？", localize("Cancel"), "删除", this))
                 {
-                    BindedClientList.Remove(clientName); 
-                    _ = c.DeleteAsync($"api/token/remove?token={clientName.Split('@').Last()}&hostToken={SettingUtility.HostToken}");
-                    try
-                    {
-                        Dictionary<string, string> kvp;
-                        try
-                        {
-                            kvp = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("deviceMapping")) ?? new();
+                    //BindedClientList.Remove(clientName); 
+                    //_ = c.DeleteAsync($"api/token/remove?token={}&hostToken={SettingUtility.HostToken}");
+                    //try
+                    //{
+                    //    Dictionary<string, string> kvp;
+                    //    try
+                    //    {
+                    //        kvp = JsonSerializer.Deserialize<Dictionary<string, string>>(SettingUtility.GetSetting("deviceMapping")) ?? new();
 
-                        }
-                        catch (Exception)
-                        {
-                            kvp = new();
-                        }
-                        kvp.Remove(clientName);
-                        SettingUtility.SetSettings("deviceMapping", JsonSerializer.Serialize(kvp));
-                    }
-                    catch (Exception) { }
+                    //    }
+                    //    catch (Exception)
+                    //    {
+                    //        kvp = new();
+                    //    }
+                    //    kvp.Remove(clientName);
+                    //    SettingUtility.SetSettings("deviceMapping", JsonSerializer.Serialize(kvp));
+                    //}
+                    //catch (Exception) { }
+                    Backend.TokenController.Devices.Remove(clientName.Split('@').Last(),out _);
+                    Backend.TokenController.SaveDevices();
+                    await LoadClientListAsync();
                     await ShowDialogue(localize("Info"), localize("Deleted"), localize("Accept"), null, this);
+                    this.Frame.Navigate(typeof(TransferPage));
                 }
 
             }
@@ -200,29 +205,38 @@ namespace AudioCopyUI
 
         private void StartTimer()
         {
-            timer = new Timer(3000);
-            timer.Elapsed += (s, e) =>
+            try
             {
-                this.DispatcherQueue.TryEnqueue(
-                    DispatcherQueuePriority.Normal,
-                    () =>
-                    {
-                        _ = UpdateClientsAsync();
-                        _ = LoadClientListAsync();
-                        //_ = LoadAudioDevicesAsync();
-                        //try
-                        //{
-                        //    //backendStatusBox.Text = c.GetAsync("/index").GetAwaiter().GetResult().StatusCode == System.Net.HttpStatusCode.Unauthorized ? "后端状态：正常" : "后端状态：异常";
-                        //}
-                        //catch (Exception)
-                        //{
-                        //    //backendStatusBox.Text = "后端状态：未知";
-                        //    _ = ShowDialogue(localize("Info"), localize("BackendAbnormal"), localize("Accept"), null, this);
-                        //}
-                    }
-                );
-            };
-            timer.Start();
+
+
+                timer = new Timer(3000);
+                timer.Elapsed += (s, e) =>
+                {
+                    this.DispatcherQueue.TryEnqueue(
+                        DispatcherQueuePriority.Normal,
+                        () =>
+                        {
+                            _ = UpdateClientsAsync();
+                            _ = LoadClientListAsync();
+                            //_ = LoadAudioDevicesAsync();
+                            //try
+                            //{
+                            //    //backendStatusBox.Text = c.GetAsync("/index").GetAwaiter().GetResult().StatusCode == System.Net.HttpStatusCode.Unauthorized ? "后端状态：正常" : "后端状态：异常";
+                            //}
+                            //catch (Exception)
+                            //{
+                            //    //backendStatusBox.Text = "后端状态：未知";
+                            //    _ = ShowDialogue(localize("Info"), localize("BackendAbnormal"), localize("Accept"), null, this);
+                            //}
+                        }
+                    );
+                };
+                timer.Start();
+            }
+            finally
+            {
+
+            }
         }
 
         private async Task UpdateClientsAsync()
@@ -234,6 +248,7 @@ namespace AudioCopyUI
                 h.BaseAddress = new Uri($"http://127.0.0.1:{AudioCloneHelper.Port}");
                 var rsp = await h.GetAsync($"/api/device/GetListeningClient?token={AudioCloneHelper.Token}");
                 var response = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
+                if (string.IsNullOrWhiteSpace(response)) return; //避免太多日志刷屏
                 var strs = JsonSerializer.Deserialize<string[]>(response);
 
                 if (strs != null)

@@ -119,7 +119,6 @@
   </resheader>
   <data name="PlayString" xml:space="preserve">
     <value>播放来自{0}的音频</value>
-    <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3(根据你的配置当前不可用)</value>
@@ -176,6 +175,9 @@
     <value>发送</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
+    <value>配对</value>
+  </data>
+  <data name="PairText" xml:space="preserve">
     <value>配对</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
@@ -253,9 +255,6 @@
   <data name="TryReconnect" xml:space="preserve">
     <value>连接失败，要尝试重新配对吗？</value>
   </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>你尚未配对，要去配对吗？</value>
-  </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>你的后端配置不允许此操作，可在设置修改。</value>
   </data>
@@ -326,7 +325,7 @@
     <value>来自{0}的媒体信息：</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>我们正在拆分并迁移后端到应用程序本身和AudioClone中，这样可以大幅度的提升性能，以及带来更多的功能。[line]如果你想试试看新的后端，你可以启用它，但是此操作需要你升级所有的客户端。你可以随时在「设置-后端设置-使用旧的后端」来开关此功能。</value>
+    <value>我们已经拆分并迁移后端到应用程序本身和AudioClone中，因此我们在这个版本完全弃用了旧的后端。[line]这意味着你需要你升级所有的客户端来确保他们工作正常。</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>你启用了新的后端，因此你我们建议你升级所有的客户端。如果你不想升级，你也可以在「设置-后端设置-使用旧的后端」来禁用此功能。</value>
@@ -335,12 +334,39 @@
     <value>不再提示我</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>你的系统编解码器似乎有点问题导致了音频流卡住，请尝试使用RAW音频（如果可用）</value>
+    <value>你的系统编解码器似乎有点问题，导致了音频流卡住[line]请尝试使用其他音频选项</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
     <value>请注意：[line]旧版本的客户端对新版本的支持有限，最好升级所有的客户端。[line]在这里启用了新的后端之后，虽然新后端和就后端的配对记录会同步，但是可能需要你手动再次配对。[line]目前使用新后端时部分功能不可用。[line]你可以随时在「设置-后端设置-使用旧的后端」来切换版本。</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} 崩溃报告[line]如果你反复遇到此问题，请提交Issue或者发送此文件到此邮箱地址：hexadecimal0x12e@icloud.com[line]日志文件位于此文件夹下：{1}[line]---</value>
+    <value>AudioCopy v{0} 崩溃报告[line]如果你反复遇到此问题，请提交Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues)或者发送此文件到此邮箱地址：hexadecimal0x12e@icloud.com[line]日志文件位于此文件夹下：{1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>您希望关闭窗口时的行为是什么[line]你后期可以在设置-通用里修改[line](程序最小化到托盘时仍然支持作为服务端和接收音频)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>完全退出</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>最小化到托盘</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>你尚未配对，要去配对吗？</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>本端或者对端太旧或者太新，建议升级所有的客户端。</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>你需要重启应用程序才能应用这些更改</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>彻底退出</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>关闭界面</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>启动 AudioCopy</value>
   </data>
 </root>

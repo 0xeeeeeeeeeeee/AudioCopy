@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -118,11 +60,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>Воспроизвести аудио с {0}</value>
-    <comment>{0}:设备名</comment>
+    <value>Воспроизвести аудио из {0}</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (в настоящее время недоступно в соответствии с вашими настройками)</value>
+    <value>MP3 (в данный момент недоступно согласно вашим настройкам)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
     <value>Сервер собирает 16-битную волновую форму через WASAPI и отправляет напрямую, затем клиент воспроизводит её напрямую</value>
@@ -143,7 +84,7 @@
     <value>Как отправитель</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>На принимающей стороне выберите следующее содержимое</value>
+    <value>На принимающей стороне выберите следующее</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
     <value>или введите IP-адрес:</value>
@@ -178,14 +119,17 @@
   <data name="Pair.Content" xml:space="preserve">
     <value>Сопряжение</value>
   </data>
+  <data name="PairText" xml:space="preserve">
+    <value>Сопряжение</value>
+  </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не блокирует ли серверную часть антивирус или не занят ли порт другим приложением</value>
+    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не блокирует ли её антивирус или не занят ли порт другой программой</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Ожидание запуска серверной части...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Запуск серверной части (если антивирус запрашивает разрешение, предоставьте его)...</value>
+    <value>Запуск серверной части (разрешите в антивирусе, если появится запрос)...</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Инициализация...</value>
@@ -242,7 +186,7 @@
     <value>Не удалось настроить аудиоустройство:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Пожалуйста, посмотрите ниже, нажмите сброс</value>
+    <value>Пожалуйста, посмотрите ниже и нажмите "Сбросить"</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Остановить воспроизведение</value>
@@ -251,25 +195,22 @@
     <value>Аудио от {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Не удалось подключиться. Попробовать выполнить сопряжение снова?</value>
-  </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>Вы еще не в паре, хотите создать пару?</value>
+    <value>Не удалось подключиться. Попробовать выполнить повторное сопряжение?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Ваша конфигурация сервера не позволяет это действие. Можно изменить в настройках.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Превышено время ожидания подключения. Проверьте правильность адреса или попробуйте другой.</value>
+    <value>Соединение превысило время ожидания. Проверьте правильность адреса или попробуйте другой.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Попробуйте поискать решение в интернете</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Сопряжение успешно добавлено, но его нельзя удалить из списка ожидающих сопряжения. Эту проблему можно решить, перезапустив клиент.</value>
+    <value>Пара успешно добавлена, но её нельзя удалить из списка ожидающих сопряжения. Эту проблему можно решить, перезапустив клиент.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>Обнаружен запрос на сопряжение от {0}. Добавить?</value>
+    <value>Обнаружен запрос на сопряжение от {0}, добавить?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
     <value>Сопрячь с {0}?</value>
@@ -281,7 +222,7 @@
     <value>Успех</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Не удалось добавить пару (сервер вернул {0}), попробуйте снова.</value>
+    <value>Не удалось добавить пару (сервер вернул {0}), повторите попытку.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Неверный адрес</value>
@@ -296,7 +237,7 @@
     <value>Порт изменен</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Обратите внимание, текущий номер порта изменен, текущий порт: {0}[line]Введите IP-адрес и номер порта вручную на удаленной стороне</value>
+    <value>请注意, текущий номер порта был изменен, текущий порт: {0}[line]Пожалуйста, введите IP-адрес и номер порта вручную на удаленной стороне</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Попробуйте обновить или полностью сбросить бэкенд</value>
@@ -311,7 +252,7 @@
     <value>Игнорировать ошибки и продолжить запуск</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Обложка медиаальбома</value>
+    <value>Обложка медиа-альбома</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
     <value>Неизвестный носитель</value>
@@ -326,21 +267,48 @@
     <value>Медиаинформация от {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Мы разделяем и переносим бэкенд в само приложение и AudioClone, что значительно повысит производительность и добавит больше функций.[line]Если вы хотите попробовать новый бэкенд, вы можете его включить, но для этого потребуется обновить все клиенты. Вы всегда можете переключиться обратно в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
+    <value>Мы разделили и перенесли бэкенд в само приложение и AudioClone, поэтому в этой версии мы полностью отказались от старого бэкенда.[line]Это означает, что вам нужно обновить все клиенты, чтобы они работали корректно.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>Вы включили новый бэкенд, поэтому мы рекомендуем обновить все клиенты. Если вы не хотите обновлять, вы также можете отключить эту функцию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
+    <value>Вы включили новый бэкенд, поэтому мы рекомендуем обновить все клиенты. Если вы не хотите обновлять, вы можете отключить эту функцию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
     <value>Не напоминать мне</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>В вашей системе, похоже, есть проблема с кодеками, из-за чего аудиопоток зависает. Попробуйте использовать RAW-аудио (если доступно).</value>
+    <value>У вас, кажется, проблема с системными кодеками, из-за чего аудиопоток зависает[line]Попробуйте использовать другие аудиоопции</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
     <value>Обратите внимание: [line]Старые версии клиентов имеют ограниченную поддержку новых версий, лучше обновить все клиенты. [line]После включения нового бэкенда здесь, хотя записи сопряжения нового и старого бэкенда будут синхронизированы, вам может потребоваться вручную выполнить сопряжение снова. [line]В настоящее время при использовании нового бэкенда некоторые функции недоступны. [line]Вы можете в любой момент переключить версию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value />
+    <value>AudioCopy v{0} Отчет об ошибке[line]Если проблема повторяется, создайте Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) или отправьте этот файл на email: hexadecimal0x12e@icloud.com[line]Лог-файл находится в папке: {1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>Какое действие выполнять при закрытии окна?[line]Вы сможете изменить это позже в Настройки → Основные[line](При сворачивании в трей программа продолжает работать как сервер и принимать аудио)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>Полный выход</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>Свернуть в трей</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Вы еще не сопряжены, хотите выполнить сопряжение?</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>Локальный или удаленный клиент слишком старый или новый, рекомендуется обновить все клиенты.</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>Вам необходимо перезапустить приложение, чтобы применить эти изменения.</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>Полный выход</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>Закрыть интерфейс</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>Запуск AudioCopy</value>
   </data>
 </root>

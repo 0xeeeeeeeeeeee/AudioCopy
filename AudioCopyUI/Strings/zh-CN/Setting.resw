@@ -138,6 +138,9 @@
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
     <value>RAW音频缓冲区大小</value>
   </data>
+  <data name="AudioQuality_RebootRequired" xml:space="preserve">
+    <value>这将断开目前所有的链接，要继续吗？</value>
+  </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>采样率</value>
   </data>
@@ -151,7 +154,10 @@
     <value>音质不可用，请检查后端</value>
   </data>
   <data name="BackendSetting_Title.Text" xml:space="preserve">
-    <value>后端设置</value>
+    <value>集成后端设置</value>
+  </data>
+  <data name="CloneSetting_Title.Text" xml:space="preserve">
+    <value>AudioClone设置</value>
   </data>
   <data name="BackendSetting_AddressBindBox.PlaceholderText" xml:space="preserve">
     <value>要绑定的IP地址(留空代表任意地址)</value>
@@ -184,7 +190,7 @@
     <value>关于</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]未来将基于AudioClone组件构建。[line]项目的部分代码来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)，创意也来自于它。[line]该项目使用GNU GPLv2许可证进行许可 - 详情请查看许可证(https://github.com/0xeeeeeeeeeeee/AudioCopy/blob/master/LICENSE)[line][line][line][line][line][line][line][line]调试信息：[line]数据目录： {1}[line][line]设置：[line]{2}[line][line]最新的日志路径：[line]{3}</value>
+    <value>AudioCopy {0} Copyright 0xeeeeeeeeeeee (0x12e) 2025.[line]基于AudioClone(https://github.com/0xeeeeeeeeeeee/AudioClone)构建。[line]项目使用了NAudio实现音频采集和播放。[line]项目的创意来自于"Stream What Your Hear"(https://github.com/StreamWhatYouHear/SWYH)。[line]AudioCopy使用GNU GPLv2许可证进行许可[line][line][line][line][line][line][line][line]调试信息：[line]数据目录： {1}[line][line]设置：[line]{2}[line][line]最新的日志路径：[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>隐私政策</value>
@@ -210,8 +216,17 @@
   <data name="AdvancedSetting_openDataFolder.Content" xml:space="preserve">
     <value>打开数据文件夹</value>
   </data>
+  <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
+    <value>退出时最小化到托盘</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>禁用托盘</value>
+  </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>重置设备标识</value>
+  </data>
+  <data name="AdvancedSetting_ClearClone.Content" xml:space="preserve">
+    <value>一键关闭所有的AudioClone服务端</value>
   </data>
   <data name="AdvancedSetting_resetTokens.Content" xml:space="preserve">
     <value>清除所有配对的设备</value>

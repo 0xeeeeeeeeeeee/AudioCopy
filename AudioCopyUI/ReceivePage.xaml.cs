@@ -154,6 +154,7 @@ namespace AudioCopyUI
                             rsp = await c.GetAsync($"/api/device/GetSMTCInfo?token={ClientToken}");
                             if (rsp.IsSuccessStatusCode)
                             {
+                                if (string.IsNullOrEmpty(await rsp.Content.ReadAsStringAsync())) goto upload;
                                 var infoBody = await rsp.Content.ReadFromJsonAsync<MediaInfo>();
                                 if (infoBody is not null)
                                 {
@@ -193,7 +194,9 @@ namespace AudioCopyUI
                                                 catch (Exception ex1)
                                                 {
                                                     Log(ex1, "Get SMTC info", this);
+                                                    Thread.Sleep(5000); //避免太多日志
                                                 }
+                                                
 
                                             });
                                 }
@@ -203,11 +206,10 @@ namespace AudioCopyUI
                         {
                             Log(ex1, "Get SMTC info", this);
                         }
-                        if (!SettingUtility.OldBackend) continue;
-                        await Task.Delay(1500);
 
 
                     upload:
+                        if (!SettingUtility.OldBackend) goto final;
                         try
                         {
                             var body = await Backend.DeviceController.GetCurrentMediaInfoAsync();
@@ -219,12 +221,10 @@ namespace AudioCopyUI
                         {
                             Log(ex2, "Upload SMTC info", this);
                         }
-                        finally
-                        {
-                            
-                        }
 
 
+                    final:
+                        await Task.Delay(1500);
 
 
                     }
@@ -258,6 +258,7 @@ namespace AudioCopyUI
             else if (playing)
             {
                 playing = false;
+                playButton.IsEnabled = true;
                 mediaPlayer.Pause();
                 mediaPlayer.Dispose();
                 playButton.Content = String.Format(localize("PlayString"), deviceName);
@@ -377,6 +378,7 @@ namespace AudioCopyUI
                         mediaPlayer.Pause();
                         mediaPlayer.Dispose();
                         playButton.Content = String.Format(localize("PlayString"), deviceName);
+                        playButton.IsEnabled = true;
                         return;
                     }
                 });

@@ -147,13 +147,10 @@ namespace AudioCopyUI.SettingViews
             {
                 devMode.IsChecked = true;
             }
-            var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\libAudioCopy_Backend.dll");
-            var backendAsb = Assembly.LoadFrom(backendAsbPath);
-            var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
             var cloneAsbPath = Path.Combine(LocalStateFolder, @"backend\AudioClone.Server.dll");
             var cloneAsb = Assembly.LoadFrom(cloneAsbPath);
             var cloneHash = await AlgorithmServices.ComputeFileSHA256Async(cloneAsbPath);
-            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion")}{Program.BackendVersionCode} \r\n ({backendAsb.FullName} SHA256:{backendHash})\r\n ({cloneAsb.FullName} SHA256:{cloneHash})";
+            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion")}{Program.BackendVersionCode} \r\n ({cloneAsb.FullName} SHA256:{cloneHash})";
 
             var port = SettingUtility.GetOrAddSettings("backendPort", "23456");
             if (port != "23456") PortBindBox.Text = port;

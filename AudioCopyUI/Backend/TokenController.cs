@@ -85,7 +85,7 @@ namespace AudioCopyUI.Backend
                    
                     try
                     {
-                        var result = await ___ShowDialogue__WithRoot___(localize("Pair.Content"), string.Format(localize("PairConfirm"),name), localize("Accept"), localize("Cancel"), MainWindow.xamlRoot);
+                        var result = await ___ShowDialogue__WithRoot___(localize("PairText"), string.Format(localize("PairConfirm"),name), localize("Accept"), localize("Cancel"), MainWindow.xamlRoot);
                         //await ___ShowDialogue__WithRoot___("info", "done", localize("Accept"), null, MainWindow.xamlRoot);
 
                         tcs.SetResult(result);
@@ -103,21 +103,18 @@ namespace AudioCopyUI.Backend
                 {
                     MainWindow.dispatcher.TryEnqueue(() =>
                     {
-                        if(version < Backend.VersionCode)
+                        
+                        if(version == Backend.VersionCode)
                         {
-                            ___ShowDialogue__WithRoot___(localize("Pair.Content"), localize("UpdateApp"), localize("Accept"), null, MainWindow.xamlRoot);
+                            ___ShowDialogue__WithRoot___(localize("PairText"), localize("PairDone"), localize("Accept"), null, MainWindow.xamlRoot);
 
                         }
-                        else if(version == Backend.VersionCode)
+                        else
                         {
-                            ___ShowDialogue__WithRoot___(localize("Pair.Content"), localize("PairDone"), localize("Accept"), null, MainWindow.xamlRoot);
+                            ___ShowDialogue__WithRoot___(localize("PairText"), localize("UpdateApp"), localize("Accept"), null, MainWindow.xamlRoot);
 
                         }
-                        else if(version > Backend.VersionCode)
-                        {
-                            ___ShowDialogue__WithRoot___(localize("Pair.Content"), localize("UpdateApp"), localize("Accept"), null, MainWindow.xamlRoot);
 
-                        }
                     });
                     Devices.TryAdd(udid, name);
                     SaveDevices();
@@ -140,10 +137,10 @@ namespace AudioCopyUI.Backend
         {
             MainWindow.dispatcher.TryEnqueue(async () =>
             {
-                var result = await ___ShowDialogue__WithRoot___(localize("Pair.Content"), name, localize("Accept"), localize("Cancel"), MainWindow.xamlRoot);
+                var result = await ___ShowDialogue__WithRoot___(localize("PairText"), name, localize("Accept"), localize("Cancel"), MainWindow.xamlRoot);
                 if (result)
                 {
-                    await ___ShowDialogue__WithRoot___(localize("Pair.Content"), localize("UpdateApp"), localize("Accept"), null, MainWindow.xamlRoot);
+                    await ___ShowDialogue__WithRoot___(localize("PairText"), localize("UpdateApp"), localize("Accept"), null, MainWindow.xamlRoot);
                     Devices.TryAdd(id, name);
                     SaveDevices();
                 }
@@ -152,8 +149,8 @@ namespace AudioCopyUI.Backend
             });
             
         }
-
-        private static void SaveDevices()
+         
+        public static void SaveDevices()
         {
             File.WriteAllText(Path.Combine(LocalStateFolder, "devices.json"), JsonSerializer.Serialize(Devices));
         }

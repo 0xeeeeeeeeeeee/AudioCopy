@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace AudioCopyUI_Tray
 {
     public static class Program
@@ -8,10 +10,15 @@ namespace AudioCopyUI_Tray
         [STAThread]
         public static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new TrayForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            TrayForm trayForm = new TrayForm();
+            trayForm.ShowInTaskbar = false;
+            trayForm.Visible = false;
+
+            Application.Run();
         }
+
     }
 }

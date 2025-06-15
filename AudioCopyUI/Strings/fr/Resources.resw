@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -119,13 +61,12 @@
   </resheader>
   <data name="PlayString" xml:space="preserve">
     <value>Jouer l'audio de {0}</value>
-    <comment>{0}:设备名</comment>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (indisponible selon votre configuration actuelle)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Le serveur capture une forme d'onde 16 bits via WASAPI et l'envoie directement, puis le récepteur la lit immédiatement</value>
+    <value>Le serveur collecte des formes d'onde 16 bits depuis WASAPI et les envoie directement, puis le récepteur les lit immédiatement</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Ces appareils sont en écoute</value>
@@ -134,19 +75,19 @@
     <value>Sélectionnez l'appareil à écouter</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
-    <value>Appareils appairés :</value>
+    <value>Appareils appariés :</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
     <value>En tant que récepteur</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
-    <value>En tant qu'expéditeur</value>
+    <value>En tant qu'émetteur</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Sélectionnez les éléments suivants côté réception</value>
   </data>
   <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>ou saisissez une adresse IP :</value>
+    <value>ou saisissez l'adresse IP :</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Actualiser</value>
@@ -155,7 +96,7 @@
     <value>Cliquez pour jouer</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Diffuser l'audio d'un appareil inconnu</value>
+    <value>Diffuser l'audio depuis un appareil inconnu</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
     <value>Format audio</value>
@@ -170,12 +111,15 @@
     <value>Choisir un</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
-    <value>Recevoir</value>
+    <value>Réception</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
     <value>Envoyer</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
+    <value>Jumelage</value>
+  </data>
+  <data name="PairText" xml:space="preserve">
     <value>Jumelage</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
@@ -194,7 +138,7 @@
     <value>Connexion au backend {0} en version v{1}, cela peut prendre plus de temps pour démarrer. Si votre antivirus affiche une alerte, veuillez l'autoriser.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Arrêt du backend en cours...</value>
+    <value>Arrêt du backend existant...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
     <value>Mise à niveau</value>
@@ -224,7 +168,7 @@
     <value>Avertissement</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Numéro de port (à saisir uniquement si demandé par l'autre extrémité)</value>
+    <value>Numéro de port (à saisir uniquement si demandé par l'autre partie)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
     <value>Liste des adresses IP obtenues, peut également être saisie manuellement ici</value>
@@ -233,16 +177,16 @@
     <value>Soumettre</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>Le serveur back-end peut ne pas fonctionner correctement, essayez de redémarrer.</value>
+    <value>Le serveur back-end peut ne pas fonctionner correctement, essayez de redémarrer</value>
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>Supprimé</value>
+    <value>supprimé</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
     <value>Échec de la configuration du périphérique audio :</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Veuillez consulter ci-dessous, cliquez sur Réinitialiser</value>
+    <value>Veuillez consulter ci-dessous, cliquez sur réinitialiser</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Arrêter la lecture</value>
@@ -251,16 +195,13 @@
     <value>Audio de {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Échec de la connexion. Voulez-vous essayer de réapparier ?</value>
-  </data>
-  <data name="NotPaired" xml:space="preserve">
-    <value>Vous n'êtes pas encore jumelé, voulez-vous vous jumeler ?</value>
+    <value>Échec de la connexion, voulez-vous essayer de réapparier ?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>Votre configuration back-end ne permet pas cette opération. Vous pouvez la modifier dans les paramètres.</value>
+    <value>Votre configuration back-end ne permet pas cette opération. Modifiez-la dans les paramètres.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Connexion expirée, vérifiez l'adresse ou changez d'adresse.</value>
+    <value>Connexion expirée, vérifiez l'adresse ou changez-la.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Essayer de rechercher une solution en ligne</value>
@@ -272,7 +213,7 @@
     <value>Détection d'une demande d'appariement de {0}, ajouter ?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Voulez-vous jumeler avec {0} ?</value>
+    <value>Voulez-vous associer avec {0} ?</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Appariement ajouté avec succès !</value>
@@ -287,7 +228,7 @@
     <value>Adresse invalide</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Veuillez noter que l'application redémarrera lorsque vous arrêterez la lecture, ce qui est normal.</value>
+    <value>Veuillez noter que l'application redémarrera lorsque vous arrêterez la lecture, ce qui est normal</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Ne plus afficher</value>
@@ -296,13 +237,13 @@
     <value>Port modifié</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Veuillez noter que le numéro de port actuel a changé, le port actuel est {0}[line]Veuillez saisir manuellement l'adresse IP et le numéro de port sur l'extrémité distante</value>
+    <value>Veuillez noter que le numéro de port actuel a changé, le port actuel est {0}[line]Veuillez saisir manuellement l'adresse IP et le numéro de port à l'extrémité distante</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Veuillez essayer de mettre à jour ou de réinitialiser complètement le backend</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
-    <value>Essayer de redémarrer l'application</value>
+    <value>Essayez de redémarrer l'application</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
     <value>Configurer et démarrer le backend</value>
@@ -326,7 +267,7 @@
     <value>Message média de {0} :</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Nous sommes en train de séparer et migrer le backend vers l'application elle-même et AudioClone, ce qui améliorera considérablement les performances et offrira plus de fonctionnalités. [line]Si vous souhaitez essayer le nouveau backend, vous pouvez l'activer, mais cette opération nécessite la mise à jour de tous les clients. Vous pouvez activer ou désactiver cette fonctionnalité à tout moment dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
+    <value>Nous avons séparé et migré le backend vers l'application elle-même et AudioClone, donc nous avons complètement abandonné l'ancien backend dans cette version.[line]Cela signifie que vous devez mettre à jour tous les clients pour vous assurer qu'ils fonctionnent correctement.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>Vous avez activé un nouveau backend, nous vous recommandons donc de mettre à niveau tous les clients. Si vous ne souhaitez pas effectuer la mise à niveau, vous pouvez également désactiver cette fonctionnalité dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
@@ -335,12 +276,39 @@
     <value>Ne plus me le rappeler</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>Votre codec système semble avoir un problème qui bloque le flux audio, essayez d'utiliser l'audio RAW (si disponible)</value>
+    <value>Votre codec système semble avoir un problème, ce qui bloque le flux audio[line]Essayez d'utiliser une autre option audio</value>
   </data>
   <data name="NewBackendPrompt" xml:space="preserve">
-    <value>Veuillez noter : [line]Les anciennes versions du client ont une prise en charge limitée des nouvelles versions, il est préférable de mettre à jour tous les clients. [line]Après avoir activé le nouveau backend ici, bien que les enregistrements d'appairage entre le nouveau et l'ancien backend soient synchronisés, vous devrez peut-être les réappairer manuellement. [line]Certaines fonctionnalités ne sont pas disponibles lors de l'utilisation du nouveau backend. [line]Vous pouvez à tout moment changer de version dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
+    <value>Veuillez noter : [line]Les anciennes versions du client ont une prise en charge limitée des nouvelles versions, il est préférable de mettre à jour tous les clients. [line]Après avoir activé le nouveau backend ici, bien que les enregistrements d'appairage entre le nouveau et l'ancien backend soient synchronisés, vous devrez peut-être les réappairer manuellement. [line]Certaines fonctionnalités ne sont pas disponibles lors de l'utilisation du nouveau backend. [line]Vous pouvez à tout moment basculer entre les versions dans « Paramètres - Paramètres du backend - Utiliser l'ancien backend ».</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value />
+    <value>AudioCopy v{0} Rapport de plantage[line]Si vous rencontrez ce problème à plusieurs reprises, veuillez soumettre un Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) ou envoyer ce fichier à cette adresse e-mail : hexadecimal0x12e@icloud.com[line]Le fichier journal se trouve dans ce dossier : {1}[line]---</value>
+  </data>
+  <data name="ExitOptions" xml:space="preserve">
+    <value>Quel comportement souhaitez-vous lors de la fermeture de la fenêtre[line]Vous pourrez modifier cela ultérieurement dans Paramètres &gt; Général[line](Lorsque le programme est minimisé dans la barre d'état, il continue de fonctionner comme serveur et de recevoir l'audio)</value>
+  </data>
+  <data name="ExitOption1" xml:space="preserve">
+    <value>Quitter complètement</value>
+  </data>
+  <data name="ExitOption2" xml:space="preserve">
+    <value>Réduire dans la barre d'état système</value>
+  </data>
+  <data name="NotPaired" xml:space="preserve">
+    <value>Vous n'êtes pas encore jumelé, voulez-vous vous jumeler ?</value>
+  </data>
+  <data name="UpdateApp" xml:space="preserve">
+    <value>Le client local ou distant est trop ancien ou trop récent, il est recommandé de mettre à niveau tous les clients.</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>Vous devez redémarrer l'application pour appliquer ces modifications.</value>
+  </data>
+  <data name="Tray_Shutdown" xml:space="preserve">
+    <value>Quitter complètement</value>
+  </data>
+  <data name="Tray_Close" xml:space="preserve">
+    <value>Fermer l'interface</value>
+  </data>
+  <data name="Tray_Launch" xml:space="preserve">
+    <value>Lancer AudioCopy</value>
   </data>
 </root>

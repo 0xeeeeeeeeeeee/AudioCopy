@@ -100,42 +100,42 @@ namespace AudioCopyUI
             }
         }
 
-        public static string ComputeStringSHA256ToBase64(string input)
-        {
-            using (SHA256 sha512 = SHA256.Create())
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(input);
-                byte[] hash = sha512.ComputeHash(bytes);
-                //Console.WriteLine(Convert.ToBase64String(hash));
-                return Convert.ToBase64String(hash);
-            }
-        }
+        //public static string ComputeStringSHA256ToBase64(string input)
+        //{
+        //    using (SHA256 sha512 = SHA256.Create())
+        //    {
+        //        byte[] bytes = Encoding.UTF8.GetBytes(input);
+        //        byte[] hash = sha512.ComputeHash(bytes);
+        //        //Console.WriteLine(Convert.ToBase64String(hash));
+        //        return Convert.ToBase64String(hash);
+        //    }
+        //}
 
         private const string StringTable = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-        public static bool AreArraysEqual<T>(T[] val1, T[] val2)
-        {
-            if (val1 is not IEnumerable<T> || val2 is not IEnumerable<T>) throw new NotSupportedException();
-            if (val1.Length != val2.Length)
-                return false;
-            for (int i = 0; i < val1.Length; i++)
-            {
-                if (val1[i].Equals(val2[i]))
-                    return false;
-            }
+        //public static bool AreArraysEqual<T>(T[] val1, T[] val2)
+        //{
+        //    if (val1 is not IEnumerable<T> || val2 is not IEnumerable<T>) throw new NotSupportedException();
+        //    if (val1.Length != val2.Length)
+        //        return false;
+        //    for (int i = 0; i < val1.Length; i++)
+        //    {
+        //        if (val1[i].Equals(val2[i]))
+        //            return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
-        public static T[] AppendToArray<T>(T[] input, T newValue)
-        {
-            if (input == null) throw new ArgumentNullException(nameof(input));
-            if (input == Array.Empty<T>()) return [newValue];
-            var result = new T[input.Length + 1];
-            Array.Copy(input, result, input.Length);
-            result[input.Length] = newValue;
-            return result;
-        }
+        //public static T[] AppendToArray<T>(T[] input, T newValue)
+        //{
+        //    if (input == null) throw new ArgumentNullException(nameof(input));
+        //    if (input == Array.Empty<T>()) return [newValue];
+        //    var result = new T[input.Length + 1];
+        //    Array.Copy(input, result, input.Length);
+        //    result[input.Length] = newValue;
+        //    return result;
+        //}
         [DebuggerNonUserCode()]
         static Guid NewGuid(char _) => Guid.NewGuid();
 

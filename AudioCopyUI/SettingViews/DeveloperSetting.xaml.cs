@@ -93,7 +93,9 @@ namespace AudioCopyUI.SettingViews
 
         private void OptionsChanged(object sender, RoutedEventArgs e)
         {
-            SettingUtility.SetSettings("V1PairCompatibility", (V1PairingCheckBox.IsChecked ?? false).ToString());  
+            SettingUtility.SetSettings("V1PairCompatibility", (V1PairingCheckBox.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("RealtimeLogging", (devShell.IsChecked ?? false).ToString());
+
         }
 
         private async void OverrideCloneAddress_Click(object sender, RoutedEventArgs e)
