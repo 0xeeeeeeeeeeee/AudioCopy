@@ -1,7 +1,7 @@
 # AudioCopy - 投放你的音频到其他设备 Cast your audio to other devices
 
 
-<a href="https://apps.microsoft.com/detail/9P3XT4FS327L?mode=direct">
+<a href="https://apps.microsoft.com/detail/9P3XT4FS327L?cid=github_readme&mode=direct">
 	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
 </a>
 
@@ -9,8 +9,8 @@
 
 # 简介
 你是不是为了把音频从一台设备投放到另一台设备上而发愁？有了AudioCopy，你不再需要为这种情况发愁了。
+
 AudioCopy可以以几乎无损的音质、相对较低的延迟把一个设备上的音频投放到另一台设备上
-AudioCopy的音频传输部分在将来将基于[AudioClone](https://github.com/0xeeeeeeeeeeee/AudioClone)构建
 
 # 功能列表
 - [x] 投放音频
@@ -22,7 +22,9 @@ AudioCopy的音频传输部分在将来将基于[AudioClone](https://github.com/
 
 
 # AudioCopy 是如何工作的
-下面是一个简化的工作流程。
+AudioCopy的音频传输部分基于[AudioClone](https://github.com/0xeeeeeeeeeeee/AudioClone)构建
+
+下面是一个简化的AduioClone的工作流程。
 ```mermaid
 graph TD
     A1[Application 1] -- DirectSound--> DS[DirectSound API]
