@@ -17,12 +17,20 @@ if (-not $csproj) {
     exit 1
 }
 
-# 解析并增量最后一段版本号
-$oldVersion = (Get-Content -Path $versionFile).Trim()
+[xml]$csprojXml = Get-Content $csproj.FullName
+$versionNode = $csprojXml.Project.PropertyGroup.Version
+if (-not $versionNode) {
+    Write-Error ".csproj 文件未找到 <Version> 节点"
+    exit 1
+}
+# $csprojVersion = $versionNode.Trim()
 
-$parts = $oldVersion.Split('.')
-[int]$parts[-1] += 1
-$newVersion = $parts -join '.'
+# # 解析并增量最后一段版本号
+# $oldVersion = (Get-Content -Path $versionFile).Trim()
+
+# $parts = $oldVersion.Split('.')
+# [int]$parts[-1] += 1
+$newVersion = $versionNode.Trim()
 
 # 保存修改后的 .csproj
 Write-Host "版本从 $oldVersion 更新为 $newVersion" -ForegroundColor Green
@@ -32,23 +40,30 @@ Write-Host "版本从 $oldVersion 更新为 $newVersion" -ForegroundColor Green
 if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
 # 调用 dotnet publish
 $BackendDir = Join-Path $publishDir "backend"
+# $BackendUnTrimedDir = Join-Path $publishDir "backend_UnTrimmed"
 
 dotnet publish $csproj.FullName `
     -c Release `
     --sc `
     -o $BackendDir `
+    -p:PublishSingleFile=true `
+    -p:IncludeNativeLibrariesForSelfExtract=true `
+    -p:SatelliteResourceLanguages=en-GB `
     | Write-Host
 
-# $CloneDir = Join-Path $publishDir "AudioClone"
+Get-ChildItem -Path $publishDir -Recurse -Filter *.pdb | Remove-Item -Force
 
-# dotnet publish "..\AudioClone\AudioClone.Server\AudioClone.Server.csproj" `
+
+# dotnet publish $csproj.FullName `
 #     -c Release `
 #     --sc `
-#     -o $BackendDir `
-#     -p:Version=$newVersion `
+#     -o $BackendUnTrimedDir `
 #     | Write-Host
 
-
+# Get-ChildItem -Path $BackendUnTrimedDir -Filter "AudioClone*.dll" | ForEach-Object {
+#     Copy-Item -Path $_.FullName -Destination $BackendDir -Force
+# }
+# Remove-Item -Path $BackendUnTrimedDir -Recurse -Force
 
 
 if (Test-Path $flacBackendDir) {

@@ -53,7 +53,7 @@ namespace AudioCopyUI.SettingViews
         public AudioQuality()
         {
             this.InitializeComponent();
-            _ = AudioCloneHelper.Boot();
+            //_ = AudioCloneHelper.Boot();
             bitrate = 0;
             samplerate = 0;
             channels = 0;
@@ -90,39 +90,7 @@ namespace AudioCopyUI.SettingViews
 
             try
             {
-                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;
-
-                var token = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128));
-                HttpClient c = new();
-                c.BaseAddress = new($"http://127.0.0.1:{AudioCloneHelper.Port}/");
-
-                //if (!Program.AlreadyAddMyself)
-                //{
-                //    try
-                //    {
-                //        _ = await c.PostAsync($"api/token/add?token={token}&hostToken={SettingUtility.HostToken}", null);
-                //    }
-                //    catch (Exception) { }
-                //    finally { Program.AlreadyAddMyself = true; }
-                //}
-                //new Thread(async () =>
-                //{
-                //    try
-                //    {
-
-
-                //        var rsp = await c.GetAsync($"api/audio/GetAudioFormat?token={token}");
-                //        AudioQualityObject body = JsonSerializer.Deserialize<AudioQualityObject>(new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd());
-                //        var text = string.Format(localize("/Setting/AudioQuality_Foramt"), body.channels, body.bitsPerSample, body.sampleRate);
-                //        this.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.High, () =>
-                //        {
-                //            defaultAudioQualityBlock.Text = localize("/Setting/AudioQuality_Current") + text;
-                //        });
-                //    }catch
-                //    {
-                //        return;
-                //    }
-                //}).Start();
+                rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out var result) ? result : 4096;                
                 loaded = true;
                 rawBufferSize.Value = double.TryParse(SettingUtility.GetSetting("rawBufferSize"), out result) ? result : 4096;
 
@@ -212,6 +180,8 @@ namespace AudioCopyUI.SettingViews
             public int bitsPerSample { get; set; }
             public int channels { get; set; }
             public bool isMp3Ready { get; set; }
+
+            
 
             public static AudioQualityObject Parse(string s, IFormatProvider? provider) => ParseAudioFormat(s);
 

@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCopyUI", "AudioCopyUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCopyUI_Tray", "AudioCopyUI_Tray\AudioCopyUI_Tray.csproj", "{1F79F758-E026-4A4E-B0F0-3C4DB13C4297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCopyUI_TrayHelper", "AudioCopyUI_TrayHelper\AudioCopyUI_TrayHelper.csproj", "{35C4F53B-0B03-477F-8287-721CB760E745}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCopyUI_MiddleWare", "AudioCopyUI_TrayHelper\AudioCopyUI_MiddleWare.csproj", "{35C4F53B-0B03-477F-8287-721CB760E745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCopyUI_Backend", "AudioCopyUI_Backend\AudioCopyUI_Backend.csproj", "{373EE589-C30F-431F-80FA-0DAB4545E490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,22 @@ Global
 		{35C4F53B-0B03-477F-8287-721CB760E745}.Release|x64.Build.0 = Release|Any CPU
 		{35C4F53B-0B03-477F-8287-721CB760E745}.Release|x86.ActiveCfg = Release|Any CPU
 		{35C4F53B-0B03-477F-8287-721CB760E745}.Release|x86.Build.0 = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|ARM.Build.0 = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|x64.Build.0 = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Debug|x86.Build.0 = Debug|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|ARM.ActiveCfg = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|ARM.Build.0 = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|ARM64.Build.0 = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|x64.ActiveCfg = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|x64.Build.0 = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|x86.ActiveCfg = Release|Any CPU
+		{373EE589-C30F-431F-80FA-0DAB4545E490}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

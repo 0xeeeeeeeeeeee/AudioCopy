@@ -53,10 +53,11 @@
                    FontSize="20" 
                    FontWeight="Bold" 
                    Margin="0,0,0,16"
+                   TextWrapping="WrapWholeWords"
                    TextAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="16">
                     <Button x:Uid="AcceptButton" Click="EnableNewBackend_Click" x:Name="EnableNewAPI" Width="80" Visibility="Collapsed"/>
-                    <Button x:Uid="NolongerShow" Click="HideInfoBar_Click" Width="100"/>
+                    <Button x:Uid="NolongerShow" Click="HideInfoBar_Click" MinWidth="100"/>
                 </StackPanel>
             </StackPanel>
         </Border>

@@ -19,33 +19,14 @@
                 <Button x:Name="ApplyIPSetting" x:Uid="ApplyButton" Click="OptionsChanged"></Button>
             </StackPanel>
             <CheckBox Margin="0,0" x:Uid="/Setting/AdvancedSetting_EnableSwagger" x:Name="devMode" Click="OptionsChanged"/>
+            <CheckBox Margin="0,0" x:Uid="/Setting/BackendSetting_DisableDiscoverMode" x:Name="noDiscover" Click="OptionsChanged"/>
+            <CheckBox Margin="0,0" x:Uid="/Setting/BackendSetting_DisableNewPairMode" x:Name="noNewPairing" Click="OptionsChanged"/>
 
 
-            <StackPanel Margin="0,12" Orientation="Vertical">
-                <TextBlock  x:Name="BackendVersionBlock"></TextBlock>
-                <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <Button x:Uid="/Setting/BackendSetting_RebootBackendButton" x:Name="rebootBackend" Click="RebootBackend_Click" ></Button>
-                    <CheckBox x:Uid="/Setting/BackendSetting_disableCustomSettings" Margin="8,0" x:Name="disableCustomSettings" Click="OptionsChanged"></CheckBox>
+            <TextBlock  x:Name="BackendVersionBlock" Margin="0,8"></TextBlock>
 
-                </StackPanel>
-            </StackPanel>
-            
-            <StackPanel Orientation="Vertical" Visibility="Collapsed">
-                
-                <TextBlock x:Uid="/Setting/BackendSetting_ObsoleteSoon" Margin="0,0,0,5" FontSize="18px" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
-                <CheckBox x:Uid="/Setting/BackendSetting_oldBackend" Margin="0,0" x:Name="oldBackend" Click="OptionsChanged"></CheckBox>
+            <TextBlock x:Uid="/Setting/BackendSetting_RebootBackendButton" x:Name="rebootBackend"  ></TextBlock>
 
-                <!--<CheckBox x:Name="allowLoopbackPair" Click="OptionsChanged" >允许与环回地址配对</CheckBox>-->
-                <CheckBox x:Uid="/Setting/BackendSetting_allowNonLocalPair" x:Name="allowNonLocalPair" Click="OptionsChanged"></CheckBox>
-
-                <CheckBox x:Uid="/Setting/BackendSetting_useDevelopmentMode" x:Name="useDevelopmentMode" Click="OptionsChanged"></CheckBox>
-                <StackPanel Orientation="Horizontal">
-                    <TextBox x:Uid="/Setting/BackendSetting_customEnvironmentVars" x:Name="customEnvironmentVars" Margin="0,10" Width="Auto" ></TextBox>
-                    <Button Margin="8,0" x:Uid="ApplyButton"  Click="OptionsChanged"></Button>
-                </StackPanel>
-            </StackPanel>
-
-            
         </StackPanel>
     </Grid>
 </Page>

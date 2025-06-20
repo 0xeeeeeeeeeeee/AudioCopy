@@ -65,7 +65,7 @@ namespace AudioCopyUI.SettingViews
                 showNonLocalAddress.IsChecked = true;
             }
 
-            if (bool.Parse(SettingUtility.GetOrAddSettings("KeepBackendRun", "False")))
+            if (bool.Parse(SettingUtility.GetOrAddSettings("NoKeepCloneRun", "False")))
             {
                 keepBackendRun.IsChecked = true;
             }
@@ -129,13 +129,13 @@ namespace AudioCopyUI.SettingViews
 
             SettingUtility.SetSettings("AlwaysAllowMP3", (forceMP3Audio.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("ShowAllAdapter", (showNonLocalAddress.IsChecked ?? false).ToString());
-            SettingUtility.SetSettings("KeepBackendRun", (keepBackendRun.IsChecked ?? false).ToString());
+            SettingUtility.SetSettings("NoKeepCloneRun", (keepBackendRun.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("SkipSplash", (skipSplashScreen.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("DisableShowHostSMTCInfo", (disableShowHostSMTCInfo.IsChecked ?? false).ToString());
             SettingUtility.SetSettings("DisableTray", (disableTray.IsChecked ?? false).ToString());
 
             SettingUtility.SetSettings("CloseAction", (trayMode.IsChecked ?? false) ? "MinimizeToTray" : "Exit");
-            AudioCopyUI_TrayHelper.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
+            AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
 
         }
 
@@ -156,7 +156,7 @@ namespace AudioCopyUI.SettingViews
                 SettingUtility.SetSettings("deviceMapping", "{}");
                 Program.KillBackend();
                 File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
-                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
@@ -171,7 +171,7 @@ namespace AudioCopyUI.SettingViews
                 ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 localSettings.Values.Clear();
                 SettingUtility.SetSettings("ResetEverything", "True");
-                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }
@@ -189,7 +189,7 @@ namespace AudioCopyUI.SettingViews
                 await Task.Delay(1000);
                 Directory.Delete(Path.Combine(LocalStateFolder, @"backend"), true);
                 SettingUtility.SetSettings("ForceUpgradeBackend", "True");
-                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reseted"), localize("Accept"), null, this);
+                await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
                 Program.ExitApp(true);
             }
         }

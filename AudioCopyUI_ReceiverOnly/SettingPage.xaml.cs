@@ -158,7 +158,7 @@ namespace AudioCopyUI_ReceiverOnly
                 };
                 if (await d.ShowAsync() != ContentDialogResult.Primary) return;
             }
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://apps.microsoft.com/detail/9P3XT4FS327L"));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("https://apps.microsoft.com/detail/9P3XT4FS327L?cid=receiverOnly"));
 
         }
 

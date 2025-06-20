@@ -6,6 +6,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.Windows.AppNotifications;
+using Microsoft.Windows.AppNotifications.Builder;
 using NAudio.SoundFont;
 using System;
 using System.Collections.Concurrent;
@@ -13,11 +15,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Windows.Storage;
 using Windows.ApplicationModel;
+using Windows.Storage;
 
 
 namespace AudioCopyUI
@@ -31,16 +34,14 @@ namespace AudioCopyUI
 
         public static ContentDialog _____SplashDialog_____;
 
-        static ConcurrentDictionary<Page, object> locker = new();
-        static ConcurrentDictionary<object, bool> isShowing = new();
+        static object locker = new();
+        //static ConcurrentDictionary<object, bool> isShowing = new();
 
         public static async Task<bool> ShowDialogue(string title, string content, string priButtonText, string? subButtonText, Page element)
-            => await ___ShowDialogue__WithRoot___(title, content, priButtonText, subButtonText, element.Content.XamlRoot);
+            => await ShowDialogue(title, content, priButtonText, subButtonText, element.Content.XamlRoot);
 
-
-        public static async Task<bool> ___ShowDialogue__WithRoot___(string title, string content, string priButtonText, string? subButtonText, XamlRoot element)
+		public static async Task<bool> ShowDialogue(string title, string content, string priButtonText, string? subButtonText, XamlRoot element)
         {
-
             ContentDialog confirmDialog = new ContentDialog
             {
                 XamlRoot = element,
@@ -53,34 +54,15 @@ namespace AudioCopyUI
             return await ShowDialogue(confirmDialog, element, ContentDialogResult.Primary);
         }
 
-
-        private static async Task<bool> ShowDialogue(ContentDialog confirmDialog, object element, ContentDialogResult resultButton)
+        public static async Task<bool> ShowDialogue(ContentDialog confirmDialog, object element, ContentDialogResult resultButton)
         {
             try
             {
-                Task t = new(() =>
-                {
-                    while (true)
-                    {
-                        try
-                        {
-
-
-                            if (isShowing.TryGetValue(element, out var key))
-                            {
-                                if (!key) break;
-                            }
-                            else break;//not exist
-                        }
-                        catch { return; }
-                    }
-                });
-                t.Start();
-                await t;
-                isShowing.AddOrUpdate(element, (_) => true, (_, _) => true);
+                lock (locker) { }
                 var result = (await confirmDialog.ShowAsync()) == resultButton;
-                isShowing[element] = false;
+                lock (locker) { }
                 return result;
+
             }
             catch (Exception ex)
             {
@@ -105,12 +87,30 @@ namespace AudioCopyUI
 
         public static string localize(string key, params string[]? args) => string.Format(localize(key),args);
 
-       
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        public static bool IsWindowActive()
+        {
+            IntPtr foregroundWindow = GetForegroundWindow();
+            if (foregroundWindow == IntPtr.Zero)
+                return false;
+
+            GetWindowThreadProcessId(foregroundWindow, out uint processId);
+            uint currentProcessId = (uint)Process.GetCurrentProcess().Id;
+
+            return processId == currentProcessId;
+        }
+
 
     }
 
 
-
+    [DebuggerNonUserCode()]
     class SettingUtility
     {
         private static ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
@@ -198,12 +198,12 @@ namespace AudioCopyUI
         };
 
         readonly public static string[] locate = {
-            "Default", "العربية/Arabic", "Deutsch/German", "English (United Kingdom)/English (United Kingdom)", "English (United States)/English (United States)",
+            "العربية/Arabic", "Deutsch/German", "English (United Kingdom)/English (United Kingdom)", "English (United States)/English (United States)",
             "Español/Spanish", "Français/French", "Italiano/Italian", "日本語/Japanese", "한국어/Korean", "Polski/Polish",
             "Português (Brasil)/Portuguese (Brazil)", "Русский/Russian", "Türkçe/Turkish", "简体中文/Simplified Chinese", "繁體中文/Traditional Chinese" };
 
         readonly public static string[] locateId =
-            { "default", "ar", "de", "en-GB", "en-US", "es", "fr", "it",
+            { "ar", "de", "en-GB", "en-US", "es", "fr", "it",
             "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant" };
         public static string current => Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
 

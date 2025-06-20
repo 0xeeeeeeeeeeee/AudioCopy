@@ -1,6 +1,7 @@
-[System.Console]::Title = "Applying localization settings"
 
 if($args.Count -eq 0) {
+    [System.Console]::Title = "Please wait..."
+
     taskkill.exe /f /im "AudioCopyUI.exe" 2> $null 1>$null
     
     Start-Sleep -Seconds 3
@@ -9,6 +10,8 @@ if($args.Count -eq 0) {
 
     exit
 }
+[System.Console]::Title = "Applying localization settings"
+
 
 Write-Host -BackgroundColor Green -ForegroundColor White $args[0]
 

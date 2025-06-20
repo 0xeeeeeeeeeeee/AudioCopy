@@ -35,6 +35,8 @@ namespace AudioCopyUI
 
         public static XamlRoot xamlRoot { get; private set; }
 
+        public static InfoBar pairBar { get; set; }
+
         public static DispatcherQueue dispatcher { get; private set; }
 
         public static bool CloseWindow { get; set; }
@@ -43,6 +45,9 @@ namespace AudioCopyUI
         {
 
             this.InitializeComponent();
+
+            pairBar = PairBar;
+
 
             SystemBackdrop = new Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop();
 
@@ -90,7 +95,7 @@ namespace AudioCopyUI
                                             else
                                             {
                                                 logsBox.Text = ___PublicBuffer___;
-                                                if (sw.Elapsed.TotalSeconds > 10) skipButton.Visibility = Visibility.Visible;
+                                                if (sw.Elapsed.TotalSeconds > 10 && LocateDropdown.Visibility != Visibility.Visible) skipButton.Visibility = Visibility.Visible;
                                             }
                                         }
                                     );
@@ -191,11 +196,25 @@ namespace AudioCopyUI
 
             }
 
+            if (SettingUtility.GetOrAddSettings("Language", "default") == "default")
+            {
+                foreach (var item in Localizer.locate)
+                {
+                    var i = new MenuFlyoutItem { Text = item };
+                    i.Click += LangChanged;
+                    OptionsFlyout.Items.Add(i);
 
+                }
+                logsBox.Visibility = Visibility.Collapsed;
+                LocateDropdown.Visibility = Visibility.Visible;
+                OptionsFlyout.ShowAt(LocateDropdown);
+                return;
+            }
             try
             {
                 try
                 {
+                    
                     await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
                     SettingUtility.SetSettings("ForceUpgradeBackend", "False");
                     await Program.BootBackend();
@@ -245,6 +264,7 @@ namespace AudioCopyUI
                     MainNavigationView.Visibility = Visibility.Visible;
 
                     PageFrame.Navigate(typeof(ReceivePage), null, new DrillInNavigationTransitionInfo());
+                    
                     splashPanel.Visibility = Visibility.Collapsed;
                 }
                 TitleTextBlock.Text = "AudioCopy";
@@ -260,6 +280,8 @@ namespace AudioCopyUI
 
         private async void Window_Closed(object sender, WindowEventArgs args)
         {
+            if (!Program.AppRunning) return;
+            var NoKeepCloneRun = bool.Parse(SettingUtility.GetOrAddSettings("NoKeepCloneRun", "False"));
             if (Program.ExitHandled)
             {
                 args.Handled = false;
@@ -275,11 +297,11 @@ namespace AudioCopyUI
                 ContentDialog dialog = new ContentDialog
                 {
                     Title = localize("Info"),
-                    Content = localize("ExitOptions"), //"您希望关闭窗口时：\n\n- 完全退出程序\n- 最小化到托盘",
-                    PrimaryButtonText = localize("ExitOption1"), //"完全退出",
-                    SecondaryButtonText = localize("ExitOption2"), //"最小化到托盘",
-                    CloseButtonText = localize("Cancel"), //"取消",
-                    XamlRoot = MainWindow.xamlRoot
+                    Content = localize("ExitOptions"), 
+                    PrimaryButtonText = localize("ExitOption1"), 
+                    SecondaryButtonText = localize("ExitOption2"), 
+                    CloseButtonText = localize("Cancel"), 
+                    XamlRoot = xamlRoot
                 };
 
                 var result = await dialog.ShowAsync();
@@ -300,6 +322,18 @@ namespace AudioCopyUI
             }
             else if (closePref == "Exit")
             {
+                if(NoKeepCloneRun)
+                {
+                    if (await ShowDialogue(localize("Info"), localize("/Setting/AudioQuality_RebootRequired"), localize("Accept"), localize("Cancel"), xamlRoot))
+                    {
+                        await AudioCloneHelper.Kill();
+                    }
+                    else
+                    {
+                        Program.ExitHandled = false;
+                        return;
+                    }
+                }
                 Program.ExitApp();
             }
             else if (closePref == "MinimizeToTray")
@@ -409,7 +443,32 @@ namespace AudioCopyUI
             }
         }
 
-        
+        private async void LangChanged(object sender, RoutedEventArgs e)
+        {
+            var text = (e.OriginalSource as MenuFlyoutItem).Text;
+
+            var id = Localizer.locateId[Array.IndexOf(Localizer.locate, text)];
+
+            await Program.ChangeLang(id);
+
+
+        }
+
+        private void CancelPairButton_Click(object sender, RoutedEventArgs e)
+        {
+            PairBar.IsClosable = true;
+            CancelPairButton.IsEnabled = false;
+            CancelPairButton.Content = new ProgressRing { IsActive = true, Height = 20, Width = 20 };
+            AudioCopyUI_MiddleWare.BackendHelper.CancelPair();
+            PairBar.IsOpen = false;
+
+        }
+
+        private void PairBar_Closing(InfoBar sender, InfoBarClosingEventArgs args)
+        {
+            CancelPairButton.IsEnabled = true;
+            CancelPairButton.Content = localize("Cancel");
+        }
     }
 
 }

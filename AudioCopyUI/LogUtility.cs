@@ -205,7 +205,7 @@ namespace AudioCopyUI
         public static async Task<bool> LogAndDialogue(Exception e, string whatDoing = "", string? priButtonText = null, string? subButtonText = null, object? obj = null, XamlRoot? root = null, string append = "")
         {
             Log(e, whatDoing, obj);
-            return await ___ShowDialogue__WithRoot___(localize("Error"), string.Format(localize("LogAndDialogue_Content"), whatDoing, e.GetType().Name, e.Message) + (string.IsNullOrWhiteSpace(append) ? "" : "\r\n" + append), priButtonText ?? localize("Accept"), subButtonText, root);
+            return await ShowDialogue(localize("Error"), string.Format(localize("LogAndDialogue_Content"), whatDoing, e.GetType().Name, e.Message) + (string.IsNullOrWhiteSpace(append) ? "" : "\r\n" + append), priButtonText ?? localize("Accept"), subButtonText, root);
         }
 
         public static void Log(string msg, string level = "info")

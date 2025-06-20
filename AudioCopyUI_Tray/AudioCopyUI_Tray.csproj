@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AudioCopyUI_TrayHelper\AudioCopyUI_TrayHelper.csproj" />
+    <ProjectReference Include="..\AudioCopyUI_TrayHelper\AudioCopyUI_MiddleWare.csproj" />
   </ItemGroup>
 
   <ItemGroup>

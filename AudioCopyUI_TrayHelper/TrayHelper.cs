@@ -1,4 +1,4 @@
-﻿namespace AudioCopyUI_TrayHelper
+﻿namespace AudioCopyUI_MiddleWare
 {
     public class TrayHelper
     {
@@ -21,6 +21,7 @@
         public static bool KeepBackendAsDefault;
 
         public static bool GUIRunning;
+        public static bool NoKeepClone;
 
         public class Resource
         {

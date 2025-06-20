@@ -216,6 +216,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="DenyButton.Content" xml:space="preserve">
+    <value>拒绝配对请求</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>错误</value>
   </data>
@@ -336,9 +339,6 @@
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
     <value>你的系统编解码器似乎有点问题，导致了音频流卡住[line]请尝试使用其他音频选项</value>
   </data>
-  <data name="NewBackendPrompt" xml:space="preserve">
-    <value>请注意：[line]旧版本的客户端对新版本的支持有限，最好升级所有的客户端。[line]在这里启用了新的后端之后，虽然新后端和就后端的配对记录会同步，但是可能需要你手动再次配对。[line]目前使用新后端时部分功能不可用。[line]你可以随时在「设置-后端设置-使用旧的后端」来切换版本。</value>
-  </data>
   <data name="CrashReportHeader" xml:space="preserve">
     <value>AudioCopy v{0} 崩溃报告[line]如果你反复遇到此问题，请提交Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues)或者发送此文件到此邮箱地址：hexadecimal0x12e@icloud.com[line]日志文件位于此文件夹下：{1}[line]---</value>
   </data>
@@ -368,5 +368,17 @@
   </data>
   <data name="Tray_Launch" xml:space="preserve">
     <value>启动 AudioCopy</value>
+  </data>
+  <data name="Tray_ExitOptions" xml:space="preserve">
+    <value>退出选项</value>
+  </data>
+  <data name="AppCorrupted" xml:space="preserve">
+    <value>应用程序的资源可能已严重损坏，请尝试卸载重装。</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择下列东西:</value>
+  </data>
+  <data name="PairDetected" xml:space="preserve">
+    <value>来自{0}的配对请求</value>
   </data>
 </root>

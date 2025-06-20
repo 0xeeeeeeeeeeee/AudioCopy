@@ -66,15 +66,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250401001" />
     <PackageReference Include="NAudio" Version="2.2.1" />
-	<PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />
-	<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
-	<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+	  <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+	  <PackageReference Include="System.Management" Version="9.0.6" />
   </ItemGroup>
   <ItemGroup>
     <None Update="header.tt">
@@ -192,6 +188,7 @@
     <PRIResource Remove="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Backend\" />
     <Folder Include="Strings\ar\" />
     <Folder Include="Strings\de\" />
     <Folder Include="Strings\en-GB\" />
@@ -208,7 +205,8 @@
     <Folder Include="Strings\zh-Hant\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioCopyUI_TrayHelper\AudioCopyUI_TrayHelper.csproj" />
+    <ProjectReference Include="..\AudioCopyUI_Backend\AudioCopyUI_Backend.csproj" />
+    <ProjectReference Include="..\AudioCopyUI_TrayHelper\AudioCopyUI_MiddleWare.csproj" />
     <ProjectReference Include="..\AudioCopyUI_Tray\AudioCopyUI_Tray.csproj" />
   </ItemGroup>
  

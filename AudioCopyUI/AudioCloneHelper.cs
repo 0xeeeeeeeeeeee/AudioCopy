@@ -26,12 +26,12 @@ namespace AudioCopyUI
         {
             if (Running) return;
             
-            if (bool.Parse(SettingUtility.GetOrAddSettings("OldBackend", "False")))
-            {
-                Port = 23456;
-                Running = true;
-                return;
-            }
+            //if (bool.Parse(SettingUtility.GetOrAddSettings("OldBackend", "False")))
+            //{
+            //    Port = 23456;
+            //    Running = true;
+            //    return;
+            //}
             if(bool.Parse(SettingUtility.GetOrAddSettings("OverrideAudioCloneOptions", "False")) && uint.TryParse(SettingUtility.GetOrAddSettings("OverrideAudioClonePort", "null"),out var v))
             {
                 Port = (int)v;

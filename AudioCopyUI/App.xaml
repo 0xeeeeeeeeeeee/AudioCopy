@@ -2,6 +2,7 @@
     x:Class="AudioCopyUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
     xmlns:local="using:AudioCopyUI">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +13,8 @@
                 <Setter Property="FontFamily" Value="Segoe UI Variable" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
+            <media:AcrylicBrush x:Key="CustomAcrylicInAppLuminosity"
+                                TintOpacity="0.8" TintLuminosityOpacity="0.8" TintColor="SkyBlue" FallbackColor="SkyBlue" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
