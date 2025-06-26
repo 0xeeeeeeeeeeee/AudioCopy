@@ -62,11 +62,12 @@ namespace AudioCopyUI.SettingViews
             {
                 if (int.TryParse(PortBindBox.Text, out var result) && (result < 0 && result > 65535)) throw new ArgumentOutOfRangeException("Port should around 0 and 65535.");
 
-                if (devMode.IsChecked == true )
+                if (devMode.IsChecked == true || enableV1Pairing.IsChecked == true)
                 {
                     if (await ShowDialogue(localize("Warn"), localize("/Setting/BackendSetting_Dangerous"), localize("Cancel"), localize("Accept"), this))
                     {
-                        devMode.IsChecked = false;
+                        devMode.IsChecked = bool.Parse(SettingUtility.GetOrAddSettings("EnableSwagger", "False"));
+                        enableV1Pairing.IsChecked = bool.Parse(SettingUtility.GetOrAddSettings("enableV1Pairing", "False"));
                     }
                 }
 
@@ -74,7 +75,7 @@ namespace AudioCopyUI.SettingViews
                 SettingUtility.SetSettings("EnableSwagger", (devMode.IsChecked ?? false).ToString());
                 SettingUtility.SetSettings("NoDiscover", (noDiscover.IsChecked ?? false).ToString());
                 SettingUtility.SetSettings("NoNewPair", (noNewPairing.IsChecked ?? false).ToString());
-
+                SettingUtility.SetSettings("V1PairCompatibility", (enableV1Pairing.IsChecked ?? false).ToString());
 
                 SettingUtility.SetSettings("backendPort", !string.IsNullOrWhiteSpace(PortBindBox.Text) && int.TryParse(PortBindBox.Text, out var _) ? PortBindBox.Text : "23456");                
 
@@ -109,6 +110,11 @@ namespace AudioCopyUI.SettingViews
             {
                 noNewPairing.IsChecked = true;
             }
+            if (bool.Parse(SettingUtility.GetOrAddSettings("enableV1Pairing", "False")))
+            {
+                enableV1Pairing.IsChecked = true;
+            }
+
             string cloneInfo = "";
 
             var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\AudioClone.Server.exe");
@@ -123,9 +129,12 @@ namespace AudioCopyUI.SettingViews
                 cloneInfo = "Unavailable";
             }
 
-            BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion", $"v{Program.BackendAPIVersion}", cloneInfo)}";
-            BackendVersionBlock.Text += $" SHA256:{await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath)}";
+            this.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.High, async () =>
+            {
+                BackendVersionBlock.Text = $"{localize("/Setting/BackendSetting_BackendVersion", $"v{Program.BackendAPIVersion}", cloneInfo)}";
+                BackendVersionBlock.Text += $" SHA256:{await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath)}";
 
+            });
 
             var port = SettingUtility.GetOrAddSettings("backendPort", "23456");
             if (port != "23456") PortBindBox.Text = port;

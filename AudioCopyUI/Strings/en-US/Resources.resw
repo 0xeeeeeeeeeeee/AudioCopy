@@ -124,7 +124,7 @@
     <value>MP3 (currently unavailable based on your configuration)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>The server captures 16-bit waveforms from WASAPI and sends them directly, then the receiver plays them back immediately</value>
+    <value>The server captures 16-bit waveform from WASAPI and sends it directly, then the receiver plays it back immediately</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>These devices are listening</value>
@@ -144,9 +144,6 @@
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Select the following at the receiving end</value>
   </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>or enter IP address:</value>
-  </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Refresh</value>
   </data>
@@ -163,7 +160,7 @@
     <value>Select one</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
-    <value>Application</value>
+    <value>Apply</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
     <value>Select one</value>
@@ -181,19 +178,19 @@
     <value>Pairing</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Backend startup failed ({0})\r\nPlease check if the backend is blocked by antivirus software or if the port is occupied by another program</value>
+    <value>Backend startup failed ({0})\r\nPlease check if the port is occupied by another program</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Waiting for backend to start...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Starting backend (allow if antivirus prompts)...</value>
+    <value>Processing</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Initializing...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Upgrading {0} backend to v{1}, this may take longer to start. Please allow if your antivirus software prompts.</value>
+    <value>Processing {0}AudioClone to v{1}, it may take longer to start. Please allow if your antivirus software prompts.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Ending existing backend...</value>
@@ -217,7 +214,7 @@
     <value>Cancel</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Pairing request denied</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -229,10 +226,10 @@
     <value>Prompt</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Port number (only enter when prompted by peer)</value>
+    <value>Port number (only enter when prompted by the peer)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>List of obtained IP addresses, or manually enter here</value>
+    <value>or enter the peer address/port number</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Submit</value>
@@ -247,7 +244,7 @@
     <value>Failed to set audio device:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>View below, click Reset</value>
+    <value>Please check below, click Reset</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Stop playback</value>
@@ -256,7 +253,7 @@
     <value>Audio from {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Connection failed. Retry pairing?</value>
+    <value>Connection failed. Try to pair again?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Your backend configuration does not allow this operation. You can modify it in settings.</value>
@@ -274,7 +271,7 @@
     <value>Pairing request detected from {0}, add it?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Pair with {0}?</value>
+    <value>Pairing with {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Pairing added successfully!</value>
@@ -283,13 +280,13 @@
     <value>Success</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Pairing failed (server returned {0}), please try again.</value>
+    <value>Failed to add pairing (server returned {0}), please try again.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Invalid address</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Please note that the application will restart when you stop playback, which is normal</value>
+    <value>Please note, the application will restart when you stop playback, which is normal behavior</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Don't show again</value>
@@ -298,7 +295,7 @@
     <value>Port changed</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Please note that the current port number has changed. The current port is {0}[line]Please manually enter the IP address and port number on the peer side</value>
+    <value>Please note that the port number has been changed. The current port is {0}. Please enter it manually in the advanced options on the peer side.</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Please try updating or completely resetting the backend</value>
@@ -307,13 +304,13 @@
     <value>Try restarting the application</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>Configure and start the backend</value>
+    <value>Configure and start backend</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
     <value>Ignore errors and continue launching</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Media Album Cover</value>
+    <value>Media album cover</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
     <value>Unknown Media</value>
@@ -331,7 +328,7 @@
     <value>We have split and migrated the backend to the application itself and AudioClone, so we have completely deprecated the old backend in this version.[line]This means you need to upgrade all clients to ensure they work properly.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>You have enabled the new backend, so we recommend upgrading all clients. If you don't want to upgrade, you can also disable this feature in "Settings - Backend Settings - Use Legacy Backend".</value>
+    <value>You have enabled the new backend, so we recommend upgrading all clients. If you don't want to upgrade, you can disable this feature in "Settings - Backend Settings - Use Legacy Backend".</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
     <value>Don't show me again</value>
@@ -340,7 +337,7 @@
     <value>There seems to be an issue with your system codecs, causing audio stream stuttering[line]Please try using other audio options</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} Crash Report[line]If you encounter this issue repeatedly, please submit an Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) or send this file to: hexadecimal0x12e@icloud.com[line]Log file is located in this folder: {1}[line]---</value>
+    <value>AudioCopy v{0} Crash Report[line]If you encounter this issue repeatedly, please submit an Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) or send this file to: hexadecimal0x12e@icloud.com[line]Log file location: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
     <value>What behavior do you prefer when closing the window[line]You can modify this later in Settings &gt; General[line](The program still supports being a server and receiving audio when minimized to tray)</value>
@@ -352,16 +349,16 @@
     <value>Minimize to tray</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>You are not paired yet. Would you like to pair?</value>
+    <value>You are not paired yet. Do you want to pair?</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
-    <value>Local or remote client is too old or too new, it is recommended to upgrade all clients.</value>
+    <value>The local or remote end is too old or too new, it is recommended to upgrade all clients.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>You need to restart the application to apply these changes</value>
+    <value>You need to restart the application to apply these changes[line](You can do this via the tray-exit option)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
-    <value>Quit Completely</value>
+    <value>Exit completely</value>
   </data>
   <data name="Tray_Close" xml:space="preserve">
     <value>Close</value>
@@ -370,15 +367,57 @@
     <value>Start AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Exit Options</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>The application resources may be severely corrupted, please try uninstalling and reinstalling.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Select the following items:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Pairing request from {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Discovering...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Advanced Options</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Having issues? Use advanced options</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Get Help</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Use traditional pairing interface</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Your available IP address:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Please enable legacy pairing compatibility first</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Discovery unavailable. Please use "Pair using IP address" in Advanced Options or enable Discovery Mode in Settings while keeping the port number as default.</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Enter the peer IP address</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Address example: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](port number is mandatory in this case)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>The input does not match, please try again.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>Time difference exceeds 1 minute, version mismatch is too large, or a client appears modified. Please check.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>The peer rejected your pairing request, the pairing operation timed out, or you were blocked by the peer.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Restart the app</value>
   </data>
 </root>

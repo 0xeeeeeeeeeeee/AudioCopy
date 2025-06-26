@@ -372,3 +372,4 @@ FodyWeavers.xsd
 *.lnk
 /.vscode
 /PublishTemp
+/AudioCopyUI_Backend/SecretProvider.cs

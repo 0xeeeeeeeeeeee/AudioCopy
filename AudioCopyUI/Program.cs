@@ -1,4 +1,26 @@
-﻿#if !DISABLE_XAML_GENERATED_MAIN
+/*
+*	 File: Program.cs
+*	 Website: https://github.com/0xeeeeeeeeeeee/AudioCopy
+*	 Copyright 2024-2025 (C) 0xeeeeeeeeeeee (0x12e)
+*
+*   This file is part of AudioCopy
+*	 
+*	 AudioCopy is free software: you can redistribute it and/or modify
+*	 it under the terms of the GNU General Public License as published by
+*	 the Free Software Foundation, either version 2 of the License, or
+*	 (at your option) any later version.
+*	 
+*	 AudioCopy is distributed in the hope that it will be useful,
+*	 but WITHOUT ANY WARRANTY; without even the implied warranty of
+*	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*	 GNU General Public License for more details.
+*	 
+*	 You should have received a copy of the GNU General Public License
+*	 along with AudioCopy. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+#if !DISABLE_XAML_GENERATED_MAIN
 #define DISABLE_XAML_GENERATED_MAIN
 #endif
 
@@ -57,6 +79,16 @@ namespace AudioCopyUI
                     if (tag == "fromTray")
                     {
                         _LoggerInit_(SettingUtility.GetOrAddSettings("logPath", "null"), true);
+                    }
+                    else if(tag == "nowindow")
+                    {
+                        global::Microsoft.UI.Xaml.Application.Start((p) =>
+                        {
+                            var context = new global::Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext(global::Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread());
+                            global::System.Threading.SynchronizationContext.SetSynchronizationContext(context);
+                            //new App();
+                        });
+                        return;
                     }
                     else
                     {
@@ -141,10 +173,36 @@ namespace AudioCopyUI
             Thread.Sleep(100);
             if (reboot)
             {
-                var uri = new Uri("ms-appx:///Assets/ApplyLocalization.ps1");
-                StorageFile f = StorageFile.GetFileFromApplicationUriAsync(uri).GetAwaiter().GetResult();
-                Process.Start(new ProcessStartInfo { FileName = "powershell.exe", Arguments = $"-File \"{f.Path}\"", UseShellExecute = true });
-                Thread.Sleep(10000);
+                var script =
+$$"""
+function changeLang
+{
+    [System.Console]::Title = "Please wait..."
+
+    taskkill.exe /f /im "AudioCopyUI.exe" 2> $null 1>$null
+
+    Start-Sleep -Seconds 1
+
+    Start-Process "audiocopy:"
+
+    exit 
+}
+
+Clear-Host;changeLang
+
+""";
+                var proc = new Process();
+                proc.StartInfo.FileName = "powershell.exe";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardInput = true;
+                proc.StartInfo.CreateNoWindow = false;
+                proc.Start();
+                var procWriter = proc.StandardInput;
+                if (procWriter != null)
+                {
+                    procWriter.AutoFlush = true;
+                    procWriter.WriteLine(script);
+                }
             }
             ApplicationCloseTokenSource.Cancel();
             Environment.Exit(0);
@@ -291,6 +349,220 @@ Latest log:
             return info;
         }
 
+        public static async Task ChangeLang(string target)
+        {
+            SettingUtility.SetSettings("Language", target == "default" ? Windows.Globalization.Language.CurrentInputMethodLanguageTag : target);
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Localizer.Match(target);
+            await Task.Delay(10);
+
+            var script =
+$$"""
+function changeLang
+{
+    [System.Console]::Title = "Applying localization settings"
+
+    $decoded = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("{{Convert.ToBase64String(Encoding.UTF8.GetBytes(localize("/Setting/AdvancedSetting_ApplyLocate")))}}"))
+
+    Write-Host -BackgroundColor Green -ForegroundColor White $decoded
+
+
+    taskkill.exe /f /im "AudioCopyUI.exe" 2> $null 1>$null
+
+    for ($i = 0; $i -lt 3; $i++) 
+    {
+        Start-Process "audiocopy:nowindow" 
+
+        Start-Sleep -Seconds 2
+
+        taskkill.exe /f /im "AudioCopyUI.exe" 2> $null 1>$null
+    }
+
+    Start-Process "audiocopy:" 
+    exit
+}
+
+Clear-Host;changeLang
+
+""";
+
+
+            var proc = new Process();
+            proc.StartInfo.FileName = "powershell.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.RedirectStandardInput = true;
+            proc.StartInfo.CreateNoWindow = false;
+            proc.Start();
+            var procWriter = proc.StandardInput;
+            if (procWriter != null)
+            {
+                procWriter.AutoFlush = true;
+                procWriter.WriteLine(script);
+            }
+
+        }
+
+        public static string GetDeviceModel()
+        {
+            string? model = null;
+            int type = -1;
+
+            try
+            {
+                using var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystemProduct");
+
+                foreach (var obj in searcher.Get())
+                {
+                    var motherboardModel = obj["Name"]?.ToString();
+                    model = motherboardModel;
+                    var manf = obj["Vendor"]?.ToString();
+                    if(!model.ToLower().Contains(manf.ToLower())) model = $"{manf} {model}";
+                    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log(ex, "Get device model", GetDeviceModel);
+            }
+
+            if (model == null)
+            {
+                try
+                {
+                    using var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystemProduct");
+                    foreach (var obj in searcher.Get())
+                    {
+                        var motherboardModel = obj["Name"]?.ToString();
+                        if (!string.IsNullOrEmpty(motherboardModel))
+                        {
+                            model = motherboardModel;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log(ex, "Get motherboard model", GetDeviceModel);
+                }
+
+            }
+
+            if (model == null)
+            {
+                model = "Unknown Model";
+            }
+
+            try
+            {
+                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_SystemEnclosure"))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        var chassisTypes = obj["ChassisTypes"] as ushort[];
+
+                        if (chassisTypes != null)
+                        {
+                            foreach (var typ in chassisTypes)
+                            {
+                                type = typ;
+                                break;
+                            }
+                        }
+                        else //另外的方法
+                        {
+                            try
+                            {
+                                bool hasBattery = false;
+                                using (var searcher1 = new ManagementObjectSearcher("SELECT * FROM Win32_Battery"))
+                                {
+                                    foreach (ManagementObject battery in searcher.Get())
+                                    {
+                                        var name = (battery["Name"] as string) ?? "none".ToLower();
+                                        if (!name.Contains("ups") || !name.Contains("usb")) //防止使用了USB UPS的场景下误判
+                                            hasBattery = true;
+                                        break;
+                                    }
+                                }
+                                type = hasBattery ? 8 : 3;
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Log(ex, "Get device type by battery", GetDeviceModel);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log(ex, "Get device type", GetDeviceModel);
+            }
+
+            switch (type)
+            {
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 13:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                    BackendHelper.ThisDeviceTypeID = DeviceType.Desktop;
+                    break;
+
+                case 8:
+                case 9:
+                case 10:
+                case 14:
+                    BackendHelper.ThisDeviceTypeID = DeviceType.Laptop;
+                    break;
+
+                case 11:
+                case 23:
+                case 30:
+                case 31:
+                    BackendHelper.ThisDeviceTypeID = DeviceType.Tablet;
+                    break;
+
+
+                default:
+                    BackendHelper.ThisDeviceTypeID = DeviceType.Unknown;
+                    break;
+            }
+
+            var typeStr = type switch
+            {
+                3 => "Desktop",
+                4 => "Low Profile Desktop",
+                5 => "Pizza Box",
+                6 => "Mini Tower",
+                7 => "Tower",
+                8 => "Portable",
+                9 => "Laptop",
+                10 => "Notebook",
+                11 => "Hand Held",
+                12 => "Docking Station",
+                13 => "All in One",
+                14 => "Sub Notebook",
+                15 => "Space-Saving",
+                16 => "Lunch Box",
+                17 => "Main System Chassis",
+                18 => "Expansion Chassis",
+                21 => "Peripheral Chassis",
+                23 => "Tablet",
+                30 => "Tablet (Convertible)",
+                31 => "Detachable",
+                _ => "Unknown type"
+            };
+
+            if (model.ToLower().Contains(typeStr.ToLower())) return model;
+
+            return model + " " + typeStr;
+        }
+
+
         #endregion
 
         #region backend
@@ -335,7 +607,7 @@ Latest log:
                 if (force || !Path.Exists(path) || File.ReadAllText(path) != ver)
                 {
                     await AudioCloneHelper.Kill();
-                    Log(string.Format(localize("Init_Stage2"), Path.Exists(path) ? "更新" : "安装并初始化", ver), "showToGUI");
+                    Log(string.Format(localize("Init_Stage2"), Path.Exists(path) ? localize("Init_Install") : localize("Init_Upgrade"), ver), "showToGUI");
                     uri = new Uri("ms-appx:///Assets/backend.zip");
                     StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
                     ZipArchive zipArchive = new ZipArchive(await file.OpenStreamForReadAsync(), ZipArchiveMode.Read);
@@ -402,7 +674,6 @@ Latest log:
             }
             Log($"Port: {port}");
             if (port == -1) port = int.Parse(SettingUtility.GetOrAddSettings("backendPort", "23456"));
-            //else SettingUtility.SetSettings("backendPort", port.ToString());
             BackendPort = port;
 
             try
@@ -414,55 +685,6 @@ Latest log:
                 Log(ex, "Boot new backend", "Backend");
             }
             
-            //await Task.Run(async () =>
-            //{
-            //    Stopwatch sw = Stopwatch.StartNew();
-            //    HttpClient c = new();
-            //    c.BaseAddress = new($"http://127.0.0.1:{BackendPort}/");
-            //    c.Timeout = new TimeSpan(0, 0, 5);
-
-
-
-            //    Exception? exception = null;
-            //    while (true)
-            //    {
-            //        try
-            //        {
-            //            if ((await (await c.GetAsync("/Detect")).Content.ReadAsStringAsync()) == "Ready")
-            //            {
-            //                Log("Backend booted.");
-            //                return;
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Log(ex, "后端启动", Program.BootBackend);
-            //            exception = ex;
-            //        }
-            //        await Task.Delay(50);
-
-            //        if (sw.Elapsed.TotalSeconds > 10)
-            //        {
-            //            if (exception is not null) throw new InvalidOperationException(string.Format(localize("Init_StageFail"), $"{exception.GetType().Name}:{exception.Message}"), exception);
-
-            //            throw new InvalidOperationException(string.Format(localize("Init_StageFail"), "Request timeout."));
-            //        }
-            //    }
-            //});
-
-
-
-
-        }
-
-        public static async Task ChangeLang(string target)
-        {
-            SettingUtility.SetSettings("Language", target == "default" ? Windows.Globalization.Language.CurrentInputMethodLanguageTag : target);
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Localizer.Match(target);
-            await Task.Delay(10);
-            var uri = new Uri("ms-appx:///Assets/ApplyLocalization.ps1");
-            StorageFile f = await StorageFile.GetFileFromApplicationUriAsync(uri);
-            Process.Start(new ProcessStartInfo { FileName = "powershell.exe", Arguments = $"-File \"{f.Path}\" \"{localize("/Setting/AdvancedSetting_ApplyLocate")}\"", UseShellExecute = true });
         }
 
         #endregion
@@ -512,7 +734,7 @@ Latest log:
                 return GetCurrentMediaInfoAsync().GetAwaiter().GetResult();
             });
 
-            BackendHelper.BootAudioClone = new Task(() =>
+            BackendHelper.BootAudioClone = new(() =>
             {
                 AudioCloneHelper.Boot().GetAwaiter().GetResult();
                 BackendHelper.CloneAddress = $"{AudioCloneHelper.Port}/api/audio/{{0}}?token={AudioCloneHelper.Token}&clientName={{1}}";
@@ -591,103 +813,64 @@ Latest log:
             });
 
 
-            string GetMotherboardModel()
-            {
-                try
-                {
-                    using var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
-                    foreach (var obj in searcher.Get())
-                    {
-                        //foreach (var item in obj.Properties)
-                        //{
-                        //    Debug.WriteLine($"{item.Name}: {item.Value}");
-                        //}
-                        var motherboardModel = obj["Manufacturer"]?.ToString() + " " + obj["Product"]?.ToString();
-                        return motherboardModel ?? "Unknown model";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return $"获取主板型号失败: {ex.Message}";
-                }
 
-                return "Not available";
+            BackendHelper.ThisDeviceModel = GetDeviceModel();
+
+            if (BackendHelper.ThisDeviceModel.Contains("VMWare") || BackendHelper.ThisDeviceModel.Contains("VirtualBox") || BackendHelper.ThisDeviceModel.Contains("Hyper-V"))
+            {
+                SettingUtility.SetSettings("ShowAllAdapter", true.ToString());
+
             }
 
-
-            BackendHelper.ThisDeviceModel = GetMotherboardModel();
-        }
-
-        public static void InitTray()
-        {
-            AudioCopyUI_MiddleWare.TrayHelper.BootApp = new(async () =>
-            {
-                if (AppRunning) //带到前台
-                {
-                    MainWindow.dispatcher.TryEnqueue(DispatcherQueuePriority.High,
-                        () =>
-                        {
-                            if (App.Window is not null)
-                            {
-                                App.Window.Activate();
-                                var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Window);
-                                if (hwnd != IntPtr.Zero)
-                                {
-                                    NativeMethods.SetForegroundWindow(hwnd);
-                                    NativeMethods.SetFocus(hwnd);
-                                }
-                            }
-                        });
-                    return;
-                }
-                Log("Restarting GUI...");
-                SettingUtility.SetSettings("logPath", ___LogPath___);
-                Process.Start(new ProcessStartInfo { FileName = "audiocopy:fromTray", UseShellExecute = true });
-                await Task.Delay(800);
-                Program.ExitApp();
-            });
-            AudioCopyUI_MiddleWare.TrayHelper.CloseApp = CloseGUI;
-            AudioCopyUI_MiddleWare.TrayHelper.GetSMTC = new Action(async () =>
-            {
-                AudioCopyUI_MiddleWare.BackendHelper.MediaInfo? i = null;
-                MainWindow.dispatcher.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal,
-                    async () =>
-                    {
-                        i = await GetCurrentMediaInfoAsync();
-                    });
-                await Task.Delay(1000);
-                if (i is null)
-                {
-                    AudioCopyUI_MiddleWare.TrayHelper.Artist = "应用程序尚未启动";
-                    AudioCopyUI_MiddleWare.TrayHelper.Title = "请先启动";
-                    AudioCopyUI_MiddleWare.TrayHelper.listeningClient = -1;
-                    return;
-                }
-                AudioCopyUI_MiddleWare.TrayHelper.Artist = i.Artist;
-                AudioCopyUI_MiddleWare.TrayHelper.Title = i.Title;
-                AudioCopyUI_MiddleWare.TrayHelper.listeningClient = 0; //todo:实现
-
-            });
-            AudioCopyUI_MiddleWare.TrayHelper.IsNotStandalone = true;
-            AudioCopyUI_MiddleWare.TrayHelper.Shutdown = new Action(() => ExitApp(false));
-            AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
-
+            BackendHelper.ThisDeviceUdid = SettingUtility.GetOrAddSettings("udid", AlgorithmServices.MakeRandString(128)); 
         }
 
         internal static async Task PostInit()
         {
-            AudioCopyUI_MiddleWare.TrayHelper.GUIRunning = true;
-            AudioCopyUI_MiddleWare.TrayHelper.Resource.Shutdown = localize("Tray_Shutdown");
-            AudioCopyUI_MiddleWare.TrayHelper.Resource.Close = localize("Tray_Close");
-            AudioCopyUI_MiddleWare.TrayHelper.Resource.Launch = localize("Tray_Launch");
-            AudioCopyUI_MiddleWare.TrayHelper.Resource.Exit = localize("Tray_ExitOptions");
-            AudioCopyUI_MiddleWare.TrayHelper.Resource.DisconnectWarn = localize("/Setting/AudioQuality_RebootRequired");
-            AudioCopyUI_MiddleWare.TrayHelper.NoKeepClone = bool.Parse(SettingUtility.GetOrAddSettings("NoKeepCloneRun", "False"));
-
             if (!bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False")))
             {
+                AudioCopyUI_MiddleWare.TrayHelper.GUIRunning = true;
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.Shutdown = localize("Tray_Shutdown");
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.Close = localize("Tray_Close");
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.Launch = localize("Tray_Launch");
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.Exit = localize("Tray_ExitOptions");
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.DisconnectWarn = localize("/Setting/AudioQuality_RebootRequired");
+                AudioCopyUI_MiddleWare.TrayHelper.Resource.Reboot = localize("RebootApp");
+
+                AudioCopyUI_MiddleWare.TrayHelper.NoKeepClone = bool.Parse(SettingUtility.GetOrAddSettings("NoKeepCloneRun", "False"));
+                AudioCopyUI_MiddleWare.TrayHelper.IsNotStandalone = true;
+                AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
+
+                AudioCopyUI_MiddleWare.TrayHelper.Shutdown = new Action(() => ExitApp(false));
+                AudioCopyUI_MiddleWare.TrayHelper.BootApp = new(async () =>
+                {
+                    if (AppRunning) //带到前台
+                    {
+                        MainWindow.dispatcher.TryEnqueue(DispatcherQueuePriority.High,
+                            () =>
+                            {
+                                if (App.Window is not null)
+                                {
+                                    App.Window.Activate();
+                                    var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.Window);
+                                    if (hwnd != IntPtr.Zero)
+                                    {
+                                        NativeMethods.SetForegroundWindow(hwnd);
+                                        NativeMethods.SetFocus(hwnd);
+                                    }
+                                }
+                            });
+                        return;
+                    }
+                    Log("Restarting GUI...");
+                    SettingUtility.SetSettings("logPath", ___LogPath___);
+                    Process.Start(new ProcessStartInfo { FileName = "audiocopy:fromTray", UseShellExecute = true });
+                    await Task.Delay(800);
+                    Program.ExitApp();
+                });
+                AudioCopyUI_MiddleWare.TrayHelper.CloseApp = CloseGUI;
+                AudioCopyUI_MiddleWare.TrayHelper.RebootApp = new(() => { ExitApp(true); });
                 Log("Booting tray...");
-                InitTray();
                 Thread trayThread = new(AudioCopyUI_Tray.Program.Main);
                 trayThread.Start();
             }
@@ -712,7 +895,8 @@ Latest log:
         {
             AppRunning = true;  
             Log("Starting GUI...");
-            global::WinRT.ComWrappersSupport.InitializeComWrappers(); //from:App.g.i.cs
+            //from:App.g.i.cs
+            global::WinRT.ComWrappersSupport.InitializeComWrappers(); 
             global::Microsoft.UI.Xaml.Application.Start((p) =>
             {
                 var context = new global::Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext(global::Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread());

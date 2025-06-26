@@ -124,7 +124,7 @@
     <value>MP3 (indisponível de acordo com suas configurações atuais)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>O servidor coleta a forma de onda de 16 bits do WASAPI e envia diretamente, então o receptor reproduz diretamente</value>
+    <value>O servidor coleta a forma de onda de 16 bits do WASAPI e envia diretamente, então o cliente reproduz diretamente</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Esses dispositivos estão escutando</value>
@@ -144,9 +144,6 @@
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>No lado do receptor, selecione o seguinte:</value>
   </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>ou digite o endereço IP:</value>
-  </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Atualizar</value>
   </data>
@@ -163,7 +160,7 @@
     <value>Escolher um</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
-    <value>aplicativo</value>
+    <value>Aplicativo</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
     <value>Escolher um</value>
@@ -175,31 +172,31 @@
     <value>Enviar</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
-    <value>Emparelhar</value>
+    <value>Emparelhamento</value>
   </data>
   <data name="PairText" xml:space="preserve">
     <value>Emparelhamento</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Falha na inicialização do back-end ({0})\r\nVerifique se o back-end foi bloqueado pelo antivírus ou se a porta está sendo usada por outro programa</value>
+    <value>Falha na inicialização do backend ({0})\r\nVerifique se a porta está sendo usada por outro programa</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Aguardando inicialização do back-end...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Iniciando back-end (permitir se o antivírus solicitar)...</value>
+    <value>Processando</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Inicializando...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Conectando ao backend {0} para v{1}, pode levar mais tempo para iniciar. Se o antivírus solicitar, por favor permita.</value>
+    <value>Está clonando {0}AudioClone para v{1}, pode levar mais tempo para iniciar. Se o antivírus solicitar, por favor permita.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Encerrando o back-end existente...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>Atualização</value>
+    <value>Atualizar</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Instalação</value>
@@ -217,7 +214,7 @@
     <value>Cancelar</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Recusar solicitação de emparelhamento</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Erro</value>
@@ -232,7 +229,7 @@
     <value>Número da porta (insira apenas quando solicitado pelo peer)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Lista de endereços IP obtidos, também pode inserir manualmente aqui</value>
+    <value>ou insira o endereço/número da porta do peer</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Enviar</value>
@@ -247,7 +244,7 @@
     <value>Falha ao configurar o dispositivo de áudio:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Verifique abaixo e clique em redefinir</value>
+    <value>Verifique abaixo, clique em redefinir</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Parar reprodução</value>
@@ -256,25 +253,25 @@
     <value>Áudio de {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Falha na conexão. Tentar emparelhar novamente?</value>
+    <value>Falha na conexão. Deseja tentar emparelhar novamente?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Sua configuração de back-end não permite esta operação, pode ser alterada nas configurações.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Tempo limite de conexão atingido, verifique se o endereço está correto ou tente outro endereço.</value>
+    <value>Tempo limite de conexão excedido. Verifique o endereço ou tente outro.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
-    <value>Tente pesquisar a solução online</value>
+    <value>Tentar pesquisar a solução online</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>O emparelhamento foi adicionado com sucesso, mas não pode ser removido da lista de emparelhamento pendente. Você pode resolver esse problema reiniciando o cliente.</value>
+    <value>O emparelhamento foi adicionado com sucesso, mas não foi possível removê-lo da lista de emparelhamento pendente. Você pode resolver esse problema reiniciando o cliente.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>Detectada solicitação de emparelhamento de {0}, deseja adicionar?</value>
+    <value>Foi detectada uma solicitação de emparelhamento de {0}, deseja adicionar?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Parear com {0}?</value>
+    <value>Emparelhamento com {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Emparelhamento adicionado com sucesso!</value>
@@ -289,7 +286,7 @@
     <value>Endereço inválido</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Observe que o aplicativo reiniciará quando você parar a reprodução, o que é normal</value>
+    <value>Observe que o aplicativo reiniciará quando você parar a reprodução, isso é normal</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Não mostrar novamente</value>
@@ -298,7 +295,7 @@
     <value>Porta alterada</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Atenção, o número da porta atual foi alterado, a porta atual é {0}[line]Por favor, insira manualmente o endereço IP e o número da porta no terminal remoto</value>
+    <value>Observe que o número da porta atual foi alterado, a porta atual é {0}, insira manualmente nas opções avançadas do dispositivo remoto</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Tente atualizar ou redefinir completamente o back-end</value>
@@ -328,7 +325,7 @@
     <value>Informações de mídia de {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Nós separamos e migramos o back-end para o aplicativo em si e para o AudioClone, então descontinuamos completamente o back-end antigo nesta versão.[line]Isso significa que você precisa atualizar todos os clientes para garantir que eles funcionem corretamente.</value>
+    <value>Nós dividimos e migramos o back-end para o próprio aplicativo e para o AudioClone, então descontinuamos completamente o back-end antigo nesta versão.[line]Isso significa que você precisa atualizar todos os clientes para garantir que eles funcionem corretamente.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>Você ativou um novo backend, por isso recomendamos atualizar todos os clientes. Se não quiser atualizar, você também pode desativar esta função em "Configurações - Configurações do Backend - Usar backend antigo".</value>
@@ -340,10 +337,10 @@
     <value>Seu codec de sistema parece ter algum problema, causando travamento no fluxo de áudio[line]Tente usar outras opções de áudio</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} Relatório de falha[line]Se você encontrar esse problema repetidamente, por favor envie um Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) ou envie este arquivo para este e-mail: hexadecimal0x12e@icloud.com[line]O arquivo de log está localizado nesta pasta: {1}[line]---</value>
+    <value>AudioCopy v{0} relatório de falha[line]Se você encontrar esse problema repetidamente, por favor envie um Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) ou envie este arquivo para este e-mail: hexadecimal0x12e@icloud.com[line]O arquivo de log está localizado nesta pasta: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>Qual comportamento você deseja ao fechar a janela?[line]Você pode alterar isso posteriormente em Configurações &gt; Geral[line](O programa ainda funciona como servidor e recebe áudio quando minimizado para a bandeja)</value>
+    <value>Qual comportamento você deseja ao fechar a janela?[line]Você pode alterar isso depois em Configurações &gt; Geral[line](O programa ainda funciona como servidor e recebe áudio quando minimizado para a bandeja)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>Sair completamente</value>
@@ -355,10 +352,10 @@
     <value>Você ainda não está emparelhado, deseja emparelhar?</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
-    <value>O lado local ou remoto está muito antigo ou muito novo, recomenda-se atualizar todos os clientes.</value>
+    <value>O lado local ou o remoto está muito antigo ou muito novo, recomenda-se atualizar todos os clientes.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Você precisa reiniciar o aplicativo para aplicar essas alterações</value>
+    <value>Você precisa reiniciar o aplicativo para aplicar essas alterações[line](você pode fazer isso na opção Sair da bandeja)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>Sair completamente</value>
@@ -370,15 +367,57 @@
     <value>Iniciar AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Opção de Sair</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Os recursos do aplicativo podem estar seriamente corrompidos. Tente desinstalar e reinstalar.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Selecione os seguintes itens:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Pedido de emparelhamento de {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Descobrindo...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Opções avançadas</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Problemas? Use opções avançadas</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Obter ajuda</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Usar interface de emparelhamento tradicional</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Seus endereços IP disponíveis:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Por favor, ative primeiro a compatibilidade de emparelhamento tradicional</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Indisponível para descoberta, use "Emparelhar usando endereço IP" nas opções avançadas ou ative o modo de descoberta nas configurações mantendo a porta padrão</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Insira o endereço IP do peer</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Exemplo de endereço: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](o número da porta é obrigatório neste caso)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>O conteúdo inserido não corresponde. Por favor, tente novamente.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>A diferença de tempo excede 1 minuto, a versão está muito desatualizada ou um cliente parece ter sido modificado. Por favor, verifique.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>O outro lado recusou sua solicitação de emparelhamento, a operação expirou ou você foi bloqueado.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Reiniciar aplicativo</value>
   </data>
 </root>

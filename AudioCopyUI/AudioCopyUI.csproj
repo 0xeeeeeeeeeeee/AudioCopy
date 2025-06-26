@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="PairingPage.xaml" />
+    <None Remove="PairingPageV2.xaml" />
     <None Remove="ReceivePage.xaml" />
     <None Remove="SettingPage.xaml" />
     <None Remove="SettingViews\AboutPage.xaml" />
@@ -43,7 +44,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
 	<Content Include="Assets\backend.zip" />
     <Content Include="Assets\backend_version.txt" />
-    <Content Include="Assets\ApplyLocalization.ps1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,6 +77,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>header.cs</LastGenOutput>
     </None>
+    <Page Update="PairingPageV2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="SettingViews\DeveloperSetting.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,6 +143,10 @@
   -->
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <!-- Publish Properties -->

@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -127,7 +69,7 @@
     <value>リサンプリングしない（システム設定の音質を使用）</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>16ビット以上のビット深度のオーディオを収集する必要がある場合は、プリセットまたはカスタムサンプルレートオプションを使用してください</value>
+    <value>16bitを超えるビット深度のオーディオを収集する必要がある場合は、プリセットまたはカスタムサンプルレートオプションを使用してください</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>プリセットリサンプル設定を使用</value>
@@ -139,7 +81,7 @@
     <value>RAWオーディオバッファサイズ</value>
   </data>
   <data name="AudioQuality_RebootRequired" xml:space="preserve">
-    <value>現在のすべての接続を切断します。続行しますか？</value>
+    <value>現在のすべてのオーディオストリーム接続を切断します。続行しますか？</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>サンプリングレート</value>
@@ -163,16 +105,16 @@
     <value>バインドするポート番号（空欄はデフォルト）</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
-    <value>バックエンドバージョン：</value>
+    <value>バックエンドAPIバージョン：{0}[line]AudioCloneバージョン：{1}</value>
   </data>
   <data name="BackendSetting_RebootBackendButton.Text" xml:space="preserve">
-    <value>バックエンドを再起動</value>
+    <value>バックエンドを再起動するには、まずアプリケーションを完全に終了してから、再度アプリケーションを開いてください。</value>
   </data>
   <data name="BackendSetting_DisableDiscoverMode.Content" xml:space="preserve">
-    <value>バックエンドを再起動</value>
+    <value>アクティブディスカバリクライアントを無効にする</value>
   </data>
   <data name="BackendSetting_DisableNewPairMode.Content" xml:space="preserve">
-    <value>バックエンドを再起動</value>
+    <value>相手端末からのペアリング要求を許可しない</value>
   </data>
   <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
     <value>バックエンドを更新</value>
@@ -190,13 +132,13 @@
     <value>詳細設定</value>
   </data>
   <data name="AdvancedSetting_Sure" xml:space="preserve">
-    <value>これを実行してもよろしいですか？</value>
+    <value>本当に実行しますか？</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>「ペアリング」画面で非LANアドレスと仮想ネットワークアダプタを表示</value>
+    <value>クライアント検出時および「ペアリング」画面で非LANアドレスと仮想ネットワークカードの使用を許可</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>終了後にバックエンドを実行し続けることを許可する</value>
+    <value>終了後にAudioCloneインスタンスを実行しない</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>初期化画面をスキップ</value>
@@ -206,9 +148,6 @@
   </data>
   <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
     <value>終了時にトレイに最小化</value>
-  </data>
-  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
-    <value>トレイを無効にする</value>
   </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>デバイスIDをリセット</value>
@@ -232,7 +171,7 @@
     <value>バックエンド設定</value>
   </data>
   <data name="Setting_General.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>汎用</value>
   </data>
   <data name="AdvancedSetting_Reset" xml:space="preserve">
     <value>リセットされました、アプリケーションを再起動してください</value>
@@ -241,25 +180,25 @@
     <value>すべてのペアリングが無効になります。実行しますか？</value>
   </data>
   <data name="BackendSetting_Rebooted" xml:space="preserve">
-    <value>完了、問題が残っている場合は、バックエンドの更新または完全リセットを試してください[line]場合によっては、アプリケーションの再起動が必要になることがあります</value>
+    <value>完了、問題が残っている場合はバックエンドの更新または完全リセットを試してください[line]場合によってはアプリケーションの再起動が必要になることがあります</value>
   </data>
   <data name="BackendSetting_RebootRequired" xml:space="preserve">
-    <value>変更を適用するためにバックエンドを再起動します</value>
+    <value>変更を適用するためにバックエンドを再起動</value>
   </data>
   <data name="BackendSetting_Dangerous" xml:space="preserve">
-    <value>これらの設定は非常に危険です。設定してもよろしいですか？</value>
+    <value>これらの設定は非常に危険です。本当に設定しますか？</value>
   </data>
   <data name="BackendSettings_OptionsProblem" xml:space="preserve">
     <value>オプションに問題があるようです。修正してください。({0})</value>
   </data>
   <data name="GeneralSetting_Title.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>汎用</value>
   </data>
   <data name="ReceiverOnly_ViewDownside" xml:space="preserve">
     <value>下記をご確認の上、リセットをクリックしてください</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
-    <value>AudioCopy 完全版をダウンロード</value>
+    <value>AudioCopyの完全版をダウンロード</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
     <value>このアプリは受信側です。より多くの設定を調整するには、送信側に移動してください</value>
@@ -271,7 +210,7 @@
     <value>ブラウザで開く</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>ローカライズ設定を適用中です。しばらくお待ちください。このウィンドウを閉じたり、アプリケーションと対話したりしないでください。[line]アプリケーションが複数回起動する場合がありますが、これは正常な動作です</value>
+    <value>ローカライズ設定を適用中です。しばらくお待ちください。このウィンドウを閉じないでください。[line]ポップアップが表示される場合がありますが、これは正常な動作です</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>ログを表示</value>
@@ -283,9 +222,15 @@
     <value>ピアからのメディア情報が同期されていません</value>
   </data>
   <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
-    <value>新しいバックエンドのSwaggerを有効にする（開発用のみ、本番環境では使用しないでください）</value>
+    <value>統合バックエンドのSwaggerを有効化（開発専用、本番環境では使用しないでください）</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
     <value>警告：これらの設定は現在新しいバックエンドでは無効で、常に「リサンプリングしない（システム設定の音質を使用）」オプションが適用されます。</value>
+  </data>
+  <data name="BackendSetting_enableV1Pairing.Content" xml:space="preserve">
+    <value>V1ペアリング互換性を有効にする</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>トレイ無効</value>
   </data>
 </root>

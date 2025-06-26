@@ -121,10 +121,10 @@
     <value>Odtwarzanie dźwięku z {0}</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (obecnie niedostępne zgodnie z konfiguracją)</value>
+    <value>MP3 (niedostępne zgodnie z twoją konfiguracją)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Serwer przechwytuje 16-bitową falę dźwiękową przez WASAPI i wysyła bezpośrednio, a odbiornik odtwarza ją natychmiast.</value>
+    <value>Serwer przechwytuje 16-bitową falę dźwiękową przez WASAPI i wysyła ją bezpośrednio, a odbiornik odtwarza ją natychmiast.</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Te urządzenia nasłuchują</value>
@@ -142,10 +142,7 @@
     <value>Jako nadajnik</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>Wybierz następujące elementy na końcu odbiorczym</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>Lub wprowadź adres IP:</value>
+    <value>Wybierz następujące elementy po stronie odbiorczej</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Odśwież</value>
@@ -172,7 +169,7 @@
     <value>Odbierz</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
-    <value>Wysyłaj</value>
+    <value>Wysyłanie</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
     <value>Parowanie</value>
@@ -181,19 +178,19 @@
     <value>Parowanie</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Nie można uruchomić backendu ({0})\r\nSprawdź, czy program antywirusowy nie blokuje backendu lub czy port nie jest zajęty przez inny program</value>
+    <value>Nie można uruchomić backendu ({0})\r\nSprawdź, czy port nie jest zajęty przez inny program</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Oczekiwanie na uruchomienie backendu...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Uruchamianie backendu (w przypadku monitu programu antywirusowego, zezwól na działanie)...</value>
+    <value>Przetwarzanie</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Inicjalizowanie...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Trwa {0} backend do wersji v{1}, może to zająć więcej czasu na uruchomienie. Jeśli program antywirusowy wyświetli monit, proszę go zezwolić.</value>
+    <value>Trwa {0}AudioClone do wersji v{1}, może to zająć więcej czasu przy uruchamianiu. Jeśli program antywirusowy wyświetli monit, zezwól na działanie.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Zakończ istniejące backendy...</value>
@@ -217,7 +214,7 @@
     <value>Anuluj</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Anuluj</value>
+    <value>Odrzuć żądanie sparowania</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Błąd</value>
@@ -229,16 +226,16 @@
     <value>Podpowiedź</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Numer portu (wprowadź tylko w przypadku monitu)</value>
+    <value>Numer portu (wpisz tylko wtedy, gdy druga strona prosi o podanie)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Lista uzyskanych adresów IP, można również ręcznie wprowadzić tutaj</value>
+    <value>Lub wprowadź adres/port drugiej strony</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Zatwierdź</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>Serwer może działać nieprawidłowo, spróbuj go zrestartować</value>
+    <value>Serwer może działać nieprawidłowo, można spróbować go zrestartować</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Usunięto</value>
@@ -247,7 +244,7 @@
     <value>Nie udało się skonfigurować urządzenia audio:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Zobacz poniżej, kliknij reset</value>
+    <value>Sprawdź poniżej, kliknij reset</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Zatrzymaj odtwarzanie</value>
@@ -256,25 +253,25 @@
     <value>Dźwięk z {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Połączenie nieudane. Czy chcesz spróbować sparować ponownie?</value>
+    <value>Połączenie nieudane. Czy chcesz spróbować ponownie sparować?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>Twoja konfiguracja zaplecza nie pozwala na tę operację. Możesz ją zmienić w ustawieniach.</value>
+    <value>Twoja konfiguracja zaplecza nie zezwala na tę operację. Możesz ją zmienić w ustawieniach.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Połączenie przekroczyło limit czasu. Sprawdź poprawność adresu lub zmień go.</value>
+    <value>Przekroczono limit czasu połączenia. Sprawdź, czy adres jest poprawny lub zmień adres.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Spróbuj wyszukać rozwiązanie online</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Pomyślnie dodano sparowanie, ale nie można go usunąć z listy oczekujących. Problem można rozwiązać, restartując klienta.</value>
+    <value>Pomyślnie dodano parowanie, ale nie można go usunąć z listy oczekujących. Problem można rozwiązać, restartując klienta.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>Wykryto żądanie sparowania od {0}, czy dodać?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Czy chcesz sparować z {0}?</value>
+    <value>Pary z {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Pomyślnie dodano parowanie!</value>
@@ -289,7 +286,7 @@
     <value>Nieprawidłowy adres</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Pamiętaj, że gdy zatrzymasz odtwarzanie, aplikacja zostanie ponownie uruchomiona - to normalne zjawisko.</value>
+    <value>Proszę zauważyć, że po zatrzymaniu odtwarzania aplikacja uruchomi się ponownie, co jest normalnym zjawiskiem.</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Nie pokazuj ponownie</value>
@@ -298,7 +295,7 @@
     <value>Port został zmieniony</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Proszę zauważyć, że bieżący numer portu został zmieniony, obecny port to {0}[line]Wprowadź ręcznie adres IP i numer portu na drugim końcu.</value>
+    <value>Proszę zauważyć, że bieżący numer portu został zmieniony, obecny port to {0}, proszę ręcznie wprowadzić go w zaawansowanych opcjach po drugiej stronie</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Spróbuj zaktualizować lub całkowicie zresetować backend</value>
@@ -337,7 +334,7 @@
     <value>Nie pokazuj ponownie</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>Twój systemowy kodek wydaje się mieć problem, co powoduje zacinanie się strumienia audio[line]Spróbuj użyć innej opcji audio</value>
+    <value>Twój systemowy kodek wydaje się mieć problem, co powoduje zawieszanie strumienia audio[line]Spróbuj użyć innej opcji audio</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
     <value>AudioCopy v{0} Raport awarii[line]Jeśli problem występuje wielokrotnie, zgłoś Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) lub wyślij ten plik na adres e-mail: hexadecimal0x12e@icloud.com[line]Plik dziennika znajduje się w folderze: {1}[line]---</value>
@@ -346,19 +343,19 @@
     <value>Jakie działanie ma być wykonywane przy zamykaniu okna?[line]Możesz później zmienić to w ustawieniach - Ogólne[line](Program minimalizowany do zasobnika nadal działa jako serwer i odbiera dźwięk)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
-    <value>Zamknij całkowicie</value>
+    <value>Pełne wyjście</value>
   </data>
   <data name="ExitOption2" xml:space="preserve">
     <value>Minimalizuj do zasobnika</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>Nie sparowałeś jeszcze, chcesz to zrobić?</value>
+    <value>Nie sparowałeś, chcesz sparować?</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
     <value>Lokalna lub zdalna wersja jest zbyt stara lub nowa, zaleca się aktualizację wszystkich klientów.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Aby zastosować te zmiany, musisz ponownie uruchomić aplikację.</value>
+    <value>Musisz zrestartować aplikację, aby zastosować te zmiany[line](możesz to zrobić w zasobniku - opcji wyjścia)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>Zamknij całkowicie</value>
@@ -370,15 +367,57 @@
     <value>Uruchom AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Opcja wyjścia</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Zasoby aplikacji mogą być poważnie uszkodzone. Spróbuj odinstalować i zainstalować ponownie.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Wybierz następujące elementy:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Żądanie sparowania od {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Wykrywanie...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Zaawansowane opcje</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Masz problem? Użyj zaawansowanych opcji</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Uzyskaj pomoc</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Użyj tradycyjnego interfejsu parowania</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Twoje dostępne adresy IP:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Proszę najpierw włączyć zgodność z tradycyjnym parowaniem</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Wykrywanie niedostępne. Użyj opcji "Używaj adresu IP do parowania" w zaawansowanych ustawieniach lub przejdź do ustawień, aby włączyć tryb wykrywania i zachować domyślny numer portu.</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Wprowadź adres IP drugiej strony</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Przykładowy adres: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](numer portu jest w tym przypadku wymagany)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>Wprowadzone dane są niezgodne. Proszę spróbować ponownie.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>Różnica czasu przekracza 1 minutę, wersje są zbyt różne lub jeden z klientów wydaje się zmodyfikowany. Proszę sprawdzić.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>Partner odrzucił twoją prośbę o sparowanie, operacja sparowania przekroczyła limit czasu lub partner dodał cię do czarnej listy.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Uruchom ponownie aplikację</value>
   </data>
 </root>

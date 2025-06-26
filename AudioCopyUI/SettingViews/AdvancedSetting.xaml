@@ -9,58 +9,63 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="12">
-        <StackPanel Orientation="Vertical">
-
-            <TextBlock x:Uid="/Setting/GeneralSetting_Title" Margin="0,10" FontSize="28px" />
-
-            <DropDownButton x:Name="LocateDropdown">
-                <DropDownButton.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <FontIcon Glyph="&#xF2B7;" />
-                        <TextBlock Margin="10,0">Choose a language</TextBlock>
-                    </StackPanel>
-                </DropDownButton.Content>
-                <DropDownButton.Flyout>
-                    <MenuFlyout x:Name="OptionsFlyout" />
-                </DropDownButton.Flyout>
-            </DropDownButton>
+        <ScrollView>
 
             <StackPanel Orientation="Vertical">
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_showNonLocalAddress" x:Name="showNonLocalAddress" Click="OptionsChanged"/>
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_keepBackendRun"  x:Name="keepBackendRun" Click="OptionsChanged"/>
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_skipSplashScreen"  x:Name="skipSplashScreen" Click="OptionsChanged"/>
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableShowHostSMTCInfo"  x:Name="disableShowHostSMTCInfo" Click="OptionsChanged"/>
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableTray"  x:Name="disableTray" Click="OptionsChanged"/>
 
-                <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_trayMode"  x:Name="trayMode" Click="OptionsChanged"/>
+                <TextBlock x:Uid="/Setting/GeneralSetting_Title" Margin="0,10" FontSize="28px" />
 
-                <StackPanel Orientation="Horizontal">
-                    <Button Margin="0,4" x:Uid="/Setting/AdvancedSetting_openDataFolder"  x:Name="openDataFolder" Click="openDataFolder_Click"/>
-                    <Button x:Uid="/Setting/BackendSetting_UpgradeBackendButton" Click="UpgradeBackend_Click" Margin="12,0"></Button>
-                    <Button x:Uid="/Setting/AdvancedSetting_ClearClone" x:Name="ClearClone" Click="ClearClone_Click" Margin="0,0"></Button>
+                <DropDownButton x:Name="LocateDropdown">
+                    <DropDownButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon Glyph="&#xF2B7;" />
+                            <TextBlock Margin="10,0">Choose a language</TextBlock>
+                        </StackPanel>
+                    </DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <MenuFlyout x:Name="OptionsFlyout" />
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+
+                <StackPanel Orientation="Vertical">
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_showNonLocalAddress" x:Name="showNonLocalAddress" Click="OptionsChanged"/>
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_keepBackendRun"  x:Name="keepBackendRun" Click="OptionsChanged"/>
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_skipSplashScreen"  x:Name="skipSplashScreen" Click="OptionsChanged"/>
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableShowHostSMTCInfo"  x:Name="disableShowHostSMTCInfo" Click="OptionsChanged"/>
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_disableTray"  x:Name="disableTray" Click="OptionsChanged"/>
+
+
+                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_trayMode"  x:Name="trayMode" Click="OptionsChanged"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Margin="0,4" x:Uid="/Setting/AdvancedSetting_openDataFolder"  x:Name="openDataFolder" Click="openDataFolder_Click"/>
+                        <Button x:Uid="/Setting/BackendSetting_UpgradeBackendButton" Click="UpgradeBackend_Click" Margin="12,0"></Button>
+                        <Button x:Uid="/Setting/AdvancedSetting_ClearClone" x:Name="ClearClone" Click="ClearClone_Click" Margin="0,0"></Button>
+
+                    </StackPanel>
+
 
                 </StackPanel>
 
 
+                <TextBlock x:Uid="/Setting/AdvancedSetting_Title" Margin="0,10,0,-5" FontSize="28px" />
+
+                <StackPanel Margin="0,12,0,0" Orientation="Vertical">
+                    <StackPanel Margin="0,0" Orientation="Vertical">
+                        <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_forceMP3Audio" x:Name="forceMP3Audio" Click="OptionsChanged" Visibility="Collapsed"/>
+
+
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal">
+                        <Button x:Uid="/Setting/AdvancedSetting_resetUUID"  Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click"/>
+                        <Button x:Uid="/Setting/AdvancedSetting_resetTokens" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetTokens" Click="resetTokens_Click"/>
+                        <Button x:Uid="/Setting/AdvancedSetting_resetBackend" Margin="1,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetBackend" Click="resetBackend_Click"/>
+                        <Button x:Uid="/Setting/AdvancedSetting_resetAllSettings" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click"/>
+                    </StackPanel>
+                    <!-- <TextBlock Margin="0,16" FontSize="16px" >这些设置可能非常危险，如您不懂请不要乱点。大部分更改都需要您重启应用程序来生效</TextBlock> -->
+                </StackPanel>
             </StackPanel>
 
-
-            <TextBlock x:Uid="/Setting/AdvancedSetting_Title" Margin="0,10,0,-5" FontSize="28px" />
-
-            <StackPanel Margin="0,12,0,0" Orientation="Vertical">
-                <StackPanel Margin="0,0" Orientation="Vertical">
-                    <CheckBox Margin="0,4" x:Uid="/Setting/AdvancedSetting_forceMP3Audio" x:Name="forceMP3Audio" Click="OptionsChanged" Visibility="Collapsed"/>
-
-
-                </StackPanel>
-                <StackPanel  Orientation="Horizontal">
-                    <Button x:Uid="/Setting/AdvancedSetting_resetUUID"  Margin="0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetUUID" Click="resetUUID_Click"/>
-                    <Button x:Uid="/Setting/AdvancedSetting_resetTokens" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetTokens" Click="resetTokens_Click"/>
-                    <Button x:Uid="/Setting/AdvancedSetting_resetBackend" Margin="1,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetBackend" Click="resetBackend_Click"/>
-                    <Button x:Uid="/Setting/AdvancedSetting_resetAllSettings" Margin="12,0" BorderBrush="{ThemeResource SystemFillColorCriticalBackgroundBrush}" Background="{ThemeResource SystemFillColorCriticalBackgroundBrush}" x:Name="resetAllSettings" Click="resetAllSettings_Click"/>
-                </StackPanel>
-                <!-- <TextBlock Margin="0,16" FontSize="16px" >这些设置可能非常危险，如您不懂请不要乱点。大部分更改都需要您重启应用程序来生效</TextBlock> -->
-            </StackPanel>
-        </StackPanel>
+        </ScrollView>
     </Grid>
 </Page>

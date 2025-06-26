@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -124,10 +66,10 @@
     <value>kanal</value>
   </data>
   <data name="AudioQuality_Option1.Text" xml:space="preserve">
-    <value>Örnekleme yapma (sistem yapılandırmasındaki ses kalitesini kullan)</value>
+    <value>Yeniden örnekleme yapma (sistem yapılandırmasındaki ses kalitesini kullan)</value>
   </data>
   <data name="AudioQuality_Option1_Desc.Text" xml:space="preserve">
-    <value>16 bit'den yüksek bit derinliğine sahip ses kaydetmek istiyorsanız, ön ayar veya özel örnekleme hızı seçeneğini kullanın</value>
+    <value>16 bit'den daha yüksek bit derinliğine sahip ses kaydetmek istiyorsanız, ön ayar veya özel örnekleme hızı seçeneklerini kullanın</value>
   </data>
   <data name="AudioQuality_Option2.Text" xml:space="preserve">
     <value>Önceden ayarlanmış yeniden örnekleme yapılandırmasını kullan</value>
@@ -136,10 +78,10 @@
     <value>Özel Yeniden Örnekleme Yapılandırması</value>
   </data>
   <data name="AudioQuality_RawBufferSize.Text" xml:space="preserve">
-    <value>HAMİ ses arabellek boyutu</value>
+    <value>RAW ses arabellek boyutu</value>
   </data>
   <data name="AudioQuality_RebootRequired" xml:space="preserve">
-    <value>Bu, şu anda tüm bağlantıları keser. Devam etmek istiyor musunuz?</value>
+    <value>Bu, şu anda tüm ses akışı bağlantılarını keser. Devam etmek istiyor musunuz?</value>
   </data>
   <data name="AudioQuality_Option3_Samplerate.PlaceholderText" xml:space="preserve">
     <value>Örnekleme oranı</value>
@@ -160,28 +102,28 @@
     <value>AudioClone Ayarları</value>
   </data>
   <data name="BackendSetting_PortBindBox.PlaceholderText" xml:space="preserve">
-    <value>Bağlanacak port numarası (varsayılan için boş bırakın)</value>
+    <value>Bağlanacak port numarası (boş bırakılırsa varsayılan kullanılır)</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
-    <value>Arka uç sürümü:</value>
+    <value>Arka uç API sürümü: {0}[line]AudioClone sürümü: {1}</value>
   </data>
   <data name="BackendSetting_RebootBackendButton.Text" xml:space="preserve">
-    <value>Arka ucu yeniden başlat</value>
+    <value>Arka ucu yeniden başlatmak için önce uygulamadan tamamen çıkın, ardından uygulamayı yeniden açın.</value>
   </data>
   <data name="BackendSetting_DisableDiscoverMode.Content" xml:space="preserve">
-    <value>Arka ucu yeniden başlat</value>
+    <value>Aktif keşif istemcisini devre dışı bırak</value>
   </data>
   <data name="BackendSetting_DisableNewPairMode.Content" xml:space="preserve">
-    <value>Arka ucu yeniden başlat</value>
+    <value>Eşleştirme başlatmasına izin verilmiyor</value>
   </data>
   <data name="BackendSetting_UpgradeBackendButton.Content" xml:space="preserve">
-    <value>arka uç güncelleme</value>
+    <value>Arka uç güncelleme</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
     <value>Hakkında</value>
   </data>
   <data name="AboutString" xml:space="preserve">
-    <value>AudioCopy {0} Telif Hakkı 0xeeeeeeeeeeee (0x12e) 2025.[line]AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone) temel alınarak oluşturulmuştur.[line]Projede ses yakalama ve çalma için NAudio kullanılmıştır.[line]Proje fikri "Stream What Your Hear"dan (https://github.com/StreamWhatYouHear/SWYH) esinlenilmiştir.[line]AudioCopy GNU GPLv2 lisansı ile lisanslanmıştır[line][line][line][line][line][line][line][line]Hata ayıklama bilgileri:[line]Veri dizini: {1}[line][line]Ayarlar:[line]{2}[line][line]En son günlük dosyası yolu:[line]{3}</value>
+    <value>AudioCopy {0} Telif Hakkı 0xeeeeeeeeeeee (0x12e) 2025.[line]AudioClone (https://github.com/0xeeeeeeeeeeee/AudioClone) temel alınarak oluşturulmuştur.[line]Proje, ses toplama ve çalma için NAudio kullanmaktadır.[line]Proje fikri "Stream What Your Hear" (https://github.com/StreamWhatYouHear/SWYH) tarafından esinlenmiştir.[line]AudioCopy GNU GPLv2 lisansı ile lisanslanmıştır[line][line][line][line][line][line][line][line]Hata ayıklama bilgileri:[line]Veri dizini: {1}[line][line]Ayarlar:[line]{2}[line][line]Son günlük dosyası yolu:[line]{3}</value>
   </data>
   <data name="AboutPage_Privacy.Content" xml:space="preserve">
     <value>Gizlilik Politikası</value>
@@ -193,10 +135,10 @@
     <value>Bunu yapmak istediğinizden emin misiniz?</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>"Eşleştirme" arayüzünde yerel ağ dışı adresleri ve sanal ağ kartlarını göster</value>
+    <value>İstemci keşfi sırasında ve "Eşleştirme" arayüzünde yerel ağ adresi olmayan ve sanal ağ kartı kullanımına izin ver</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
-    <value>Arka uçun çıkıştan sonra çalışmaya devam etmesine izin ver</value>
+    <value>Ses kapatıldıktan sonra AudioClone örneği çalışmaya devam etmez</value>
   </data>
   <data name="AdvancedSetting_skipSplashScreen.Content" xml:space="preserve">
     <value>Başlatma ekranını atla</value>
@@ -205,10 +147,7 @@
     <value>Veri klasörünü aç</value>
   </data>
   <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
-    <value>Çıkışta sistemi tepsiye küçült</value>
-  </data>
-  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
-    <value>Tepsiyi devre dışı bırak</value>
+    <value>Çıkışta simge durumuna küçült</value>
   </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>Cihaz kimliğini sıfırla</value>
@@ -226,7 +165,7 @@
     <value>Tüm ayarları sıfırla</value>
   </data>
   <data name="Setting_AudioQuality.Text" xml:space="preserve">
-    <value>Ses Kalitesi Yapılandırması</value>
+    <value>Ses Yapılandırması</value>
   </data>
   <data name="Setting_Backend.Text" xml:space="preserve">
     <value>Arka uç ayarları</value>
@@ -259,7 +198,7 @@
     <value>Lütfen aşağıya bakın, sıfırlamak için tıklayın</value>
   </data>
   <data name="ReceiverOnly_DownloadFullAudioCopy.Text" xml:space="preserve">
-    <value>Tam sürümü AudioCopy'yi indir</value>
+    <value>AudioCopy'nın tam sürümünü indirin</value>
   </data>
   <data name="ReceiverOnly_ThisIsReceiverOnly.Text" xml:space="preserve">
     <value>Bu uygulama alıcı tarafıdır, daha fazla ayar için gönderici tarafa gidin</value>
@@ -271,21 +210,27 @@
     <value>Tarayıcıda aç</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>Yerelleştirme ayarları uygulanıyor, lütfen bekleyin. Bu pencereyi kapatmayın veya uygulamayla etkileşime geçmeyin. [line] Uygulamanın birkaç kez başlatılması normaldir.</value>
+    <value>Yerelleştirme ayarları uygulanıyor, lütfen bekleyin, bu pencereyi kapatmayın.[line]Açılır pencereler görebilirsiniz, bu normal bir durumdur</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>Günlükleri görüntüle</value>
   </data>
   <data name="ReceiverOnly_Lastest" xml:space="preserve">
-    <value>son</value>
+    <value>Son</value>
   </data>
   <data name="AdvancedSetting_disableShowHostSMTCInfo.Content" xml:space="preserve">
     <value>Eşlenen taraftan gelen medya bilgisi senkronize değil</value>
   </data>
   <data name="AdvancedSetting_EnableSwagger.Content" xml:space="preserve">
-    <value>Yeni arka uç için Swagger'ı etkinleştir (sadece geliştirme için, üretim ortamında kullanmayın)</value>
+    <value>Entegre arka uç için Swagger'ı etkinleştir (sadece geliştirme için, üretim ortamında kullanmayın)</value>
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
     <value>Uyarı: Bu ayarlar şu anda yeni arka uçlar için geçerli değildir, her zaman "Yeniden örnekleme kullanma (sistem yapılandırmasındaki ses kalitesini kullan)" seçeneği kullanılacaktır.</value>
+  </data>
+  <data name="BackendSetting_enableV1Pairing.Content" xml:space="preserve">
+    <value>V1 Eşleme Uyumluluğunu Etkinleştir</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>Tepsi simgesini devre dışı bırak</value>
   </data>
 </root>

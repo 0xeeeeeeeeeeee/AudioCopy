@@ -124,13 +124,13 @@
     <value>MP3 (derzeit nicht verfügbar gemäß Ihrer Konfiguration)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Der Server erfasst 16-Bit-Wellenformen über WASAPI und sendet sie direkt, dann spielt der Empfänger sie direkt ab</value>
+    <value>Der Server erfasst 16-Bit-Wellenformen über WASAPI und sendet sie direkt, dann spielt der Empfänger sie unmittelbar ab.</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Diese Geräte hören mit</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
-    <value>Gerät auswählen, das überwacht werden soll</value>
+    <value>Gerät für die Überwachung auswählen</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
     <value>Gekoppelte Geräte:</value>
@@ -139,13 +139,10 @@
     <value>Als Empfänger</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
-    <value>Als Sender</value>
+    <value>Als Sendeseite</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>Am Empfängerende wählen Sie Folgendes aus:</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>Oder geben Sie die IP-Adresse ein:</value>
+    <value>Am Empfänger die folgenden Inhalte auswählen</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Aktualisieren</value>
@@ -154,19 +151,19 @@
     <value>Klicken zum Abspielen</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>Audio von unbekanntem Gerät abspielen</value>
+    <value>Audio von unbekanntem Gerät wiedergeben</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
     <value>Audioformat</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>Einen auswählen</value>
+    <value>Wählen Sie einen aus</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>Anwendung</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Einen auswählen</value>
+    <value>Wählen Sie einen</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>Empfangen</value>
@@ -181,25 +178,25 @@
     <value>Koppeln</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Backend starten fehlgeschlagen ({0})\r\nBitte prüfen Sie, ob das Backend von der Antivirensoftware blockiert wird oder ob der Port von einem anderen Programm belegt ist</value>
+    <value>Backend-Start fehlgeschlagen ({0})\r\nBitte prüfen Sie, ob der Port von einem anderen Programm belegt ist</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Warte auf Backend-Start...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Backend wird gestartet (bei Virenschutz-Warnungen bitte zulassen)...</value>
+    <value>Wird bearbeitet</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Wird initialisiert...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Wird {0}-Backend auf v{1} aktualisiert, der Start kann länger dauern. Bitte erlauben Sie die Ausführung, falls Ihr Antivirenprogramm eine Warnung anzeigt.</value>
+    <value>{0}AudioClone wird auf v{1} aktualisiert, der Start kann länger dauern. Bitte erlauben Sie den Vorgang in Ihrer Antivirensoftware.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
-    <value>Bestehende Backends beenden...</value>
+    <value>Vorhandene Backend beenden...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>Aktualisierung</value>
+    <value>Aktualisieren</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Installieren</value>
@@ -208,16 +205,16 @@
     <value>Bei {0} ist ein {1}-Fehler aufgetreten: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
-    <value>Okay</value>
+    <value>Ok</value>
   </data>
   <data name="AcceptButton.Content" xml:space="preserve">
-    <value>Gut</value>
+    <value>Ok</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Ablehnung der Kopplungsanfrage</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
@@ -232,13 +229,13 @@
     <value>Portnummer (nur eingeben, wenn vom Gegenüber angefordert)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Abgerufene IP-Adressliste, hier kann auch manuell eingegeben werden</value>
+    <value>Oder geben Sie die Adresse/Portnummer des Gegenübers ein</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Einreichen</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>Backend funktioniert möglicherweise nicht richtig, versuchen Sie einen Neustart</value>
+    <value>Das Backend funktioniert möglicherweise nicht richtig, versuchen Sie es mit einem Neustart</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Gelöscht</value>
@@ -247,7 +244,7 @@
     <value>Fehler beim Einrichten des Audio-Geräts:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Bitte unten anzeigen, auf Zurücksetzen klicken</value>
+    <value>Bitte unten anzeigen, zum Zurücksetzen klicken</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Wiedergabe beenden</value>
@@ -268,13 +265,13 @@
     <value>Online nach Lösungen suchen</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Die Paarung wurde erfolgreich hinzugefügt, konnte jedoch nicht aus der Liste der ausstehenden Paarungen entfernt werden. Das Problem kann durch einen Neustart des Clients behoben werden.</value>
+    <value>Die Kopplung wurde erfolgreich hinzugefügt, konnte jedoch nicht aus der Liste der ausstehenden Kopplungen entfernt werden. Das Problem kann durch einen Neustart des Clients behoben werden.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>Erkannte Pairing-Anfrage von {0}, hinzufügen?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Mit {0} koppeln?</value>
+    <value>Paarung mit {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Paarung erfolgreich hinzugefügt!</value>
@@ -283,7 +280,7 @@
     <value>Erfolg</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>Kopplung fehlgeschlagen (Server antwortete mit {0}), bitte erneut versuchen.</value>
+    <value>Kopplung fehlgeschlagen (Server hat {0} zurückgegeben), bitte erneut versuchen.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>Ungültige Adresse</value>
@@ -298,7 +295,7 @@
     <value>Port wurde geändert</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Bitte beachten Sie, dass die aktuelle Portnummer geändert wurde. Der aktuelle Port ist {0}[line]Bitte geben Sie die IP-Adresse und Portnummer manuell auf der Gegenstelle ein.</value>
+    <value>Bitte beachten Sie, dass sich die aktuelle Portnummer geändert hat. Der aktuelle Port ist {0}. Bitte geben Sie diesen manuell in den erweiterten Optionen der Gegenstelle ein.</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Bitte versuchen Sie, das Backend zu aktualisieren oder vollständig zurückzusetzen</value>
@@ -310,7 +307,7 @@
     <value>Konfigurieren und starten Sie das Backend</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
-    <value>Fehler ignorieren und starten fortsetzen</value>
+    <value>Fehler ignorieren und den Start fortsetzen</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
     <value>Medienalbumcover</value>
@@ -328,22 +325,22 @@
     <value>Medieninformation von {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Wir haben das Backend aufgeteilt und in die Anwendung selbst sowie in AudioClone migriert, daher haben wir das alte Backend in dieser Version vollständig eingestellt.[line]Das bedeutet, dass Sie alle Clients aktualisieren müssen, um sicherzustellen, dass sie ordnungsgemäß funktionieren.</value>
+    <value>Wir haben das Backend in die Anwendung selbst und in AudioClone aufgeteilt und migriert, daher haben wir das alte Backend in dieser Version vollständig eingestellt.[line]Das bedeutet, dass Sie alle Clients aktualisieren müssen, um sicherzustellen, dass sie ordnungsgemäß funktionieren.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>Sie haben ein neues Backend aktiviert, daher empfehlen wir Ihnen, alle Clients zu aktualisieren. Falls Sie nicht aktualisieren möchten, können Sie diese Funktion auch unter "Einstellungen - Backend-Einstellungen - Altes Backend verwenden" deaktivieren.</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
-    <value>Erinnere mich nicht wieder daran</value>
+    <value>Mich nicht mehr daran erinnern</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>Ihre System-Codecs scheinen ein Problem zu verursachen, was zu hängenden Audiostreams führt[line]Bitte versuchen Sie andere Audio-Optionen</value>
+    <value>Ihre System-Codecs scheinen ein Problem zu verursachen, was zu hängenden Audiostreams führt[line]Bitte versuchen Sie andere Audiooptionen</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
     <value>AudioCopy v{0} Absturzbericht[line]Falls dieses Problem wiederholt auftritt, melden Sie bitte ein Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) oder senden Sie diese Datei an diese E-Mail-Adresse: hexadecimal0x12e@icloud.com[line]Die Protokolldatei befindet sich in diesem Ordner: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>Welches Verhalten wünschen Sie beim Schließen des Fensters?[line]Sie können dies später in den Einstellungen unter Allgemein ändern.[line](Wenn das Programm in das System-Tray minimiert wird, unterstützt es weiterhin die Funktionen als Server und Audio-Empfänger)</value>
+    <value>Welches Verhalten wünschen Sie beim Schließen des Fensters?[line]Sie können dies später in den Einstellungen unter Allgemein ändern.[line](Das Programm unterstützt weiterhin das Funktionieren als Server und das Empfangen von Audio, wenn es in das System-Tray minimiert wird)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>Beenden</value>
@@ -358,7 +355,7 @@
     <value>Lokale oder entfernte Version ist zu alt oder zu neu, es wird empfohlen, alle Clients zu aktualisieren.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Sie müssen die Anwendung neu starten, um diese Änderungen zu übernehmen.</value>
+    <value>Sie müssen die Anwendung neu starten, um diese Änderungen zu übernehmen[line](Sie können dies über das Tray-Menü - Beenden-Option tun)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>Beenden</value>
@@ -370,15 +367,57 @@
     <value>AudioCopy starten</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Beenden-Option</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Die Anwendungsressourcen sind möglicherweise schwer beschädigt. Bitte deinstallieren und installieren Sie die Anwendung erneut.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Wählen Sie Folgendes aus:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Pairing-Anfrage von {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Wird gesucht...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Erweiterte Optionen</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Problem erkannt? Erweiterte Optionen nutzen</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Hilfe erhalten</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Verwenden Sie die traditionelle Kopplungsoberfläche</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Ihre verfügbare IP-Adresse:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Bitte aktivieren Sie zuerst die traditionelle Pairing-Kompatibilität</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Nicht verfügbar gefunden. Bitte verwenden Sie die "Verbindung über IP-Adresse" in den erweiterten Optionen oder gehen Sie zu den Einstellungen, um den Erkennungsmodus zu aktivieren und die Portnummer auf Standard zu belassen.</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Geben Sie die IP-Adresse des Gegenübers ein</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Beispiel für Adressen: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](Portnummer ist in diesem Fall erforderlich)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>Die Eingabe stimmt nicht überein. Bitte versuchen Sie es erneut.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>Die Zeitdifferenz zwischen beiden Enden beträgt mehr als 1 Minute, die Versionsunterschiede sind zu groß oder ein Client scheint modifiziert worden zu sein. Bitte überprüfen.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>Die Gegenstelle hat Ihre Kopplungsanfrage abgelehnt, der Kopplungsvorgang ist abgelaufen oder die Gegenstelle hat Sie blockiert.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>App neu starten</value>
   </data>
 </root>

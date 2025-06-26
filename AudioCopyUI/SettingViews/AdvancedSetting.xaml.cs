@@ -121,10 +121,7 @@ namespace AudioCopyUI.SettingViews
 
         private async void OptionsChanged(object sender, RoutedEventArgs e)
         {
-            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False")) != (disableTray.IsChecked ?? false))
-            {
-                await ShowDialogue(localize("Info"), localize("RebootRequired"), localize("Accept"),null, this);
-            }
+            
             trayMode.IsEnabled = disableTray.IsChecked != true;
 
             SettingUtility.SetSettings("AlwaysAllowMP3", (forceMP3Audio.IsChecked ?? false).ToString());
@@ -137,6 +134,10 @@ namespace AudioCopyUI.SettingViews
             SettingUtility.SetSettings("CloseAction", (trayMode.IsChecked ?? false) ? "MinimizeToTray" : "Exit");
             AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault = SettingUtility.GetOrAddSettings("CloseAction", "null") == "MinimizeToTray";
 
+            if (bool.Parse(SettingUtility.GetOrAddSettings("DisableTray", "False")) != (disableTray.IsChecked ?? false))
+            {
+                await ShowDialogue(localize("Info"), localize("RebootRequired"), localize("Accept"),null, this);
+            }
         }
 
         private async void resetUUID_Click(object sender, RoutedEventArgs e)

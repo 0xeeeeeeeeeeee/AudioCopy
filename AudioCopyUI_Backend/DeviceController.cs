@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AudioCopyUI.Backend;
+using AudioCopyUI_MiddleWare;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -7,9 +9,13 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using System.Xml.Linq;
 using static AudioCopyUI_MiddleWare.BackendHelper;
 
@@ -27,11 +33,7 @@ namespace AudioCopyUI.Backend
                     return Results.Unauthorized();
                 }
                 if (BootAudioClone is null) throw new ArgumentNullException();
-                if (!BootAudioClone.IsCompleted)
-                {
-                    BootAudioClone?.Start();
-                    await BootAudioClone;
-                }
+                BootAudioClone();
                 return Results.Text(CloneAddress);
             });
 
@@ -44,7 +46,7 @@ namespace AudioCopyUI.Backend
                 {
                     return Results.Unauthorized();
                 }
-                
+
 
                 i = await GetSMTCAsync();
 
@@ -63,7 +65,7 @@ namespace AudioCopyUI.Backend
                     }
 
                     MediaInfo? body = await GetSMTCAsync();
-                    
+
 
                     if (body != null && !string.IsNullOrEmpty(body.AlbumArtBase64))
                     {
@@ -83,20 +85,54 @@ namespace AudioCopyUI.Backend
             fallback:
                 return Results.File(
                     System.IO.File.ReadAllBytes(
-                        Path.Combine(LocalStateFolder,"AudioCopy.png"))
+                        Path.Combine(LocalStateFolder, "AudioCopy.png"))
                         , "image/png", "AudioCopy.png"); //返回一个默认值
 
             });
 
-            if (!bool.Parse(GetOrAddSettings("NoDiscover", "False")))
+
+
+            var opt = new JsonSerializerOptions
             {
-                group.MapGet("/Information", () =>
+                TypeInfoResolver = DevicesInfoGenerationContext.Default
+            };
+
+            group.MapPost("/Discover", async (HttpContext context) =>
+            {
+                string identify = context.Request.Query["identify"];
+                string magic = context.Request.Query["magic"];
+                Log($"{context.Request.Host.Host} discovered me with: {identify}");
+
+                DevicesInfo info = await context.Request.ReadFromJsonAsync<DevicesInfo>();
+
+                if (magic == SecretProvider.ComputeSHA256WithSecret($"{DateTime.UtcNow:yyyy-MM-dd-HH-mm}/{identify}/{BackendAPIVersion}/{SecretProvider.ComputeSHA256WithSecret("Hello AudioCopy!")}"))
                 {
+                    DiscoveredClients.AddOrUpdate(info.udid, info, (_, _) => info);
+                    var json = JsonSerializer.Serialize(new DevicesInfo
+                    {
+                        Name = Environment.MachineName,
+                        AudioCopyVersion = AudioCopyVersion ?? "Unknown",
+                        DeviceModel = ThisDeviceModel ?? "Unknown",
+                        udid = ThisDeviceUdid,
+                        DeviceType = ThisDeviceTypeID ?? DeviceType.Unknown
 
-                    return Results.Text($"{Environment.MachineName};{AudioCopyVersion};{ThisDeviceModel}");
+                    }, opt);
+                    return Results.Text(json, "application/json", Encoding.UTF8);
+                }
 
-                });
-            }
+                return Results.UnprocessableEntity("Magic, time or version mismatch");
+            });
+
+            group.MapGet("GetClientName", (string token) =>
+            {
+                if (TokenController.Auth(token)) return Results.Text(Environment.MachineName, "text/plain", Encoding.UTF8);
+                return Results.Unauthorized();
+            });
+
+            group.MapGet("GetIPAddress", () =>
+            {
+                return Results.Text(GetLocalNetworkAddresses().Aggregate((a,b) => $"{a},{b}"));
+            });
         }
 
 
@@ -122,6 +158,48 @@ namespace AudioCopyUI.Backend
             return await tcs.Task;
         }
 
-        
+        static bool IsLocalNetwork(string ipAddress)
+        {
+            return ipAddress.StartsWith("192.168.") || ipAddress.StartsWith("10.") ||
+                   (ipAddress.StartsWith("172.") && int.TryParse(ipAddress.Split('.')[1], out int secondOctet) && secondOctet >= 16 && secondOctet <= 31);
+        }
+
+        public static List<string> GetLocalNetworkAddresses()
+        {
+            List<string> address = new();
+
+
+            var interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (var networkInterface in interfaces)
+            {
+                if (networkInterface.OperationalStatus == OperationalStatus.Up &&
+                    networkInterface.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
+                    (bool.Parse(GetOrAddSettings("ShowAllAdapter", "False")) || (
+                    !networkInterface.Description.Contains("Vmware", StringComparison.OrdinalIgnoreCase) &&
+                    !networkInterface.Description.Contains("VirtualBox", StringComparison.OrdinalIgnoreCase))))
+                {
+                    var ipProperties = networkInterface.GetIPProperties();
+                    foreach (var ipAddress in ipProperties.UnicastAddresses)
+                    {
+                        if (bool.Parse(GetOrAddSettings("ShowAllAdapter", "False")))
+                        {
+                            address.Add(ipAddress.Address.ToString());
+
+                        }
+                        else if (ipAddress.Address.AddressFamily == AddressFamily.InterNetwork &&
+                            IsLocalNetwork(ipAddress.Address.ToString()))
+                        {
+                            address.Add(ipAddress.Address.ToString());
+                        }
+                    }
+                }
+            }
+
+            return address.Distinct().OrderBy((a) => a.StartsWith("192.168.") ? 0 : 1).ToList();
+
+        }
+
+
     }
 }

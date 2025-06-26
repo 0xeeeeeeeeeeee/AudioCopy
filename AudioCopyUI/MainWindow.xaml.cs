@@ -153,7 +153,7 @@ namespace AudioCopyUI
                         PageFrame.Navigate(typeof(ReceivePage));
                         break;
                     case "PairPage":
-                        PageFrame.Navigate(typeof(PairingPage));
+                        PageFrame.Navigate(typeof(PairingPageV2));
                         break;
 
 
@@ -217,7 +217,7 @@ namespace AudioCopyUI
                     
                     await Program.UpgradeBackend(bool.Parse(SettingUtility.GetOrAddSettings("ForceUpgradeBackend", "False")));
                     SettingUtility.SetSettings("ForceUpgradeBackend", "False");
-                    await Program.BootBackend();
+                    //await Program.BootBackend();
                     ___PublicStackOn___ = false;
                     await Program.PostInit();
                     loaded = true;
@@ -451,14 +451,11 @@ namespace AudioCopyUI
 
             await Program.ChangeLang(id);
 
-
         }
 
         private void CancelPairButton_Click(object sender, RoutedEventArgs e)
         {
-            PairBar.IsClosable = true;
-            CancelPairButton.IsEnabled = false;
-            CancelPairButton.Content = new ProgressRing { IsActive = true, Height = 20, Width = 20 };
+            //PairBar.IsClosable = true;
             AudioCopyUI_MiddleWare.BackendHelper.CancelPair();
             PairBar.IsOpen = false;
 
@@ -467,7 +464,7 @@ namespace AudioCopyUI
         private void PairBar_Closing(InfoBar sender, InfoBarClosingEventArgs args)
         {
             CancelPairButton.IsEnabled = true;
-            CancelPairButton.Content = localize("Cancel");
+            //CancelPairButton.Content = localize("Cancel");
         }
     }
 

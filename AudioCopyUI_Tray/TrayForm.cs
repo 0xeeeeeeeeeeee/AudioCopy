@@ -14,7 +14,7 @@ namespace AudioCopyUI_Tray
             this.Visible = false;
             this.WindowState = FormWindowState.Minimized;
 
-           
+
         }
 
         protected override CreateParams CreateParams
@@ -44,30 +44,31 @@ namespace AudioCopyUI_Tray
 
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(AudioCopyUI_MiddleWare.TrayHelper.GUIRunning == false)
+            if (AudioCopyUI_MiddleWare.TrayHelper.GUIRunning == false)
             {
                 if (IsNotStandalone) return;
             }
             if (!AudioCopyUI_MiddleWare.TrayHelper.IsNotStandalone)
             {
-                MediaInfotoolStripMenuItem.Visible = false;
+                //MediaInfotoolStripMenuItem.Visible = false;
             }
 
             LaunchToolStripMenuItem.Text = Resource.Launch;
-            MediaInfotoolStripMenuItem.Text = "Unknown";
-            ListenclientstoolStripMenuItem.Text = Resource.ListeningClients;
-            ListenclientstoolStripMenuItem.Visible = false;
+            //MediaInfotoolStripMenuItem.Text = "Unknown";
+            //ListenclientstoolStripMenuItem.Text = Resource.ListeningClients;
+            //ListenclientstoolStripMenuItem.Visible = false;
             ExitOptionstoolStripMenuItem.Text = Resource.Exit;
             ExitToolStripMenuItem.Click += 默认退出选项ToolStripMenuItem_Click;
             ExitToolStripMenuItem.Text = AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault ? Resource.Close : Resource.Shutdown;
             彻底关闭ToolStripMenuItem.Text = Resource.Shutdown;
             保留后端并退出ToolStripMenuItem.Text = Resource.Close;
-            if (AudioCopyUI_MiddleWare.TrayHelper.GetSMTC is not null)
-            {
-                AudioCopyUI_MiddleWare.TrayHelper.GetSMTC();
-                MediaInfotoolStripMenuItem.Text = $"{AudioCopyUI_MiddleWare.TrayHelper.Title} - {AudioCopyUI_MiddleWare.TrayHelper.Artist}";
-                ListenclientstoolStripMenuItem.Text = string.Format(ListenclientstoolStripMenuItem.Text ?? "{0} clients listening", AudioCopyUI_MiddleWare.TrayHelper.listeningClient.ToString());
-            }
+            RebootToolStripMenuItem1.Text = Resource.Reboot;
+            //if (AudioCopyUI_MiddleWare.TrayHelper.GetSMTC is not null)
+            //{
+            //    AudioCopyUI_MiddleWare.TrayHelper.GetSMTC();
+            //    MediaInfotoolStripMenuItem.Text = $"{AudioCopyUI_MiddleWare.TrayHelper.Title} - {AudioCopyUI_MiddleWare.TrayHelper.Artist}";
+            //    ListenclientstoolStripMenuItem.Text = string.Format(ListenclientstoolStripMenuItem.Text ?? "{0} clients listening", AudioCopyUI_MiddleWare.TrayHelper.listeningClient.ToString());
+            //}
             ExitToolStripMenuItem.Text = AudioCopyUI_MiddleWare.TrayHelper.KeepBackendAsDefault ? Resource.Close : Resource.Shutdown;
 
         }
@@ -135,7 +136,7 @@ namespace AudioCopyUI_Tray
             }
             else
             {
-                
+
                 if (AudioCopyUI_MiddleWare.TrayHelper.BootApp is not null) AudioCopyUI_MiddleWare.TrayHelper.BootApp();
 
             }
@@ -149,6 +150,12 @@ namespace AudioCopyUI_Tray
         private void 保留后端并退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (AudioCopyUI_MiddleWare.TrayHelper.CloseApp is not null) AudioCopyUI_MiddleWare.TrayHelper.CloseApp();
+
+        }
+
+        private void RebootToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (AudioCopyUI_MiddleWare.TrayHelper.RebootApp is not null) AudioCopyUI_MiddleWare.TrayHelper.RebootApp();
 
         }
     }

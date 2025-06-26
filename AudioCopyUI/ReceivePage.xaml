@@ -6,14 +6,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
     Loaded="Page_Loaded">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="PlayButton" ></Button>
+                <Button x:Name="playButton" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="PlayButton" >
+                    <Button.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="使用浏览器打开"  Click="PlayWithBrowser_Click"/>
+                            <MenuFlyoutItem Text="使用“媒体播放器”打开" Click="PlayWithMediaPlayer_Click" />
+                            <MenuFlyoutItem Text="强行终止播放" Click="ForceStop_Click" />
+                        </MenuFlyout>
+                    </Button.ContextFlyout>
+                </Button>
                 <StackPanel Orientation="Vertical" Margin="60,10,0,0"  HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
                         <RadioButton Content="MP3" ToolTipService.ToolTip="MPEG-2 Audio Layer III" Click="radioButtons_Click" GroupName="MyGroup" x:Name="radioButton_1" Visibility="Collapsed" />

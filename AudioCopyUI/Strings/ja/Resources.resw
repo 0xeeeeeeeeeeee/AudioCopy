@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -121,13 +63,13 @@
     <value>{0}からのオーディオを再生</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3(現在の設定では利用できません)</value>
+    <value>MP3（現在の設定では利用できません）</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>サーバー側はwasapiから16bit波形を収集し直接送信、受信側は直接再生します</value>
+    <value>サーバー側はWASAPIから16bit波形を収集して直接送信し、受信側は直接再生します</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
-    <value>これらのデバイスは監視中です</value>
+    <value>これらのデバイスはリスニング中です</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
     <value>監視するデバイスを選択</value>
@@ -144,9 +86,6 @@
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>受信側で以下の内容を選択</value>
   </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>またはIPアドレスを入力：</value>
-  </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -154,7 +93,7 @@
     <value>クリックして再生</value>
   </data>
   <data name="PlayButton.Content" xml:space="preserve">
-    <value>不明なデバイスからのオーディオを再生</value>
+    <value>不明なデバイスからの音声を再生</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
     <value>オーディオ形式</value>
@@ -181,19 +120,19 @@
     <value>ペアリング</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>バックエンドの起動に失敗しました({0})\r\nアンチウイルスソフトによるブロックまたは他のプログラムによるポートの使用を確認してください</value>
+    <value>バックエンドの起動に失敗しました({0})\r\nポートが他のプログラムで使用されていないか確認してください</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>バックエンドの起動を待っています...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>バックエンドを起動中（アンチウイルスソフトの警告が出た場合は許可してください）...</value>
+    <value>処理中</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>初期化中...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>{0}バックエンドをv{1}に更新中です。起動に時間がかかる場合があります。アンチウイルスソフトの警告が表示された場合は許可してください。</value>
+    <value>{0}AudioCloneをv{1}にアップデート中です。起動に時間がかかる場合があります。ウイルス対策ソフトの警告が表示された場合は許可してください。</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>既存のバックエンドを終了中...</value>
@@ -217,7 +156,7 @@
     <value>キャンセル</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>ペアリング要求を拒否</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>エラー</value>
@@ -229,10 +168,10 @@
     <value>ヒント</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>ポート番号（相手側が入力を促した場合のみ入力）</value>
+    <value>ポート番号（相手側が入力を求めた場合のみ入力）</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>取得したIPアドレスのリスト、ここで手動入力も可能です</value>
+    <value>または相手側のアドレス/ポート番号を入力してください</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>送信</value>
@@ -253,7 +192,7 @@
     <value>再生を停止</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>{0} からのオーディオ</value>
+    <value>{0}からのオーディオ</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
     <value>接続に失敗しました。再ペアリングを試しますか？</value>
@@ -274,7 +213,7 @@
     <value>{0}からのペアリングリクエストを検出しました。追加しますか？</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>{0}とペアリングしますか？</value>
+    <value>{0}とのペアリング</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>ペアリングが正常に追加されました！</value>
@@ -283,13 +222,13 @@
     <value>成功</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>ペアリング追加に失敗しました（サーバーが{0}を返しました）。再試行してください。</value>
+    <value>ペアリング追加に失敗しました（サーバーが{0}を返しました）、もう一度お試しください。</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>アドレスが無効です</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>再生を停止するとアプリが再起動しますが、これは正常な動作です</value>
+    <value>再生を停止するとアプリケーションが再起動しますが、これは正常な動作です</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>再表示しない</value>
@@ -298,10 +237,10 @@
     <value>ポートが変更されました</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>現在のポート番号が変更されました。現在のポートは{0}です。[line]相手側で手動でIPアドレスとポート番号を入力してください</value>
+    <value>現在のポート番号が変更されました。現在のポートは{0}です。相手側の詳細設定で手動で入力してください</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>バックエンドを更新または完全にリセットしてください</value>
+    <value>バックエンドの更新または完全なリセットを試してください</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
     <value>アプリケーションを再起動してみてください</value>
@@ -322,22 +261,22 @@
     <value>不明なアーティスト</value>
   </data>
   <data name="MediaInfo_Album.Text" xml:space="preserve">
-    <value>不明なアルバム</value>
+    <value>不明アルバム</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
     <value>{0}からのメディア情報：</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>私たちはバックエンドを分割し、アプリケーション自体とAudioCloneに移行しました。そのため、このバージョンでは古いバックエンドを完全に廃止しました。[line]これは、すべてのクライアントをアップグレードして正常に動作させる必要があることを意味します。</value>
+    <value>バックエンドをアプリケーション本体とAudioCloneに分割・移行したため、このバージョンで旧バックエンドを完全に廃止しました。[line]すべてのクライアントをアップグレードして正常に動作させる必要があります。</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
     <value>新しいバックエンドが有効になりましたので、すべてのクライアントをアップグレードすることをお勧めします。アップグレードしたくない場合は、「設定-バックエンド設定-古いバックエンドを使用する」でこの機能を無効にすることもできます。</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
-    <value>再度通知しない</value>
+    <value>再表示しない</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>あなたのシステムコーデックに問題があるようです、オーディオストリームが詰まっています[line]他のオーディオオプションをお試しください</value>
+    <value>あなたのシステムコーデックに問題があるようです、オーディオストリームが詰まっています[line]他のオーディオオプションを試してください</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
     <value>AudioCopy v{0} クラッシュレポート[line]この問題が繰り返し発生する場合は、Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues)を提出するか、このファイルを以下のメールアドレスに送信してください：hexadecimal0x12e@icloud.com[line]ログファイルはこのフォルダにあります：{1}[line]---</value>
@@ -355,10 +294,10 @@
     <value>ペアリングされていません。ペアリングしますか？</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
-    <value>本端または対端が古すぎるか新しすぎます。すべてのクライアントをアップグレードすることをお勧めします。</value>
+    <value>本端または対端が古すぎるか新しすぎるため、すべてのクライアントのアップグレードを推奨します。</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>これらの変更を適用するにはアプリケーションを再起動する必要があります</value>
+    <value>これらの変更を適用するにはアプリケーションを再起動する必要があります[line](トレイの終了オプションから実行できます)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>完全に終了</value>
@@ -370,15 +309,57 @@
     <value>AudioCopyを起動</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>終了オプション</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>アプリケーションのリソースが深刻な損傷を受けている可能性があります。アンインストールして再インストールしてください。</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>以下のものを選択してください:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>{0}からのペアリングリクエスト</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>検索中...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>詳細設定</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>問題が発生しましたか？高度なオプションを使用する</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>ヘルプを取得</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>従来のペアリングインターフェースを使用する</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>利用可能なIPアドレス：</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>従来のペアリング互換性を有効にしてください</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>利用不可、詳細設定の「IPアドレスでペアリング」を使用するか、設定で発見モードを有効にし、ポート番号をデフォルトのままにしてください</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>相手先のIPアドレスを入力</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>アドレス例:10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234(ポート番号は必須です)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>入力内容が一致しません。もう一度お試しください。</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>両端の時間誤差が1分を超える、バージョンの差異が大きすぎる、またはいずれかのクライアントが変更された可能性があります。確認してください。</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>相手があなたからのペアリングリクエストを拒否しました、ペアリング操作がタイムアウトしたか、または相手があなたをブロックしています。</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>アプリを再起動</value>
   </data>
 </root>

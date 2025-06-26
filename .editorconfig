@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IL3050: Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+dotnet_diagnostic.IL3050.severity = silent

@@ -55,13 +55,18 @@ namespace AudioCopyUI
         public PairingPage()
         {
             this.InitializeComponent();
-            EmojiRepeater.ItemsSource = TypicalEmojis;
 
             PairTimer();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if (!bool.Parse(SettingUtility.GetOrAddSettings("V1PairCompatibility", "False")))
+            {
+                await ShowDialogue(localize("Info"), localize("V1PairDisabled"), localize("Accept"), null, this);
+                this.Frame.GoBack();
+            }
+
             //Localized_AsReceiver.Text = localize("AsReceiver");
             //Localized_AsTransfer.Text = localize("AsTransfer");
             //PairButton.Content = localize("Refresh");
@@ -79,6 +84,9 @@ namespace AudioCopyUI
                 portInfoBar.IsOpen = true;
                 portInfoBar.Message = string.Format(localize("PairPortChangedMessage") , Program.BackendPort);
             }
+
+            EmojiRepeater.ItemsSource = TypicalEmojis;
+
 
             //if (!SettingUtility.OldBackend)
             //{
@@ -201,7 +209,7 @@ namespace AudioCopyUI
                    (ipAddress.StartsWith("172.") && int.TryParse(ipAddress.Split('.')[1], out int secondOctet) && secondOctet >= 16 && secondOctet <= 31);
         }
 
-        private static List<string> GetLocalNetworkAddresses()
+        public static List<string> GetLocalNetworkAddresses()
         {
             List<string> address = new();
 

@@ -22,6 +22,7 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
 using NAudio.Wave;
 using System;
 using System.Collections.Concurrent;
@@ -32,6 +33,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Net.NetworkInformation;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,7 +41,9 @@ using Windows.Media;
 using Windows.Media.Control;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.System;
 using static System.Windows.Forms.DataFormats;
+using DispatcherQueuePriority = Microsoft.UI.Dispatching.DispatcherQueuePriority;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -65,8 +69,7 @@ namespace AudioCopyUI
         public ReceivePage()
         {
             this.InitializeComponent();
-            if (!string.IsNullOrEmpty(SettingUtility.GetOrAddSettings("sourceAddress", "")))
-                c.BaseAddress = new(SettingUtility.GetOrAddSettings("sourceAddress",""));
+            
 
             if (bool.Parse(SettingUtility.GetOrAddSettings("DisableShowHostSMTCInfo", "False"))) MedidInfoPanel.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
 
@@ -81,6 +84,80 @@ namespace AudioCopyUI
             }
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            var last = SettingUtility.GetOrAddSettings("sourceAddress", "");
+            var cts = new CancellationTokenSource();
+            deviceName = SettingUtility.GetOrAddSettings("PairedDeviceName", "");
+            var devicePort = SettingUtility.GetOrAddSettings("PairedDevicePort", "23456");
+            playButton.Content = localize("PlayString", deviceName);
+            string addr = "";
+            cts.CancelAfter(TimeSpan.FromSeconds(3));
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(deviceName)) return;
+                    var rsp = new HttpClient().GetAsync($"http://{deviceName}:{devicePort}/api/device/GetIPAddress",cts.Token);
+                    var ips = (await rsp.Result.Content.ReadAsStringAsync()).Split(',');
+                    string best = null;
+                    long lowestLatency = long.MaxValue;
+
+                    foreach (var ip in ips)
+                    {
+                        if (cts.IsCancellationRequested) return;
+                        try
+                        {
+                            using (Ping ping = new Ping())
+                            {
+                                var reply = await ping.SendPingAsync(ip, 800);
+                                if (reply.Status == IPStatus.Success && reply.RoundtripTime < lowestLatency)
+                                {
+                                    lowestLatency = reply.RoundtripTime;
+                                    best = ip;
+                                }
+                            }
+                        }
+                        catch (Exception){ }
+                    }
+
+                    addr = $"http://{best}:{devicePort}";
+
+                }
+                catch (Exception ex)
+                {
+                    Log(ex, $"find client {deviceName}", this);
+                    addr = "";
+                }
+
+            },cts.Token);
+            try
+            {
+                SettingUtility.SetSettings("sourceAddress", string.IsNullOrWhiteSpace(addr) ? last : addr);
+                if (!string.IsNullOrEmpty(SettingUtility.GetOrAddSettings("sourceAddress", "")))
+                    c.BaseAddress = new(SettingUtility.GetOrAddSettings("sourceAddress", ""));
+            }
+            catch(Exception ex)
+            {
+                Log(ex, $"set client address {addr}", this);
+                SettingUtility.SetSettings("sourceAddress", last);
+                try
+                {
+                    if (!string.IsNullOrEmpty(SettingUtility.GetOrAddSettings("sourceAddress", "")))
+                        c.BaseAddress = new(SettingUtility.GetOrAddSettings("sourceAddress", ""));
+                }
+                catch (Exception ex1)
+                {
+                    Log(ex1, $"set client address {addr}", this);
+                    SettingUtility.SetSettings("sourceAddress", "");
+                    
+                }
+            }
+
+
+        }
+
         async Task<bool> TryConnect()
         {
             try
@@ -89,28 +166,28 @@ namespace AudioCopyUI
                 {
                     if (await ShowDialogue(localize("Info"), localize("NotPaired"), localize("Accept"), localize("Cancel"), this))
                     {
-                        this.Frame.Navigate(typeof(PairingPage));
+                        this.Frame.Navigate(typeof(PairingPageV2));
                         return false;
                     }
                     else return false;
                 }
                 HttpResponseMessage rsp;
 
-                if (SettingUtility.OldBackend)
-                {
-                    rsp = await c.GetAsync("/Index");
+                //if (SettingUtility.OldBackend)
+                //{
+                //    rsp = await c.GetAsync("/Index");
 
-                    if (rsp.StatusCode != HttpStatusCode.Unauthorized)
-                    {
-                        if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
-                        {
-                            this.Frame.Navigate(typeof(PairingPage));
-                            return false;
-                        }
-                        else return false;
-                    }
-                }
-                else
+                //    if (rsp.StatusCode != HttpStatusCode.Unauthorized)
+                //    {
+                //        if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
+                //        {
+                //            this.Frame.Navigate(typeof(PairingPage));
+                //            return false;
+                //        }
+                //        else return false;
+                //    }
+                //}
+                //else
                 {
                     rsp = await c.GetAsync("/Detect");
 
@@ -118,7 +195,7 @@ namespace AudioCopyUI
                     {
                         if (await ShowDialogue(localize("Info"), localize("TryReconnect"), localize("Accept"), localize("Cancel"), this))
                         {
-                            this.Frame.Navigate(typeof(PairingPage));
+                            this.Frame.Navigate(typeof(PairingPageV2));
                             return false;
                         }
                         else return false;
@@ -126,15 +203,12 @@ namespace AudioCopyUI
                 }
                 try
                 {
-                    rsp = await c.GetAsync($"/RequirePair?udid=AudioCopy&name={Environment.MachineName}");
+                    rsp = await c.GetAsync($"/api/device/GetClientName?token={ClientToken}");
                     if (rsp.IsSuccessStatusCode)
                     {
                         var rspString = new StreamReader(rsp.Content.ReadAsStream()).ReadToEnd();
-                        if (rspString.StartsWith("AudioCopy"))
-                        {
-                            deviceName = rspString.Substring(9);
-                            playButton.Content = String.Format(localize("PlayString"), deviceName);
-                        }
+                        deviceName = rspString;
+
                     }
                 }
                 catch (Exception) { }
@@ -278,9 +352,17 @@ namespace AudioCopyUI
             {
                 var rsp = await c.GetAsync($"/api/device/BootAudioClone?token={token}");
                 var addr = await rsp.Content.ReadAsStringAsync();
-                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr,format,Environment.MachineName); 
+                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr,format,Environment.MachineName);
+                if (!rsp.IsSuccessStatusCode)
+                {
+                    await ShowDialogue(localize("Info"), $"Playback failed. Try pair again or reboot the app.\r\n(Code:{rsp.StatusCode} Message:{addr})", localize("Accept"), localize("Cancel"), this);
+
+                    return;
+                }
                 source = new Uri(baseAddr);
             }
+
+
             
             Log($"Playing at address:{source.ToString()}");
 
@@ -304,6 +386,7 @@ namespace AudioCopyUI
                 smtc.ButtonPressed += Smtc_ButtonPressed;
 
                 mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+                mediaPlayer.MediaFailed += MediaPlayer_MediaFailed;
                 PlayerElement.SetMediaPlayer(mediaPlayer);
                 mediaPlayer.Source = MediaSource.CreateFromUri(source);
                 mediaPlayer.Play();
@@ -329,7 +412,10 @@ namespace AudioCopyUI
             
         }
 
-        
+        private async void MediaPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
+        {
+            await ShowDialogue(localize("Info"), "Playback failed. Try pair again or reboot the app.", localize("Accept"), localize("Cancel"), this);
+        }
 
         public class MediaInfo
         {
@@ -610,6 +696,91 @@ namespace AudioCopyUI
             public override void Flush() { }
             public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
             public override void SetLength(long value) => throw new NotSupportedException();
+        }
+
+        private async void PlayWithBrowser_Click(object sender, RoutedEventArgs e)
+        {
+            var token = ClientToken;
+
+
+            var format = SettingUtility.GetOrAddSettings("playingType", "2") switch
+            {
+                //"1" => "mp3",
+                "2" => "wav",
+                "3" => "flac",
+                "4" => "raw",
+                _ => "wav"
+            };
+
+            Uri source;
+
+            if (bool.Parse(SettingUtility.GetOrAddSettings("OverrideAudioCloneOptions", "False")))
+            {
+                source = new Uri($"http://127.0.0.1:{AudioCloneHelper.Port}/api/audio/{format}?token={SettingUtility.GetOrAddSettings("OverrideAudioCloneToken", "null")}&clientName={Environment.MachineName}");
+            }
+            else
+            {
+                var rsp = await c.GetAsync($"/api/device/BootAudioClone?token={token}");
+                var addr = await rsp.Content.ReadAsStringAsync();
+                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr, format, Environment.MachineName);
+                source = new Uri(baseAddr);
+            }
+
+            _ = await Windows.System.Launcher.LaunchUriAsync(source);
+
+
+        }
+
+        private async void PlayWithMediaPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            var token = ClientToken;
+
+
+            var format = SettingUtility.GetOrAddSettings("playingType", "2") switch
+            {
+                //"1" => "mp3",
+                "2" => "wav",
+                "3" => "flac",
+                "4" => "raw",
+                _ => "wav"
+            };
+
+            Uri source;
+            if (bool.Parse(SettingUtility.GetOrAddSettings("OverrideAudioCloneOptions", "False")))
+            {
+                source = new Uri($"http://127.0.0.1:{AudioCloneHelper.Port}/api/audio/{format}?token={SettingUtility.GetOrAddSettings("OverrideAudioCloneToken", "null")}&clientName={Environment.MachineName}");
+            }
+            else
+            {
+                var rsp = await c.GetAsync($"/api/device/BootAudioClone?token={token}");
+                var addr = await rsp.Content.ReadAsStringAsync();
+                var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + ":" + string.Format(addr, format, Environment.MachineName);
+                source = new Uri(baseAddr);
+            }
+
+            try
+            {
+                var options = new LauncherOptions
+                {
+                    TargetApplicationPackageFamilyName = "Microsoft.ZuneVideo_8wekyb3d8bbwe" 
+                };
+
+                bool success = await Launcher.LaunchUriAsync(source, options);
+
+                if (!success)
+                {
+                    Log(new Exception("无法启动媒体播放器"), "启动媒体播放器失败", this);
+                }
+            }
+            catch (Exception ex)
+            {
+                await LogAndDialogue(ex, "启动媒体播放器", localize("Accept"), null, this);
+            }
+        }
+
+        private void ForceStop_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

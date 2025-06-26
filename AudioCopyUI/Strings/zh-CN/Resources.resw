@@ -144,9 +144,6 @@
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>在接收端选择下列内容</value>
   </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>或者输入IP地址：</value>
-  </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>刷新</value>
   </data>
@@ -181,19 +178,19 @@
     <value>配对</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>后端启动失败({0})\r\n请检查后端是否被杀毒软件拦截或端口是否被其他程序占用</value>
+    <value>后端启动失败({0})\r\n请检查端口是否被其他程序占用</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>等待后端启动...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>启动后端中(若杀毒软件提示请放行)...</value>
+    <value>正在</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>初始化中...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>正在{0}后端到v{1}，可能会花上更多的时间来启动，若杀毒软件有提示请放行。</value>
+    <value>正在{0}AudioClone到v{1}，可能会花上更多的时间来启动，若杀毒软件有提示请放行。</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>结束已有的后端...</value>
@@ -232,7 +229,7 @@
     <value>端口号(只在对端提示输入时输入)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>获取的IP地址列表，也可以在这里手动输入</value>
+    <value>或者输入对端的地址/端口号</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>提交</value>
@@ -274,7 +271,7 @@
     <value>检测到来自{0}的配对请求，是否添加？</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>要和{0}配对吗？</value>
+    <value>和{0}的配对</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>配对已添加成功！</value>
@@ -298,7 +295,7 @@
     <value>端口已改变</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>请注意，当前的端口号已改变，目前的端口为{0}[line]请在对端手动输入IP地址和端口号</value>
+    <value>请注意，当前的端口号已改变，目前的端口为{0}，请在对端的高级选项里手动输入</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>请尝试更新或者完全重置后端</value>
@@ -358,7 +355,7 @@
     <value>本端或者对端太旧或者太新，建议升级所有的客户端。</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>你需要重启应用程序才能应用这些更改</value>
+    <value>你需要重启应用程序才能应用这些更改[line](你可以在托盘-退出选项中进行这项操作)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>彻底退出</value>
@@ -380,5 +377,47 @@
   </data>
   <data name="PairDetected" xml:space="preserve">
     <value>来自{0}的配对请求</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>发现中...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>高级选项</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>遇到问题？使用高级选项</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>获取帮助</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>使用传统配对界面</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>你的可用的IP地址：</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>请先启用传统配对兼容性</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>发现不可用，请使用高级选项的“使用IP地址配对”或者前往设置开启发现模式并且保持端口号为默认</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>输入对端的IP地址</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>地址示例:10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234(端口号此时为必须项)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>输入的内容不一致，请重试。</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>两端的时间误差超过1分钟、版本差异过大、或者某一个客户端似乎被修改，请检查。</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>对端拒绝了来自你的配对请求，配对操作已超时，或者对端拉黑了你。</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>重启应用</value>
   </data>
 </root>

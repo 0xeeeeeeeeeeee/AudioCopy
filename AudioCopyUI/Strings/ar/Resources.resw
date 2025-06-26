@@ -124,7 +124,7 @@
     <value>MP3 (غير متاح حاليًا حسب إعداداتك)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>يقوم الخادم بجمع موجات 16 بت من WASAPI وإرسالها مباشرة، ثم يقوم المستقبل بتشغيلها مباشرة</value>
+    <value>الخادم يجمع موجات 16 بت من WASAPI ويرسلها مباشرة، ثم يقوم المستقبل بتشغيلها مباشرة</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>هذه الأجهزة تستمع</value>
@@ -142,10 +142,7 @@
     <value>كجهة إرسال</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
-    <value>في الطرف المستقبل، حدد المحتوى التالي</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>أو أدخل عنوان IP:</value>
+    <value>في جهة الاستقبال، حدد المحتوى التالي</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>تحديث</value>
@@ -160,13 +157,13 @@
     <value>تنسيق الصوت</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>اختر</value>
+    <value>اختر واحدا</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>تطبيق</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>اختيار</value>
+    <value>اختر واحدا</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>استقبال</value>
@@ -181,19 +178,19 @@
     <value>إقران</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>فشل بدء التشغيل الخلفي ({0})\r\nيرجى التحقق مما إذا كان البرنامج الخلفي محظورًا بواسطة برنامج مكافحة الفيروسات أو إذا كان المنفذ مشغولاً بواسطة برنامج آخر</value>
+    <value>فشل بدء التشغيل الخلفي ({0})\r\nيرجى التحقق مما إذا كان المنفذ محجوزًا بواسطة برنامج آخر</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>في انتظار بدء تشغيل الخلفية...</value>
+    <value>في انتظار بدء تشغيل الخادم الخلفي...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>جارٍ تشغيل الخلفية (إذا ظهر تحذير من برنامج مكافحة الفيروسات، يرجى السماح)...</value>
+    <value>جارٍ</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>جاري التهيئة...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>جارٍ {0} الخلفي إلى الإصدار v{1}، قد يستغرق الأمر وقتًا أطول للبدء. إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات، يُرجى السماح.</value>
+    <value>يتم {0}AudioClone إلى الإصدار v{1}، وقد يستغرق بدء التشغيل وقتًا أطول، يُرجى السماح به إذا ظهرت أي تحذيرات من برنامج مكافحة الفيروسات.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>إنهاء الخلفية الحالية...</value>
@@ -202,13 +199,13 @@
     <value>ترقية</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
-    <value>تثبيت</value>
+    <value>التثبيت</value>
   </data>
   <data name="LogAndDialogue_Content" xml:space="preserve">
     <value>حدث خطأ {1} عند {0}: [line]{2}</value>
   </data>
   <data name="Accept" xml:space="preserve">
-    <value>حسنًا</value>
+    <value>حسناً</value>
   </data>
   <data name="AcceptButton.Content" xml:space="preserve">
     <value>حسناً</value>
@@ -217,7 +214,7 @@
     <value>إلغاء</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>إلغاء</value>
+    <value>رفض طلب الاقتران</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>خطأ</value>
@@ -229,10 +226,10 @@
     <value>تلميح</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>رقم المنفذ (أدخله فقط عند مطالبة الطرف الآخر بذلك)</value>
+    <value>رقم المنفذ (أدخله فقط عندما يطلب الطرف الآخر الإدخال)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>قائمة عناوين IP التي تم الحصول عليها، يمكن أيضًا إدخالها يدويًا هنا</value>
+    <value>أو أدخل عنوان/رقم منفذ الطرف الآخر</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>إرسال</value>
@@ -247,19 +244,19 @@
     <value>فشل في إعداد جهاز الصوت:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>يرجى الاطلاع أدناه، انقر فوق إعادة الضبط</value>
+    <value>يرجى الاطلاع أدناه ، انقر فوق إعادة تعيين</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>إيقاف التشغيل</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
-    <value>الصوت من {0}</value>
+    <value>صوت من {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
     <value>فشل الاتصال، هل تريد إعادة الاقتران؟</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>إعدادات الخادم الخلفي الخاصة بك لا تسمح بهذا الإجراء، يمكنك تعديله في الإعدادات.</value>
+    <value>إعدادات الخادم الخلفي الخاصة بك لا تسمح بهذه العملية، يمكنك تعديلها في الإعدادات.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
     <value>انتهت مهلة الاتصال، يرجى التحقق من صحة العنوان أو تغييره.</value>
@@ -268,13 +265,13 @@
     <value>حاول البحث عن حل عبر الإنترنت</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>تمت إضافة الاقتران بنجاح، ولكن لا يمكن حذفه من قائمة الانتظار، يمكن حل هذه المشكلة عن طريق إعادة تشغيل العميل</value>
+    <value>تمت إضافة الاقتران بنجاح، ولكن لا يمكن حذفه من قائمة الانتظار. يمكن حل هذه المشكلة عن طريق إعادة تشغيل العميل.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>تم الكشف عن طلب اقتران من {0}، هل تريد الإضافة؟</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>هل تريد الاقتران بـ {0}؟</value>
+    <value>الاقتران بـ {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>تمت إضافة الاقتران بنجاح!</value>
@@ -283,7 +280,7 @@
     <value>نجاح</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>فشل إضافة الاقتران (الخادم أعاد {0})، يرجى المحاولة مرة أخرى.</value>
+    <value>فشل إضافة الاقتران (الخادم أعاد {0})، يرجى إعادة المحاولة.</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>عنوان غير صالح</value>
@@ -298,7 +295,7 @@
     <value>تم تغيير المنفذ</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>لاحظ أن رقم المنفذ الحالي قد تغير، المنفذ الحالي هو {0}[line]الرجاء إدخال عنوان IP ورقم المنفذ يدويًا على الطرف الآخر</value>
+    <value>لاحظ أن رقم المنفذ الحالي قد تغير، المنفذ الحالي هو {0}، يرجى إدخاله يدويًا في الخيارات المتقدمة على الطرف الآخر</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>يرجى محاولة تحديث أو إعادة تعيين الخلفية بالكامل</value>
@@ -319,7 +316,7 @@
     <value>وسائط غير معروفة</value>
   </data>
   <data name="MediaInfo_Artist.Text" xml:space="preserve">
-    <value>فنان غير معروف</value>
+    <value>فنان مجهول</value>
   </data>
   <data name="MediaInfo_Album.Text" xml:space="preserve">
     <value>ألبوم غير معروف</value>
@@ -328,10 +325,10 @@
     <value>معلومات الوسائط من {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>لقد قمنا بتقسيم وترحيل الواجهة الخلفية إلى التطبيق نفسه وإلى AudioClone، لذلك توقفنا تمامًا عن استخدام الواجهة الخلفية القديمة في هذا الإصدار. [line] هذا يعني أنك تحتاج إلى ترقية جميع العملاء لضمان عملهم بشكل صحيح.</value>
+    <value>لقد قمنا بتقسيم وترحيل الواجهة الخلفية إلى التطبيق نفسه وإلى AudioClone، لذلك توقفنا تمامًا عن استخدام الواجهة الخلفية القديمة في هذا الإصدار. [line] هذا يعني أنك بحاجة إلى تحديث جميع العملاء لضمان عملهم بشكل صحيح.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>لقد قمت بتمكين خلفية جديدة، لذلك نوصي بتحديث جميع العملاء. إذا كنت لا ترغب في التحديث، يمكنك أيضًا تعطيل هذه الميزة في "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
+    <value>لقد قمت بتمكين خلفية جديدة، لذا نوصي بتحديث جميع العملاء. إذا كنت لا ترغب في التحديث، يمكنك أيضًا تعطيل هذه الميزة من خلال "الإعدادات - إعدادات الخلفية - استخدام الخلفية القديمة".</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
     <value>لا تذكرني مرة أخرى</value>
@@ -340,10 +337,10 @@
     <value>يبدو أن هناك مشكلة في برامج الترميز في نظامك، مما تسبب في توقف تدفق الصوت [line] يرجى محاولة استخدام خيارات الصوت الأخرى</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} تقرير تعطل[line]إذا واجهت هذه المشكلة بشكل متكرر، يرجى تقديم Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) أو إرسال هذا الملف إلى عنوان البريد الإلكتروني: hexadecimal0x12e@icloud.com[line]ملف السجل موجود في هذا المجلد: {1}[line]---</value>
+    <value>AudioCopy الإصدار {0} تقرير تعطل[line]إذا واجهت هذه المشكلة بشكل متكرر، يرجى تقديم Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) أو إرسال هذا الملف إلى عنوان البريد الإلكتروني التالي: hexadecimal0x12e@icloud.com[line]يوجد ملف السجل في هذا المجلد: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>ما هو السلوك الذي تريده عند إغلاق النافذة؟[line]يمكنك تعديله لاحقًا في الإعدادات - عام[line](البرنامج لا يزال يدعم العمل كخادم واستقبال الصوت عند تصغيره إلى علبة النظام)</value>
+    <value>ما هو السلوك الذي تريده عند إغلاق النافذة؟[line]يمكنك تعديله لاحقًا في الإعدادات - عام[line](عند تصغير البرنامج إلى صينية النظام، لا يزال يدعم العمل كخادم واستقبال الصوت)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>إغلاق كامل</value>
@@ -352,13 +349,13 @@
     <value>التصغير إلى علبة النظام</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>لم يتم إقرانك بعد، هل تريد الإقران؟</value>
+    <value>لم يتم إقرانك، هل ترغب في الإقران؟</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
-    <value>الطرف المحلي أو الطرف البعيد قديم جدًا أو جديد جدًا، يُنصح بترقية جميع العملاء.</value>
+    <value>الجهاز المحلي أو الطرف الآخر قديم جدًا أو جديد جدًا، يُنصح بتحديث جميع العملاء.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>يجب عليك إعادة تشغيل التطبيق لتطبيق هذه التغييرات</value>
+    <value>تحتاج إلى إعادة تشغيل التطبيق لتطبيق هذه التغييرات [line](يمكنك القيام بذلك من خلال خيار الخروج في صينية النظام)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>الخروج تمامًا</value>
@@ -370,15 +367,57 @@
     <value>بدء AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>خيار الخروج</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>قد تكون موارد التطبيق تالفة بشدة، يرجى محاولة إلغاء التثبيت وإعادة التثبيت.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>اختر من الأشياء التالية:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>طلب إقران من {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>جارٍ الاكتشاف...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>خيارات متقدمة</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>واجهت مشكلة؟ استخدم الخيارات المتقدمة</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>الحصول على المساعدة</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>استخدام واجهة الاقتران التقليدية</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>عنوان IP المتاح لك:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>يرجى تمكين توافق الاقتران التقليدي أولاً</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>اكتشاف غير متاح، يرجى استخدام خيار "استخدام عنوان IP للاقتران" في الخيارات المتقدمة أو الانتقال إلى الإعدادات لتمكين وضع الاكتشاف مع الحفاظ على رقم المنفذ كافتراضي.</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>إدخال عنوان IP الطرف الآخر</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>مثال على العنوان: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](رقم المنفذ إلزامي في هذه الحالة)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>المحتوى المدخل غير متطابق، يرجى إعادة المحاولة.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>الفرق الزمني بين الطرفين يتجاوز دقيقة واحدة، أو اختلاف الإصدار كبير جدًا، أو يبدو أن أحد العملاء قد تم تعديله، يرجى التحقق.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>رفض الطرف الآخر طلب الاقتران منك، أو انتهت مهلة عملية الاقتران، أو قام الطرف الآخر بحظرك.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>إعادة تشغيل التطبيق</value>
   </data>
 </root>

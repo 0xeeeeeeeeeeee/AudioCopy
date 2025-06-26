@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -121,13 +63,13 @@
     <value>播放來自 {0} 的音訊</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3(根據您的設定目前無法使用)</value>
+    <value>MP3(根據你的設定目前無法使用)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
     <value>服務端從wasapi採集16bit波形並直接發送，然後接收端直接播放</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
-    <value>這些設備正在監聽</value>
+    <value>這些裝置正在監聽</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
     <value>選擇要監聽的裝置</value>
@@ -143,9 +85,6 @@
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>在接收端選擇下列內容</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>或者輸入IP位址：</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>重新整理</value>
@@ -172,7 +111,7 @@
     <value>接收</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
-    <value>傳送</value>
+    <value>發送</value>
   </data>
   <data name="Pair.Content" xml:space="preserve">
     <value>配對</value>
@@ -181,19 +120,19 @@
     <value>配對</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>後端啟動失敗({0})\r\n請檢查後端是否被防毒軟體攔截或連接埠是否被其他程式佔用</value>
+    <value>後端啟動失敗({0})\r\n請檢查端口是否被其他程式佔用</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>等待後端啟動...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>正在啟動後端（若防毒軟體提示請允許）...</value>
+    <value>正在</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>初始化中...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>正在{0}後端到v{1}，可能會花上更多的時間來啟動，若防毒軟體有提示請放行。</value>
+    <value>正在{0}AudioClone到v{1}，可能需要更多時間啟動，若防毒軟體有提示請允許。</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>結束現有的後端...</value>
@@ -217,7 +156,7 @@
     <value>取消</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>取消</value>
+    <value>拒絕配對請求</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>錯誤</value>
@@ -229,16 +168,16 @@
     <value>提示</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>端口號(僅在對端提示輸入時輸入)</value>
+    <value>連接埠號碼(僅在對端提示輸入時輸入)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>取得的IP位址清單，也可以在這裡手動輸入</value>
+    <value>或者輸入對端的地址/端口號</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>送出</value>
   </data>
   <data name="BackendAbnormal" xml:space="preserve">
-    <value>後端可能不正常，可嘗試重新啟動</value>
+    <value>後端可能不正常，可嘗試重啟</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>已刪除</value>
@@ -271,10 +210,10 @@
     <value>配對已新增成功，但無法將其從待配對清單中刪除，可透過重新啟動用戶端來解決此問題</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
-    <value>偵測到來自{0}的配對請求，是否新增？</value>
+    <value>偵測到來自 {0} 的配對請求，是否新增？</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>要與{0}配對嗎？</value>
+    <value>與{0}的配對</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>配對已新增成功！</value>
@@ -283,13 +222,13 @@
     <value>成功</value>
   </data>
   <data name="PairFailed" xml:space="preserve">
-    <value>配對新增失敗(伺服器傳回了{0})，請重試。</value>
+    <value>新增配對失敗(伺服器傳回了{0})，請重試。</value>
   </data>
   <data name="PairAddressNotCorrect" xml:space="preserve">
     <value>地址無效</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>請注意，當你停止播放時應用程式會重啟，這是正常現象</value>
+    <value>請注意，當你停止播放時應用程式會重新啟動，這是正常現象</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>不再提示</value>
@@ -298,7 +237,7 @@
     <value>端口已變更</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>請注意，當前的端口號已改變，目前的端口為{0}[line]請在對端手動輸入IP地址和端口號</value>
+    <value>請注意，當前的埠號已改變，目前的埠為{0}，請在對端的高級選項裡手動輸入</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>請嘗試更新或完全重置後端</value>
@@ -328,10 +267,10 @@
     <value>來自{0}的媒體資訊：</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>我們已將後端拆分並遷移到應用程式本身和AudioClone中，因此在此版本中我們完全棄用了舊後端。[line]這意味著你需要升級所有客戶端以確保它們正常工作。</value>
+    <value>我們已將後端拆分並遷移到應用程式本身和AudioClone中，因此在此版本中我們完全棄用了舊後端。[line]這意味著你需要升級所有客戶端以確保它們正常運作。</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>您啟用了新的後端，因此我們建議您升級所有客戶端。若不想升級，也可在「設定-後端設定-使用舊版後端」停用此功能。</value>
+    <value>您啟用了新的後端，因此我們建議您升級所有客戶端。如果不想升級，也可以在「設定-後端設定-使用舊版後端」停用此功能。</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
     <value>不再提示我</value>
@@ -340,10 +279,10 @@
     <value>你的系統編解碼器似乎有點問題，導致了音訊流卡住[line]請嘗試使用其他音訊選項</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} 崩潰報告[line]如果你反覆遇到此問題，請提交Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues)或發送此文件到此郵箱地址：hexadecimal0x12e@icloud.com[line]日誌文件位於此資料夾下：{1}[line]---</value>
+    <value>AudioCopy v{0} 崩潰報告[line]如果你反覆遇到此問題，請提交Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues)或發送此文件到此郵箱地址：hexadecimal0x12e@icloud.com[line]日誌文件位於此文件夾下：{1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>您希望關閉視窗時的行為是什麼[line]您後期可以在設定-通用裡修改[line](程式最小化到工作列時仍然支援作為伺服器和接收音訊)</value>
+    <value>您希望關閉視窗時的行為是什麼[line]您後期可以在設定-通用裡修改[line](程式最小化到工作列時仍然支援作為伺服器和接收音頻)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>完全退出</value>
@@ -358,7 +297,7 @@
     <value>本端或對端版本過舊或過新，建議升級所有客戶端。</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>你需要重新啟動應用程式才能套用這些變更</value>
+    <value>你需要重新啟動應用程式才能套用這些變更[line](你可以在托盤-退出選項中進行這項操作)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>完全退出</value>
@@ -370,15 +309,57 @@
     <value>啟動 AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>退出選項</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>應用程式的資源可能已嚴重損壞，請嘗試解除安裝後重新安裝。</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>選擇下列東西:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>來自{0}的配對請求</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>搜尋中...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>進階選項</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>遇到問題？使用進階選項</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>取得協助</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>使用傳統配對介面</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>您的可用IP位址：</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>請先啟用傳統配對相容性</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>發現不可用，請使用進階選項的「使用IP地址配對」或者前往設定開啟發現模式並且保持連接埠號為預設</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>輸入對端的IP位址</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>地址範例:10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234(此時端口號為必填項)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>輸入的內容不一致，請重試。</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>兩端的時間誤差超過1分鐘、版本差異過大、或者某一個客戶端似乎被修改，請檢查。</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>對方拒絕了你的配對請求，配對操作已超時，或者對方將你列入黑名單。</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>重新啟動應用</value>
   </data>
 </root>

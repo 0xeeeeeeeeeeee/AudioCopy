@@ -163,13 +163,13 @@
     <value>要绑定的端口号(留空代表默认)</value>
   </data>
   <data name="BackendSetting_BackendVersion" xml:space="preserve">
-    <value>后端API版本：{0}[line]AudioClone信息：{1}</value>
+    <value>后端API版本：{0}[line]AudioClone版本：{1}</value>
   </data>
   <data name="BackendSetting_RebootBackendButton.Text" xml:space="preserve">
     <value>要重启后端，请先完全退出应用程序，再重新打开应用程序。</value>
   </data>
   <data name="BackendSetting_DisableDiscoverMode.Content" xml:space="preserve">
-    <value>不允许本服务端被主动发现</value>
+    <value>禁用主动发现客户端</value>
   </data>
   <data name="BackendSetting_DisableNewPairMode.Content" xml:space="preserve">
     <value>不允许对端主动发起配对</value>
@@ -193,7 +193,7 @@
     <value>你确定要这么做吗？</value>
   </data>
   <data name="AdvancedSetting_showNonLocalAddress.Content" xml:space="preserve">
-    <value>在“配对”界面显示非局域网地址和虚拟网卡</value>
+    <value>允许在发现客户端时和“配对”界面使用非局域网地址和虚拟网卡</value>
   </data>
   <data name="AdvancedSetting_keepBackendRun.Content" xml:space="preserve">
     <value>退出之后不保留AudioClone实例运行</value>
@@ -206,9 +206,6 @@
   </data>
   <data name="AdvancedSetting_trayMode.Content" xml:space="preserve">
     <value>退出时最小化到托盘</value>
-  </data>
-  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
-    <value>禁用托盘</value>
   </data>
   <data name="AdvancedSetting_resetUUID.Content" xml:space="preserve">
     <value>重置设备标识</value>
@@ -271,7 +268,7 @@
     <value>在浏览器中打开</value>
   </data>
   <data name="AdvancedSetting_ApplyLocate" xml:space="preserve">
-    <value>正在应用本地化设置，请稍等，不要关闭此窗口，也不要与应用程序交互。[line]应用程序会多次启动，这是正常情况</value>
+    <value>正在应用本地化设置，请稍等，不要关闭此窗口。[line]你可能会看到弹窗，这是正常情况</value>
   </data>
   <data name="ReceiverOnly_ViewLog.Content" xml:space="preserve">
     <value>查看日志</value>
@@ -287,5 +284,11 @@
   </data>
   <data name="AudioQuality_NotAvailable.Text" xml:space="preserve">
     <value>警告：这些设置目前对新的后端无效，将始终「使用不重采样(使用系统配置的音质)」选项。</value>
+  </data>
+  <data name="BackendSetting_enableV1Pairing.Content" xml:space="preserve">
+    <value>启用V1配对兼容性</value>
+  </data>
+  <data name="AdvancedSetting_disableTray.Content" xml:space="preserve">
+    <value>禁用托盘</value>
   </data>
 </root>

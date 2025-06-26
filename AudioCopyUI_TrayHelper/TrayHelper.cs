@@ -8,20 +8,20 @@
 
         public static Action? Shutdown;
 
-        public static Action? GetSMTC;
+        //public static Action? GetSMTC;
 
-        public static bool IsNotStandalone = false;
+        public static Action? RebootApp;
 
-        public static string Title = "Unknown";
 
-        public static string Artist = "Unknown";
-
-        public static int listeningClient = 0;
+        //public static string Title = "Unknown";
+        //public static string Artist = "Unknown";
+        //public static int listeningClient = 0;
 
         public static bool KeepBackendAsDefault;
-
         public static bool GUIRunning;
         public static bool NoKeepClone;
+        public static bool IsNotStandalone = false;
+
 
         public class Resource
         {
@@ -36,7 +36,11 @@
             public static string DisconnectWarn;
 
             public static string Close;
+
             public static string Exit;
+
+            public static string Reboot;
+
         }
 
     }

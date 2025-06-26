@@ -157,18 +157,21 @@ namespace AudioCopyUI.SettingViews
 
         private async void rawBufferSize_ValueChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
         {
-            if (loaded) await Save();
-
+            SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
         }
 
         private async Task Save()
         {
-            SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
-            SettingUtility.SetSettings("rawBufferSize", ((int)rawBufferSize.Value).ToString());
             if (await ShowDialogue(localize("Info"), localize("/Setting/AudioQuality_RebootRequired"), localize("Accept"), localize("Cancel"), this))
             {
                 await AudioCloneHelper.Kill();
+                SettingUtility.SetSettings("resampleFormat", $"{samplerate},{bitrate},{channels}");
             }
+            else
+            {
+                this.Frame.Navigate(typeof(SettingViews.AudioQuality));
+            }
+
             //await ShowDialogue("", $"{bitrate}bit {samplerate}hz {channels}channels {rawBufferSize.Value} bytes buf   ", "text", "text", this);
 
         }

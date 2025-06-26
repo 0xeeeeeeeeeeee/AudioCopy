@@ -121,10 +121,10 @@
     <value>Riproduci audio da {0}</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
-    <value>MP3 (non disponibile in base alla tua configurazione attuale)</value>
+    <value>MP3 (non disponibile in base alla tua configurazione corrente)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Il server acquisisce la forma d'onda a 16 bit da WASAPI e la invia direttamente, quindi il ricevitore la riproduce direttamente</value>
+    <value>Il server acquisisce l'onda a 16 bit da WASAPI e la invia direttamente, quindi il ricevitore la riproduce immediatamente</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Questi dispositivi sono in ascolto</value>
@@ -136,16 +136,13 @@
     <value>Dispositivi associati:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>Come ricevitore</value>
+    <value>Come destinatario</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Come mittente</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Seleziona il seguente sul lato ricevente</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>Oppure inserisci l'indirizzo IP:</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Aggiorna</value>
@@ -181,19 +178,19 @@
     <value>Abbinamento</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Avvio del backend non riuscito ({0})\r\nVerificare se il backend è bloccato dall'antivirus o se la porta è occupata da altri programmi</value>
+    <value>Avvio del backend non riuscito ({0})\r\nVerificare se la porta è occupata da altri programmi</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>In attesa dell'avvio del backend...</value>
+    <value>Attesa avvio backend...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Avvio del backend in corso (se l'antivirus richiede autorizzazioni, consentire)...</value>
+    <value>In corso</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Inizializzazione in corso...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Aggiornamento del backend {0} alla versione v{1}, potrebbe richiedere più tempo per l'avvio. Se il software antivirus mostra un avviso, si prega di consentire l'operazione.</value>
+    <value>Sto {0}AudioClone alla versione v{1}, potrebbe richiedere più tempo per l'avvio. Se il software antivirus mostra un avviso, si prega di consentirlo.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Terminazione del backend esistente...</value>
@@ -217,7 +214,7 @@
     <value>Annulla</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Annulla</value>
+    <value>Richiesta di abbinamento rifiutata</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Errore</value>
@@ -229,10 +226,10 @@
     <value>Avviso</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Numero di porta (inserire solo se richiesto dal peer)</value>
+    <value>Numero di porta (inserire solo quando richiesto dal peer)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Elenco degli indirizzi IP ottenuti, può anche essere inserito manualmente qui</value>
+    <value>Oppure inserisci l'indirizzo/numero di porta del peer</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Invia</value>
@@ -250,7 +247,7 @@
     <value>Visualizza qui sotto, fai clic su Reimposta</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
-    <value>Interrompi la riproduzione</value>
+    <value>Interrompi riproduzione</value>
   </data>
   <data name="AudioFrom" xml:space="preserve">
     <value>Audio da {0}</value>
@@ -259,7 +256,7 @@
     <value>Connessione fallita, vuoi provare a riconnetterti?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>La configurazione del tuo backend non consente questa operazione. Puoi modificarla nelle impostazioni.</value>
+    <value>La tua configurazione backend non consente questa operazione, puoi modificarla nelle impostazioni.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
     <value>Connessione scaduta, controlla l'indirizzo o provane un altro.</value>
@@ -268,13 +265,13 @@
     <value>Prova a cercare una soluzione online</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Abbinamento aggiunto con successo, ma non è possibile rimuoverlo dall'elenco di abbinamento in sospeso. È possibile risolvere il problema riavviando il client.</value>
+    <value>Abbinamento aggiunto con successo, ma non è stato possibile rimuoverlo dall'elenco degli abbinamenti in sospeso. È possibile risolvere il problema riavviando il client.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>Rilevata richiesta di abbinamento da {0}, aggiungere?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Vuoi abbinare con {0}?</value>
+    <value>Abbinamento con {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Abbinamento aggiunto con successo!</value>
@@ -298,7 +295,7 @@
     <value>Porta modificata</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Si prega di notare che il numero di porta corrente è cambiato, la porta attuale è {0}[line]Inserire manualmente l'indirizzo IP e il numero di porta sul lato remoto</value>
+    <value>Si prega di notare che il numero di porta corrente è cambiato, la porta attuale è {0}, inseriscila manualmente nelle opzioni avanzate del dispositivo remoto</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Prova ad aggiornare o reimpostare completamente il backend</value>
@@ -310,13 +307,13 @@
     <value>Configura e avvia il backend</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
-    <value>Ignora gli errori e continua l'avvio</value>
+    <value>Ignora errori e continua l'avvio</value>
   </data>
   <data name="MediaInfo_AlbumArt.ToolTipService.ToolTip" xml:space="preserve">
     <value>Copertina album multimediale</value>
   </data>
   <data name="MediaInfo_Title.Text" xml:space="preserve">
-    <value>Media sconosciuta</value>
+    <value>Supporto sconosciuto</value>
   </data>
   <data name="MediaInfo_Artist.Text" xml:space="preserve">
     <value>Artista sconosciuto</value>
@@ -340,13 +337,13 @@
     <value>Il tuo codec di sistema sembra avere qualche problema, causando il blocco del flusso audio[line]Prova a utilizzare altre opzioni audio</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} report di crash[line]Se riscontri ripetutamente questo problema, segnala un Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) o invia questo file all'indirizzo email: hexadecimal0x12e@icloud.com[line]Il file di log si trova in questa cartella: {1}[line]---</value>
+    <value>AudioCopy v{0} report di crash[line]Se riscontri ripetutamente questo problema, segnala un Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) o invia questo file all'indirizzo email: hexadecimal0x12e@icloud.com[line]Il file di log si trova in questa cartella: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>Quale comportamento desideri quando chiudi la finestra?[line]Puoi modificarlo successivamente in Impostazioni &gt; Generale[line](Quando l'applicazione viene ridotta a icona nella barra delle applicazioni, supporta ancora il funzionamento come server e la ricezione dell'audio)</value>
+    <value>Quale comportamento desideri quando chiudi la finestra[line]Puoi modificarlo successivamente in Impostazioni &gt; Generale[line](Quando il programma è ridotto a icona nella barra delle applicazioni, supporta ancora il funzionamento come server e la ricezione dell'audio)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
-    <value>Esci completamente</value>
+    <value>Uscita completa</value>
   </data>
   <data name="ExitOption2" xml:space="preserve">
     <value>Riduci a icona</value>
@@ -358,7 +355,7 @@
     <value>Lato locale o remoto troppo vecchio o nuovo, si consiglia di aggiornare tutti i client.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Devi riavviare l'applicazione per applicare queste modifiche.</value>
+    <value>Devi riavviare l'applicazione per applicare queste modifiche[line](puoi farlo dall'opzione Esci nel vassoio di sistema)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>Esci completamente</value>
@@ -370,15 +367,57 @@
     <value>Avvia AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Opzioni di uscita</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Le risorse dell'applicazione potrebbero essere gravemente danneggiate, prova a disinstallare e reinstallare.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Seleziona le seguenti cose:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Richiesta di abbinamento da {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Ricerca in corso...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Opzioni avanzate</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Problemi? Usa le opzioni avanzate</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Ottenere aiuto</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Utilizza l'interfaccia di abbinamento tradizionale</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>I tuoi indirizzi IP disponibili:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Si prega di abilitare prima la compatibilità con l'accoppiamento tradizionale</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Indisponibile, utilizza l'opzione "Abbina tramite indirizzo IP" nelle impostazioni avanzate o vai alle impostazioni per attivare la modalità di rilevamento mantenendo il numero di porta predefinito</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Inserisci l'indirizzo IP del peer</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Esempio di indirizzo:10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](la porta è obbligatoria in questo caso)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>Il contenuto inserito non corrisponde, riprova.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>La differenza temporale tra i due estremi supera 1 minuto, la versione è troppo diversa o un client sembra essere stato modificato, si prega di verificare.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>Il peer ha rifiutato la tua richiesta di abbinamento, l'operazione di abbinamento è scaduta o il peer ti ha bloccato.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Riavvia l'applicazione</value>
   </data>
 </root>

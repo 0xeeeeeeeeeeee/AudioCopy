@@ -21,6 +21,7 @@
             <CheckBox Margin="0,0" x:Uid="/Setting/AdvancedSetting_EnableSwagger" x:Name="devMode" Click="OptionsChanged"/>
             <CheckBox Margin="0,0" x:Uid="/Setting/BackendSetting_DisableDiscoverMode" x:Name="noDiscover" Click="OptionsChanged"/>
             <CheckBox Margin="0,0" x:Uid="/Setting/BackendSetting_DisableNewPairMode" x:Name="noNewPairing" Click="OptionsChanged"/>
+            <CheckBox Margin="0,0" x:Uid="/Setting/BackendSetting_enableV1Pairing" x:Name="enableV1Pairing" Click="OptionsChanged" />
 
 
             <TextBlock  x:Name="BackendVersionBlock" Margin="0,8"></TextBlock>

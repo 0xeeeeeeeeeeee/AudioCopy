@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AudioCopyUI.Backend;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -18,6 +19,8 @@ using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using static AudioCopyUI_MiddleWare.BackendHelper;
@@ -32,13 +35,14 @@ namespace AudioCopyUI.Backend
         public static Action<Action>? Dispatcher { get; private set; } = null;
 
 
-        public const double VersionCode = 2.1;
+        public const double VersionCode = 2.2;
 
         public static bool Running { get; private set; }
 
         [RequiresUnreferencedCode("something here :)")]
         public static void Init(string uri = "http://+:23456", bool STA = false)
         {
+            
             BackendAPIVersion = VersionCode;
 
             var builder = WebApplication.CreateBuilder();
@@ -56,6 +60,11 @@ namespace AudioCopyUI.Backend
             builder.Logging.AddDebug();
 #endif
 
+            builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options => //解决PublishedTrimmed问题
+            {
+                options.SerializerOptions.TypeInfoResolverChain.Insert(0, BackendJsonContext.Default);
+            });
+
             if (bool.Parse(GetOrAddSettings("EnableSwagger", "False")))
             {
                 builder.Services.AddEndpointsApiExplorer();
@@ -68,7 +77,11 @@ namespace AudioCopyUI.Backend
                     });
                 });
             }
+
             backend = builder.Build();
+
+            
+            
             backend.UseExceptionHandler(errorApp =>
             {
                 errorApp.Run(async context =>
@@ -134,6 +147,14 @@ $""""""
             DeviceController.Init(deviceGroup);
             TokenController.Init(tokenGroup);
 
+            DiscoveredClients = new();
+            DiscoveredClientsAddress = new();
+
+            if (!bool.Parse(GetOrAddSettings("NoDiscover", "False")))
+            {
+                DiscoverHelper.Init(int.Parse(GetOrAddSettings("DiscoverInterval", "15")));
+            }
+
             if (STA)
             {
                 Running = true;
@@ -152,8 +173,21 @@ $""""""
             return;
         }
 
-       
+        public static JsonSerializerOptions opt = new JsonSerializerOptions
+        {
+            TypeInfoResolver = DevicesInfoGenerationContext.Default
+        };
 
 
+    }
+    [JsonSerializable(typeof(DevicesInfo))]
+    public partial class BackendJsonContext : JsonSerializerContext
+    {
+    }
+
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(DevicesInfo))]
+    internal partial class DevicesInfoGenerationContext : JsonSerializerContext
+    {
     }
 }

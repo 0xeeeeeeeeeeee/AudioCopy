@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>Воспроизвести аудио из {0}</value>
+    <value>Воспроизвести аудио с {0}</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (в данный момент недоступно согласно вашим настройкам)</value>
@@ -144,11 +144,8 @@
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>На принимающей стороне выберите следующее</value>
   </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>или введите IP-адрес:</value>
-  </data>
   <data name="Refresh.Content" xml:space="preserve">
-    <value>обновить</value>
+    <value>Обновить</value>
   </data>
   <data name="PlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Нажмите, чтобы воспроизвести</value>
@@ -169,7 +166,7 @@
     <value>Выбрать</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
-    <value>Получить</value>
+    <value>Получение</value>
   </data>
   <data name="Transfer.Content" xml:space="preserve">
     <value>Отправить</value>
@@ -181,19 +178,19 @@
     <value>Сопряжение</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не блокирует ли её антивирус или не занят ли порт другой программой</value>
+    <value>Не удалось запустить серверную часть ({0})\r\nПроверьте, не занят ли порт другой программой</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
-    <value>Ожидание запуска серверной части...</value>
+    <value>Ожидание запуска сервера...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Запуск серверной части (разрешите в антивирусе, если появится запрос)...</value>
+    <value>Выполняется</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Инициализация...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>Идет подключение к бэкенду {0} до версии v{1}, это может занять больше времени для запуска. Если антивирус выдаст предупреждение, разрешите действие.</value>
+    <value>Идет {0}AudioClone до версии v{1}, это может занять больше времени для запуска. Если антивирусное ПО выдаст предупреждение, разрешите действие.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Завершение работающего сервера...</value>
@@ -217,7 +214,7 @@
     <value>Отмена</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Отклонить запрос на сопряжение</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
@@ -232,7 +229,7 @@
     <value>Номер порта (вводить только при запросе удаленной стороны)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Полученный список IP-адресов, также можно ввести вручную здесь</value>
+    <value>или введите адрес/порт удаленной стороны</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Отправить</value>
@@ -241,13 +238,13 @@
     <value>Серверная часть может работать некорректно, попробуйте перезапустить</value>
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>Удалено</value>
+    <value>удалено</value>
   </data>
   <data name="FailedSetAudioDevices" xml:space="preserve">
     <value>Не удалось настроить аудиоустройство:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Пожалуйста, посмотрите ниже и нажмите "Сбросить"</value>
+    <value>Пожалуйста, посмотрите ниже и нажмите "Сброс"</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Остановить воспроизведение</value>
@@ -256,25 +253,25 @@
     <value>Аудио от {0}</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Не удалось подключиться. Попробовать выполнить повторное сопряжение?</value>
+    <value>Не удалось подключиться. Попробовать снова выполнить сопряжение?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
-    <value>Ваша конфигурация сервера не позволяет это действие. Можно изменить в настройках.</value>
+    <value>Ваша конфигурация сервера не позволяет это действие. Изменить можно в настройках.</value>
   </data>
   <data name="PairTimeOut" xml:space="preserve">
-    <value>Соединение превысило время ожидания. Проверьте правильность адреса или попробуйте другой.</value>
+    <value>Превышено время ожидания подключения. Проверьте правильность адреса или попробуйте другой.</value>
   </data>
   <data name="SearchOnline" xml:space="preserve">
     <value>Попробуйте поискать решение в интернете</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Пара успешно добавлена, но её нельзя удалить из списка ожидающих сопряжения. Эту проблему можно решить, перезапустив клиент.</value>
+    <value>Пара успешно добавлена, но её нельзя удалить из списка ожидающих. Эту проблему можно решить, перезапустив клиент.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>Обнаружен запрос на сопряжение от {0}, добавить?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>Сопрячь с {0}?</value>
+    <value>Сопряжение с {0}</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Пара успешно добавлена!</value>
@@ -289,7 +286,7 @@
     <value>Неверный адрес</value>
   </data>
   <data name="RawAudioInfo" xml:space="preserve">
-    <value>Обратите внимание, что при остановке воспроизведения приложение перезапустится - это нормально</value>
+    <value>Обратите внимание, что при остановке воспроизведения приложение перезапустится — это нормально</value>
   </data>
   <data name="RawAudioNoPrompt" xml:space="preserve">
     <value>Не показывать снова</value>
@@ -298,10 +295,10 @@
     <value>Порт изменен</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>请注意, текущий номер порта был изменен, текущий порт: {0}[line]Пожалуйста, введите IP-адрес и номер порта вручную на удаленной стороне</value>
+    <value>Обратите внимание, номер порта был изменен. Текущий порт: {0}. Введите его вручную в расширенных настройках на удаленной стороне.</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
-    <value>Попробуйте обновить или полностью сбросить бэкенд</value>
+    <value>Попробуйте обновить или полностью сбросить серверную часть</value>
   </data>
   <data name="Init_TryReboot" xml:space="preserve">
     <value>Попробуйте перезапустить приложение</value>
@@ -325,25 +322,25 @@
     <value>Неизвестный альбом</value>
   </data>
   <data name="MediaInfo_FromDevice" xml:space="preserve">
-    <value>Медиаинформация от {0}:</value>
+    <value>Медиа информация от {0}:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
     <value>Мы разделили и перенесли бэкенд в само приложение и AudioClone, поэтому в этой версии мы полностью отказались от старого бэкенда.[line]Это означает, что вам нужно обновить все клиенты, чтобы они работали корректно.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>Вы включили новый бэкенд, поэтому мы рекомендуем обновить все клиенты. Если вы не хотите обновлять, вы можете отключить эту функцию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
+    <value>Вы включили новый бэкенд, поэтому мы рекомендуем обновить все клиенты. Если вы не хотите обновлять, вы также можете отключить эту функцию в «Настройки - Настройки бэкенда - Использовать старый бэкенд».</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
     <value>Не напоминать мне</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
-    <value>У вас, кажется, проблема с системными кодеками, из-за чего аудиопоток зависает[line]Попробуйте использовать другие аудиоопции</value>
+    <value>В вашей системе, похоже, есть проблемы с кодеками, из-за чего аудиопоток зависает[line]Попробуйте использовать другие аудио-настройки</value>
   </data>
   <data name="CrashReportHeader" xml:space="preserve">
-    <value>AudioCopy v{0} Отчет об ошибке[line]Если проблема повторяется, создайте Issue(https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) или отправьте этот файл на email: hexadecimal0x12e@icloud.com[line]Лог-файл находится в папке: {1}[line]---</value>
+    <value>AudioCopy v{0} отчет о сбое[line]Если проблема повторяется, создайте Issue (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) или отправьте этот файл на email: hexadecimal0x12e@icloud.com[line]Файл журнала находится в папке: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>Какое действие выполнять при закрытии окна?[line]Вы сможете изменить это позже в Настройки → Основные[line](При сворачивании в трей программа продолжает работать как сервер и принимать аудио)</value>
+    <value>Какое действие при закрытии окна вы предпочитаете?[line]Вы можете изменить это позже в настройках - Основные[line](При сворачивании в трей программа продолжает работать как сервер и принимать аудио)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>Полный выход</value>
@@ -352,13 +349,13 @@
     <value>Свернуть в трей</value>
   </data>
   <data name="NotPaired" xml:space="preserve">
-    <value>Вы еще не сопряжены, хотите выполнить сопряжение?</value>
+    <value>Вы еще не в паре, хотите создать пару?</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
     <value>Локальный или удаленный клиент слишком старый или новый, рекомендуется обновить все клиенты.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Вам необходимо перезапустить приложение, чтобы применить эти изменения.</value>
+    <value>Вам необходимо перезапустить приложение, чтобы применить изменения[line](это можно сделать через опцию "Выход" в трее)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
     <value>Полный выход</value>
@@ -370,15 +367,57 @@
     <value>Запуск AudioCopy</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Выход</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Ресурсы приложения могут быть серьезно повреждены, попробуйте переустановить.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Выберите следующее:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>Запрос на сопряжение от {0}</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Поиск...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Дополнительные параметры</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Возникли проблемы? Используйте расширенные настройки</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Получить помощь</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Использовать традиционный интерфейс сопряжения</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Ваши доступные IP-адреса:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Пожалуйста, сначала включите совместимость с традиционным сопряжением</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Обнаружение недоступно. Используйте опцию "Сопряжение по IP-адресу" в расширенных настройках или перейдите в настройки, чтобы включить режим обнаружения, оставив номер порта по умолчанию.</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Введите IP-адрес удаленной стороны</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Пример адреса: 10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](порт обязателен в этом случае)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>Введенные данные не совпадают, попробуйте снова.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>Разница во времени превышает 1 минуту, версии слишком отличаются или один из клиентов, возможно, изменен. Проверьте.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>Удаленный пользователь отклонил ваш запрос на сопряжение, время ожидания истекло или вас заблокировали.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Перезапустить приложение</value>
   </data>
 </root>

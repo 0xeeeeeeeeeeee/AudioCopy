@@ -118,34 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PlayString" xml:space="preserve">
-    <value>{0} sesini oynat</value>
+    <value>{0} sesini çal</value>
   </data>
   <data name="MP3UnavailableString" xml:space="preserve">
     <value>MP3 (yapılandırmanıza göre şu anda kullanılamıyor)</value>
   </data>
   <data name="RawAudioDescribe" xml:space="preserve">
-    <value>Sunucu wasapi'den 16bit dalga formu toplar ve dogrudan gonderir, alici ise dogrudan calar</value>
+    <value>Sunucu, wasapi'den 16bit dalga formu toplar ve doğrudan gönderir, ardından alıcı doğrudan çalar.</value>
   </data>
   <data name="ListeningClients.Text" xml:space="preserve">
     <value>Bu cihazlar dinlemede</value>
   </data>
   <data name="ChooseDevices" xml:space="preserve">
-    <value>Dinlenecek cihazı seçin</value>
+    <value>Dinlenecek cihazı seç</value>
   </data>
   <data name="PairedDevices.Text" xml:space="preserve">
     <value>Eşleştirilmiş cihazlar:</value>
   </data>
   <data name="AsReceiver.Text" xml:space="preserve">
-    <value>Alıcı olarak</value>
+    <value>Alıcı taraf olarak</value>
   </data>
   <data name="AsTransfer.Text" xml:space="preserve">
     <value>Gönderici olarak</value>
   </data>
   <data name="ChooseTheseInReceiver.Text" xml:space="preserve">
     <value>Alıcı tarafında aşağıdakileri seçin</value>
-  </data>
-  <data name="InputIPAddress.Text" xml:space="preserve">
-    <value>veya IP adresi girin:</value>
   </data>
   <data name="Refresh.Content" xml:space="preserve">
     <value>Yenile</value>
@@ -157,16 +154,16 @@
     <value>Bilinmeyen cihazdan ses çal</value>
   </data>
   <data name="Setting_AudioFromat.Text" xml:space="preserve">
-    <value>Ses formatı</value>
+    <value>Ses biçimi</value>
   </data>
   <data name="ChooseOne.Text" xml:space="preserve">
-    <value>Birini seç</value>
+    <value>Birini seçin</value>
   </data>
   <data name="ApplyButton.Content" xml:space="preserve">
     <value>Uygulama</value>
   </data>
   <data name="ChooseOneButton.Content" xml:space="preserve">
-    <value>Birini seç</value>
+    <value>Birini seçin</value>
   </data>
   <data name="Receive.Content" xml:space="preserve">
     <value>Alma</value>
@@ -178,28 +175,28 @@
     <value>Eşleştirme</value>
   </data>
   <data name="PairText" xml:space="preserve">
-    <value>Eşleştir</value>
+    <value>Eşleştirme</value>
   </data>
   <data name="Init_StageFail" xml:space="preserve">
-    <value>Arka uç başlatılamadı ({0})\r\nLütfen arka ucun antivirüs yazılımı tarafından engellenip engellenmediğini veya bağlantı noktasının başka bir program tarafından kullanılıp kullanılmadığını kontrol edin</value>
+    <value>Arka uç başlatılamadı ({0})\r\nLütfen başka bir program tarafından kullanılıp kullanılmadığını kontrol edin</value>
   </data>
   <data name="Init_Stage4" xml:space="preserve">
     <value>Arka uç başlatılmayı bekliyor...</value>
   </data>
   <data name="Init_Stage3" xml:space="preserve">
-    <value>Arka uç başlatılıyor (antivirüs uyarısı verirse izin verin)...</value>
+    <value>正在</value>
   </data>
   <data name="Init_Stage0.Text" xml:space="preserve">
     <value>Başlatılıyor...</value>
   </data>
   <data name="Init_Stage2" xml:space="preserve">
-    <value>{0} arka uç sürümüne v{1} güncelleniyor, başlatma daha uzun sürebilir, antivirüs uyarı verirse izin verin.</value>
+    <value>{0}AudioClone'u v{1} sürümüne yükseltiliyor, başlatma daha uzun sürebilir, antivirüs uyarısı alırsanız izin verin.</value>
   </data>
   <data name="Init_Stage1" xml:space="preserve">
     <value>Mevcut arka ucu sonlandır...</value>
   </data>
   <data name="Init_Upgrade" xml:space="preserve">
-    <value>Güncelleme</value>
+    <value>Yükseltme</value>
   </data>
   <data name="Init_Install" xml:space="preserve">
     <value>Kurulum</value>
@@ -217,7 +214,7 @@
     <value>İptal</value>
   </data>
   <data name="DenyButton.Content" xml:space="preserve">
-    <value>İptal</value>
+    <value>Eşleştirme isteği reddedildi</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Hata</value>
@@ -229,10 +226,10 @@
     <value>İpucu</value>
   </data>
   <data name="PortBox.PlaceholderText" xml:space="preserve">
-    <value>Port numarası (sadece karşı taraf giriş yapmanızı istediğinde girin)</value>
+    <value>Port numarası (sadece karşı taraf istediğinde girin)</value>
   </data>
   <data name="AddressListBox.PlaceholderText" xml:space="preserve">
-    <value>Alınan IP adresi listesi, buraya elle de girilebilir</value>
+    <value>veya karşı tarafın adresini/port numarasını girin</value>
   </data>
   <data name="SubmitButton.Content" xml:space="preserve">
     <value>Gönder</value>
@@ -247,7 +244,7 @@
     <value>Ses aygıtı ayarlanamadı:</value>
   </data>
   <data name="ViewDownside" xml:space="preserve">
-    <value>Lütfen aşağıya bakın, sıfırlamak için tıklayın</value>
+    <value>Lütfen aşağıdan kontrol edin, sıfırlamak için tıklayın</value>
   </data>
   <data name="StopPlay" xml:space="preserve">
     <value>Oynatmayı durdur</value>
@@ -256,7 +253,7 @@
     <value>{0} sesi</value>
   </data>
   <data name="TryReconnect" xml:space="preserve">
-    <value>Bağlantı başarısız, yeniden eşleştirmeyi denemek ister misiniz?</value>
+    <value>Bağlantı başarısız oldu, yeniden eşleştirmeyi denemek ister misiniz?</value>
   </data>
   <data name="BackendNotAllow" xml:space="preserve">
     <value>Arka uç yapılandırmanız bu işleme izin vermiyor, ayarlardan değiştirebilirsiniz.</value>
@@ -268,13 +265,13 @@
     <value>Çözüm için çevrimiçi arama yapmayı deneyin</value>
   </data>
   <data name="FailPair" xml:space="preserve">
-    <value>Eşleştirme başarıyla eklendi, ancak eşleştirme bekleyen listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
+    <value>Eşleştirme başarıyla eklendi, ancak bekleme listesinden kaldırılamıyor. Bu sorunu çözmek için istemciyi yeniden başlatabilirsiniz.</value>
   </data>
   <data name="PairRequired" xml:space="preserve">
     <value>{0} eşleştirme isteği algılandı, eklemek istiyor musunuz?</value>
   </data>
   <data name="PairConfirm" xml:space="preserve">
-    <value>{0} ile eşleştirmek istiyor musunuz?</value>
+    <value>{0} ile eşleştirme</value>
   </data>
   <data name="PairDone" xml:space="preserve">
     <value>Eşleştirme başarıyla eklendi!</value>
@@ -298,7 +295,7 @@
     <value>Port değiştirildi</value>
   </data>
   <data name="PairPortChangedMessage" xml:space="preserve">
-    <value>Lütfen dikkat, mevcut port numarası değiştirildi, şu anki port {0}[line]Lütfen karşı tarafta IP adresini ve port numarasını manuel olarak girin</value>
+    <value>Lütfen dikkat, mevcut port numarası değiştirildi. Şu anki port {0}. Lütfen karşı taraftaki gelişmiş seçeneklere manuel olarak girin.</value>
   </data>
   <data name="Init_TryReset" xml:space="preserve">
     <value>Lütfen arka ucu güncellemeyi veya tamamen sıfırlamayı deneyin</value>
@@ -307,7 +304,7 @@
     <value>Uygulamayı yeniden başlatmayı deneyin</value>
   </data>
   <data name="Init_Desc" xml:space="preserve">
-    <value>Yapılandır ve arka ucu başlat</value>
+    <value>Yapılandırma ve arka ucu başlatma</value>
   </data>
   <data name="Init_ContinueBoot" xml:space="preserve">
     <value>Hataları yoksay ve başlatmaya devam et</value>
@@ -328,13 +325,13 @@
     <value>{0} kaynaklı medya bilgisi:</value>
   </data>
   <data name="NewBackendBar" xml:space="preserve">
-    <value>Arka ucu uygulamanın kendisine ve AudioClone'a bölündü ve taşındı, bu nedenle bu sürümde eski arka ucu tamamen kaldırdık.[line]Bu, istemcilerinizin düzgün çalışmasını sağlamak için tüm istemcileri yükseltmeniz gerektiği anlamına gelir.</value>
+    <value>Arka ucu uygulamanın kendisine ve AudioClone'a bölüp taşıdık, bu yüzden bu sürümde eski arka ucu tamamen kaldırdık.[line]Bu, istemcilerin düzgün çalışması için tüm istemcileri güncellemeniz gerektiği anlamına gelir.</value>
   </data>
   <data name="NewBackendEnabled" xml:space="preserve">
-    <value>Yeni bir arka uç etkinleştirdiğiniz için tüm istemcileri güncellemenizi öneririz. Güncellemek istemiyorsanız, "Ayarlar - Arka Uç Ayarları - Eski Arka Ucu Kullan" seçeneği ile bu özelliği devre dışı bırakabilirsiniz.</value>
+    <value>Yeni bir arka uç etkinleştirdiniz, bu nedenle tüm istemcileri güncellemenizi öneririz. Güncelleme yapmak istemiyorsanız, "Ayarlar - Arka Uç Ayarları - Eski Arka Ucunu Kullan" seçeneği ile bu özelliği devre dışı bırakabilirsiniz.</value>
   </data>
   <data name="NolongerShow.Content" xml:space="preserve">
-    <value>Bana tekrar sorma</value>
+    <value>Bana tekrar hatırlatma</value>
   </data>
   <data name="PlayingWinUIMediaPlayerElementBug" xml:space="preserve">
     <value>Sistem kod çözücünüzde bir sorun var gibi görünüyor, bu da ses akışının takılmasına neden oldu[line]Lütfen başka bir ses seçeneği deneyin</value>
@@ -343,7 +340,7 @@
     <value>AudioCopy v{0} Çökme Raporu[line]Bu sorunu sürekli yaşıyorsanız, lütfen bir Issue oluşturun (https://github.com/0xeeeeeeeeeeee/AudioCopy/issues) veya bu dosyayı şu e-posta adresine gönderin: hexadecimal0x12e@icloud.com[line]Günlük dosyası şu klasörde bulunur: {1}[line]---</value>
   </data>
   <data name="ExitOptions" xml:space="preserve">
-    <value>Pencereyi kapatırken ne yapılmasını istersiniz[line]Daha sonra Ayarlar-Genel bölümünden değiştirebilirsiniz[line](Program sistem tepsisine küçültüldüğünde sunucu ve ses alma işlevlerini desteklemeye devam eder)</value>
+    <value>Pencereyi kapatırken ne yapılmasını istersiniz[line]Daha sonra Ayarlar-Genel'den değiştirebilirsiniz[line](Program tepsiye küçültüldüğünde sunucu ve ses alma işlevleri çalışmaya devam eder)</value>
   </data>
   <data name="ExitOption1" xml:space="preserve">
     <value>Tamamen Çık</value>
@@ -355,13 +352,13 @@
     <value>Henüz eşleşmediniz, eşleşmek ister misiniz?</value>
   </data>
   <data name="UpdateApp" xml:space="preserve">
-    <value>Bu uç veya karşı uç çok eski ya da çok yeni, tüm istemcilerin güncellenmesi önerilir.</value>
+    <value>Bu uç veya karşı uç çok eski veya çok yeni, tüm istemcilerin güncellenmesi önerilir.</value>
   </data>
   <data name="RebootRequired" xml:space="preserve">
-    <value>Uygulamayı yeniden başlatmanız gerekiyor</value>
+    <value>Uygulamayı yeniden başlatmanız gerekiyor[line](Bu işlemi sistem tepsisinden çıkış seçeneği ile yapabilirsiniz)</value>
   </data>
   <data name="Tray_Shutdown" xml:space="preserve">
-    <value>Tamamen Çık</value>
+    <value>Tamamen çık</value>
   </data>
   <data name="Tray_Close" xml:space="preserve">
     <value>Arayüzü Kapat</value>
@@ -370,15 +367,57 @@
     <value>AudioCopy'yi Başlat</value>
   </data>
   <data name="Tray_ExitOptions" xml:space="preserve">
-    <value />
+    <value>Çıkış Seçeneği</value>
   </data>
   <data name="AppCorrupted" xml:space="preserve">
-    <value />
+    <value>Uygulamanın kaynakları ciddi şekilde bozulmuş olabilir, lütfen kaldırıp yeniden yüklemeyi deneyin.</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value />
+    <value>Aşağıdakilerden seçin:</value>
   </data>
   <data name="PairDetected" xml:space="preserve">
-    <value />
+    <value>{0} eşleştirme isteği</value>
+  </data>
+  <data name="Discovering.Text" xml:space="preserve">
+    <value>Aranıyor...</value>
+  </data>
+  <data name="FacedWithProblem.Content" xml:space="preserve">
+    <value>Gelişmiş Seçenekler</value>
+  </data>
+  <data name="FacedWithProblem1" xml:space="preserve">
+    <value>Sorun mu yaşıyorsunuz? Gelişmiş seçenekleri kullanın</value>
+  </data>
+  <data name="PairHelp.Content" xml:space="preserve">
+    <value>Yardım al</value>
+  </data>
+  <data name="V1PairingPage.Content" xml:space="preserve">
+    <value>Geleneksel eşleştirme arayüzünü kullan</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Kullanılabilir IP adresiniz:</value>
+  </data>
+  <data name="V1PairDIsabled" xml:space="preserve">
+    <value>Lütfen önce geleneksel eşleştirme uyumluluğunu etkinleştirin</value>
+  </data>
+  <data name="DiscoverDisabled" xml:space="preserve">
+    <value>Kullanılamıyor bulundu, lütfen gelişmiş seçeneklerdeki "IP adresiyle eşleştir"i kullanın veya ayarlara giderek keşif modunu açın ve bağlantı noktası numarasını varsayılan olarak bırakın</value>
+  </data>
+  <data name="InputIPAddress.Text" xml:space="preserve">
+    <value>Karşı tarafın IP adresini girin</value>
+  </data>
+  <data name="AddressListBoxInfo" xml:space="preserve">
+    <value>Adres örneği:10.1.2.3, 10.2.3.4:5678[line][fd01:abcd:efab::1], [fd01::2345]:3456[line]yourhostname:23456, example.local:1234[line](port numarası bu durumda zorunludur)</value>
+  </data>
+  <data name="InputInvalid" xml:space="preserve">
+    <value>Girilen içerik uyuşmuyor, lütfen tekrar deneyin.</value>
+  </data>
+  <data name="ClientModified" xml:space="preserve">
+    <value>İki uç arasındaki zaman hatası 1 dakikayı aştı, sürüm farkı çok büyük veya bir istemci değiştirilmiş gibi görünüyor, lütfen kontrol edin.</value>
+  </data>
+  <data name="ClientDenied" xml:space="preserve">
+    <value>Karşı taraf senin eşleşme isteğini reddetti, eşleşme işlemi zaman aşımına uğradı veya karşı taraf seni engelledi.</value>
+  </data>
+  <data name="RebootApp" xml:space="preserve">
+    <value>Uygulamayı yeniden başlat</value>
   </data>
 </root>

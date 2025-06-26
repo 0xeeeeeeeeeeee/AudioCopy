@@ -32,8 +32,6 @@ namespace AudioCopyUI
 
         public static string LocalStateFolder => ApplicationData.Current.LocalFolder.Path;
 
-        public static ContentDialog _____SplashDialog_____;
-
         static object locker = new();
         //static ConcurrentDictionary<object, bool> isShowing = new();
 
@@ -51,10 +49,10 @@ namespace AudioCopyUI
                 CloseButtonText = subButtonText,
                 DefaultButton = ContentDialogButton.Primary
             };
-            return await ShowDialogue(confirmDialog, element, ContentDialogResult.Primary);
+            return await ShowCustomDialogue(confirmDialog, element, ContentDialogResult.Primary);
         }
 
-        public static async Task<bool> ShowDialogue(ContentDialog confirmDialog, object element, ContentDialogResult resultButton)
+        public static async Task<bool> ShowCustomDialogue(ContentDialog confirmDialog, object element, ContentDialogResult resultButton)
         {
             try
             {
@@ -68,7 +66,7 @@ namespace AudioCopyUI
             {
                 Log("Trying to show many dialog at one time.","error");
                 await Task.Delay(Random.Shared.Next(1000, 5000));
-                return await ShowDialogue(confirmDialog, element, resultButton);
+                return await ShowCustomDialogue(confirmDialog, element, resultButton);
             }
 
 
