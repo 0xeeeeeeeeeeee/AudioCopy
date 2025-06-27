@@ -154,7 +154,7 @@ namespace AudioCopyUI
 
                 foreach (var item in Backend.TokenController.Devices)
                 {
-                    if (item.Value == "localhost") continue;
+                    if (item.Key == token) continue;
                     clientDisplayName = ($"{item.Value}                                     @{item.Key}");
                     if (!BindedClientList.Contains(clientDisplayName)) BindedClientList.Add(clientDisplayName);
 

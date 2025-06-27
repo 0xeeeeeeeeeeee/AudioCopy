@@ -135,6 +135,21 @@ namespace AudioCopyUI.Backend
                 });
 
             }
+            else
+            {
+                Backend.backend.MapGet("/RequirePair", async (HttpContext context, string udid, string name, double version = 1) =>
+                {
+                    context.Response.ContentType = "text/plain";
+                    if (udid.StartsWith("AudioCopy"))
+                    {
+                        return Results.Text("AudioCopy" + Environment.MachineName);
+                    }
+                    else return Results.BadRequest("Please upgrade your client, or enable V1 pairing compatibility in the settings.");
+
+
+                });
+            
+            }
 
             group.MapGet("/TryAuth", (string token) =>
             {

@@ -40,7 +40,7 @@ namespace AudioCopyUI.Backend
             Stopwatch sw = Stopwatch.StartNew();
             MediaInfo? i = null;
 
-            group.MapGet("/GetSMTCInfo", async (string token) =>
+            group.MapGet("/GetSMTCInfoV2", async (string token) =>
             {
                 if (!TokenController.Auth(token))
                 {
@@ -53,6 +53,17 @@ namespace AudioCopyUI.Backend
                 if (i is null) return Results.NoContent();
                 i.AlbumArtBase64 = null;
                 return Results.Ok(i);
+            });
+
+            group.MapGet("/GetSMTCInfo", async () =>
+            {
+
+                return Results.Ok(new MediaInfo
+                {
+                    Artist = localize("UpdateApp"),
+                    AlbumArtist = localize("UpdateApp"),
+                    Title = localize("UpdateApp"),
+                });
             });
 
             group.MapGet("/GetAlbumPhoto", async (string token) =>

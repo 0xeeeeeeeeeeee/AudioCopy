@@ -137,6 +137,30 @@ $""""""
                 return VersionCode.ToString();
             });
 
+            backend.MapGet("/api/audio/mp3", () =>
+            {
+                return Results.File(
+                    System.IO.File.ReadAllBytes(
+                        Path.Combine(LocalStateFolder, "fallback.mp3"))
+                    , "audio/mpeg", "fallback.mp3");
+            });
+
+            backend.MapGet("/api/audio/flac", () =>
+            {
+                return Results.File(
+                    System.IO.File.ReadAllBytes(
+                        Path.Combine(LocalStateFolder, "fallback.mp3"))
+                    , "audio/mpeg", "fallback.mp3");
+            });
+
+            backend.MapGet("/api/audio/wav", () =>
+            {
+                return Results.File(
+                    System.IO.File.ReadAllBytes(
+                        Path.Combine(LocalStateFolder, "fallback.mp3"))
+                    , "audio/mpeg", "fallback.mp3");
+            });
+
             //backend.MapGet("/crash", () =>
             //{
             //    throw new NotSupportedException("fun thing hah :)");

@@ -83,6 +83,7 @@ namespace AudioCopyUI
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            if (!Program.AppRunning) return;
             DispatcherQueue.TryEnqueue(async () =>
             {
                 foreach (var item in AudioCopyUI_MiddleWare.BackendHelper.DiscoveredClients)

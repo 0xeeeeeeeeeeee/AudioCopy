@@ -154,11 +154,13 @@ namespace AudioCopyUI.SettingViews
         {
             if (!await ShowDialogue(localize("Warn"), localize("/Setting/AdvancedSetting_SureReset"), localize("Cancel"), localize("Accept"), this))
             {
-                SettingUtility.SetSettings("deviceMapping", "{}");
-                Program.KillBackend();
-                File.Delete(Path.Combine(LocalStateFolder, @"wwwroot\tokens.json"));
+                Backend.TokenController.Devices.Clear();
+                Backend.TokenController.DiscoveredList.Clear();
+                File.Delete(Path.Combine(LocalStateFolder, "devices.yaml"));
                 await ShowDialogue(localize("Info"), localize("/Setting/AdvancedSetting_Reset"), localize("Accept"), null, this);
+                await AudioCloneHelper.Kill();
                 Program.ExitApp(true);
+
             }
         }
 

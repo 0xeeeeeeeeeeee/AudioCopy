@@ -225,7 +225,7 @@ namespace AudioCopyUI
 
                         try
                         {
-                            rsp = await c.GetAsync($"/api/device/GetSMTCInfo?token={ClientToken}");
+                            rsp = await c.GetAsync($"/api/device/GetSMTCInfoV2?token={ClientToken}");
                             if (rsp.IsSuccessStatusCode)
                             {
                                 var infoBody = await rsp.Content.ReadFromJsonAsync<MediaInfo>();
@@ -414,7 +414,10 @@ namespace AudioCopyUI
 
         private async void MediaPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
-            await ShowDialogue(localize("Info"), "Playback failed. Try pair again or reboot the app.", localize("Accept"), localize("Cancel"), this);
+            this.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.High, async () =>
+            {
+                await ShowDialogue(localize("Info"), "Playback failed. Try pair again or reboot the app.\r\nIf you still can't play the audio, send a feedback to me.", localize("Accept"), localize("Cancel"), this);
+            });
         }
 
         public class MediaInfo
@@ -467,7 +470,16 @@ namespace AudioCopyUI
                 AudioQualityObject body;
                 try
                 {
-                    var baseAddr = "http:" + c.BaseAddress.ToString().Split(':')[1] + $":{AudioCloneHelper.Port}/api/audio/GetAudioFormat?token={AudioCloneHelper.Token}";
+                    var query = source.Query.TrimStart('?');
+                    var queryParams = query.Split('&', StringSplitOptions.RemoveEmptyEntries);
+      
+                    UriBuilder b = new(source);
+                    string host = $"http://{b.Host}:{b.Port}";
+                    string cloneToken = queryParams
+                        .FirstOrDefault(param => param.StartsWith("token=", StringComparison.OrdinalIgnoreCase))
+                        ?.Split('=')[1];
+
+                    var baseAddr = new Uri(new Uri(host), $"/api/audio/GetAudioFormat?token={cloneToken}");
                     var rsp = await new HttpClient().GetAsync(baseAddr);
                     body = JsonSerializer.Deserialize<AudioQualityObject>(await rsp.Content.ReadAsStringAsync());
                 }

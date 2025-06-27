@@ -175,20 +175,8 @@ namespace AudioCopyUI
             {
                 var script =
 $$"""
-function changeLang
-{
-    [System.Console]::Title = "Please wait..."
 
-    taskkill.exe /f /im "AudioCopyUI.exe" 2> $null 1>$null
-
-    Start-Sleep -Seconds 1
-
-    Start-Process "audiocopy:"
-
-    exit 
-}
-
-Clear-Host;changeLang
+Clear-Host;Start-Process "audiocopy:";exit
 
 """;
                 var proc = new Process();
@@ -636,18 +624,27 @@ Clear-Host;changeLang
                 }
 
                 BackendVersionCode = ver;
+
+
                 try
                 {
-                    var backendAsbPath = Path.Combine(LocalStateFolder, @"backend\AudioClone.Server.dll");
-                    var backendAsb = Assembly.LoadFrom(backendAsbPath);
-                    var backendHash = await AlgorithmServices.ComputeFileSHA256Async(backendAsbPath);
-                    Log($"Backend assembly info:{backendAsb.FullName} SHA256:{backendHash}");
-                }
-                catch
-                {
-                    Log($"Backend assembly info unavailable!", "warn");
+                    uri = new Uri("ms-appx:///Assets/AudioCopy.png");
+                    StorageFile sourceFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
+                    var destinationPath = Path.Combine(LocalStateFolder, "AudioCopy.png");
+
+                    using (var sourceStream = await sourceFile.OpenStreamForReadAsync())
+                    using (var destinationStream = new FileStream(destinationPath, FileMode.Create, FileAccess.Write))
+                    {
+                        await sourceStream.CopyToAsync(destinationStream);
+                    }
 
                 }
+                catch (Exception ex)
+                {
+                    Log(ex);
+                }
+
+
             }
             catch(Exception ex)
             {
